@@ -105,5 +105,17 @@
                 "round": 2
             }
         ]
+    },
+    "cn/index/candlestick": {
+        "name": "指数K线数据",
+        "update_frequency": "realtime",
+        "fields": {},
+        "conversions": []
+    },
+    "cn/company/candlestick": {
+        "name": "公司K线数据",
+        "update_frequency": "realtime",
+        "fields": {},
+        "conversions": []
     }
 }

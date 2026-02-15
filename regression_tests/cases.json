@@ -1,0 +1,686 @@
+{
+  "lixinger-data-query": [
+    {
+      "name": "query_cn_company",
+      "cwd": "skills/lixinger-data-query",
+      "cmd": "python scripts/query_tool.py --suffix 'cn/company' --params '{\"stockCodes\": [\"600519\"]}' --format json"
+    },
+    {
+      "name": "query_index_valuation",
+      "cwd": "skills/lixinger-data-query",
+      "cmd": "python scripts/query_tool.py --suffix 'cn/index/fundamental' --params '{\"stockCodes\": [\"000016\"], \"date\": \"2024-12-10\", \"metricsList\": [\"pe_ttm.mcw\"]}' --format json"
+    }
+  ],
+  "macro-liquidity-monitor": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/macro-liquidity-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/macro-liquidity-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "ipo-lockup-risk-monitor": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/ipo-lockup-risk-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/ipo-lockup-risk-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "shareholder-risk-check": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/shareholder-risk-check",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/shareholder-risk-check",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "peer-comparison-analyzer": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/peer-comparison-analyzer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/peer-comparison-analyzer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "dividend-corporate-action-tracker": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/dividend-corporate-action-tracker",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/dividend-corporate-action-tracker",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "weekly-market-brief-generator": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/weekly-market-brief-generator",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/weekly-market-brief-generator",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "volatility-regime-monitor": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/volatility-regime-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/volatility-regime-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "margin-risk-monitor": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/margin-risk-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/margin-risk-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "goodwill-risk-monitor": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/goodwill-risk-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/goodwill-risk-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "suitability-report-generator": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/suitability-report-generator",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/suitability-report-generator",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "quant-factor-screener": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/quant-factor-screener",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/quant-factor-screener",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "concept-board-analyzer": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/concept-board-analyzer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/concept-board-analyzer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "st-delist-risk-scanner": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/st-delist-risk-scanner",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/st-delist-risk-scanner",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "rebalancing-planner": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/rebalancing-planner",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/rebalancing-planner",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "block-deal-monitor": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/block-deal-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/block-deal-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "esg-screener": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/esg-screener",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/esg-screener",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "high-dividend-strategy": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/high-dividend-strategy",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/high-dividend-strategy",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "industry-chain-mapper": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/industry-chain-mapper",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/industry-chain-mapper",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "undervalued-stock-screener": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/undervalued-stock-screener",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/undervalued-stock-screener",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "dragon-tiger-list-analyzer": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/dragon-tiger-list-analyzer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/dragon-tiger-list-analyzer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "investment-memo-generator": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/investment-memo-generator",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/investment-memo-generator",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "bse-selection-analyzer": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/bse-selection-analyzer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/bse-selection-analyzer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "tech-hype-vs-fundamentals": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/tech-hype-vs-fundamentals",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/tech-hype-vs-fundamentals",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "equity-research-orchestrator": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/equity-research-orchestrator",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/equity-research-orchestrator",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "risk-adjusted-return-optimizer": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/risk-adjusted-return-optimizer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/risk-adjusted-return-optimizer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "event-study": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/event-study",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/event-study",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "fund-flow-monitor": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/fund-flow-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/fund-flow-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "etf-allocator": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/etf-allocator",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/etf-allocator",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "small-cap-growth-identifier": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/small-cap-growth-identifier",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/small-cap-growth-identifier",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "financial-statement-analyzer": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/financial-statement-analyzer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/financial-statement-analyzer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "factor-crowding-monitor": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/factor-crowding-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/factor-crowding-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "portfolio-health-check": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/portfolio-health-check",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/portfolio-health-check",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "portfolio-monitor-orchestrator": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/portfolio-monitor-orchestrator",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/portfolio-monitor-orchestrator",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "market-breadth-monitor": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/market-breadth-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/market-breadth-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "event-driven-detector": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/event-driven-detector",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/event-driven-detector",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "sector-rotation-detector": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/sector-rotation-detector",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/sector-rotation-detector",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "valuation-regime-detector": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/valuation-regime-detector",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/valuation-regime-detector",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "hot-rank-sentiment-monitor": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/hot-rank-sentiment-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/hot-rank-sentiment-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "market-overview-dashboard": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/market-overview-dashboard",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/market-overview-dashboard",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "limit-up-pool-analyzer": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/limit-up-pool-analyzer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/limit-up-pool-analyzer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "insider-trading-analyzer": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/insider-trading-analyzer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/insider-trading-analyzer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "shareholder-structure-monitor": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/shareholder-structure-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/shareholder-structure-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "policy-sensitivity-brief": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/policy-sensitivity-brief",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/policy-sensitivity-brief",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "liquidity-impact-estimator": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/liquidity-impact-estimator",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/liquidity-impact-estimator",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "limit-up-limit-down-risk-checker": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/limit-up-limit-down-risk-checker",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/limit-up-limit-down-risk-checker",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "share-repurchase-monitor": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/share-repurchase-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/share-repurchase-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "sentiment-reality-gap": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/sentiment-reality-gap",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/sentiment-reality-gap",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "ipo-newlist-monitor": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/ipo-newlist-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/ipo-newlist-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "northbound-flow-analyzer": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/northbound-flow-analyzer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/northbound-flow-analyzer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "ab-ah-premium-monitor": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/ab-ah-premium-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/ab-ah-premium-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "intraday-microstructure-analyzer": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/intraday-microstructure-analyzer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/intraday-microstructure-analyzer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "hsgt-holdings-monitor": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/hsgt-holdings-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/hsgt-holdings-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "industry-board-analyzer": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/industry-board-analyzer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/industry-board-analyzer",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "equity-pledge-risk-monitor": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/equity-pledge-risk-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/equity-pledge-risk-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "disclosure-notice-monitor": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/disclosure-notice-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/disclosure-notice-monitor",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ],
+  "convertible-bond-scanner": [
+    {
+      "name": "case_1",
+      "cwd": "skills/China-market/convertible-bond-scanner",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief"
+    },
+    {
+      "name": "case_2",
+      "cwd": "skills/China-market/convertible-bond-scanner",
+      "cmd": "python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full"
+    }
+  ]
+}

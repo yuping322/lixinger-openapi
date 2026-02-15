@@ -11,6 +11,35 @@ import json
 import argparse
 import pandas as pd
 from lixinger_openapi.query import query_json, query_dataframe
+from lixinger_openapi.token import set_token
+
+def get_lixinger_token() -> str:
+    """Find token in environment or token.cfg in parent directories."""
+    token = os.getenv("LIXINGER_TOKEN")
+    if token:
+        return token
+    
+    # Search upwards for token.cfg
+    curr = Path(os.getcwd()).resolve()
+    for _ in range(5): # Check up to 5 levels
+        cfg_path = curr / "token.cfg"
+        if cfg_path.exists():
+            try:
+                with open(cfg_path, 'r', encoding='utf-8') as f:
+                    content = f.read().strip()
+                    if content:
+                        if content.startswith("["):
+                            import configparser
+                            config = configparser.ConfigParser()
+                            config.read_string(content)
+                            return config.get("lixinger", "token", fallback="")
+                        return content
+            except Exception:
+                pass
+        curr = curr.parent
+    return ""
+
+from pathlib import Path
 
 def main():
     parser = argparse.ArgumentParser(description="Lixinger Data Query Tool")
@@ -23,6 +52,11 @@ def main():
     parser.add_argument("--use-list", help="Use a previously saved session list as stockCodes")
     
     args = parser.parse_args()
+
+    # Initialize Token
+    token = get_lixinger_token()
+    if token:
+        set_token(token, write_token=False)
 
     # Import CacheManager only if needed
     from cache_manager import CacheManager

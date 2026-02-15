@@ -1,0 +1,21 @@
+{
+  "cn/company": {
+    "update_frequency": "daily",
+    "fields": {
+      "stockCode": {"type": "string", "desc": "股票代码"},
+      "name": {"type": "string", "desc": "公司名称"},
+      "fsTableType": {"type": "string", "desc": "财报类型"}
+    },
+    "units": {}
+  },
+  "cn/index/fundamental": {
+    "update_frequency": "daily",
+    "fields": {
+      "pe_ttm": {"type": "float", "desc": "市盈率(TTM)", "unit": "ratio"},
+      "mc": {"type": "float", "desc": "总市值", "unit": "yuan", "conversion": {"from": "yuan", "to": "billion_yuan", "factor": 1e-8}}
+    },
+    "units": {
+      "mc": "10^8 元"
+    }
+  }
+}
