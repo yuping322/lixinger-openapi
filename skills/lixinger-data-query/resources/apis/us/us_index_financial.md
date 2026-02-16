@@ -1,24 +1,42 @@
-# API 规范: us/index/financial (美股指数财务数据)
+# API 规范: us/index/fs/non_financial (美股指数财务报表-非金融)
 
-获取美股指数财务数据
+获取美股指数非金融成分股的合并财务报表数据
 
 ## 接口地址
-- **URL 后缀**: `us/index/financial`
-- **支持格式**: `us.index.financial`
+- **URL 后缀**: `us/index/fs/non_financial`
+- **支持格式**: `us.index.fs.non_financial`
 
 ## 查询参数 (query_params)
-大多数 API 遵循以下参数结构，根据具体需求选择：
 
 | 参数名 | 类型 | 必填 | 说明 |
 | :--- | :--- | :--- | :--- |
 | `token` | string | 是 | 用户访问令牌 (工具自动注入) |
-| `stockCodes` | list | 是 | 股票代码列表，如 `["600519", "000001"]` |
+| `metricsList` | list | 是 | 指标列表 |
 | `date` | string | 否 | 指定日期 (YYYY-MM-DD) |
 | `startDate` | string | 否 | 起始时间 (YYYY-MM-DD) |
 | `endDate` | string | 否 | 结束时间 (YYYY-MM-DD) |
-| `metricsList` | list | 否 | 指标列表，如 `["pe_ttm", "mc"]` |
+| `stockCodes` | list | 否 | 指数代码列表 |
+
+## 指标格式
+
+格式：`[granularity].[tableName].[fieldName].[expressionType]`
+
+示例：`q.ps.toi.t` = 季度(q) - 利润表(ps) - 营业总收入(toi) - 合计(t)
+
+**粒度 (granularity)**：
+- `q` - 季度
+- `a` - 年度
+
+**表名 (tableName)**：
+- `ps` - 利润表 (Profit Statement)
+- `bs` - 资产负债表 (Balance Sheet)
+- `cf` - 现金流量表 (Cash Flow)
+
+**表达式类型 (expressionType)**：
+- `t` - 合计
+- `a` - 平均值
 
 ## 调用示例
 ```bash
-/opt/anaconda3/bin/python3 skills/lixinger-data-query/scripts/query_tool.py --suffix "us/index/financial" --params '{"stockCodes": ["600519"], "date": "2024-12-30"}'
+python3 skills/lixinger-data-query/scripts/query_tool.py --suffix "us/index/fs/non_financial" --params '{"stockCodes": [".INX"], "metricsList": ["q.ps.toi.t", "q.ps.np.t"], "date": "2024-12-31"}'
 ```

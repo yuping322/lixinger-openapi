@@ -72,11 +72,12 @@ hk/industry/fund-flow,2. 香港 (hk)/2.3 行业接口 (industry),获取港股行
 us/index/basic-info,3. 美国 (us)/3.1 指数接口 (index),获取美股指数基本信息数据,resources/apis/us/us_index_basic_info.md
 us/index/k-line,3. 美国 (us)/3.1 指数接口 (index),获取美股指数K线数据,resources/apis/us/us_index_k_line.md
 us/index/constituents,3. 美国 (us)/3.1 指数接口 (index),获取美股指数成分股数据,resources/apis/us/us_index_constituents.md
+us/index/drawdown,3. 美国 (us)/3.1 指数接口 (index),获取美股指数回撤数据,resources/apis/us/us_index_drawdown.md
+us/index/tracking-fund,3. 美国 (us)/3.1 指数接口 (index),获取美股指数跟踪基金数据,resources/apis/us/us_index_tracking_fund.md
 us/index/fundamental,3. 美国 (us)/3.1 指数接口 (index),获取美股指数基本面数据,resources/apis/us/us_index_fundamental.md
 us/index/financial,3. 美国 (us)/3.1 指数接口 (index),获取美股指数财务数据,resources/apis/us/us_index_financial.md
-us/index/valuation,3. 美国 (us)/3.1 指数接口 (index),获取美股指数估值数据,resources/apis/us/us_index_valuation.md
-us/index/hot-data,3. 美国 (us)/3.1 指数接口 (index),获取美股指数热度数据,resources/apis/us/us_index_hot_data.md
-us/index/fund-flow,3. 美国 (us)/3.1 指数接口 (index),获取美股指数资金流向数据,resources/apis/us/us_index_fund_flow.md
+us/index/hot-data,3. 美国 (us)/3.1 指数接口 (index),获取美股指数热度数据,resources/apis/us/us_index_hot_cp.md
+us/index/fund-flow,3. 美国 (us)/3.1 指数接口 (index),获取美股指数资金流向数据,resources/apis/us/us_index_hot_ifet_sni.md
 macro/investor,4. 宏观 (macro)/General,获取投资者数据,resources/apis/macro/macro_investor.md
 macro/credit-security-account,4. 宏观 (macro)/General,获取信用证券账户数据,resources/apis/macro/macro_credit_security_account.md
 macro/stamp-duty,4. 宏观 (macro)/General,获取印花税数据,resources/apis/macro/macro_stamp_duty.md
