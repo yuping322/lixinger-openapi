@@ -1,0 +1,52 @@
+{
+  "name": "lixinger-financial-analysis",
+  "version": "1.0.0",
+  "description": "理杏仁金融分析技能包 - 支持A股、美股、港股市场量化分析",
+  "working_directory": "/Users/fengzhi/Downloads/git/lixinger-openapi/skills",
+  "environment": {
+    "PYTHONPATH": "/Users/fengzhi/Downloads/git/lixinger-openapi",
+    "FINSKILLS_CACHE_DIR": "/tmp/finskills-cache"
+  },
+  "skills": {
+    "directories": [
+      "China-market",
+      "US-market", 
+      "HK-market",
+      "lixinger-data-query"
+    ],
+    "skill_pattern": "**/SKILL.md",
+    "reference_pattern": "**/references/**/*.md"
+  },
+  "tools": [
+    {
+      "name": "china_market_toolkit",
+      "description": "A股市场数据工具包 - 提供个股、市场、板块、宏观数据查询",
+      "command": "cd /Users/fengzhi/Downloads/git/lixinger-openapi/skills/China-market/findata-toolkit-cn && python scripts/toolkit.py",
+      "working_directory": "/Users/fengzhi/Downloads/git/lixinger-openapi/skills/China-market/findata-toolkit-cn"
+    },
+    {
+      "name": "us_market_toolkit",
+      "description": "美股市场数据工具包 - 提供美股个股、市场、板块数据查询",
+      "command": "cd /Users/fengzhi/Downloads/git/lixinger-openapi/skills/US-market/findata-toolkit-us && python scripts/toolkit.py",
+      "working_directory": "/Users/fengzhi/Downloads/git/lixinger-openapi/skills/US-market/findata-toolkit-us"
+    },
+    {
+      "name": "hk_market_toolkit", 
+      "description": "港股市场数据工具包 - 提供港股个股、市场、板块数据查询",
+      "command": "cd /Users/fengzhi/Downloads/git/lixinger-openapi/skills/HK-market/findata-toolkit-hk && python scripts/toolkit.py",
+      "working_directory": "/Users/fengzhi/Downloads/git/lixinger-openapi/skills/HK-market/findata-toolkit-hk"
+    },
+    {
+      "name": "lixinger_data_query",
+      "description": "理杏仁API数据查询工具 - 直接查询理杏仁开放平台数据",
+      "command": "cd /Users/fengzhi/Downloads/git/lixinger-openapi/skills/lixinger-data-query && python scripts/query_tool.py",
+      "working_directory": "/Users/fengzhi/Downloads/git/lixinger-openapi/skills/lixinger-data-query"
+    }
+  ],
+  "aliases": {
+    "toolkit-cn": "cd /Users/fengzhi/Downloads/git/lixinger-openapi/skills/China-market/findata-toolkit-cn && python scripts/toolkit.py",
+    "toolkit-us": "cd /Users/fengzhi/Downloads/git/lixinger-openapi/skills/US-market/findata-toolkit-us && python scripts/toolkit.py", 
+    "toolkit-hk": "cd /Users/fengzhi/Downloads/git/lixinger-openapi/skills/HK-market/findata-toolkit-hk && python scripts/toolkit.py",
+    "query-data": "cd /Users/fengzhi/Downloads/git/lixinger-openapi/skills/lixinger-data-query && python scripts/query_tool.py"
+  }
+}

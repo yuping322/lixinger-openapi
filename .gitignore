@@ -113,3 +113,5 @@ token.cfg
 *.swp
 
 .vscode/
+# Regression test results
+regression_tests/results/
