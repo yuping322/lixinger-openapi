@@ -61,7 +61,9 @@ class ScreenerDB:
         """
         sql = "SELECT * FROM stocks"
         if where_clause:
-            sql += f" WHERE {where_clause}"
+            # 使用参数化查询防止SQL注入
+            sql += " WHERE " + ", ".join([f"{k} = ?" for k in where_clause.keys()])
+            params = list(where_clause.values())
         sql += f" LIMIT {limit}"
         
         try:
