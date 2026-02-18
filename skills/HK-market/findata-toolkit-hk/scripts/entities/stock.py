@@ -11,7 +11,11 @@ class StockEntity:
         mode: brief (摘要) / full (详尽)
         """
         # 1. 基础信息
-        basic = self.client.fetch("cn/company", {"stockCodes": [stock_code]})
+        # 港股接口适配
+        # 自动添加hk前缀
+        if not stock_code.startswith(('hk', 'HK')):
+            stock_code = f"hk{stock_code}"
+        basic = self.client.fetch("hk/company", {"stockCodes": [stock_code]})
         if not basic or not basic.get('data'):
             return {"error": f"Stock {stock_code} not found."}
         
@@ -20,7 +24,7 @@ class StockEntity:
         # 2. 核心指标与估值 (PE/PB/市值)
         # 很多接口需要显式提供 date 或 startDate
         today_str = datetime.now().strftime("%Y-%m-%d")
-        metrics_res = self.client.fetch("cn/company/fundamental/non_financial", {
+        metrics_res = self.client.fetch("hk/company/fundamental/non_financial", {
             "stockCodes": [stock_code],
             "metricsList": ["pe_ttm", "pb", "mc"],
             "date": today_str,
@@ -28,7 +32,7 @@ class StockEntity:
         })
         if not metrics_res or metrics_res.get('code') != 1 or not metrics_res.get('data'):
              # Fallback: 使用 startDate 获取最近的一条数据
-             metrics_res = self.client.fetch("cn/company/fundamental/non_financial", {
+             metrics_res = self.client.fetch("hk/company/fundamental/non_financial", {
                 "stockCodes": [stock_code],
                 "metricsList": ["pe_ttm", "pb", "mc"],
                 "startDate": "2024-01-01",
@@ -64,7 +68,7 @@ class StockEntity:
             # 增加最近 5 天行情
             # 注意：cn/company/candlestick 需要 type, startDate, endDate
             today_str = datetime.now().strftime("%Y-%m-%d")
-            kline_res = self.client.fetch("cn/company/candlestick", {
+            kline_res = self.client.fetch("hk/company/candlestick", {
                 "stockCode": stock_code,
                 "type": "ex_rights",
                 "startDate": "2026-01-01", 
@@ -75,7 +79,7 @@ class StockEntity:
             report["recent_kline"] = kline_res.get('data', [])
             
             # 增加高管变动
-            executive_res = self.client.fetch("cn/company/executive-shareholding", {
+            executive_res = self.client.fetch("hk/company/executive-shareholding", {
                 "stockCodes": [stock_code],
                 "limit": 5
             })

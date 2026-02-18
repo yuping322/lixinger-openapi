@@ -18,7 +18,7 @@ from common.screener_db import ScreenerDB
 from common.lixinger_client import LixingerClient
 
 def main():
-    parser = argparse.ArgumentParser(description="China Market Toolkit (Lixinger Powered)")
+    parser = argparse.ArgumentParser(description="Hong Kong Market Toolkit (Lixinger Powered)")
     
     # Entity Commands
     parser.add_argument("--stock", help="Fetch detailed report for a stock code (e.g., 600519)")

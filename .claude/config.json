@@ -1,0 +1,13 @@
+{
+  "skills": [
+    {
+      "name": "Lixinger量化分析技能包",
+      "path": ".claude/skills.json",
+      "description": "覆盖A股/港股/美股的专业量化分析技能"
+    }
+  ],
+  "environment": {
+    "PYTHONPATH": "/Users/fengzhi/Downloads/git/lixinger-openapi"
+  },
+  "default_working_directory": "/Users/fengzhi/Downloads/git/lixinger-openapi"
+}

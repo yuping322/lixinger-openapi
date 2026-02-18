@@ -1,4 +1,5 @@
 from common.lixinger_client import LixingerClient
+from common.utils import safe_change_pct
 
 class MarketEntity:
     def __init__(self, client: LixingerClient = None):
@@ -11,12 +12,13 @@ class MarketEntity:
         overview = {}
 
         # 1. 核心指数表现 (SSE 50, HS 300, CSI 500, SZSE Component)
-        indices = ["000016", "000300", "000905", "399001"]
+        # 港股指数
+        indices = ["HSI", "HSCEI", "HSCCI"]
         major_indices = []
         last_date = ""
 
         for code in indices:
-            res = self.client.fetch("cn/index/candlestick", {
+            res = self.client.fetch("hk/index/candlestick", {
                 "stockCode": code,
                 "type": "normal",
                 "limit": 1,
@@ -28,7 +30,7 @@ class MarketEntity:
                 major_indices.append({
                     "name": code, # Use code as name (candlestick index doesn't return stockCode in data)
                     "latest": item.get('close'),
-                    "change_pct": round(((item.get('close') - item.get('open')) / item.get('open')) * 100, 2) if item.get('open') else 0,
+                    "change_pct": round(safe_change_pct(item.get('close'), item.get('open'), default=0) * 100, 2),
                     "date": item.get('date')
                 })
                 if not last_date:
@@ -38,7 +40,7 @@ class MarketEntity:
 
         # 2. 市场估值水位 (以沪深 300 为代表)
         if last_date:
-            valuation_res = self.client.fetch("cn/index/fundamental", {
+            valuation_res = self.client.fetch("hk/index/fundamental", {
                 "stockCodes": ["000300"],
                 "date": last_date,
                 "metricsList": ["pe_ttm.mcw", "pb.mcw"]

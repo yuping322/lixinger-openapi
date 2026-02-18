@@ -1,4 +1,5 @@
 from common.lixinger_client import LixingerClient
+from common.utils import safe_change_pct
 
 class MarketEntity:
     def __init__(self, client: LixingerClient = None):
@@ -28,7 +29,7 @@ class MarketEntity:
                 major_indices.append({
                     "name": code, # Use code as name (candlestick index doesn't return stockCode in data)
                     "latest": item.get('close'),
-                    "change_pct": round(((item.get('close') - item.get('open')) / item.get('open')) * 100, 2) if item.get('open') else 0,
+                    "change_pct": round(safe_change_pct(item.get('close'), item.get('open'), default=0) * 100, 2),
                     "date": item.get('date')
                 })
                 if not last_date:

@@ -1,0 +1,1080 @@
+{
+  "schema_version": "v2",
+  "skills": [
+    {
+      "name": "ab_ah_premium_monitor",
+      "description": "跟踪 AB 股比价与 A+H 溢价/折价，并结合流动性与事件因素给出风险提示。当用户询问AB股比价、A+H溢价、跨市场定价差或需要溢价监控时使用。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "stock_codes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "可选：指定要查询的股票代码列表，不指定则查询全部AB/AH股票"
+          },
+          "time_window": {
+            "type": "string",
+            "description": "可选：时间窗口，如'1m','1d','1w','1m','1y'，默认'1d'"
+          },
+          "output_type": {
+            "type": "string",
+            "enum": ["list", "brief", "full"],
+            "description": "可选：输出格式，列表/简报/完整分析，默认'brief'"
+          }
+        }
+      }
+    },
+    {
+      "name": "block_deal_monitor",
+      "description": "监控A股大宗交易数据，分析折价率、成交金额、买卖席位特征，识别机构动向与大额减持风险。适用于查询大宗交易、机构席位动向、股东减持相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "days": {
+            "type": "number",
+            "description": "可选：查询最近N天的大宗交易数据，默认7天"
+          },
+          "min_amount": {
+            "type": "number",
+            "description": "可选：最低成交金额阈值（万元），默认1000万元"
+          },
+          "stock_code": {
+            "type": "string",
+            "description": "可选：指定单个股票代码查询"
+          }
+        }
+      }
+    },
+    {
+      "name": "bse_selection_analyzer",
+      "description": "北交所精选层股票分析工具，提供流动性、估值、基本面、转板预期综合评估。适用于北交所股票投资分析、转板可能性评估相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "stock_code": {
+            "type": "string",
+            "description": "可选：指定北交所股票代码，不指定则返回全市场分析"
+          },
+          "filter_conditions": {
+            "type": "object",
+            "description": "可选：筛选条件，如市值范围、市盈率区间、研发投入占比等"
+          }
+        }
+      }
+    },
+    {
+      "name": "concept_board_analyzer",
+      "description": "概念板块热度分析，识别当前市场热点概念、资金流向、龙头标的、持续性评估。适用于热点板块查询、概念炒作分析、板块龙头股相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "concept_name": {
+            "type": "string",
+            "description": "可选：指定概念名称查询，如'AI','新能源','半导体'等"
+          },
+          "top_n": {
+            "type": "number",
+            "description": "可选：返回涨幅前N的板块，默认20"
+          }
+        }
+      }
+    },
+    {
+      "name": "convertible_bond_scanner",
+      "description": "可转债市场扫描工具，提供平价溢价率、纯债价值、转股溢价率、强赎风险分析，筛选潜在投资机会。适用于可转债投资、套利机会、强赎风险提示相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "bond_code": {
+            "type": "string",
+            "description": "可选：指定可转债代码查询"
+          },
+          "filter_type": {
+            "type": "string",
+            "enum": ["low_premium", "high_yield", "arbitrage", "strong_redemption"],
+            "description": "可选：筛选类型，低溢价/高收益/套利机会/强赎风险"
+          }
+        }
+      }
+    },
+    {
+      "name": "disclosure_notice_monitor",
+      "description": "上市公司公告监控与摘要分析，自动识别重大利好/利空公告、业绩预告、资产重组、定增等重要信息。适用于公告查询、重大事件提示、公告解读相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "stock_code": {
+            "type": "string",
+            "description": "可选：指定股票代码查询公告"
+          },
+          "days": {
+            "type": "number",
+            "description": "可选：查询最近N天的公告，默认3天"
+          },
+          "notice_type": {
+            "type": "string",
+            "description": "可选：公告类型，如'业绩预告','资产重组','定增','股权激励'等"
+          }
+        }
+      }
+    },
+    {
+      "name": "dividend_corporate_action_tracker",
+      "description": "分红送转等公司行为跟踪，提供分红率、股息率、除权除息日期、个税影响分析。适用于高股息投资、分红政策分析、除权除息计算相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "stock_code": {
+            "type": "string",
+            "description": "可选：指定股票代码查询分红信息"
+          },
+          "year": {
+            "type": "number",
+            "description": "可选：指定年份，默认最近3年"
+          },
+          "min_dividend_yield": {
+            "type": "number",
+            "description": "可选：最低股息率筛选阈值，默认3%"
+          }
+        }
+      }
+    },
+    {
+      "name": "dragon_tiger_list_analyzer",
+      "description": "龙虎榜数据分析工具，识别游资动向、机构买卖行为、热点个股持续性判断。适用于龙虎榜查询、游资席位分析、机构买卖行为相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "可选：查询日期，格式YYYY-MM-DD，默认最新交易日"
+          },
+          "stock_code": {
+            "type": "string",
+            "description": "可选：指定股票代码查询龙虎榜记录"
+          }
+        }
+      }
+    },
+    {
+      "name": "equity_pledge_risk_monitor",
+      "description": "股权质押风险监控，计算质押比例、平仓线、爆仓风险，识别高质押风险个股。适用于股权质押查询、平仓风险预警、质押比例分析相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "stock_code": {
+            "type": "string",
+            "description": "可选：指定股票代码查询质押情况"
+          },
+          "risk_level": {
+            "type": "string",
+            "enum": ["high", "medium", "low", "all"],
+            "description": "可选：风险等级筛选，默认high"
+          }
+        }
+      }
+    },
+    {
+      "name": "equity_research_orchestrator",
+      "description": "个股研究报告生成器，整合基本面、技术面、资金面、政策面信息，输出完整投资分析报告。适用于深度个股分析、投资研究报告生成相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "stock_code": {
+            "type": "string",
+            "description": "必填：要分析的股票代码"
+          },
+          "report_type": {
+            "type": "string",
+            "enum": ["brief", "full", "valuation", "risk"],
+            "description": "可选：报告类型，简报/完整报告/估值分析/风险分析，默认full"
+          }
+        },
+        "required": ["stock_code"]
+      }
+    },
+    {
+      "name": "esg_screener",
+      "description": "ESG评级筛选工具，提供环境、社会、治理三维度评分，筛选高ESG评级投资标的。适用于ESG投资、社会责任投资、绿色金融相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "min_rating": {
+            "type": "string",
+            "enum": ["AAA", "AA", "A", "BBB", "BB", "B"],
+            "description": "可选：最低ESG评级，默认BBB"
+          },
+          "industry": {
+            "type": "string",
+            "description": "可选：行业筛选"
+          }
+        }
+      }
+    },
+    {
+      "name": "etf_allocator",
+      "description": "ETF组合配置工具，基于风险偏好、投资周期、市场环境提供ETF配置建议。适用于ETF投资、指数基金配置、资产组合构建相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "risk_preference": {
+            "type": "string",
+            "enum": ["conservative", "moderate", "aggressive"],
+            "description": "必填：风险偏好，保守/稳健/进取"
+          },
+          "investment_period": {
+            "type": "string",
+            "enum": ["short", "medium", "long"],
+            "description": "可选：投资周期，短期/中期/长期，默认medium"
+          }
+        },
+        "required": ["risk_preference"]
+      }
+    },
+    {
+      "name": "event_driven_detector",
+      "description": "事件驱动投资机会识别，包括业绩超预期、政策利好、行业事件、公司事件等驱动因素分析。适用于事件驱动策略、事件性机会挖掘相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "type": "string",
+            "description": "可选：事件类型，如'业绩超预期','政策利好','新产品发布','并购重组'等"
+          },
+          "days": {
+            "type": "number",
+            "description": "可选：查询最近N天的事件，默认7天"
+          }
+        }
+      }
+    },
+    {
+      "name": "event_study",
+      "description": "事件研究分析工具，计算事件前后的超额收益、市场反应、统计显著性。适用于事件影响分析、市场有效性研究、公告效应分析相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "event_date": {
+            "type": "string",
+            "description": "必填：事件发生日期，格式YYYY-MM-DD"
+          },
+          "stock_codes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "必填：要分析的股票代码列表"
+          },
+          "window_before": {
+            "type": "number",
+            "description": "可选：事件前窗口期，默认10天"
+          },
+          "window_after": {
+            "type": "number",
+            "description": "可选：事件后窗口期，默认10天"
+          }
+        },
+        "required": ["event_date", "stock_codes"]
+      }
+    },
+    {
+      "name": "factor_crowding_monitor",
+      "description": "因子拥挤度监控，识别高拥挤交易因子，提示风格切换风险。适用于因子投资、风格轮动、交易拥挤度分析相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "factors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "可选：指定因子列表，如'价值','成长','动量','波动率','市值'等，默认监控全部核心因子"
+          }
+        }
+      }
+    },
+    {
+      "name": "financial_statement_analyzer",
+      "description": "财务报表深度分析工具，提供盈利能力、偿债能力、运营能力、成长能力多维度分析，识别财务造假风险。适用于财报分析、财务健康度评估、财务风险识别相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "stock_code": {
+            "type": "string",
+            "description": "必填：要分析的股票代码"
+          },
+          "years": {
+            "type": "integer",
+            "description": "分析的历史年份，默认5年",
+            "default": 5
+          }
+        },
+        "required": ["stock_code"]
+      }
+    },
+    {
+      "name": "fund_flow_monitor",
+      "description": "市场资金流向监控，包括北向资金、南向资金、两融余额、产业资本增减持、基金仓位等数据。适用于资金流向分析、市场情绪判断、资金面分析相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "flow_type": {
+            "type": "string",
+            "enum": ["northbound", "southbound", "margin", "industrial_capital", "fund_position"],
+            "description": "可选：资金类型，北向/南向/两融/产业资本/基金仓位，默认全部"
+          },
+          "days": {
+            "type": "number",
+            "description": "可选：查询最近N天数据，默认30天"
+          }
+        }
+      }
+    },
+    {
+      "name": "goodwill_risk_monitor",
+      "description": "商誉风险监控，识别高商誉占比、商誉减值风险的上市公司。适用于商誉减值风险、年报风险排雷、高商誉个股筛选相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "stock_code": {
+            "type": "string",
+            "description": "可选：指定股票代码查询商誉情况"
+          },
+          "min_goodwill_ratio": {
+            "type": "number",
+            "description": "可选：最低商誉占净资产比例阈值，默认30%"
+          }
+        }
+      }
+    },
+    {
+      "name": "high_dividend_strategy",
+      "description": "高股息投资策略筛选，提供连续分红、高股息率、低估值的投资标的。适用于价值投资、分红投资、稳健型投资组合构建相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "min_dividend_yield": {
+            "type": "number",
+            "description": "可选：最低股息率，默认4%"
+          },
+          "consecutive_dividend_years": {
+            "type": "number",
+            "description": "可选：连续分红年数，默认5年"
+          },
+          "max_pe": {
+            "type": "number",
+            "description": "可选：最高PE阈值，默认15倍"
+          }
+        }
+      }
+    },
+    {
+      "name": "hot_rank_sentiment_monitor",
+      "description": "市场热度排名与情绪监控，跟踪股吧、社交平台、行情软件热度排名，识别情绪极值。适用于市场情绪分析、热点个股情绪监测、情绪拐点判断相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "top_n": {
+            "type": "number",
+            "description": "可选：返回热度排名前N的个股，默认50"
+          },
+          "sentiment_direction": {
+            "type": "string",
+            "enum": ["extreme_bullish", "bullish", "neutral", "bearish", "extreme_bearish"],
+            "description": "可选：情绪方向筛选"
+          }
+        }
+      }
+    },
+    {
+      "name": "hsgt_holdings_monitor",
+      "description": "沪深港通持股监控，跟踪北向资金持仓变动、增减持排行、持股比例分析。适用于北向资金动向、外资持仓分析、外资偏好个股相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "stock_code": {
+            "type": "string",
+            "description": "可选：指定股票代码查询北向持仓"
+          },
+          "days": {
+            "type": "number",
+            "description": "可选：查询最近N天的增减持数据，默认7天"
+          },
+          "top_n": {
+            "type": "number",
+            "description": "可选：返回增减持前N名，默认20"
+          }
+        }
+      }
+    },
+    {
+      "name": "industry_board_analyzer",
+      "description": "行业板块分析工具，提供行业景气度、估值水平、盈利增速、资金流向综合分析。适用于行业研究、板块投资机会、行业比较分析相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "industry_name": {
+            "type": "string",
+            "description": "可选：指定行业名称，如'银行','半导体','新能源','医药'等"
+          },
+          "analysis_type": {
+            "type": "string",
+            "enum": ["valuation", "growth", "fund_flow", "full"],
+            "description": "可选：分析类型，估值/成长/资金流向/完整分析，默认full"
+          }
+        }
+      }
+    },
+    {
+      "name": "industry_chain_mapper",
+      "description": "产业链图谱分析，映射上中下游产业链关系、核心标的、景气度传导路径。适用于产业链研究、上下游关系分析、产业链投资机会相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "industry_chain": {
+            "type": "string",
+            "description": "必填：产业链名称，如'新能源汽车','光伏','半导体','AI大模型'等"
+          }
+        },
+        "required": ["industry_chain"]
+      }
+    },
+    {
+      "name": "insider_trading_analyzer",
+      "description": "内部人交易分析工具，跟踪董监高增减持、员工持股计划、股权激励等行为。适用于内部人交易、董监高增减持、股权激励分析相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "stock_code": {
+            "type": "string",
+            "description": "可选：指定股票代码查询"
+          },
+          "days": {
+            "type": "number",
+            "description": "可选：查询最近N天的内部人交易，默认30天"
+          }
+        }
+      }
+    },
+    {
+      "name": "intraday_microstructure_analyzer",
+      "description": "日内市场微观结构分析，包括订单流、买卖盘、成交量分布、大单成交等高频数据分析。适用于日内交易、盘口分析、高频交易策略相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "stock_code": {
+            "type": "string",
+            "description": "必填：要分析的股票代码"
+          },
+          "date": {
+            "type": "string",
+            "description": "可选：分析日期，格式YYYY-MM-DD，默认最新交易日"
+          }
+        },
+        "required": ["stock_code"]
+      }
+    },
+    {
+      "name": "investment_memo_generator",
+      "description": "投资备忘录生成器，记录投资逻辑、买入理由、风险点、跟踪要点，形成标准化投资记录。适用于投资笔记、个股跟踪、投资决策记录相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "stock_code": {
+            "type": "string",
+            "description": "必填：标的股票代码"
+          },
+          "investment_reason": {
+            "type": "string",
+            "description": "必填：投资核心理由"
+          },
+          "target_price": {
+            "type": "number",
+            "description": "可选：目标价格"
+          },
+          "stop_loss_price": {
+            "type": "number",
+            "description": "可选：止损价格"
+          }
+        },
+        "required": ["stock_code", "investment_reason"]
+      }
+    },
+    {
+      "name": "ipo_lockup_risk_monitor",
+      "description": "IPO解禁风险监控，计算解禁规模、占流通股比例、减持压力评估。适用于解禁风险、限售股上市、减持压力分析相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "days": {
+            "type": "number",
+            "description": "可选：查询未来N天的解禁数据，默认30天"
+          },
+          "min_unlock_ratio": {
+            "type": "number",
+            "description": "可选：最低解禁占流通股比例阈值，默认10%"
+          }
+        }
+      }
+    },
+    {
+      "name": "ipo_newlist_monitor",
+      "description": "新股上市监控，提供新股发行信息、中签率、打新收益分析、开板预测。适用于打新策略、新股分析、次新股投资相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["upcoming", "newly_listed", "recent"],
+            "description": "可选：新股状态，即将发行/新上市/近期上市，默认全部"
+          }
+        }
+      }
+    },
+    {
+      "name": "limit_up_limit_down_risk_checker",
+      "description": "涨跌停风险检查，分析连板高度、封单结构、开板概率、涨跌停家数市场情绪指标。适用于涨跌停分析、连板股分析、短线情绪监控相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "stock_code": {
+            "type": "string",
+            "description": "可选：指定股票代码分析"
+          },
+          "market_sentiment": {
+            "type": "boolean",
+            "description": "可选：是否返回全市场涨跌停情绪数据，默认true"
+          }
+        }
+      }
+    },
+    {
+      "name": "limit_up_pool_analyzer",
+      "description": "涨停股池分析，识别涨停原因、板块效应、连板梯队、龙头标的。适用于短线交易、涨停股分析、热点龙头识别相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "可选：查询日期，格式YYYY-MM-DD，默认最新交易日"
+          },
+          "min_consecutive_days": {
+            "type": "number",
+            "description": "可选：最低连续涨停天数，默认1天"
+          }
+        }
+      }
+    },
+    {
+      "name": "liquidity_impact_estimator",
+      "description": "流动性冲击估算，计算大额交易对股价的影响、冲击成本、最优下单策略。适用于大额交易、冲击成本分析、算法交易策略相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "stock_code": {
+            "type": "string",
+            "description": "必填：股票代码"
+          },
+          "trade_amount": {
+            "type": "number",
+            "description": "必填：交易金额（万元）"
+          },
+          "trade_direction": {
+            "type": "string",
+            "enum": ["buy", "sell"],
+            "description": "必填：交易方向，买入/卖出"
+          }
+        },
+        "required": ["stock_code", "trade_amount", "trade_direction"]
+      }
+    },
+    {
+      "name": "macro_liquidity_monitor",
+      "description": "宏观流动性监控，跟踪MLF、LPR、DR007、M2、社融等宏观流动性指标。适用于宏观经济分析、货币政策判断、流动性环境分析相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "indicators": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "可选：指定指标列表，如'M2','社融','DR007','MLF','LPR'等，默认全部核心指标"
+          }
+        }
+      }
+    },
+    {
+      "name": "margin_risk_monitor",
+      "description": "两融风险监控，跟踪两融余额、融资买入额、融券卖出量、两融平仓预警。适用于两融数据分析、杠杆资金风险、市场情绪指标相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "days": {
+            "type": "number",
+            "description": "可选：查询最近N天数据，默认30天"
+          },
+          "stock_code": {
+            "type": "string",
+            "description": "可选：指定股票代码查询两融数据"
+          }
+        }
+      }
+    },
+    {
+      "name": "market_breadth_monitor",
+      "description": "市场宽度监控，跟踪涨跌家数、赚钱效应、新高新低数量、上涨下跌比例等市场广度指标。适用于市场情绪判断、大势研判、系统性风险识别相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "days": {
+            "type": "number",
+            "description": "可选：查询最近N天数据，默认5天"
+          }
+        }
+      }
+    },
+    {
+      "name": "market_overview_dashboard",
+      "description": "市场概览仪表盘，提供核心指数表现、涨跌分布、资金流向、热点板块等全景市场信息。适用于市场全貌了解、大盘分析、每日市场复盘相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "market": {
+            "type": "string",
+            "enum": ["cn", "hk", "us"],
+            "description": "可选：市场类型，A股/港股/美股，默认cn"
+          }
+        }
+      }
+    },
+    {
+      "name": "northbound_flow_analyzer",
+      "description": "北向资金流向分析，跟踪每日净流入、行业板块流向、个股增减持、外资配置偏好。适用于北向资金分析、外资动向、外资重仓股相关问题。",
+      "parameters": {}
+    },
+    {
+      "name": "peer_comparison_analyzer",
+      "description": "同业对标分析工具，对同行业多家公司进行多维度对比分析。适用于行业内公司比较、竞争力分析、相对估值分析相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "stock_codes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "必填：要对比的股票代码列表，至少2只"
+          },
+          "compare_dimensions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "可选：对比维度，如'估值','盈利能力','成长能力','偿债能力'等，默认全部核心维度"
+          }
+        },
+        "required": ["stock_codes"]
+      }
+    },
+    {
+      "name": "policy_sensitivity_brief",
+      "description": "政策敏感度简报，分析行业/公司对政策变化的敏感度、政策影响评估。适用于政策分析、政策影响评估、监管政策解读相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "policy_topic": {
+            "type": "string",
+            "description": "必填：政策主题，如'房地产调控','新能源补贴','半导体国产化','医疗集采'等"
+          },
+          "industry": {
+            "type": "string",
+            "description": "可选：受影响的行业"
+          }
+        },
+        "required": ["policy_topic"]
+      }
+    },
+    {
+      "name": "portfolio_health_check",
+      "description": "投资组合健康度检查，分析组合风险收益特征、行业集中度、个股相关性、回撤风险。适用于组合诊断、风险评估、持仓分析相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "portfolio": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "stock_code": {
+                  "type": "string"
+                },
+                "weight": {
+                  "type": "number"
+                }
+              },
+              "required": ["stock_code", "weight"]
+            },
+            "description": "必填：投资组合，包含股票代码和权重"
+          }
+        },
+        "required": ["portfolio"]
+      }
+    },
+    {
+      "name": "portfolio_monitor_orchestrator",
+      "description": "投资组合监控编排器，实时跟踪组合收益、风险事件、重要公告、调仓建议。适用于组合监控、持仓跟踪、动态调仓建议相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "portfolio": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "stock_code": {
+                  "type": "string"
+                },
+                "shares": {
+                  "type": "number"
+                },
+                "cost_price": {
+                  "type": "number"
+                }
+              },
+              "required": ["stock_code", "shares"]
+            },
+            "description": "必填：投资组合，包含股票代码、持仓数量、成本价"
+          },
+          "alert_level": {
+            "type": "string",
+            "enum": ["low", "medium", "high"],
+            "description": "可选：警报级别，默认medium"
+          }
+        },
+        "required": ["portfolio"]
+      }
+    },
+    {
+      "name": "quant_factor_screener",
+      "description": "量化因子选股工具，基于多因子模型筛选符合条件的投资标的。适用于量化选股、因子投资、策略回测相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "factors": {
+            "type": "object",
+            "description": "必填：因子及阈值配置，如{'pe_ttm': {'<': 10}, 'roe': {'>': 15}, 'market_cap': {'>': 100}}}"
+          },
+          "sort_by": {
+            "type": "string",
+            "description": "可选：排序因子，默认综合得分"
+          },
+          "limit": {
+            "type": "number",
+            "description": "可选：返回结果数量，默认50"
+          }
+        },
+        "required": ["factors"]
+      }
+    },
+    {
+      "name": "rebalancing_planner",
+      "description": "组合再平衡规划器，根据目标配置、当前持仓、交易成本给出最优再平衡方案。适用于组合再平衡、资产配置调整、调仓方案相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "current_portfolio": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "asset_type": {
+                  "type": "string"
+                },
+                "current_weight": {
+                  "type": "number"
+                }
+              }
+            },
+            "description": "必填：当前组合持仓"
+          },
+          "target_allocation": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "asset_type": {
+                  "type": "string"
+                },
+                "target_weight": {
+                  "type": "number"
+                }
+              }
+            },
+            "description": "必填：目标配置比例"
+          },
+          "tolerance_band": {
+            "type": "number",
+            "description": "可选：偏离容忍度，默认5%"
+          }
+        },
+        "required": ["current_portfolio", "target_allocation"]
+      }
+    },
+    {
+      "name": "risk_adjusted_return_optimizer",
+      "description": "风险调整后收益优化器，基于马科维茨资产组合理论，构建有效前沿，给出最优资产配置。适用于资产配置优化、有效前沿构建、组合优化相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "asset_universe": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "必填：资产池，股票/基金/指数代码列表"
+          },
+          "risk_target": {
+            "type": "number",
+            "description": "可选：目标波动率（年化）"
+          },
+          "return_target": {
+            "type": "number",
+            "description": "可选：目标收益率（年化）"
+          }
+        },
+        "required": ["asset_universe"]
+      }
+    },
+    {
+      "name": "sector_rotation_detector",
+      "description": "行业轮动检测器，识别当前市场强势行业、弱势行业、板块轮动方向与持续性。适用于行业轮动策略、板块配置建议、风格切换分析相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "lookback_period": {
+            "type": "string",
+            "enum": ["1w", "1m", "3m", "6m", "1y"],
+            "description": "可选：回顾周期，默认1m"
+          },
+          "top_n": {
+            "type": "number",
+            "description": "可选：返回最强/最弱前N个行业，默认10"
+          }
+        }
+      }
+    },
+    {
+      "name": "sentiment_reality_gap",
+      "description": "情绪与基本面背离分析，识别市场情绪过度乐观/悲观与基本面偏离的投资机会。适用于逆向投资、情绪偏离分析、市场错误定价相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "gap_type": {
+            "type": "string",
+            "enum": ["over_optism", "over_pessimism", "all"],
+            "description": "可选：背离类型，过度乐观/过度悲观/全部，默认all"
+          },
+          "industry": {
+            "type": "string",
+            "description": "可选：指定行业筛选"
+          }
+        }
+      }
+    },
+    {
+      "name": "share_repurchase_monitor",
+      "description": "股份回购监控，分析回购计划、回购进度、回购价格、对股价影响。适用于回购事件分析、公司价值判断、回购机会挖掘相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "days": {
+            "type": "number",
+            "description": "可选：查询最近N天的回购公告，默认30天"
+          },
+          "stock_code": {
+            "type": "string",
+            "description": "可选：指定股票代码查询"
+          }
+        }
+      }
+    },
+    {
+      "name": "shareholder_risk_check",
+      "description": "股东风险检查，识别股东减持、质押、司法冻结、高比例质押等风险。适用于股东风险、股权结构风险、实控人风险相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "stock_code": {
+            "type": "string",
+            "description": "必填：要检查的股票代码"
+          }
+        },
+        "required": ["stock_code"]
+      }
+    },
+    {
+      "name": "shareholder_structure_monitor",
+      "description": "股东结构监控，分析股东户数变化、机构持仓比例、筹码集中度。适用于筹码分析、机构持仓、股东户数变化相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "stock_code": {
+            "type": "string",
+            "description": "可选：指定股票代码查询"
+          },
+          "quarters": {
+            "type": "number",
+            "description": "可选：查询最近N个季度数据，默认4个季度"
+          }
+        }
+      }
+    },
+    {
+      "name": "small_cap_growth_identifier",
+      "description": "小盘成长股识别器，筛选高成长、低估值、潜力大的中小盘股票。适用于成长股投资、中小盘选股、黑马股挖掘相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "min_growth_rate": {
+            "type": "number",
+            "description": "可选：最低营收/利润增速，默认30%"
+          },
+          "max_market_cap": {
+            "type": "number",
+            "description": "可选：最大市值（亿元），默认200亿"
+          },
+          "max_pe": {
+            "type": "number",
+            "description": "可选：最高PE阈值，默认50倍"
+          }
+        }
+      }
+    },
+    {
+      "name": "st_delist_risk_scanner",
+      "description": "ST与退市风险扫描，识别存在退市风险、ST风险的上市公司。适用于风险排雷、ST股分析、退市风险预警相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "risk_level": {
+            "type": "string",
+            "enum": ["st", "*st", "delisting", "high_risk"],
+            "description": "可选：风险类型，默认high_risk"
+          }
+        }
+      }
+    },
+    {
+      "name": "suitability_report_generator",
+      "description": "投资者适当性报告生成器，根据投资者风险承受能力、投资目标、投资期限给出适当的投资建议。适用于投资者适当性评估、投资建议生成、风险测评相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "risk_tolerance": {
+            "type": "string",
+            "enum": ["C1", "C2", "C3", "C4", "C5"],
+            "description": "必填：风险承受能力等级，C1保守型到C5激进型"
+          },
+          "investment_goal": {
+            "type": "string",
+            "enum": ["preservation", "stable", "growth", "aggressive"],
+            "description": "必填：投资目标，保值/稳健/成长/进取"
+          },
+          "investment_term": {
+            "type": "string",
+            "enum": ["short", "medium", "long"],
+            "description": "必填：投资期限，短期<1年/中期1-3年/长期>3年"
+          }
+        },
+        "required": ["risk_tolerance", "investment_goal", "investment_term"]
+      }
+    },
+    {
+      "name": "tech_hype_vs_fundamentals",
+      "description": "科技概念炒作与基本面对比分析，识别科技热点中的真成长与伪概念。适用于科技股投资、热点概念甄别、基本面验证相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "concept": {
+            "type": "string",
+            "description": "必填：科技概念名称，如'AI','量子计算','人形机器人','6G'等"
+          }
+        },
+        "required": ["concept"]
+      }
+    },
+    {
+      "name": "undervalued_stock_screener",
+      "description": "低估股票筛选器，基于估值、盈利、成长等多维度筛选被市场低估的投资标的。适用于价值投资、低估股挖掘、逆向投资相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "valuation_metric": {
+            "type": "string",
+            "enum": ["pe", "pb", "ps", "ev_ebitda", "combined"],
+            "description": "可选：估值指标，市盈率/市净率/市销率/企业价值倍数/综合估值，默认combined"
+          },
+          "undervalue_threshold": {
+            "type": "number",
+            "description": "可选：低估阈值，低于历史分位的百分比，默认20%"
+          },
+          "min_roe": {
+            "type": "number",
+            "description": "可选：最低ROE要求，默认10%"
+          }
+        }
+      }
+    },
+    {
+      "name": "valuation_regime_detector",
+      "description": "估值 regime 识别器，判断当前市场整体估值所处的历史区间、估值水平、未来收益预期。适用于市场估值分析、大类资产配置、牛熊判断相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "index": {
+            "type": "string",
+            "description": "可选：指数代码，默认沪深300"
+          },
+          "history_years": {
+            "type": "number",
+            "description": "可选：历史对比年数，默认10年"
+          }
+        }
+      }
+    },
+    {
+      "name": "volatility_regime_monitor",
+      "description": "波动率 regime 监控，识别市场波动率状态（低波动/高波动/极端波动），提示市场风险。适用于波动率分析、VIX指数分析、风险预警相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "lookback_days": {
+            "type": "number",
+            "description": "可选：回顾天数，默认60天"
+          }
+        }
+      }
+    },
+    {
+      "name": "weekly_market_brief_generator",
+      "description": "每周市场简报生成器，总结一周市场表现、重要事件、热点板块、下周展望。适用于市场复盘、周报生成、投资参考相关问题。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "week_date": {
+            "type": "string",
+            "description": "可选：指定周的日期，格式YYYY-MM-DD，默认最新一周"
+          },
+          "brief_type": {
+            "type": "string",
+            "enum": ["standard", "professional", "simple"],
+            "description": "可选：简报类型，标准版/专业版/精简版，默认standard"
+          }
+        }
+      }
+    }
+  ]
+}

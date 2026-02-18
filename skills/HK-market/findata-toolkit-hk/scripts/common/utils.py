@@ -134,3 +134,59 @@ def pct(val, decimals=2):
     if val is None:
         return "N/A"
     return f"{val * 100:.{decimals}f}%"
+
+
+def safe_pe(market_cap, net_profit, default=None):
+    """安全PE计算，净利润为非正时返回default。
+
+    PE = 市值 / 净利润，当净利润<=0时返回None（表示亏损，PE无意义）
+    """
+    if market_cap is None or net_profit is None:
+        return default
+    try:
+        mc = float(market_cap)
+        np = float(net_profit)
+        if np <= 0:
+            return default
+        if mc <= 0:
+            return default
+        return mc / np
+    except (ValueError, TypeError):
+        return default
+
+
+def safe_financial_value(value, default=None, min_value=0):
+    """安全金融数值校验，确保数值大于min_value。
+
+    适用于市值、价格、成交量等不能为负或零的指标。
+    """
+    if value is None:
+        return default
+    try:
+        val = float(value)
+        if val <= min_value:
+            return default
+        return val
+    except (ValueError, TypeError):
+        return default
+
+
+def safe_change_pct(current, previous, default=None, max_bound=10, min_bound=-0.9):
+    """安全涨跌幅计算，包含边界检查。
+
+    涨跌幅 = (当前价 - 前价) / 前价
+    异常值（如超过1000%涨幅或90%跌幅）返回default。
+    """
+    if current is None or previous is None:
+        return default
+    try:
+        curr = float(current)
+        prev = float(previous)
+        if prev <= 0:
+            return default
+        change = (curr - prev) / prev
+        if change > max_bound or change < min_bound:
+            return default
+        return change
+    except (ValueError, TypeError):
+        return default

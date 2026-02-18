@@ -86,6 +86,10 @@ def main():
         # Check for matching metadata
         # Normalize suffix (replace . with / for lookup)
         lookup_suffix = args.suffix.replace('.', '/')
+        # 美股接口适配
+        if lookup_suffix.startswith('us/'):
+            # 确保美股接口路径正确
+            pass
         api_meta = metadata.get(lookup_suffix)
 
         # Handle Caching

@@ -35,7 +35,7 @@ class ScreenerDB:
         从理杏仁同步基础指标数据（通常每天执行一次）。
         """
         # 1. 获取 A 股所有股票基础信息
-        basic_res = client.fetch("cn/company", {})
+        basic_res = client.fetch("hk/company", {})
         if not basic_res or basic_res.get('code') != 1:
             return False
         
