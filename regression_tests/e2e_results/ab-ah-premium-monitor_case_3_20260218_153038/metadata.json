@@ -1,0 +1,10 @@
+{
+  "skill": "ab-ah-premium-monitor",
+  "case_index": 3,
+  "question": "监控一下当前的股权质押平仓压力情况。",
+  "timestamp": "20260218_153038",
+  "success": false,
+  "return_code": 1,
+  "output_length": 34,
+  "has_stderr": false
+}

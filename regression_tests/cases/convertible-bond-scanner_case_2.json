@@ -1,0 +1,80 @@
+{
+  "identity": {
+    "name": "平安银行",
+    "code": "000001",
+    "market": "a",
+    "ipoDate": "1991-04-03T00:00:00+08:00"
+  },
+  "valuation": {
+    "pe_ttm": 4.9102,
+    "pb": 0.4775,
+    "market_cap_billion": 211718567540.18,
+    "as_of": "2026-02-13T00:00:00+08:00"
+  },
+  "metrics": {
+    "note": "Detailed financial metrics (ROE/Revenue) require specific metricsList in cn/company/financial-statement"
+  },
+  "recent_kline": [
+    {
+      "date": "2026-02-13T00:00:00+08:00",
+      "open": 10.96,
+      "close": 10.91,
+      "high": 10.99,
+      "low": 10.9,
+      "volume": 55504700,
+      "amount": 607501376,
+      "change": -0.0046,
+      "stockCode": "000001",
+      "to_r": 0.00286
+    },
+    {
+      "date": "2026-02-12T00:00:00+08:00",
+      "open": 11.07,
+      "close": 10.96,
+      "high": 11.08,
+      "low": 10.93,
+      "volume": 68134000,
+      "amount": 748338547,
+      "change": -0.0099,
+      "stockCode": "000001",
+      "to_r": 0.003511
+    },
+    {
+      "date": "2026-02-11T00:00:00+08:00",
+      "open": 11.06,
+      "close": 11.07,
+      "high": 11.09,
+      "low": 11.02,
+      "volume": 43104100,
+      "amount": 476801864,
+      "change": 0.0009,
+      "stockCode": "000001",
+      "to_r": 0.002221
+    },
+    {
+      "date": "2026-02-10T00:00:00+08:00",
+      "open": 11.07,
+      "close": 11.06,
+      "high": 11.1,
+      "low": 11.02,
+      "volume": 60043000,
+      "amount": 664140162,
+      "change": -0.0009,
+      "stockCode": "000001",
+      "to_r": 0.003094
+    },
+    {
+      "date": "2026-02-09T00:00:00+08:00",
+      "open": 11.05,
+      "close": 11.07,
+      "high": 11.11,
+      "low": 11.01,
+      "volume": 61971700,
+      "amount": 685218215,
+      "change": 0.0018,
+      "stockCode": "000001",
+      "to_r": 0.003193
+    }
+  ],
+  "recent_executive_trades": []
+}

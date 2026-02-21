@@ -1,0 +1,19 @@
+{
+  "code": 1,
+  "message": "success",
+  "data": [
+    {
+      "stockCode": "600519",
+      "exchange": "sh",
+      "market": "a",
+      "ipoDate": "2001-08-27T00:00:00+08:00",
+      "areaCode": "cn",
+      "fsTableType": "non_financial",
+      "mutualMarkets": [
+        "ha"
+      ],
+      "name": "贵州茅台",
+      "mutualMarketFlag": true
+    }
+  ]
+}

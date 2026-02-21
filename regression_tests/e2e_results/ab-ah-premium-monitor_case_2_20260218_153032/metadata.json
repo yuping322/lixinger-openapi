@@ -1,0 +1,10 @@
+{
+  "skill": "ab-ah-premium-monitor",
+  "case_index": 2,
+  "question": "最近有哪些公司触发了退市预警或者ST风险？",
+  "timestamp": "20260218_153032",
+  "success": false,
+  "return_code": 1,
+  "output_length": 34,
+  "has_stderr": false
+}

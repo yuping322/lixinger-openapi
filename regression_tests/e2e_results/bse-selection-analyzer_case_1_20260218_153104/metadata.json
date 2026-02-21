@@ -1,0 +1,10 @@
+{
+  "skill": "bse-selection-analyzer",
+  "case_index": 1,
+  "question": "关于 bse-selection-analyzer，你能提供哪些核心数据分析？",
+  "timestamp": "20260218_153104",
+  "success": false,
+  "return_code": 1,
+  "output_length": 34,
+  "has_stderr": false
+}

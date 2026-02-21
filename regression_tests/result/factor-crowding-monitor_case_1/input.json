@@ -1,0 +1,38 @@
+{
+  "major_indices": [
+    {
+      "name": "000016",
+      "latest": 3034.35,
+      "change_pct": -0.91,
+      "date": "2026-02-13T00:00:00+08:00"
+    },
+    {
+      "name": "000300",
+      "latest": 4660.41,
+      "change_pct": -0.7,
+      "date": "2026-02-13T00:00:00+08:00"
+    },
+    {
+      "name": "000905",
+      "latest": 8299.59,
+      "change_pct": -0.8,
+      "date": "2026-02-13T00:00:00+08:00"
+    },
+    {
+      "name": "399001",
+      "latest": 14100.19,
+      "change_pct": -0.62,
+      "date": "2026-02-13T00:00:00+08:00"
+    }
+  ],
+  "valuation_overview": {
+    "date": "2026-02-13T00:00:00+08:00",
+    "pe_ttm.mcw": 14.038655377702147,
+    "pb.mcw": 1.4812834104488621,
+    "stockCode": "000300"
+  },
+  "sentiment": {
+    "description": "市场整体成交额及涨跌分位数处理中...",
+    "note": "Sentiment data requires daily summary aggregation."
+  }
+}

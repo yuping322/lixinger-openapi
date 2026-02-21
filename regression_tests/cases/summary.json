@@ -1,0 +1,686 @@
+[
+  {
+    "skill": "lixinger-data-query",
+    "case": "query_cn_company",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "lixinger-data-query",
+    "case": "query_index_valuation",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "macro-liquidity-monitor",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "macro-liquidity-monitor",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "ipo-lockup-risk-monitor",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "ipo-lockup-risk-monitor",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "shareholder-risk-check",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "shareholder-risk-check",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "peer-comparison-analyzer",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "peer-comparison-analyzer",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "dividend-corporate-action-tracker",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "dividend-corporate-action-tracker",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "weekly-market-brief-generator",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "weekly-market-brief-generator",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "volatility-regime-monitor",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "volatility-regime-monitor",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "margin-risk-monitor",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "margin-risk-monitor",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "goodwill-risk-monitor",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "goodwill-risk-monitor",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "suitability-report-generator",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "suitability-report-generator",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "quant-factor-screener",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "quant-factor-screener",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "concept-board-analyzer",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "concept-board-analyzer",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "st-delist-risk-scanner",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "st-delist-risk-scanner",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "rebalancing-planner",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "rebalancing-planner",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "block-deal-monitor",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "block-deal-monitor",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "esg-screener",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "esg-screener",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "high-dividend-strategy",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "high-dividend-strategy",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "industry-chain-mapper",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "industry-chain-mapper",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "undervalued-stock-screener",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "undervalued-stock-screener",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "dragon-tiger-list-analyzer",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "dragon-tiger-list-analyzer",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "investment-memo-generator",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "investment-memo-generator",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "bse-selection-analyzer",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "bse-selection-analyzer",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "tech-hype-vs-fundamentals",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "tech-hype-vs-fundamentals",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "equity-research-orchestrator",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "equity-research-orchestrator",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "risk-adjusted-return-optimizer",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "risk-adjusted-return-optimizer",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "event-study",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "event-study",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "fund-flow-monitor",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "fund-flow-monitor",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "etf-allocator",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "etf-allocator",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "small-cap-growth-identifier",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "small-cap-growth-identifier",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "financial-statement-analyzer",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "financial-statement-analyzer",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "factor-crowding-monitor",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "factor-crowding-monitor",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "portfolio-health-check",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "portfolio-health-check",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "portfolio-monitor-orchestrator",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "portfolio-monitor-orchestrator",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "market-breadth-monitor",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "market-breadth-monitor",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "event-driven-detector",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "event-driven-detector",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "sector-rotation-detector",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "sector-rotation-detector",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "valuation-regime-detector",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "valuation-regime-detector",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "hot-rank-sentiment-monitor",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "hot-rank-sentiment-monitor",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "market-overview-dashboard",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "market-overview-dashboard",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "limit-up-pool-analyzer",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "limit-up-pool-analyzer",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "insider-trading-analyzer",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "insider-trading-analyzer",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "shareholder-structure-monitor",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "shareholder-structure-monitor",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "policy-sensitivity-brief",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "policy-sensitivity-brief",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "liquidity-impact-estimator",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "liquidity-impact-estimator",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "limit-up-limit-down-risk-checker",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "limit-up-limit-down-risk-checker",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "share-repurchase-monitor",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "share-repurchase-monitor",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "sentiment-reality-gap",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "sentiment-reality-gap",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "ipo-newlist-monitor",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "ipo-newlist-monitor",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "northbound-flow-analyzer",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "northbound-flow-analyzer",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "ab-ah-premium-monitor",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "ab-ah-premium-monitor",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "intraday-microstructure-analyzer",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "intraday-microstructure-analyzer",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "hsgt-holdings-monitor",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "hsgt-holdings-monitor",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "industry-board-analyzer",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "industry-board-analyzer",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "equity-pledge-risk-monitor",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "equity-pledge-risk-monitor",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "disclosure-notice-monitor",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "disclosure-notice-monitor",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "convertible-bond-scanner",
+    "case": "case_1",
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "skill": "convertible-bond-scanner",
+    "case": "case_2",
+    "status": "PASS",
+    "error": ""
+  }
+]

@@ -1,0 +1,16 @@
+### Market Data Summary (2026-02-13)
+#### Major Indices Performance
+| Index Code | Latest Price | Daily Change % |
+|------------|--------------|----------------|
+| 000016 (SSE 50) | 3034.35 | -0.91% |
+| 000300 (CSI 300) | 4660.41 | -0.70% |
+| 000905 (CSI 500) | 8299.59 | -0.80% |
+| 399001 (SZSE Component) | 14100.19 | -0.62% |
+
+#### CSI 300 Valuation Metrics
+- PE TTM (market-cap weighted): 14.04x
+- PB (market-cap weighted): 1.48x
+
+#### Market Sentiment Status
+- Processing: Market overall trading volume and up/down distribution quantile calculation in progress
+- Note: Sentiment data requires daily close summary aggregation, full results will be available after market close processing completes.

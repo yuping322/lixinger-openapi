@@ -1,0 +1,10 @@
+{
+  "skill": "ab-ah-premium-monitor",
+  "case_index": 1,
+  "question": "帮我查一下这几支股票有没有质押风险或者商誉爆雷的可能？",
+  "timestamp": "20260218_153027",
+  "success": false,
+  "return_code": 1,
+  "output_length": 34,
+  "has_stderr": false
+}

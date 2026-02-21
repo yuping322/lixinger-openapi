@@ -1,0 +1,10 @@
+I'll help you test the Ping An Bank data with the regression test suite. To proceed, I need your approval for:
+1. Writing the test case file to `cases/lixinger-data-query_case_ping_an.json`
+2. Executing the test runner script
+
+Once approved, the test will:
+- Validate that the lixinger-data-query skill correctly processes this input
+- Generate output results in the `result/` directory
+- Show whether the test passed or failed
+
+Please grant the required permissions to continue.

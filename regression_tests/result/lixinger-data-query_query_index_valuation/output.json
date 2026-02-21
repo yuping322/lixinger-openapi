@@ -1,0 +1,37 @@
+## Regression Test Results
+
+### Summary
+- **Total test cases**: 115
+- **Success**: 92 (80% pass rate)
+- **Failed**: 23 (20% failure rate)
+
+### Failed Test Cases
+1. disclosure-notice-monitor_case_2
+2. sentiment-reality-gap_case_1
+3. summary
+4. equity-pledge-risk-monitor_case_2
+5. share-repurchase-monitor_case_1
+6. northbound-flow-analyzer_case_2
+7. ab-ah-premium-monitor_case_1
+8. hsgt-holdings-monitor_case_2
+9. ipo-newlist-monitor_case_2
+10. industry-board-analyzer_case_2
+11. intraday-microstructure-analyzer_case_1
+12. convertible-bond-scanner_case_1
+13. intraday-microstructure-analyzer_case_2
+14. convertible-bond-scanner_case_2
+15. industry-board-analyzer_case_1
+16. northbound-flow-analyzer_case_1
+17. ab-ah-premium-monitor_case_2
+18. hsgt-holdings-monitor_case_1
+19. ipo-newlist-monitor_case_1
+20. equity-pledge-risk-monitor_case_1
+21. share-repurchase-monitor_case_2
+22. disclosure-notice-monitor_case_1
+23. sentiment-reality-gap_case_2
+
+### Key Observations
+- Core lixinger-data-query tests passed successfully (both company and index valuation queries)
+- Most monitoring and analysis skills passed
+- Failures are concentrated in specific skill categories: market data monitors, sentiment analysis, and cross-market premium analysis
+- Full results available at `/Users/fengzhi/Downloads/git/lixinger-openapi/regression_tests/result/summary.json`

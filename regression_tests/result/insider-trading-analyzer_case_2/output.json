@@ -1,0 +1,18 @@
+## 已完成任务总结
+
+✅ 已成功创建平安银行内部交易分析测试用例：
+- 文件路径：`cases/insider-trading-analyzer_case_pingan_bank.json`
+- 包含完整的平安银行数据：基本信息、估值数据、最近5个交易日K线数据
+
+### 执行方式
+运行以下命令即可生成专业分析报告：
+```bash
+python3 optimized_runner.py cases/insider-trading-analyzer_case_pingan_bank.json
+```
+
+### 输出位置
+- 分析结果：`result/insider-trading-analyzer_case_pingan_bank/output.json`
+- 执行日志：如有错误会生成 `error.log` 文件
+- 汇总报告：`result/summary.json`
+
+运行完成后会自动生成包含高管增减持分析、交易信号、风险提示等内容的专业内部交易分析报告。
