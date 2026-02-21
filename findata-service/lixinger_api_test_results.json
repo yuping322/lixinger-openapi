@@ -1,0 +1,184 @@
+{
+  "test_time": "2026-02-21T19:23:24.270724",
+  "test_symbol": "600519",
+  "summary": {
+    "total": 19,
+    "success": 5,
+    "has_data": 5,
+    "no_data": 0,
+    "failed": 14
+  },
+  "results": [
+    {
+      "name": "公司基本信息",
+      "endpoint": "cn/company",
+      "code": 1,
+      "success": true,
+      "has_data": true,
+      "data_count": 1,
+      "message": "success"
+    },
+    {
+      "name": "公司概况",
+      "endpoint": "cn/company/profile",
+      "code": 1,
+      "success": true,
+      "has_data": true,
+      "data_count": 6186,
+      "message": "success"
+    },
+    {
+      "name": "K线数据",
+      "endpoint": "cn/company/candlestick",
+      "code": 1,
+      "success": true,
+      "has_data": true,
+      "data_count": 17,
+      "message": "success"
+    },
+    {
+      "name": "股东人数",
+      "endpoint": "cn/company/shareholders-num",
+      "code": 1,
+      "success": true,
+      "has_data": true,
+      "data_count": 3,
+      "message": "success"
+    },
+    {
+      "name": "股东信息",
+      "endpoint": "cn/company/shareholders",
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A"
+    },
+    {
+      "name": "高管增减持",
+      "endpoint": "cn/company/executive-shareholding",
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A"
+    },
+    {
+      "name": "大股东增减持",
+      "endpoint": "cn/company/major-shareholder-change",
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A"
+    },
+    {
+      "name": "龙虎榜",
+      "endpoint": "cn/company/trading-abnormal",
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A"
+    },
+    {
+      "name": "大宗交易",
+      "endpoint": "cn/company/block-trade",
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A"
+    },
+    {
+      "name": "股权质押",
+      "endpoint": "cn/company/equity-pledge",
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A"
+    },
+    {
+      "name": "分红送配",
+      "endpoint": "cn/company/dividend-allotment",
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A"
+    },
+    {
+      "name": "营收构成",
+      "endpoint": "cn/company/revenue-structure",
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A"
+    },
+    {
+      "name": "经营数据",
+      "endpoint": "cn/company/operation-data",
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A"
+    },
+    {
+      "name": "所属行业",
+      "endpoint": "cn/company/related-industry",
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A"
+    },
+    {
+      "name": "所属指数",
+      "endpoint": "cn/company/related-index",
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A"
+    },
+    {
+      "name": "公告",
+      "endpoint": "cn/company/announcement",
+      "code": 1,
+      "success": true,
+      "has_data": true,
+      "data_count": 10,
+      "message": "success"
+    },
+    {
+      "name": "热度数据",
+      "endpoint": "cn/company/hot-data",
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A"
+    },
+    {
+      "name": "资金流向",
+      "endpoint": "cn/company/fund-flow",
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A"
+    },
+    {
+      "name": "股本变动",
+      "endpoint": "cn/company/share-change",
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A"
+    }
+  ]
+}

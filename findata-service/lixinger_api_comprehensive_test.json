@@ -1,0 +1,417 @@
+{
+  "test_time": "2026-02-21T19:41:14.888997",
+  "test_symbol": "600519",
+  "date_range": {
+    "start": "2025-02-21",
+    "end": "2026-02-21"
+  },
+  "summary": {
+    "total": 21,
+    "success": 8,
+    "has_data": 7,
+    "no_data": 1,
+    "failed": 13
+  },
+  "results": [
+    {
+      "name": "公司基本信息",
+      "endpoint": "cn/company",
+      "params": {
+        "stockCodes": [
+          "600519"
+        ],
+        "token": "ffad9101-8689-4b5d-bd79-763c58522a95"
+      },
+      "code": 1,
+      "success": true,
+      "has_data": true,
+      "data_count": 1,
+      "message": "success",
+      "sample_data": {
+        "stockCode": "600519",
+        "exchange": "sh",
+        "market": "a",
+        "ipoDate": "2001-08-27T00:00:00+08:00",
+        "areaCode": "cn",
+        "fsTableType": "non_financial",
+        "mutualMarkets": [
+          "ha"
+        ],
+        "name": "贵州茅台",
+        "mutualMarketFlag": true
+      }
+    },
+    {
+      "name": "公司概况",
+      "endpoint": "cn/company/profile",
+      "params": {
+        "stockCodes": [
+          "600519"
+        ],
+        "token": "ffad9101-8689-4b5d-bd79-763c58522a95"
+      },
+      "code": 1,
+      "success": true,
+      "has_data": true,
+      "data_count": 1,
+      "message": "success",
+      "sample_data": {
+        "city": "遵义市",
+        "province": "贵州",
+        "companyName": "贵州茅台酒股份有限公司",
+        "historyStockNames": [],
+        "stockCode": "600519",
+        "actualControllerTypes": [
+          "state_owned"
+        ],
+        "actualControllerName": "贵州省国有资产监督管理委员会"
+      }
+    },
+    {
+      "name": "K线数据",
+      "endpoint": "cn/company/candlestick",
+      "params": {
+        "stockCode": "600519",
+        "type": "ex_rights",
+        "startDate": "2026-01-22",
+        "endDate": "2026-02-21",
+        "token": "ffad9101-8689-4b5d-bd79-763c58522a95"
+      },
+      "code": 1,
+      "success": true,
+      "has_data": true,
+      "data_count": 17,
+      "message": "success",
+      "sample_data": {
+        "date": "2026-02-13T00:00:00+08:00",
+        "open": 1486.6,
+        "close": 1485.3,
+        "high": 1507.8,
+        "low": 1470.58,
+        "volume": 4167900,
+        "amount": 6216379203,
+        "change": -0.0009,
+        "stockCode": "600519",
+        "to_r": 0.003328
+      }
+    },
+    {
+      "name": "股东人数",
+      "endpoint": "cn/company/shareholders-num",
+      "params": {
+        "stockCode": "600519",
+        "startDate": "2025-02-21",
+        "endDate": "2026-02-21",
+        "token": "ffad9101-8689-4b5d-bd79-763c58522a95"
+      },
+      "code": 1,
+      "success": true,
+      "has_data": true,
+      "data_count": 3,
+      "message": "success",
+      "sample_data": {
+        "date": "2025-09-30T00:00:00+08:00",
+        "num": 238512,
+        "total": 238512,
+        "shareholdersNumberChangeRate": 0.0809,
+        "spc": 0.0245
+      }
+    },
+    {
+      "name": "股东信息",
+      "endpoint": "cn/company/shareholders",
+      "params": {
+        "stockCode": "600519",
+        "startDate": "2025-02-21",
+        "endDate": "2026-02-21",
+        "token": "ffad9101-8689-4b5d-bd79-763c58522a95"
+      },
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A",
+      "sample_data": null
+    },
+    {
+      "name": "高管增减持",
+      "endpoint": "cn/company/executive-shareholding",
+      "params": {
+        "stockCode": "600519",
+        "startDate": "2025-02-21",
+        "endDate": "2026-02-21",
+        "token": "ffad9101-8689-4b5d-bd79-763c58522a95"
+      },
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A",
+      "sample_data": null
+    },
+    {
+      "name": "大股东增减持",
+      "endpoint": "cn/company/major-shareholder-change",
+      "params": {
+        "stockCode": "600519",
+        "startDate": "2025-02-21",
+        "endDate": "2026-02-21",
+        "token": "ffad9101-8689-4b5d-bd79-763c58522a95"
+      },
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A",
+      "sample_data": null
+    },
+    {
+      "name": "龙虎榜",
+      "endpoint": "cn/company/trading-abnormal",
+      "params": {
+        "stockCode": "600519",
+        "startDate": "2025-02-21",
+        "endDate": "2026-02-21",
+        "token": "ffad9101-8689-4b5d-bd79-763c58522a95"
+      },
+      "code": 1,
+      "success": true,
+      "has_data": false,
+      "data_count": 0,
+      "message": "success",
+      "sample_data": null
+    },
+    {
+      "name": "大宗交易",
+      "endpoint": "cn/company/block-trade",
+      "params": {
+        "stockCode": "600519",
+        "startDate": "2025-02-21",
+        "endDate": "2026-02-21",
+        "token": "ffad9101-8689-4b5d-bd79-763c58522a95"
+      },
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A",
+      "sample_data": null
+    },
+    {
+      "name": "股权质押",
+      "endpoint": "cn/company/equity-pledge",
+      "params": {
+        "stockCode": "600519",
+        "startDate": "2025-02-21",
+        "endDate": "2026-02-21",
+        "token": "ffad9101-8689-4b5d-bd79-763c58522a95"
+      },
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A",
+      "sample_data": null
+    },
+    {
+      "name": "分红送配",
+      "endpoint": "cn/company/dividend",
+      "params": {
+        "stockCode": "600519",
+        "startDate": "2025-02-21",
+        "endDate": "2026-02-21",
+        "token": "ffad9101-8689-4b5d-bd79-763c58522a95"
+      },
+      "code": 1,
+      "success": true,
+      "has_data": true,
+      "data_count": 3,
+      "message": "success",
+      "sample_data": {
+        "date": "2025-11-06T00:00:00+08:00",
+        "fsEndDate": "2025-09-30T00:00:00+08:00",
+        "currency": "CNY",
+        "registerDate": "2025-12-18T00:00:00+08:00",
+        "exDate": "2025-12-19T00:00:00+08:00",
+        "paymentDate": "2025-12-19T00:00:00+08:00",
+        "bonusSharesFromProfit": 0,
+        "bonusSharesFromCapitalReserve": 0,
+        "dividend": 23.957,
+        "dividendAmount": 30000637541
+      }
+    },
+    {
+      "name": "营收构成",
+      "endpoint": "cn/company/revenue-structure",
+      "params": {
+        "stockCode": "600519",
+        "startDate": "2025-02-21",
+        "endDate": "2026-02-21",
+        "token": "ffad9101-8689-4b5d-bd79-763c58522a95"
+      },
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A",
+      "sample_data": null
+    },
+    {
+      "name": "经营数据",
+      "endpoint": "cn/company/operation-data",
+      "params": {
+        "stockCode": "600519",
+        "startDate": "2025-02-21",
+        "endDate": "2026-02-21",
+        "token": "ffad9101-8689-4b5d-bd79-763c58522a95"
+      },
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A",
+      "sample_data": null
+    },
+    {
+      "name": "股本变动",
+      "endpoint": "cn/company/equity-change",
+      "params": {
+        "stockCode": "600519",
+        "startDate": "2025-02-21",
+        "endDate": "2026-02-21",
+        "token": "ffad9101-8689-4b5d-bd79-763c58522a95"
+      },
+      "code": 1,
+      "success": true,
+      "has_data": true,
+      "data_count": 2,
+      "message": "success",
+      "sample_data": {
+        "date": "2025-09-01T00:00:00+08:00",
+        "declarationDate": "2025-08-30T00:00:00+08:00",
+        "changeReason": "股份回购",
+        "capitalization": 1252270215,
+        "outstandingSharesA": 1252270215,
+        "limitedSharesA": 0,
+        "changeReasonTypes": [
+          "repurchase"
+        ],
+        "capitalizationChangeRatio": -0.0031,
+        "outstandingSharesAChangeRatio": -0.0031,
+        "outstandingSharesHChangeRatio": 0,
+        "limitedSharesAChangeRatio": 0
+      }
+    },
+    {
+      "name": "所属行业",
+      "endpoint": "cn/company/related-industry",
+      "params": {
+        "stockCode": "600519",
+        "token": "ffad9101-8689-4b5d-bd79-763c58522a95"
+      },
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A",
+      "sample_data": null
+    },
+    {
+      "name": "所属指数",
+      "endpoint": "cn/company/related-index",
+      "params": {
+        "stockCode": "600519",
+        "token": "ffad9101-8689-4b5d-bd79-763c58522a95"
+      },
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A",
+      "sample_data": null
+    },
+    {
+      "name": "公告",
+      "endpoint": "cn/company/announcement",
+      "params": {
+        "stockCode": "600519",
+        "limit": 10,
+        "token": "ffad9101-8689-4b5d-bd79-763c58522a95"
+      },
+      "code": 1,
+      "success": true,
+      "has_data": true,
+      "data_count": 10,
+      "message": "success",
+      "sample_data": {
+        "linkUrl": "https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-02-04/600519_20260204_PRZP.pdf",
+        "date": "2026-02-04T00:00:00+08:00",
+        "linkText": "贵州茅台关于回购股份实施进展的公告",
+        "linkType": "pdf",
+        "types": [
+          "srp"
+        ]
+      }
+    },
+    {
+      "name": "热度数据",
+      "endpoint": "cn/company/hot-data",
+      "params": {
+        "stockCode": "600519",
+        "token": "ffad9101-8689-4b5d-bd79-763c58522a95"
+      },
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A",
+      "sample_data": null
+    },
+    {
+      "name": "资金流向",
+      "endpoint": "cn/company/fund-flow",
+      "params": {
+        "stockCode": "600519",
+        "token": "ffad9101-8689-4b5d-bd79-763c58522a95"
+      },
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A",
+      "sample_data": null
+    },
+    {
+      "name": "监管信息",
+      "endpoint": "cn/company/regulatory-info",
+      "params": {
+        "stockCode": "600519",
+        "startDate": "2025-02-21",
+        "endDate": "2026-02-21",
+        "token": "ffad9101-8689-4b5d-bd79-763c58522a95"
+      },
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A",
+      "sample_data": null
+    },
+    {
+      "name": "客户及供应商",
+      "endpoint": "cn/company/client-supplier",
+      "params": {
+        "stockCode": "600519",
+        "startDate": "2025-02-21",
+        "endDate": "2026-02-21",
+        "token": "ffad9101-8689-4b5d-bd79-763c58522a95"
+      },
+      "code": 0,
+      "success": false,
+      "has_data": false,
+      "data_count": 0,
+      "message": "N/A",
+      "sample_data": null
+    }
+  ]
+}

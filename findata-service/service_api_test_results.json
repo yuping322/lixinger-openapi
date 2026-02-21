@@ -1,0 +1,267 @@
+{
+  "test_time": "2026-02-21T20:18:12.812172",
+  "test_symbol": "600519",
+  "base_url": "http://localhost:8000",
+  "summary": {
+    "total": 15,
+    "success": 15,
+    "has_data": 7,
+    "no_data": 8,
+    "failed": 0
+  },
+  "results": [
+    {
+      "name": "公司基本信息",
+      "url": "http://localhost:8000/api/cn/stock/600519/basic",
+      "status_code": 200,
+      "code": 1,
+      "success": true,
+      "has_data": true,
+      "data_count": 1,
+      "warnings": [],
+      "sample": {
+        "stockCode": "600519",
+        "exchange": "sh",
+        "market": "a",
+        "ipoDate": "2001-08-27T00:00:00+08:00",
+        "areaCode": "cn",
+        "fsTableType": "non_financial",
+        "mutualMarkets": [
+          "ha"
+        ],
+        "name": "贵州茅台",
+        "mutualMarketFlag": true
+      }
+    },
+    {
+      "name": "公司概况",
+      "url": "http://localhost:8000/api/cn/stock/600519/profile",
+      "status_code": 200,
+      "code": 1,
+      "success": true,
+      "has_data": true,
+      "data_count": 1,
+      "warnings": [],
+      "sample": {
+        "city": "遵义市",
+        "province": "贵州",
+        "companyName": "贵州茅台酒股份有限公司",
+        "historyStockNames": [],
+        "stockCode": "600519",
+        "actualControllerTypes": [
+          "state_owned"
+        ],
+        "actualControllerName": "贵州省国有资产监督管理委员会"
+      }
+    },
+    {
+      "name": "K线数据",
+      "url": "http://localhost:8000/api/cn/stock/600519/history",
+      "status_code": 200,
+      "code": 1,
+      "success": true,
+      "has_data": true,
+      "data_count": 17,
+      "warnings": [],
+      "sample": {
+        "date": "2026-02-13T00:00:00+08:00",
+        "open": 1486.6,
+        "close": 1485.3,
+        "high": 1507.8,
+        "low": 1470.58,
+        "volume": 4167900,
+        "amount": 6216379203,
+        "change": -0.0009,
+        "stockCode": "600519",
+        "to_r": 0.003328
+      }
+    },
+    {
+      "name": "实时行情",
+      "url": "http://localhost:8000/api/cn/stock/600519/realtime",
+      "status_code": 200,
+      "code": 1,
+      "success": true,
+      "has_data": false,
+      "data_count": 0,
+      "warnings": [
+        "无法获取实时行情数据"
+      ],
+      "sample": null
+    },
+    {
+      "name": "估值指标",
+      "url": "http://localhost:8000/api/cn/stock/600519/valuation",
+      "status_code": 200,
+      "code": 1,
+      "success": true,
+      "has_data": false,
+      "data_count": 0,
+      "warnings": [
+        "理杏仁免费版可能不提供估值数据，或该股票暂无估值数据"
+      ],
+      "sample": null
+    },
+    {
+      "name": "公告",
+      "url": "http://localhost:8000/api/cn/stock/600519/announcement",
+      "status_code": 200,
+      "code": 1,
+      "success": true,
+      "has_data": true,
+      "data_count": 10,
+      "warnings": [],
+      "sample": {
+        "linkUrl": "https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-02-04/600519_20260204_PRZP.pdf",
+        "date": "2026-02-04T00:00:00+08:00",
+        "linkText": "贵州茅台关于回购股份实施进展的公告",
+        "linkType": "pdf",
+        "types": [
+          "srp"
+        ]
+      }
+    },
+    {
+      "name": "股东人数",
+      "url": "http://localhost:8000/api/cn/shareholder/600519/count",
+      "status_code": 200,
+      "code": 1,
+      "success": true,
+      "has_data": true,
+      "data_count": 3,
+      "warnings": [],
+      "sample": {
+        "date": "2025-09-30T00:00:00+08:00",
+        "num": 238512,
+        "total": 238512,
+        "shareholdersNumberChangeRate": 0.0809,
+        "spc": 0.0245
+      }
+    },
+    {
+      "name": "股东信息",
+      "url": "http://localhost:8000/api/cn/shareholder/600519",
+      "status_code": 200,
+      "code": 1,
+      "success": true,
+      "has_data": false,
+      "data_count": 0,
+      "warnings": [
+        "理杏仁免费版不提供股东详细信息，建议使用股东人数接口或其他数据源"
+      ],
+      "sample": null
+    },
+    {
+      "name": "高管增减持",
+      "url": "http://localhost:8000/api/cn/shareholder/600519/executive",
+      "status_code": 200,
+      "code": 1,
+      "success": true,
+      "has_data": false,
+      "data_count": 0,
+      "warnings": [
+        "理杏仁免费版不提供高管增减持数据，建议使用AKShare等替代数据源"
+      ],
+      "sample": null
+    },
+    {
+      "name": "大股东增减持",
+      "url": "http://localhost:8000/api/cn/shareholder/600519/major",
+      "status_code": 200,
+      "code": 1,
+      "success": true,
+      "has_data": false,
+      "data_count": 0,
+      "warnings": [
+        "理杏仁免费版不提供大股东增减持数据，建议使用AKShare等替代数据源"
+      ],
+      "sample": null
+    },
+    {
+      "name": "股本变动",
+      "url": "http://localhost:8000/api/cn/shareholder/600519/equity-change",
+      "status_code": 200,
+      "code": 1,
+      "success": true,
+      "has_data": true,
+      "data_count": 7,
+      "warnings": [],
+      "sample": {
+        "date": "2025-09-01T00:00:00+08:00",
+        "declarationDate": "2025-08-30T00:00:00+08:00",
+        "changeReason": "股份回购",
+        "capitalization": 1252270215,
+        "outstandingSharesA": 1252270215,
+        "limitedSharesA": 0,
+        "changeReasonTypes": [
+          "repurchase"
+        ],
+        "capitalizationChangeRatio": -0.0031,
+        "outstandingSharesAChangeRatio": -0.0031,
+        "outstandingSharesHChangeRatio": 0,
+        "limitedSharesAChangeRatio": 0
+      }
+    },
+    {
+      "name": "龙虎榜",
+      "url": "http://localhost:8000/api/cn/special/dragon-tiger/600519",
+      "status_code": 200,
+      "code": 1,
+      "success": true,
+      "has_data": false,
+      "data_count": 0,
+      "warnings": [
+        "该股票在查询期间未上龙虎榜，或理杏仁免费版数据有限"
+      ],
+      "sample": null
+    },
+    {
+      "name": "大宗交易",
+      "url": "http://localhost:8000/api/cn/special/block-deal/600519",
+      "status_code": 200,
+      "code": 1,
+      "success": true,
+      "has_data": false,
+      "data_count": 0,
+      "warnings": [
+        "理杏仁免费版不提供大宗交易数据，建议使用AKShare等替代数据源"
+      ],
+      "sample": null
+    },
+    {
+      "name": "股权质押",
+      "url": "http://localhost:8000/api/cn/special/equity-pledge/600519",
+      "status_code": 200,
+      "code": 1,
+      "success": true,
+      "has_data": false,
+      "data_count": 0,
+      "warnings": [
+        "理杏仁免费版不提供股权质押数据，建议查询上交所/深交所官网或使用AKShare"
+      ],
+      "sample": null
+    },
+    {
+      "name": "分红送配",
+      "url": "http://localhost:8000/api/cn/dividend/600519",
+      "status_code": 200,
+      "code": 1,
+      "success": true,
+      "has_data": true,
+      "data_count": 9,
+      "warnings": [],
+      "sample": {
+        "date": "2025-11-06T00:00:00+08:00",
+        "fsEndDate": "2025-09-30T00:00:00+08:00",
+        "currency": "CNY",
+        "registerDate": "2025-12-18T00:00:00+08:00",
+        "exDate": "2025-12-19T00:00:00+08:00",
+        "paymentDate": "2025-12-19T00:00:00+08:00",
+        "bonusSharesFromProfit": 0,
+        "bonusSharesFromCapitalReserve": 0,
+        "dividend": 23.957,
+        "dividendAmount": 30000637541
+      }
+    }
+  ]
+}
