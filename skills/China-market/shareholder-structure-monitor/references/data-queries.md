@@ -1,72 +1,278 @@
-# 数据获取命令（共享脚本）
+# 数据获取指南
 
-运行时约定：仅支持 Python 3.10–3.12，并使用仓库根目录统一虚拟环境 `.venv`。
+本文档说明如何获取本技能所需的数据。
 
-从本技能目录运行。共享数据脚本位于 `../findata-toolkit-cn/`。（跟踪股东户数、十大股东/流通股东、机构/基金持股与持仓变化，输出筹码结构与供给冲击风险提示。当用户询问股东户数、股东结构、机构/基金持股、持仓变化或需要筹码分析时使用。）
+---
 
+## 📊 可用数据源
 
-## 一次性环境准备
+### 1. Findata Service API (推荐)
 
-```bash
-# 激活仓库根目录虚拟环境（统一 .venv）
-source ../../.venv/bin/activate
+**服务地址**: http://localhost:8000  
+**API文档**: http://localhost:8000/docs
 
-# 安装 A股工具包依赖
-python -m pip install -r ../findata-toolkit-cn/requirements.txt  # Now powered by Lixinger
-```
+#### 可用接口
 
-## 本技能依赖的数据（views / tools）
+| 接口 | 端点 | 说明 | 状态 |
+|------|------|------|------|
+| 公司基本信息 | `GET /api/cn/stock/{symbol}/basic` | 股票代码、交易所、上市日期等 | ✅ 可用 |
+| 公司概况 | `GET /api/cn/stock/{symbol}/profile` | 公司名称、地址、实控人等 | ✅ 可用 |
+| K线数据 | `GET /api/cn/stock/{symbol}/history` | 历史行情数据 | ✅ 可用 |
+| 公告 | `GET /api/cn/stock/{symbol}/announcement` | 公司公告 | ✅ 可用 |
+| 股东人数 | `GET /api/cn/shareholder/{symbol}/count` | 股东人数变化 | ✅ 可用 |
+| 股本变动 | `GET /api/cn/shareholder/{symbol}/equity-change` | 股本结构变化 | ✅ 可用 |
+| 分红送配 | `GET /api/cn/dividend/{symbol}` | 分红历史 | ✅ 可用 |
 
-口径约定：
-
-- `toolkit.py` 提供实体聚合与原始 API 查询，输出统一为 JSON：`{meta, data, warnings, errors}`。
-- tool view 的 `data` 字段保持底层实现的原始字段名/单位（不做二次清洗）。
-- 自定义 view 的 `data` 是多个 tool view 调用结果的聚合字典（每个 value 仍是 tool envelope）。
-
-### Views（建议）
-
-| view 名称 | 类型 | 定位 | 用途 | 入参（必填/常用） | 产出/口径 |
-| --- | --- | --- | --- | --- | --- |
-| shareholder_structure_dashboard | custom | composed view | 股东结构/筹码聚合：股东户数、主要股东、流通股东、持股变动与监管披露（工具聚合视图）。 | required: symbol | data keys: gdhs_quarter_list, gdhs_detail, main_stock_holder, circulate_stock_holder, shareholder_change_ths, share_hold_change_sse, share_hold_change_szse, share_hold_change_bse, hold_num_cninfo, hold_change_cninfo |
-#### `shareholder_structure_dashboard` 底层工具（plan 展开）
-
-
-| key | tool | 说明 | 入参（必填/常用） | 关键输出字段（示例） |
-| --- | --- | --- | --- | --- |
-| gdhs_quarter_list | stock_zh_a_gdhs | 东方财富网-数据中心-特色数据-股东户数数据 | required: symbol | 代码, 最新价, 涨跌幅, 股东户数-本次, 股东户数-上次, 股东户数-增减, 股东户数-增减比例, 区间涨跌幅, 股东户数统计截止日-本次, 股东户数统计截止日-上次 |
-| gdhs_detail | stock_zh_a_gdhs_detail_em | 东方财富网-数据中心-特色数据-股东户数详情 | required: symbol | 股东户数统计截止日, 区间涨跌幅, 股东户数-本次, 股东户数-上次, 股东户数-增减, 股东户数-增减比例, 户均持股市值, 户均持股数量, 总市值, 总股本 |
-| main_stock_holder | stock_main_stock_holder | 新浪财经-股本股东-主要股东 | required: stock | 编号, 持股数量, 持股比例, 股本性质, 截至日期, 公告日期, 股东说明, 股东总数, 平均持股数 |
-| circulate_stock_holder | stock_circulate_stock_holder | 新浪财经-股东股本-流通股东 | required: symbol | 截止日期, 公告日期, 编号, 持股数量, 占流通股比例, 股本性质 |
-| shareholder_change_ths | stock_shareholder_change_ths | 同花顺-公司大事-股东持股变动 | required: symbol | 公告日期, 变动股东, 变动数量, 交易均价, 剩余股份总数, 变动期间, 变动途径 |
-| share_hold_change_sse | stock_share_hold_change_sse | 上海证券交易所-披露-监管信息公开-公司监管-董董监高人员股份变动 | required: symbol | 公司代码, 姓名, 职务, 股票种类, 货币种类, 本次变动前持股数, 变动数, 本次变动平均价格, 变动后持股数, 变动原因 |
-| share_hold_change_szse | stock_share_hold_change_szse | 深圳证券交易所-信息披露-监管信息公开-董监高人员股份变动 | required: symbol | 证券代码, 证券简称, 董监高姓名, 变动日期, 变动股份数量, 成交均价, 变动原因, 变动比例, 当日结存股数, 股份变动人姓名 |
-| share_hold_change_bse | stock_share_hold_change_bse | 北京证券交易所-信息披露-监管信息-董监高及相关人员持股变动 | required: symbol | 代码, 简称, 姓名, 职务, 变动日期, 变动股数, 变动前持股数, 变动后持股数, 变动均价, 变动原因 |
-| hold_num_cninfo | stock_hold_num_cninfo | 巨潮资讯-数据中心-专题统计-股东股本-股东人数及持股集中度 | required: date | 证劵代码, 证券简称, 变动日期, 本期股东人数, 上期股东人数, 股东人数增幅, 本期人均持股数量, 上期人均持股数量, 人均持股数量增幅 |
-| hold_change_cninfo | stock_hold_change_cninfo | 巨潮资讯-数据中心-专题统计-股东股本-股本变动 | required: symbol | 证券代码, 证券简称, 交易市场, 公告日期, 变动日期, 变动原因, 总股本, 已流通股份, 已流通比例, 流通受限股份 |
-| hold_control_cninfo | stock_hold_control_cninfo | 巨潮资讯-数据中心-专题统计-股东股本-实际控制人持股变动 | required: symbol | 证劵代码, 证券简称, 变动日期, 控股数量, 控股比例, 控制类型 |
-
-
-## 常用命令
+#### 使用示例
 
 ```bash
-# 确保已激活虚拟环境（统一 .venv）
-source ../../.venv/bin/activate
+# 获取公司基本信息
+curl "http://localhost:8000/api/cn/stock/600519/basic"
 
-# 发现可用 view（包含 tool views 与组合 views）
-python ../findata-toolkit-cn/scripts/toolkit.py --help --contains <keyword>
+# 获取K线数据
+curl "http://localhost:8000/api/cn/stock/600519/history?start_date=2023-01-01&end_date=2026-02-21"
 
-# 查看 view 的入参 schema
-python ../findata-toolkit-cn/scripts/toolkit.py --help
+# 获取分红数据
+curl "http://localhost:8000/api/cn/dividend/600519"
 
-# 只生成调用计划（不执行真实抓取；便于写分析/复现）
-python ../findata-toolkit-cn/scripts/views_runner.py <view_or_tool_name> --dry-run --set key=value
+# 获取股东人数
+curl "http://localhost:8000/api/cn/shareholder/600519/count"
 
-# 示例：A股实时行情 / 历史K线
-python ../findata-toolkit-cn/scripts/toolkit.py --market --mode brief
-python ../findata-toolkit-cn/scripts/toolkit.py --stock 000001 --mode full
+# 获取公告
+curl "http://localhost:8000/api/cn/stock/600519/announcement"
 ```
 
-## 可选
+---
 
-- 缓存目录：`FINSKILLS_CACHE_DIR=/tmp/finskills-cache`
-- 若某些接口需要雪球 token：设置 `XUEQIU_TOKEN` 环境变量（当工具入参包含 `token` 时）
+### 2. 理杏仁API直接调用
+
+**前提**: 需要配置理杏仁Token
+
+#### Python示例
+
+```python
+from lixinger_openapi.query import query_json
+from lixinger_openapi.token import set_token
+from datetime import datetime, timedelta
+
+# 设置token
+set_token('your-token', write_token=False)
+
+# 获取公司基本信息
+result = query_json("cn/company", {
+    "stockCodes": ["600519"]
+})
+
+# 获取K线数据
+end_date = datetime.now().strftime("%Y-%m-%d")
+start_date = (datetime.now() - timedelta(days=365)).strftime("%Y-%m-%d")
+
+result = query_json("cn/company/candlestick", {
+    "stockCode": "600519",
+    "type": "ex_rights",
+    "startDate": start_date,
+    "endDate": end_date
+})
+
+# 获取分红数据
+result = query_json("cn/company/dividend", {
+    "stockCode": "600519",
+    "startDate": start_date,
+    "endDate": end_date
+})
+
+# 获取股东人数
+result = query_json("cn/company/shareholders-num", {
+    "stockCode": "600519",
+    "startDate": start_date,
+    "endDate": end_date
+})
+
+# 获取股本变动
+result = query_json("cn/company/equity-change", {
+    "stockCode": "600519",
+    "startDate": start_date,
+    "endDate": end_date
+})
+
+# 获取公告
+result = query_json("cn/company/announcement", {
+    "stockCode": "600519",
+    "limit": 20
+})
+```
+
+---
+
+## ⚠️ 数据限制说明
+
+### 理杏仁免费版限制
+
+以下数据在免费版中**不可用**：
+
+| 数据类型 | 状态 | 替代方案 |
+|---------|------|---------|
+| 股东详细信息 | ❌ 不可用 | 使用股东人数接口 |
+| 高管增减持 | ❌ 不可用 | 考虑使用AKShare |
+| 大股东增减持 | ❌ 不可用 | 考虑使用AKShare |
+| 龙虎榜 | ⚠️ API可用但通常无数据 | 考虑使用AKShare |
+| 大宗交易 | ❌ 不可用 | 考虑使用AKShare |
+| 股权质押 | ❌ 不可用 | 考虑使用AKShare |
+| 实时行情 | ⚠️ 使用最新日线代替 | 使用K线数据 |
+| 估值指标 | ❌ 不可用 | 考虑升级订阅 |
+
+---
+
+## 🔄 替代数据源
+
+### AKShare (开源免费)
+
+对于理杏仁不提供的数据，可以使用AKShare：
+
+```python
+import akshare as ak
+
+# 股权质押
+pledge_data = ak.stock_pledge_stat(symbol="600519")
+
+# 龙虎榜
+lhb_data = ak.stock_lhb_detail_em(symbol="600519")
+
+# 大宗交易
+block_trade = ak.stock_dzjy_mrmx(symbol="600519")
+
+# 高管增减持
+executive = ak.stock_ggcg_em(symbol="600519")
+```
+
+**安装AKShare**:
+```bash
+pip install akshare
+```
+
+---
+
+## 📝 数据字段说明
+
+### 公司基本信息
+```json
+{
+  "stockCode": "600519",
+  "exchange": "sh",
+  "market": "a",
+  "ipoDate": "2001-08-27T00:00:00+08:00",
+  "name": "贵州茅台"
+}
+```
+
+### K线数据
+```json
+{
+  "date": "2026-02-13T00:00:00+08:00",
+  "open": 1486.6,
+  "close": 1485.3,
+  "high": 1507.8,
+  "low": 1470.58,
+  "volume": 4167900,
+  "amount": 6216379203
+}
+```
+
+### 分红数据
+```json
+{
+  "date": "2025-11-06T00:00:00+08:00",
+  "fsEndDate": "2025-09-30T00:00:00+08:00",
+  "dividendPerShare": 30.0,
+  "dividendRatio": 0.5,
+  "dividendYield": 0.02
+}
+```
+
+### 股东人数
+```json
+{
+  "date": "2025-09-30T00:00:00+08:00",
+  "num": 238512,
+  "total": 238512,
+  "shareholdersNumberChangeRate": 0.0809
+}
+```
+
+### 股本变动
+```json
+{
+  "date": "2025-09-01T00:00:00+08:00",
+  "declarationDate": "2025-08-30T00:00:00+08:00",
+  "changeReason": "股份回购",
+  "capitalization": 1252000000,
+  "outstandingSharesA": 1252000000
+}
+```
+
+### 公告数据
+```json
+{
+  "date": "2026-02-04T00:00:00+08:00",
+  "linkText": "贵州茅台关于回购股份实施进展的公告",
+  "linkUrl": "https://...",
+  "types": ["srp"]
+}
+```
+
+---
+
+## 🎯 最佳实践
+
+### 1. 数据缓存
+- findata-service已实现多级缓存
+- 避免频繁请求相同数据
+- 合理设置数据更新频率
+
+### 2. 错误处理
+```python
+result = query_json(endpoint, params)
+if result.get('code') == 1:
+    data = result.get('data', [])
+    # 处理数据
+else:
+    # 处理错误
+    print(f"Error: {result.get('message')}")
+```
+
+### 3. 批量查询
+```python
+# 查询多只股票
+symbols = ["600519", "000858", "600036"]
+for symbol in symbols:
+    result = query_json("cn/company", {"stockCodes": [symbol]})
+    # 处理结果
+```
+
+---
+
+## 📚 相关文档
+
+- **API参考**: `findata-service/API_REFERENCE.md`
+- **服务实现**: `findata-service/IMPLEMENTATION_COMPLETE.md`
+- **Skills就绪**: `SKILLS_READINESS_REPORT.md`
+- **使用演示**: `SKILLS_USAGE_DEMO.md`
+
+---
+
+## 💡 技巧提示
+
+1. **优先使用findata-service**: 已封装好的API，使用更方便
+2. **注意日期格式**: 统一使用 YYYY-MM-DD 格式
+3. **检查数据可用性**: 使用前先确认数据是否可用
+4. **合理设置时间范围**: 避免查询过长时间范围的数据
+5. **关注数据更新频率**: 
+   - K线数据: 每日更新
+   - 财务数据: 季度更新
+   - 公告数据: 实时更新
+
+---
+
+**文档版本**: 1.0  
+**更新时间**: 2026-02-21  
+**维护者**: Kiro AI
