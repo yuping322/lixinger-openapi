@@ -10,6 +10,7 @@ import sys
 import json
 import argparse
 import pandas as pd
+from pathlib import Path
 from lixinger_openapi.query import query_json, query_dataframe
 from lixinger_openapi.token import set_token
 
@@ -38,8 +39,6 @@ def get_lixinger_token() -> str:
                 pass
         curr = curr.parent
     return ""
-
-from pathlib import Path
 
 def main():
     parser = argparse.ArgumentParser(description="Lixinger Data Query Tool")

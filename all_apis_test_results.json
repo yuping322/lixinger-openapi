@@ -1,0 +1,890 @@
+{
+  "total": 110,
+  "success": 7,
+  "not_found": 81,
+  "error": 22,
+  "exception": 0,
+  "unknown": 0,
+  "details": [
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/basic-info",
+      "description": "获取公司基础信息数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/profile",
+      "description": "获取公司概况数据",
+      "status": "success",
+      "message": "OK",
+      "data_count": 1
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/share-change",
+      "description": "获取公司股本变动数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/k-line",
+      "description": "获取公司K线数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/shareholders-count",
+      "description": "获取公司股东人数数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/executive-shareholding",
+      "description": "获取高管增减持数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/major-shareholder-change",
+      "description": "获取大股东增减持数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/trading-abnormal",
+      "description": "获取龙虎榜数据",
+      "status": "success",
+      "message": "OK",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/block-trade",
+      "description": "获取大宗交易数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/equity-pledge",
+      "description": "获取股权质押数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/revenue-structure",
+      "description": "获取营收构成数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/operation-data",
+      "description": "获取经营数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/related-index",
+      "description": "获取股票所属指数数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/related-industry",
+      "description": "获取股票所属行业数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/announcement",
+      "description": "获取公告数据",
+      "status": "success",
+      "message": "OK",
+      "data_count": 10
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/regulatory-info",
+      "description": "获取监管信息数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/shareholders",
+      "description": "获取股东数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/dividend-allotment",
+      "description": "获取分红送配数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/client-supplier",
+      "description": "获取客户及供应商数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/fundamental/other_finance",
+      "description": "获取其他金融机构基本面数据",
+      "status": "not_found",
+      "message": "Api was not found.",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/financial-statement",
+      "description": "获取财务报表数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/hot-data",
+      "description": "获取热度数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.1 公司接口 (company)",
+      "url_suffix": "cn/company/fund-flow",
+      "description": "获取资金流向数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.2 指数接口 (index)",
+      "url_suffix": "cn/index/basic-info",
+      "description": "获取指数基本信息数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.2 指数接口 (index)",
+      "url_suffix": "cn/index/k-line",
+      "description": "获取指数K线数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.2 指数接口 (index)",
+      "url_suffix": "cn/index/constituents",
+      "description": "获取指数成分股数据",
+      "status": "success",
+      "message": "OK",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.2 指数接口 (index)",
+      "url_suffix": "cn/index/fundamental",
+      "description": "获取指数基本面数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.2 指数接口 (index)",
+      "url_suffix": "cn/index/financial",
+      "description": "获取指数财务数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.2 指数接口 (index)",
+      "url_suffix": "cn/index/valuation",
+      "description": "获取指数估值数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.2 指数接口 (index)",
+      "url_suffix": "cn/index/hot-data",
+      "description": "获取指数热度数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.2 指数接口 (index)",
+      "url_suffix": "cn/index/fund-flow",
+      "description": "获取指数资金流向数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.3 行业接口 (industry)",
+      "url_suffix": "cn/industry/basic-info",
+      "description": "获取行业基本信息数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.3 行业接口 (industry)",
+      "url_suffix": "cn/industry/k-line",
+      "description": "获取行业K线数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.3 行业接口 (industry)",
+      "url_suffix": "cn/industry/constituents",
+      "description": "获取行业成分股数据",
+      "status": "not_found",
+      "message": "Api was not found.",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.3 行业接口 (industry)",
+      "url_suffix": "cn/industry/fundamental",
+      "description": "获取行业基本面数据",
+      "status": "not_found",
+      "message": "Api was not found.",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.3 行业接口 (industry)",
+      "url_suffix": "cn/industry/financial",
+      "description": "获取行业财务数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.3 行业接口 (industry)",
+      "url_suffix": "cn/industry/valuation",
+      "description": "获取行业估值数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.3 行业接口 (industry)",
+      "url_suffix": "cn/industry/hot-data",
+      "description": "获取行业热度数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.3 行业接口 (industry)",
+      "url_suffix": "cn/industry/fund-flow",
+      "description": "获取行业资金流向数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.4 基金接口 (fund)",
+      "url_suffix": "cn/fund/basic-info",
+      "description": "获取基金基本信息数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.4 基金接口 (fund)",
+      "url_suffix": "cn/fund/k-line",
+      "description": "获取基金K线数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.4 基金接口 (fund)",
+      "url_suffix": "cn/fund/holdings",
+      "description": "获取基金持仓数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.4 基金接口 (fund)",
+      "url_suffix": "cn/fund/net-value",
+      "description": "获取基金净值数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.4 基金接口 (fund)",
+      "url_suffix": "cn/fund/dividend",
+      "description": "获取基金分红数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.4 基金接口 (fund)",
+      "url_suffix": "cn/fund/rating",
+      "description": "获取基金评级数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "1. 大陆 (cn)/1.4 基金接口 (fund)",
+      "url_suffix": "cn/fund/hot-data",
+      "description": "获取基金热度数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.1 公司接口 (company)",
+      "url_suffix": "hk/company/basic-info",
+      "description": "获取港股基本信息数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.1 公司接口 (company)",
+      "url_suffix": "hk/company/k-line",
+      "description": "获取港股K线数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.1 公司接口 (company)",
+      "url_suffix": "hk/company/fundamental",
+      "description": "获取港股基本面数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.1 公司接口 (company)",
+      "url_suffix": "hk/company/financial",
+      "description": "获取港股财务数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.1 公司接口 (company)",
+      "url_suffix": "hk/company/shareholders",
+      "description": "获取港股股东数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.1 公司接口 (company)",
+      "url_suffix": "hk/company/announcement",
+      "description": "获取港股公告数据",
+      "status": "success",
+      "message": "OK",
+      "data_count": 10
+    },
+    {
+      "category": "2. 香港 (hk)/2.1 公司接口 (company)",
+      "url_suffix": "hk/company/fund-flow",
+      "description": "获取港股资金流向数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.1 公司接口 (company)",
+      "url_suffix": "hk/company/hot-data",
+      "description": "获取港股热度数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.2 指数接口 (index)",
+      "url_suffix": "hk/index/basic-info",
+      "description": "获取港股指数基本信息数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.2 指数接口 (index)",
+      "url_suffix": "hk/index/k-line",
+      "description": "获取港股指数K线数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.2 指数接口 (index)",
+      "url_suffix": "hk/index/constituents",
+      "description": "获取港股指数成分股数据",
+      "status": "success",
+      "message": "OK",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.2 指数接口 (index)",
+      "url_suffix": "hk/index/fundamental",
+      "description": "获取港股指数基本面数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.2 指数接口 (index)",
+      "url_suffix": "hk/index/financial",
+      "description": "获取港股指数财务数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.2 指数接口 (index)",
+      "url_suffix": "hk/index/valuation",
+      "description": "获取港股指数估值数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.2 指数接口 (index)",
+      "url_suffix": "hk/index/hot-data",
+      "description": "获取港股指数热度数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.2 指数接口 (index)",
+      "url_suffix": "hk/index/fund-flow",
+      "description": "获取港股指数资金流向数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.3 行业接口 (industry)",
+      "url_suffix": "hk/industry/basic-info",
+      "description": "获取港股行业基本信息数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.3 行业接口 (industry)",
+      "url_suffix": "hk/industry/k-line",
+      "description": "获取港股行业K线数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.3 行业接口 (industry)",
+      "url_suffix": "hk/industry/constituents",
+      "description": "获取港股行业成分股数据",
+      "status": "not_found",
+      "message": "Api was not found.",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.3 行业接口 (industry)",
+      "url_suffix": "hk/industry/fundamental",
+      "description": "获取港股行业基本面数据",
+      "status": "not_found",
+      "message": "Api was not found.",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.3 行业接口 (industry)",
+      "url_suffix": "hk/industry/financial",
+      "description": "获取港股行业财务数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.3 行业接口 (industry)",
+      "url_suffix": "hk/industry/valuation",
+      "description": "获取港股行业估值数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.3 行业接口 (industry)",
+      "url_suffix": "hk/industry/hot-data",
+      "description": "获取港股行业热度数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "2. 香港 (hk)/2.3 行业接口 (industry)",
+      "url_suffix": "hk/industry/fund-flow",
+      "description": "获取港股行业资金流向数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "3. 美国 (us)/3.1 指数接口 (index)",
+      "url_suffix": "us/index/basic-info",
+      "description": "获取美股指数基本信息数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "3. 美国 (us)/3.1 指数接口 (index)",
+      "url_suffix": "us/index/k-line",
+      "description": "获取美股指数K线数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "3. 美国 (us)/3.1 指数接口 (index)",
+      "url_suffix": "us/index/constituents",
+      "description": "获取美股指数成分股数据",
+      "status": "success",
+      "message": "OK",
+      "data_count": 0
+    },
+    {
+      "category": "3. 美国 (us)/3.1 指数接口 (index)",
+      "url_suffix": "us/index/drawdown",
+      "description": "获取美股指数回撤数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "3. 美国 (us)/3.1 指数接口 (index)",
+      "url_suffix": "us/index/tracking-fund",
+      "description": "获取美股指数跟踪基金数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "3. 美国 (us)/3.1 指数接口 (index)",
+      "url_suffix": "us/index/fundamental",
+      "description": "获取美股指数基本面数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "3. 美国 (us)/3.1 指数接口 (index)",
+      "url_suffix": "us/index/financial",
+      "description": "获取美股指数财务数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "3. 美国 (us)/3.1 指数接口 (index)",
+      "url_suffix": "us/index/hot-data",
+      "description": "获取美股指数热度数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "3. 美国 (us)/3.1 指数接口 (index)",
+      "url_suffix": "us/index/fund-flow",
+      "description": "获取美股指数资金流向数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/investor",
+      "description": "获取投资者数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/credit-security-account",
+      "description": "获取信用证券账户数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/stamp-duty",
+      "description": "获取印花税数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/price-index",
+      "description": "获取价格指数数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/reserve-requirement-ratio",
+      "description": "获取存款准备金率数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/money-supply",
+      "description": "获取货币供应数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/government-bond",
+      "description": "获取国债数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/interest-rate",
+      "description": "获取利率数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/social-financing",
+      "description": "获取社会融资数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/rmb-deposit-loan",
+      "description": "获取人民币存贷款数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/central-bank-balance-sheet",
+      "description": "获取央行资产负债表数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/official-reserve-assets",
+      "description": "获取官方储备资产数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/foreign-assets",
+      "description": "获取国外资产数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/domestic-bonds",
+      "description": "获取国内各类债券数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/leverage-ratio",
+      "description": "获取杠杆率数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/population",
+      "description": "获取人口数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/gdp",
+      "description": "获取GDP数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/unemployment-rate",
+      "description": "获取失业率数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/foreign-trade",
+      "description": "获取对外贸易数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/balance-of-payments",
+      "description": "获取国际收支平衡数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/fixed-asset-investment",
+      "description": "获取全社会固定资产投资数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/social-consumer-retail",
+      "description": "获取社会消费品零售数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/transportation",
+      "description": "获取交通运输数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/real-estate",
+      "description": "获取房地产数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/oil",
+      "description": "获取石油数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/energy",
+      "description": "获取能源数据",
+      "status": "error",
+      "message": "Unknown error",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/commodities",
+      "description": "获取大宗商品数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/dollar-index",
+      "description": "获取美元指数数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/rmb-index",
+      "description": "获取人民币指数数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/exchange-rate",
+      "description": "获取汇率数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    },
+    {
+      "category": "4. 宏观 (macro)/General",
+      "url_suffix": "macro/industrial",
+      "description": "获取工业数据",
+      "status": "not_found",
+      "message": "api is not found",
+      "data_count": 0
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "total": 17,
+  "passed": 9,
+  "failed": 2,
+  "expected_fail": 6,
+  "details": [
+    {
+      "name": "公司基本信息",
+      "suffix": "cn/company",
+      "status": "success",
+      "data_count": 1
+    },
+    {
+      "name": "K线数据",
+      "suffix": "cn/company/candlestick",
+      "status": "success",
+      "data_count": 30
+    },
+    {
+      "name": "分红数据",
+      "suffix": "cn/company/dividend",
+      "status": "success",
+      "data_count": 16
+    },
+    {
+      "name": "股东人数",
+      "suffix": "cn/company/shareholders-num",
+      "status": "success",
+      "data_count": 25
+    },
+    {
+      "name": "股本变动",
+      "suffix": "cn/company/equity-change",
+      "status": "success",
+      "data_count": 13
+    },
+    {
+      "name": "公告",
+      "suffix": "cn/company/announcement",
+      "status": "success",
+      "data_count": 10
+    },
+    {
+      "name": "财务报表（预期失败）",
+      "suffix": "cn/company/fs",
+      "status": "expected_fail",
+      "message": "api is not found"
+    },
+    {
+      "name": "热度数据（预期失败）",
+      "suffix": "cn/company/hot-data",
+      "status": "expected_fail",
+      "message": "api is not found"
+    },
+    {
+      "name": "资金流向（预期失败）",
+      "suffix": "cn/company/fund-flow",
+      "status": "expected_fail",
+      "message": "api is not found"
+    },
+    {
+      "name": "估值指标（预期失败）",
+      "suffix": "cn/company/valuation",
+      "status": "expected_fail",
+      "message": "api is not found"
+    },
+    {
+      "name": "指数基本信息",
+      "suffix": "cn/index",
+      "status": "success",
+      "data_count": 100
+    },
+    {
+      "name": "指数K线",
+      "suffix": "cn/index/candlestick",
+      "status": "api_error",
+      "message": "Unknown"
+    },
+    {
+      "name": "行业基本信息",
+      "suffix": "cn/industry",
+      "status": "api_error",
+      "message": "Unknown"
+    },
+    {
+      "name": "美股公司信息（预期失败）",
+      "suffix": "us/company",
+      "status": "expected_fail",
+      "message": "Api was not found."
+    },
+    {
+      "name": "美股K线（预期失败）",
+      "suffix": "us/company/candlestick",
+      "status": "expected_fail",
+      "message": "Api was not found."
+    },
+    {
+      "name": "港股公司信息",
+      "suffix": "hk/company",
+      "status": "success",
+      "data_count": 1
+    },
+    {
+      "name": "港股K线",
+      "suffix": "hk/company/candlestick",
+      "status": "success",
+      "data_count": 33
+    }
+  ]
+}
