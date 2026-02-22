@@ -52,3 +52,9 @@ https://open.lixinger.com/api/cn/company/share-change
 ---
 *文档生成时间: 2026-02-15*
 *API页面: https://www.lixinger.com/open/api/doc?api-key=cn/company/equity-change*
+
+
+## 调用示例
+```bash
+python skills/lixinger-data-query/scripts/query_tool.py --suffix "cn/company/share-change" --params '{"stockCodes": ["600519"], "startDate": "2024-01-01", "endDate": "2024-12-31"}'
+```

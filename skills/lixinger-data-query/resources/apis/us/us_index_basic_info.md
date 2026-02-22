@@ -26,5 +26,5 @@
 
 ## 调用示例
 ```bash
-python3 skills/lixinger-data-query/scripts/query_tool.py --suffix "us/index" --params '{"stockCodes": [".INX"]}'
+python skills/lixinger-data-query/scripts/query_tool.py --suffix "us/index/basic-info" --params '{"stockCodes": ["SPX"]}'
 ```

@@ -45,3 +45,9 @@ https://open.lixinger.com/api/cn/company/shareholders-count
 ---
 *文档生成时间: 2026-02-15*
 *API页面: https://www.lixinger.com/open/api/doc?api-key=cn/company/shareholders-num*
+
+
+## 调用示例
+```bash
+python skills/lixinger-data-query/scripts/query_tool.py --suffix "cn/company/shareholders-count" --params '{"stockCodes": ["600519"], "date": "2024-12-31"}'
+```

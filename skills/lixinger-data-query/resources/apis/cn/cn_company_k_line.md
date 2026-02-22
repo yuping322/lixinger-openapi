@@ -61,3 +61,9 @@ https://open.lixinger.com/api/cn/company/k-line
 ---
 *文档生成时间: 2026-02-15*
 *API页面: https://www.lixinger.com/open/api/doc?api-key=cn/company/candlestick*
+
+
+## 调用示例
+```bash
+python skills/lixinger-data-query/scripts/query_tool.py --suffix "cn/company/k-line" --params '{"stockCode": "600519", "startDate": "2024-01-01", "endDate": "2024-12-31"}'
+```

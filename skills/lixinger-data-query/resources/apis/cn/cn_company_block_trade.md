@@ -1,14 +1,12 @@
-# API 规范: cn/company/block-trade (大宗交易)
+# API 规范: cn/company/block-deal (大宗交易)
 
 获取大宗交易数据
 
 ## 接口地址
-- **URL 后缀**: `cn/company/block-trade`
-- **支持格式**: `cn.company.block-trade`
+- **URL 后缀**: `cn/company/block-deal`
+- **支持格式**: `cn.company.block-deal`
 
 ## 查询参数 (query_params)
-大多数 API 遵循以下参数结构，根据具体需求选择：
-
 | 参数名 | 类型 | 必填 | 说明 |
 | :--- | :--- | :--- | :--- |
 | `token` | string | 是 | 用户访问令牌 (工具自动注入) |
@@ -20,5 +18,5 @@
 
 ## 调用示例
 ```bash
-/opt/anaconda3/bin/python3 skills/lixinger-data-query/scripts/query_tool.py --suffix "cn/company/block-trade" --params '{"stockCodes": ["600519"], "date": "2024-12-30"}'
+python skills/lixinger-data-query/scripts/query_tool.py --suffix "cn/company/block-deal" --params '{"stockCodes": ["600519"], "startDate": "2024-01-01", "endDate": "2024-12-31"}'
 ```
