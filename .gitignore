@@ -115,3 +115,18 @@ token.cfg
 .vscode/
 # Regression test results
 regression_tests/results/
+
+# Backup files
+*.backup
+
+# Temporary directories
+.kirobak/
+scripts/
+
+# Debug and test files
+debug_*.py
+test_skills.py
+skills_analysis.json
+
+# Unsupported skills
+skills/US-market/esg-screener_UNSUPPORTED/
