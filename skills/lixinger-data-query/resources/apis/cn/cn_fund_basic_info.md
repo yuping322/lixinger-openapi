@@ -21,5 +21,5 @@
 
 ## 调用示例
 ```bash
-python skills/lixinger-data-query/scripts/query_tool.py --suffix "cn/fund" --params '{"stockCodes": ["600519"]}'
+python skills/lixinger-data-query/scripts/query_tool.py --suffix "cn/fund" --params '{"stockCodes": ["510300"]}'
 ```

@@ -27,5 +27,5 @@
 
 ## 调用示例
 ```bash
-python skills/lixinger-data-query/scripts/query_tool.py --suffix "macro/investor" --params '{"date": "2024-12-31", "startDate": "2020-01-01", "metricsList": ["pe_ttm"], "areaCode": "cn", "endDate": "2024-12-31"}'
+python skills/lixinger-data-query/scripts/query_tool.py --suffix "macro/investor" --params '{"date": "2023-12-31", "startDate": "2010-01-01", "metricsList": ["pe_ttm"], "areaCode": "cn", "endDate": "2024-12-31"}'
 ```
