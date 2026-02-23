@@ -22,5 +22,5 @@
 
 ## 调用示例
 ```bash
-/opt/anaconda3/bin/python3 skills/lixinger-data-query/scripts/query_tool.py --suffix "cn.index.fundamental" --params '{"date": "2024-12-10", "stockCodes": ["000016"], "metricsList": ["pe_ttm.mcw", "mc"]}'
+python skills/lixinger-data-query/scripts/query_tool.py --suffix "cn/index/fundamental" --params '{"date": "2024-12-31", "stockCodes": ["600519"]}'
 ```

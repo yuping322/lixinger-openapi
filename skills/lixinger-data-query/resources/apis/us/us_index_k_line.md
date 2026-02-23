@@ -31,5 +31,5 @@
 
 ## 调用示例
 ```bash
-python skills/lixinger-data-query/scripts/query_tool.py --suffix "us/index/k-line" --params '{"stockCode": "SPX", "startDate": "2024-01-01", "endDate": "2024-12-31"}'
+python skills/lixinger-data-query/scripts/query_tool.py --suffix "us/index/candlestick" --params '{"date": "2024-12-31", "type": "normal", "startDate": "2020-01-01", "stockCode": ".INX", "limit": 10, "endDate": "2024-12-31"}'
 ```

@@ -30,5 +30,5 @@
 
 ## 调用示例
 ```bash
-python skills/lixinger-data-query/scripts/query_tool.py --suffix "cn/company/operation-revenue-constitution" --params '{"stockCodes": ["601318"], "date": "2024-12-31"}'
+python skills/lixinger-data-query/scripts/query_tool.py --suffix "cn/company/operation-revenue-constitution" --params '{"date": "2024-12-31", "stockCodes": ["600519"], "stockCode": "600519"}'
 ```

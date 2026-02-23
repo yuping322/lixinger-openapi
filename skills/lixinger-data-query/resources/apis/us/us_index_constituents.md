@@ -25,5 +25,5 @@
 
 ## 调用示例
 ```bash
-python skills/lixinger-data-query/scripts/query_tool.py --suffix "us/index/constituents" --params '{"stockCodes": ["SPX"], "date": "2024-12-31"}'
+python skills/lixinger-data-query/scripts/query_tool.py --suffix "us/index/constituents" --params '{"date": "2024-12-31", "stockCodes": [".INX"]}'
 ```

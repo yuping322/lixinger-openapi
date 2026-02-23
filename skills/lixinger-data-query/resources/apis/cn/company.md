@@ -21,5 +21,5 @@
 
 ## 调用示例
 ```bash
-/opt/anaconda3/bin/python3 skills/lixinger-data-query/scripts/query_tool.py --suffix "cn.company" --params '{"fsTableType": "bank"}'
+python skills/lixinger-data-query/scripts/query_tool.py --suffix "cn/company" --params '{"stockCode": "600519", "fsTableType": "non_financial"}'
 ```
