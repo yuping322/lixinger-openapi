@@ -27,5 +27,8 @@
 
 ## 调用示例
 ```bash
-python skills/lixinger-data-query/scripts/query_tool.py --suffix "macro/central-bank-balance-sheet" --params '{"date": "2023-12-31", "startDate": "2010-01-01", "metricsList": ["pe_ttm"], "areaCode": "cn", "endDate": "2024-12-31"}'
+python skills/lixinger-data-query/scripts/query_tool.py --suffix "macro/central-bank-balance-sheet" --params '{"areaCode": "cn", "startDate": "2020-01-01", "endDate": "2024-12-31", "metricsList": ["zong_zi_chan"]}'
 ```
+
+> **注意**：该接口在当前账号的订阅级别下返回空数据 (`data: []`)。命令本身通过了 API 校验，但数据访问可能需要更高级别的账号权限。
+
