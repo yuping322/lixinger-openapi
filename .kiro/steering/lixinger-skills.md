@@ -6,7 +6,7 @@ inclusion: always
 
 你现在可以访问一个完整的金融量化分析技能包，基于理杏仁开放平台 API，支持 A股、港股、美股三大市场。
 
-## 📊 可用技能（106个）
+## 📊 可用技能（116个）
 
 ### 核心数据查询工具
 
@@ -18,7 +18,7 @@ inclusion: always
 - **这是所有其他 skills 获取数据的基础工具**
 - **仅在找不到合适的分析 skill 时使用**
 
-### 中国市场分析技能（56个）
+### 中国市场分析技能（66个）
 
 #### 基础分析类
 - financial-statement-analyzer - 财务报表深度分析
@@ -28,12 +28,12 @@ inclusion: always
 #### 风险监控类
 - equity-pledge-risk-monitor - 股权质押风险监控
 - shareholder-risk-check - 股东风险检查
-- goodwill-risk-monitor - 商誉风险监控 ⚠️
+- goodwill-risk-monitor - 商誉风险监控
 
 #### 资金流向类
 - fund-flow-monitor - 市场资金流向监控
-- northbound-flow-analyzer - 北向资金流向分析 ⚠️
-- hsgt-holdings-monitor - 沪深港通持股监控 ⚠️
+- northbound-flow-analyzer - 北向资金流向分析
+- hsgt-holdings-monitor - 沪深港通持股监控
 
 #### 市场分析类
 - market-overview-dashboard - 市场概览仪表盘
@@ -71,7 +71,7 @@ inclusion: always
 - industry-board-analyzer - 行业板块分析
 - sector-rotation-detector - 行业轮动检测器
 - industry-chain-mapper - 产业链图谱分析
-- concept-board-analyzer - 概念板块热度分析 ⚠️
+- concept-board-analyzer - 概念板块热度分析
 
 #### 特殊市场与工具类
 - bse-selection-analyzer - 北交所精选分析
@@ -87,10 +87,14 @@ inclusion: always
 #### 股东与公司行为类
 - shareholder-structure-monitor - 股东结构监控
 - dividend-corporate-action-tracker - 分红送转跟踪
-- share-repurchase-monitor - 股份回购监控 ⚠️
-- ab-ah-premium-monitor - AB股/AH股溢价监控 ⚠️
-
-**注意**：标记 ⚠️ 的 skills 因理杏仁数据限制，功能受限。
+- share-repurchase-monitor - 股份回购监控
+- ab-ah-premium-monitor - AB股/AH股溢价监控
+- esg-screener - ESG筛选器
+- ipo-lockup-risk-monitor - IPO限售解禁风险监控
+- limit-up-limit-down-risk-checker - 涨跌停风险检查
+- limit-up-pool-analyzer - 涨停板池分析
+- margin-risk-monitor - 融资融券风险监控
+- st-delist-risk-scanner - ST退市风险扫描
 
 ### 港股市场分析技能（13个）
 
@@ -114,7 +118,7 @@ inclusion: always
 - hk-financial-statement - 港股财务报表分析
 - hk-dividend-tracker - 港股分红跟踪
 
-### 美股市场分析技能（36个）
+### 美股市场分析技能（37个）
 
 #### 基础分析类
 - financial-statement-analyzer - 财务报表深度分析
@@ -164,6 +168,7 @@ inclusion: always
 - policy-sensitivity-brief - 政策敏感度简报
 - options-strategy-analyzer - 期权策略分析
 - buyback-monitor - 股票回购监控
+- esg-screener - ESG筛选器
 
 ---
 
@@ -209,9 +214,9 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 1. **识别需求**：判断用户需要哪种类型的分析和市场（A股/港股/美股）
 
 2. **选择 skill**：
-   - **A股分析**：从 56 个 China-market skills 中选择
+   - **A股分析**：从 66 个 China-market skills 中选择
    - **港股分析**：从 13 个 HK-market skills 中选择
-   - **美股分析**：从 36 个 US-market skills 中选择
+   - **美股分析**：从 37 个 US-market skills 中选择
    - **找不到合适的 skill**：使用 `lixinger-data-query` 原始数据查询
 
 3. **查看 skill 文档**：
@@ -312,14 +317,14 @@ skills/
 │   │   └── query_tool.py          # 查询工具
 │   └── api_new/api-docs/          # 162 个 API 文档
 │
-├── China-market/                  # 56 个 A股分析 skills（首选）
+├── China-market/                  # 66 个 A股分析 skills（首选）
 │   ├── dividend-corporate-action-tracker/
 │   │   ├── SKILL.md               # Skill 说明
 │   │   └── references/
 │   │       ├── data-queries.md    # 数据获取指南
 │   │       ├── methodology.md     # 方法论
 │   │       └── output-template.md # 输出模板
-│   └── ... (其他 55 个 skills)
+│   └── ... (其他 65 个 skills)
 │
 ├── HK-market/                     # 13 个港股分析 skills（首选）
 │   ├── hk-market-overview/
@@ -328,12 +333,12 @@ skills/
 │   │       └── data-queries.md
 │   └── ... (其他 12 个 skills)
 │
-└── US-market/                     # 36 个美股分析 skills（首选）
+└── US-market/                     # 37 个美股分析 skills（首选）
     ├── market-breadth-monitor/
     │   ├── SKILL.md
     │   └── references/
     │       └── data-queries.md
-    └── ... (其他 35 个 skills)
+    └── ... (其他 36 个 skills)
 ```
 
 ### 关键文档
@@ -349,32 +354,6 @@ skills/
    - A股：`skills/China-market/{skill-name}/references/data-queries.md`
    - 港股：`skills/HK-market/{skill-name}/references/data-queries.md`
    - 美股：`skills/US-market/{skill-name}/references/data-queries.md`
-
----
-
-## ⚠️ 数据限制
-
-### 理杏仁免费版限制
-
-以下数据**不可用**或**数据有限**：
-
-| 数据类型 | 状态 | 替代方案 |
-|---------|------|---------|
-| 北向资金详细数据 | ❌ 不可用 | 使用市场整体资金流向 |
-| 概念板块数据 | ❌ 不可用 | 使用行业板块数据 |
-| 融资融券数据 | ❌ 不可用 | 使用市场情绪指标 |
-| 限售解禁数据 | ❌ 不可用 | - |
-| 涨跌停池数据 | ❌ 不可用 | - |
-| ESG 评级数据 | ❌ 不可用 | - |
-| 回购详细数据 | ❌ 不可用 | - |
-| ST 股票列表 | ❌ 不可用 | - |
-
-### 应对策略
-
-对于数据受限的 skills：
-1. 明确告知用户数据限制
-2. 提供替代方案或使用可用的相关数据
-3. 建议用户提供自有数据
 
 ---
 
@@ -473,8 +452,8 @@ cat skills/lixinger-data-query/api_new/api-docs/cn_company_dividend.md
 
 ---
 
-**版本**: v3.0.0  
+**版本**: v3.1.0  
 **更新日期**: 2026-02-24  
-**技能总数**: 106 个（1 个数据查询 + 56 个 A股分析 + 13 个港股分析 + 36 个美股分析）  
+**技能总数**: 116 个（1 个数据查询 + 66 个 A股分析 + 13 个港股分析 + 37 个美股分析）  
 **数据源**: 理杏仁开放平台  
 **支持市场**: A股、港股、美股
