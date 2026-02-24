@@ -6,7 +6,7 @@ inclusion: always
 
 你现在可以访问一个完整的金融量化分析技能包，基于理杏仁开放平台 API，支持 A股、港股、美股三大市场。
 
-## 📊 可用技能（57个）
+## 📊 可用技能（106个）
 
 ### 核心数据查询工具
 
@@ -15,6 +15,7 @@ inclusion: always
 - 支持字段过滤（`--columns`）、数据筛选（`--row-filter`）、数组展开（`--flatten`）
 - CSV 格式输出，节省 30-40% token
 - **这是所有其他 skills 获取数据的基础工具**
+- **仅在找不到合适的分析 skill 时使用**
 
 ### 中国市场分析技能（56个）
 
@@ -90,9 +91,96 @@ inclusion: always
 
 **注意**：标记 ⚠️ 的 skills 因理杏仁数据限制，功能受限。
 
+### 港股市场分析技能（13个）
+
+#### 市场分析类
+- hk-market-overview - 港股市场概览
+- hk-market-breadth - 港股市场宽度监控
+- hk-valuation-analyzer - 港股估值分析
+- hk-sector-rotation - 港股行业轮动
+
+#### 资金流向类
+- hk-southbound-flow - 南向资金流向分析
+- hk-foreign-flow - 外资流向分析
+- hk-etf-flow - 港股ETF资金流向
+
+#### 风险监控类
+- hk-liquidity-risk - 港股流动性风险监控
+- hk-currency-risk - 港股汇率风险监控
+- hk-concentration-risk - 港股集中度风险监控
+
+#### 基础分析类
+- hk-financial-statement - 港股财务报表分析
+- hk-dividend-tracker - 港股分红跟踪
+
+### 美股市场分析技能（36个）
+
+#### 基础分析类
+- financial-statement-analyzer - 财务报表深度分析
+- peer-comparison-analyzer - 同业对标分析
+- equity-research-orchestrator - 个股研究报告生成器
+
+#### 市场分析类
+- market-breadth-monitor - 市场宽度监控
+- volatility-regime-monitor - 波动率状态监控
+- valuation-regime-detector - 估值状态检测
+- sector-rotation-detector - 行业轮动检测器
+- weekly-market-brief-generator - 每周市场简报生成器
+
+#### 宏观与利率类
+- macro-liquidity-monitor - 宏观流动性监控
+- yield-curve-regime-detector - 收益率曲线状态检测
+- credit-spread-monitor - 信用利差监控
+
+#### 事件驱动类
+- event-driven-detector - 事件驱动投资机会识别
+- event-study - 事件研究分析
+- earnings-reaction-analyzer - 财报反应分析
+- insider-trading-analyzer - 内部人交易分析
+- insider-sentiment-aggregator - 内部人情绪聚合
+
+#### 估值与选股类
+- undervalued-stock-screener - 低估股票筛选器
+- small-cap-growth-identifier - 小盘成长股识别器
+- quant-factor-screener - 量化因子选股
+- factor-crowding-monitor - 因子拥挤度监控
+- sentiment-reality-gap - 情绪与基本面背离分析
+- tech-hype-vs-fundamentals - 科技概念炒作与基本面对比
+- dividend-aristocrat-calculator - 股息贵族计算器
+
+#### 组合管理类
+- portfolio-health-check - 投资组合健康度检查
+- portfolio-monitor-orchestrator - 投资组合监控编排器
+- rebalancing-planner - 组合再平衡规划器
+- tax-aware-rebalancing-planner - 税务优化再平衡规划器
+- risk-adjusted-return-optimizer - 风险调整后收益优化器
+- liquidity-impact-estimator - 流动性冲击估算
+- etf-allocator - ETF组合配置
+
+#### 特殊工具类
+- investment-memo-generator - 投资备忘录生成器
+- suitability-report-generator - 投资者适当性报告生成器
+- policy-sensitivity-brief - 政策敏感度简报
+- options-strategy-analyzer - 期权策略分析
+- buyback-monitor - 股票回购监控
+
 ---
 
 ## 💡 使用方式
+
+### ⚠️ 重要：使用优先级
+
+**优先使用分析 Skills，找不到合适的再使用原始数据查询工具**
+
+1. **首选**：使用 `skills/China-market/`、`skills/HK-market/`、`skills/US-market/` 中的分析 skills
+   - 这些 skills 提供完整的分析方法论和工作流程
+   - 包含数据获取、分析逻辑、输出模板
+   - 适合复杂的金融分析任务
+
+2. **备选**：使用 `skills/lixinger-data-query/` 原始数据查询工具
+   - 仅在找不到合适的分析 skill 时使用
+   - 适合简单的数据查询需求
+   - 需要自己编写分析逻辑
 
 ### 数据获取（核心）
 
@@ -117,25 +205,35 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 当用户提出金融分析问题时：
 
-1. **识别需求**：判断用户需要哪种类型的分析
-2. **选择 skill**：从 56 个 China-market skills 中选择最合适的
+1. **识别需求**：判断用户需要哪种类型的分析和市场（A股/港股/美股）
+
+2. **选择 skill**：
+   - **A股分析**：从 56 个 China-market skills 中选择
+   - **港股分析**：从 13 个 HK-market skills 中选择
+   - **美股分析**：从 36 个 US-market skills 中选择
+   - **找不到合适的 skill**：使用 `lixinger-data-query` 原始数据查询
+
 3. **查看 skill 文档**：
-   - 读取 `skills/China-market/{skill-name}/SKILL.md` 了解工作流程
+   - 读取 `skills/{market}/{skill-name}/SKILL.md` 了解工作流程
    - 查看 `references/data-queries.md` 了解需要哪些数据
+   - 查看 `references/methodology.md` 了解分析方法论
+
 4. **获取数据**：使用 `query_tool.py` 获取数据
+
 5. **执行分析**：按照 skill 的方法论进行分析
+
 6. **输出结果**：提供专业的分析报告
 
 ---
 
 ## 🎯 使用示例
 
-### 示例 1：查询分红数据
+### 示例 1：A股分红数据分析
 
 **用户问**："查询贵州茅台的分红历史"
 
 **执行步骤**：
-1. 选择 skill：`dividend-corporate-action-tracker`
+1. 选择 skill：`China-market/dividend-corporate-action-tracker`
 2. 查看数据需求：`skills/China-market/dividend-corporate-action-tracker/references/data-queries.md`
 3. 获取数据：
 ```bash
@@ -147,38 +245,55 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```
 4. 分析并输出结果
 
-### 示例 2：筛选高股息股票
+### 示例 2：港股市场概览
 
-**用户问**："帮我找一些高股息的股票"
-
-**执行步骤**：
-1. 选择 skill：`high-dividend-strategy`
-2. 获取数据：
-```bash
-python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.fundamental.non_financial" \
-  --params '{"date": "2024-12-31"}' \
-  --row-filter '{"dividendYield": {">": 0.04}}' \
-  --columns "stockCode,name,dividendYield,pe_ttm" \
-  --limit 50
-```
-3. 分析并输出候选清单
-
-### 示例 3：查询股东结构
-
-**用户问**："查询贵州茅台的股东结构"
+**用户问**："港股市场今天表现如何？"
 
 **执行步骤**：
-1. 选择 skill：`shareholder-risk-check`
-2. 获取数据：
+1. 选择 skill：`HK-market/hk-market-overview`
+2. 查看数据需求：`skills/HK-market/hk-market-overview/references/data-queries.md`
+3. 获取数据：
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.shareholders-num" \
-  --params '{"stockCode": "600519"}' \
-  --columns "date,num,shareholdersNumberChangeRate" \
+  --suffix "hk.index.fundamental" \
+  --params '{"indexCode": "HSI", "date": "2024-12-31"}' \
+  --columns "date,pe,pb,roe,dividendYield" \
   --limit 20
 ```
-3. 分析股东人数变化趋势
+4. 分析并输出结果
+
+### 示例 3：美股估值分析
+
+**用户问**："标普500指数估值水平如何？"
+
+**执行步骤**：
+1. 选择 skill：`US-market/valuation-regime-detector`
+2. 查看数据需求：`skills/US-market/valuation-regime-detector/references/data-queries.md`
+3. 获取数据：
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "us.index.fundamental" \
+  --params '{"indexCode": "SPX", "date": "2024-12-31"}' \
+  --columns "date,pe,pb,roe,dividendYield" \
+  --limit 20
+```
+4. 分析并输出结果
+
+### 示例 4：原始数据查询（找不到合适 skill 时）
+
+**用户问**："查询某个特定的宏观数据"
+
+**执行步骤**：
+1. 确认没有合适的分析 skill
+2. 直接使用 `lixinger-data-query`：
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "macro.money-supply" \
+  --params '{"date": "2024-12-31"}' \
+  --columns "date,m0,m1,m2" \
+  --limit 20
+```
+3. 自行分析数据
 
 ---
 
@@ -188,7 +303,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```
 skills/
-├── lixinger-data-query/           # 数据查询工具
+├── lixinger-data-query/           # 数据查询工具（备选）
 │   ├── SKILL.md                   # 主文档（162 个 API 列表）
 │   ├── LLM_USAGE_GUIDE.md         # LLM 使用指南
 │   ├── EXAMPLES.md                # 查询示例
@@ -196,26 +311,43 @@ skills/
 │   │   └── query_tool.py          # 查询工具
 │   └── api_new/api-docs/          # 162 个 API 文档
 │
-└── China-market/                  # 56 个分析 skills
-    ├── dividend-corporate-action-tracker/
-    │   ├── SKILL.md               # Skill 说明
+├── China-market/                  # 56 个 A股分析 skills（首选）
+│   ├── dividend-corporate-action-tracker/
+│   │   ├── SKILL.md               # Skill 说明
+│   │   └── references/
+│   │       ├── data-queries.md    # 数据获取指南
+│   │       ├── methodology.md     # 方法论
+│   │       └── output-template.md # 输出模板
+│   └── ... (其他 55 个 skills)
+│
+├── HK-market/                     # 13 个港股分析 skills（首选）
+│   ├── hk-market-overview/
+│   │   ├── SKILL.md
+│   │   └── references/
+│   │       └── data-queries.md
+│   └── ... (其他 12 个 skills)
+│
+└── US-market/                     # 36 个美股分析 skills（首选）
+    ├── market-breadth-monitor/
+    │   ├── SKILL.md
     │   └── references/
-    │       ├── data-queries.md    # 数据获取指南（精简版）
-    │       ├── methodology.md     # 方法论
-    │       └── output-template.md # 输出模板
-    └── ... (其他 55 个 skills)
+    │       └── data-queries.md
+    └── ... (其他 35 个 skills)
 ```
 
 ### 关键文档
 
 1. **API 列表**：`skills/lixinger-data-query/SKILL.md`
    - 包含所有 162 个 API 的列表和说明
+   - 仅在找不到合适的分析 skill 时参考
 
 2. **LLM 使用指南**：`skills/lixinger-data-query/LLM_USAGE_GUIDE.md`
    - 详细的调用流程和参数构造技巧
 
-3. **数据获取指南**：`skills/China-market/{skill-name}/references/data-queries.md`
-   - 每个 skill 的针对性数据查询示例（已精简优化）
+3. **数据获取指南**：
+   - A股：`skills/China-market/{skill-name}/references/data-queries.md`
+   - 港股：`skills/HK-market/{skill-name}/references/data-queries.md`
+   - 美股：`skills/US-market/{skill-name}/references/data-queries.md`
 
 ---
 
@@ -269,6 +401,20 @@ python3 skills/lixinger-data-query/scripts/query_tool.py --suffix "cn.company" -
 
 ## � 重要提示
 
+### 0. Skill 使用优先级（最重要）
+
+**优先使用分析 Skills，找不到合适的再使用原始数据查询**
+
+- **首选**：使用 `China-market/`、`HK-market/`、`US-market/` 中的分析 skills
+  - 提供完整的分析方法论
+  - 包含数据获取、分析逻辑、输出模板
+  - 适合复杂的金融分析任务
+
+- **备选**：使用 `lixinger-data-query` 原始数据查询工具
+  - 仅在找不到合适的分析 skill 时使用
+  - 适合简单的数据查询需求
+  - 需要自己编写分析逻辑
+
 ### 1. 数据获取原则
 
 - **始终使用 `query_tool.py`**：这是唯一的数据获取工具
@@ -319,8 +465,8 @@ cat skills/lixinger-data-query/api_new/api-docs/cn_company_dividend.md
 
 ---
 
-**版本**: v2.0.0  
-**更新日期**: 2026-02-23  
-**技能总数**: 57 个（1 个数据查询 + 56 个分析 skills）  
+**版本**: v3.0.0  
+**更新日期**: 2026-02-24  
+**技能总数**: 106 个（1 个数据查询 + 56 个 A股分析 + 13 个港股分析 + 36 个美股分析）  
 **数据源**: 理杏仁开放平台  
 **支持市场**: A股、港股、美股
