@@ -21,8 +21,8 @@ license: Apache-2.0
 
 数据来源取决于可得性：
 - 用户提供（第三方数据平台/交易所/终端）导出数据（推荐）
-- 或使用 `$findata-toolkit-cn`：运行 `python ../findata-toolkit-cn/scripts/views_runner.py block_deal_dashboard --dry-run` 查看参数，再运行获取数据
-- 更完整的 view/工具依赖与常用命令：见 `references/data-queries.md`
+- 或使用理杏仁数据查询工具：参见 `references/data-queries.md` 获取大宗交易数据
+- 更完整的 API 文档与字段说明：见 `../lixinger-data-query/api_new/api-docs/`（如 `cn_company_block-deal.md`）
 - 若仅需框架与规则：可不依赖具体数据，输出“阈值与验证步骤”
 
 ### 第三步：分析框架

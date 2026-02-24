@@ -73,7 +73,7 @@ license: Apache-2.0
 
 ## 数据增强
 
-如需实时市场数据支撑分析：请参见 `references/data-queries.md`，直接运行共享脚本（`../findata-toolkit-cn/scripts/`）。
+如需实时市场数据支撑分析：请参见 `references/data-queries.md`，使用理杏仁数据查询工具获取数据。
 
 ## 重要注意事项
 

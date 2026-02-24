@@ -19,8 +19,8 @@ license: Apache-2.0
 ### 第二步：获取数据（按需）
 
 - 用户提供（第三方数据平台/公告/终端）导出数据（推荐）
-- 或使用 `$findata-toolkit-cn`：运行 `python ../findata-toolkit-cn/scripts/views_runner.py repurchase_dashboard --dry-run` 查看参数，再运行获取数据
-- 更完整的 view/工具依赖与常用命令：见 `references/data-queries.md`
+- 或使用理杏仁数据查询工具：参见 `references/data-queries.md` 获取回购数据
+- 更完整的 API 文档与字段说明：见 `../lixinger-data-query/api_new/api-docs/`
 - 若用户只要框架：输出“回购信号分层 + 风控规则”
 
 ### 第三步：分析框架
