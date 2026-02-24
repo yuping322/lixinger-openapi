@@ -1,0 +1,27 @@
+{
+  "description": "Comprehensive test configuration for lixinger-openapi skills",
+  "version": "2.0.0",
+  "test_environments": {
+    "query_tool_path": "skills/lixinger-data-query/scripts/query_tool.py",
+    "token_file": "token.cfg",
+    "timeout_seconds": 60
+  },
+  "test_categories": {
+    "data_query": {
+      "description": "Basic data query tool tests",
+      "priority": "high"
+    },
+    "china_market": {
+      "description": "A-share market analysis skills",
+      "priority": "high"
+    },
+    "hk_market": {
+      "description": "Hong Kong market analysis skills",
+      "priority": "medium"
+    },
+    "us_market": {
+      "description": "US market analysis skills",
+      "priority": "medium"
+    }
+  }
+}

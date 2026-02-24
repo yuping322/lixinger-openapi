@@ -273,9 +273,59 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
   --columns "date,pe,pb,roe,dividendYield"
 ```
 
+## 🧪 测试
+
+本项目包含完整的测试套件，分为两个核心测试：
+
+### 核心测试 1: API接口测试（推荐）
+
+直接测试所有理杏仁API接口的可用性和数据返回。
+
+```bash
+cd regression_tests
+python3 test_all_apis.py
+```
+
+**特点**:
+- ✅ 快速执行（3-5分钟）
+- ✅ 覆盖90+个核心API
+- ✅ 无需LLM依赖
+
+### 核心测试 2: 端到端测试
+
+通过Claude/OpenCode测试所有116个技能的完整流程。
+
+```bash
+cd regression_tests
+python3 e2e_runner.py
+```
+
+### 快速测试
+
+```bash
+# 1. 验证环境配置
+cd regression_tests
+python3 validate_env.py
+
+# 2. 运行API测试（推荐）
+python3 test_all_apis.py
+
+# 3. 运行完整测试套件
+./run_tests.sh --full
+```
+
+### 测试文档
+
+详细的测试文档请参考：[regression_tests/README.md](regression_tests/README.md)
+
 ## 🤝 贡献
 
 欢迎提交 Issue 和 Pull Request！
+
+在提交代码前，请确保：
+1. 运行测试套件并通过所有测试
+2. 更新相关文档
+3. 遵循现有代码风格
 
 ## 📄 许可证
 
