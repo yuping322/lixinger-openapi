@@ -16,7 +16,7 @@ Confirm with the user: universe/tickers, time window, output preference (ranked 
 
 ### Step 2: Pull Data (As Needed)
 
-- Data fetching: see `references/data-queries.md` (activate repo-root `.venv`, then run shared scripts via `python`).
+- Data fetching: see `references/data-queries.md`.
 - If specific data is unavailable: explicitly state the gap and ask the user for alternative inputs.
 
 ### Step 3: Analysis Framework

@@ -16,7 +16,7 @@ license: Apache-2.0
 
 ### 第二步：获取数据（按需）
 
-- 数据获取：见 `references/data-queries.md`（先激活仓库根目录 `.venv`，再用 `python` 运行共享脚本）。
+- 数据获取：见 `references/data-queries.md`。
 - 若某类数据暂不可得：明确说明缺口，并向用户收集可替代输入（如自定义股票池、事件日期等）。
 
 ### 第三步：分析框架
