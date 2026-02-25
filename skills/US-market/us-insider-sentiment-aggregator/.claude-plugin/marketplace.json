@@ -1,5 +1,5 @@
 {
-  "name": "insider-sentiment-aggregator",
+  "name": "us-insider-sentiment-aggregator",
   "version": "1.0.0",
   "metadata": {
     "description": "Aggregate insider buying/selling patterns across multiple tickers to identify management confidence signals. Use when the user asks for market-wide insider activity scans or insider sentiment dashboards.",
@@ -8,7 +8,7 @@
   },
   "plugins": [
     {
-      "name": "insider-sentiment-aggregator-plugin",
+      "name": "us-insider-sentiment-aggregator-plugin",
       "description": "Aggregate insider buying/selling patterns across multiple tickers to identify management confidence signals. Use when the user asks for market-wide insider activity scans or insider sentiment dashboards.",
       "source": "./",
       "skills": [

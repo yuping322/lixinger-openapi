@@ -1,5 +1,5 @@
 {
-  "name": "tax-aware-rebalancing-planner",
+  "name": "us-tax-aware-rebalancing-planner",
   "version": "1.0.0",
   "metadata": {
     "description": "Plan rebalancing with tax constraints (realized gains, lot selection, wash-sale awareness) and an execution checklist. Use when the user asks for tax-aware rebalancing or minimizing taxes while rebalancing.",
@@ -8,7 +8,7 @@
   },
   "plugins": [
     {
-      "name": "tax-aware-rebalancing-planner-plugin",
+      "name": "us-tax-aware-rebalancing-planner-plugin",
       "description": "Plan rebalancing with tax constraints (realized gains, lot selection, wash-sale awareness) and an execution checklist. Use when the user asks for tax-aware rebalancing or minimizing taxes while rebalancing.",
       "source": "./",
       "skills": [

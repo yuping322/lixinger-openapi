@@ -1,5 +1,5 @@
 ---
-name: insider-sentiment-aggregator
+name: us-insider-sentiment-aggregator
 description: Aggregate insider buying/selling patterns across multiple tickers to identify management confidence signals. Use when the user asks for market-wide insider activity scans or insider sentiment dashboards.
 ---
 

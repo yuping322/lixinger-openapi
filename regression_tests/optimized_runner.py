@@ -80,14 +80,30 @@ SKILLS_MAP = {
     "limit-up-pool-analyzer": "limit-up-pool-analyzer",
     "insider-trading-analyzer": "insider-trading-analyzer",
     "us-insider-trading-analyzer": "us-insider-trading-analyzer",
+    "buyback-monitor": "buyback-monitor",
+    "us-buyback-monitor": "us-buyback-monitor",
+    "credit-spread-monitor": "credit-spread-monitor",
+    "us-credit-spread-monitor": "us-credit-spread-monitor",
+    "dividend-aristocrat-calculator": "dividend-aristocrat-calculator",
+    "us-dividend-aristocrat-calculator": "us-dividend-aristocrat-calculator",
+    "earnings-reaction-analyzer": "earnings-reaction-analyzer",
+    "us-earnings-reaction-analyzer": "us-earnings-reaction-analyzer",
+    "insider-sentiment-aggregator": "insider-sentiment-aggregator",
+    "us-insider-sentiment-aggregator": "us-insider-sentiment-aggregator",
+    "options-strategy-analyzer": "options-strategy-analyzer",
+    "us-options-strategy-analyzer": "us-options-strategy-analyzer",
     "shareholder-structure-monitor": "shareholder-structure-monitor",
     "policy-sensitivity-brief": "policy-sensitivity-brief",
     "us-policy-sensitivity-brief": "us-policy-sensitivity-brief",
     "sentiment-reality-gap": "sentiment-reality-gap",
+    "tax-aware-rebalancing-planner": "tax-aware-rebalancing-planner",
+    "us-tax-aware-rebalancing-planner": "us-tax-aware-rebalancing-planner",
     "liquidity-impact-estimator": "liquidity-impact-estimator",
     "us-liquidity-impact-estimator": "us-liquidity-impact-estimator",
     "limit-up-limit-down-risk-checker": "limit-up-limit-down-risk-checker",
-    "us-sentiment-reality-gap": "us-sentiment-reality-gap"
+    "us-sentiment-reality-gap": "us-sentiment-reality-gap",
+    "yield-curve-regime-detector": "yield-curve-regime-detector",
+    "us-yield-curve-regime-detector": "us-yield-curve-regime-detector"
 }
 
 def run_test_case(case_file: Path):

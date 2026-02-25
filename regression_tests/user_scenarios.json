@@ -580,7 +580,7 @@
     ]
   },
   {
-    "skill": "buyback-monitor",
+    "skill": "us-buyback-monitor",
     "description": "Analyze share repurchases (authorization, pace, dilution vs buybacks) and capital return sustainability. Use when the user asks about buybacks, shareholder yield, or capital return analysis.",
     "market": "US-market",
     "questions": [
@@ -590,7 +590,7 @@
     ]
   },
   {
-    "skill": "credit-spread-monitor",
+    "skill": "us-credit-spread-monitor",
     "description": "Track credit spreads (IG/HY), default risk proxies, and stress signals; summarize equity implications. Use when the user asks about credit conditions or spread widening/tightening.",
     "market": "US-market",
     "questions": [
@@ -600,7 +600,7 @@
     ]
   },
   {
-    "skill": "dividend-aristocrat-calculator",
+    "skill": "us-dividend-aristocrat-calculator",
     "description": "Analyze Dividend Aristocrats (25+ years of consecutive dividend increases) for income reliability and total return. Use when the user asks to evaluate dividend aristocrats, calculate dividend reinvestment returns, assess dividend sustainability, compare income stocks, build a dividend growth portfolio, analyze payout ratios and free cash flow coverage, or rank stocks by dividend reliability and long-term total return.",
     "market": "US-market",
     "questions": [
@@ -610,7 +610,7 @@
     ]
   },
   {
-    "skill": "earnings-reaction-analyzer",
+    "skill": "us-earnings-reaction-analyzer",
     "description": "Analyze post-earnings reactions (gaps, drift, volatility), link to guidance/surprises, and define monitoring levels. Use when the user asks why a stock moved after earnings or wants an earnings reaction breakdown.",
     "market": "US-market",
     "questions": [
@@ -690,7 +690,7 @@
     ]
   },
   {
-    "skill": "insider-sentiment-aggregator",
+    "skill": "us-insider-sentiment-aggregator",
     "description": "Aggregate insider buying/selling patterns across multiple tickers to identify management confidence signals. Use when the user asks for market-wide insider activity scans or insider sentiment dashboards.",
     "market": "US-market",
     "questions": [
@@ -750,7 +750,7 @@
     ]
   },
   {
-    "skill": "options-strategy-analyzer",
+    "skill": "us-options-strategy-analyzer",
     "description": "Analyze options strategies (covered calls, puts, spreads), Greeks, payoff diagrams, and risk. Use when the user asks about options strategy selection, pricing, or hedging with options.",
     "market": "US-market",
     "questions": [
@@ -870,7 +870,7 @@
     ]
   },
   {
-    "skill": "tax-aware-rebalancing-planner",
+    "skill": "us-tax-aware-rebalancing-planner",
     "description": "Plan rebalancing with tax constraints (realized gains, lot selection, wash-sale awareness) and an execution checklist. Use when the user asks for tax-aware rebalancing or minimizing taxes while rebalancing.",
     "market": "US-market",
     "questions": [
@@ -930,7 +930,7 @@
     ]
   },
   {
-    "skill": "yield-curve-regime-detector",
+    "skill": "us-yield-curve-regime-detector",
     "description": "Assess yield curve shape, inversion signals, term premiums, and macro implications. Use when the user asks about the yield curve, inversion, or rate-regime impacts.",
     "market": "US-market",
     "questions": [

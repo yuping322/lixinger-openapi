@@ -1,5 +1,5 @@
 ---
-name: yield-curve-regime-detector
+name: us-yield-curve-regime-detector
 description: Assess yield curve shape, inversion signals, term premiums, and macro implications. Use when the user asks about the yield curve, inversion, or rate-regime impacts.
 ---
 
