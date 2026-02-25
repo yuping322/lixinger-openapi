@@ -48,7 +48,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.industry" \
+  --suffix "cn/industry" \
   --params '{}'
 ```
 

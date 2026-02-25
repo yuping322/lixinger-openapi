@@ -92,7 +92,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.industry.fundamental.hsi" \
+  --suffix "hk/industry/fundamental/hsi" \
   --params '{"industryCode": "HK001", "date": "2024-12-31", "metricsList": ["cp", "cpc", "mc", "pe_ttm.mcw"]}' \
   --columns "date,cp,cpc,mc,pe_ttm.mcw"
 ```
@@ -103,7 +103,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.industry" \
+  --suffix "hk/industry" \
   --params '{}' \
   --columns "industryCode,industryName,industryLevel"
 ```
@@ -209,7 +209,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 获取所有行业表现
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.industry.fundamental.hsi" \
+  --suffix "hk/industry/fundamental/hsi" \
   --params '{"date": "2024-12-31", "metricsList": ["cp", "cpc", "mc"]}' \
   --columns "industryCode,date,cp,cpc,mc"
 ```
@@ -291,7 +291,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 # 2. 获取行业表现
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.industry.fundamental.hsi" \
+  --suffix "hk/industry/fundamental/hsi" \
   --params '{"date": "2024-12-31", "metricsList": ["cp", "cpc"]}' \
   --columns "industryCode,cpc"
 

@@ -134,7 +134,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.industry.fundamental.hsi" \
+  --suffix "hk/industry/fundamental/hsi" \
   --params '{"industryCode": "HK001", "date": "2024-12-31", "metricsList": ["dyr.mcw", "pe_ttm.mcw"]}' \
   --columns "date,dyr.mcw,pe_ttm.mcw"
 ```
@@ -270,7 +270,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 1. 获取金融板块股票
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.industry.constituents.hsi" \
+  --suffix "hk/industry/constituents/hsi" \
   --params '{"industryCode": "HK_FINANCE"}' \
   --columns "stockCode,name"
 

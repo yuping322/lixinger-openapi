@@ -101,7 +101,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.industry.fundamental.hsi" \
+  --suffix "hk/industry/fundamental/hsi" \
   --params '{"industryCode": "HK001", "date": "2024-12-31", "metricsList": ["mc", "pe_ttm.mcw"]}' \
   --columns "date,mc,pe_ttm.mcw"
 ```

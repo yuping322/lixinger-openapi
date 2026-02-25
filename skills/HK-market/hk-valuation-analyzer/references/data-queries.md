@@ -88,7 +88,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.industry.fundamental.hsi" \
+  --suffix "hk/industry/fundamental/hsi" \
   --params '{"stockCodes": ["H50", "H5010", "H5020", "H5030", "H5040"], "date": "2024-12-31", "metricsList": ["pe_ttm.mcw", "pe_ttm.y10.mcw.cvpos", "pb.mcw", "pb.y10.mcw.cvpos", "dyr.mcw", "mc"]}' \
   --columns "date,pe_ttm.mcw,pe_ttm.y10.mcw.cvpos,pb.mcw,pb.y10.mcw.cvpos,dyr.mcw,mc"
 ```
@@ -106,7 +106,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.industry.fundamental.hsi" \
+  --suffix "hk/industry/fundamental/hsi" \
   --params '{"date": "2024-12-31", "metricsList": ["pe_ttm.mcw", "pe_ttm.y10.mcw.cvpos", "pb.mcw", "dyr.mcw", "mc"]}' \
   --columns "industryCode,date,pe_ttm.mcw,pe_ttm.y10.mcw.cvpos,pb.mcw,dyr.mcw,mc" \
   --limit 50
@@ -118,7 +118,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.industry" \
+  --suffix "hk/industry" \
   --params '{}' \
   --columns "industryCode,industryName,industryLevel"
 ```
@@ -359,7 +359,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 获取所有行业估值
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.industry.fundamental.hsi" \
+  --suffix "hk/industry/fundamental/hsi" \
   --params '{"date": "2024-12-31", "metricsList": ["pe_ttm.mcw", "pe_ttm.y10.mcw.cvpos", "pb.mcw", "dyr.mcw"]}' \
   --columns "industryCode,pe_ttm.mcw,pe_ttm.y10.mcw.cvpos,pb.mcw,dyr.mcw" \
   --limit 50
@@ -475,14 +475,14 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 1. 获取所有行业估值
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.industry.fundamental.hsi" \
+  --suffix "hk/industry/fundamental/hsi" \
   --params '{"date": "2024-12-31", "metricsList": ["pe_ttm.mcw", "pe_ttm.y10.mcw.cvpos", "pb.mcw"]}' \
   --columns "industryCode,pe_ttm.mcw,pe_ttm.y10.mcw.cvpos,pb.mcw" \
   --limit 50
 
 # 2. 获取行业名称
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.industry" \
+  --suffix "hk/industry" \
   --params '{}' \
   --columns "industryCode,industryName"
 

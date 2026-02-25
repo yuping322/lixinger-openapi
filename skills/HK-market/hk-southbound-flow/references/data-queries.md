@@ -80,7 +80,7 @@ holding_change_pct = (holding_change / shareholdings_yesterday) * 100
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.industry.mutual-market.hsi" \
+  --suffix "hk/industry/mutual-market/hsi" \
   --params '{"industryCode": "HK001", "startDate": "2024-12-01", "endDate": "2024-12-31"}' \
   --columns "date,shareholdingsMoney,shareholdingsMoneyToMarketCap" \
   --limit 30
@@ -144,7 +144,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.industry" \
+  --suffix "hk/industry" \
   --params '{}' \
   --columns "industryCode,industryName,industryLevel"
 ```
@@ -319,7 +319,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 获取所有行业的南向资金（当日）
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.industry.mutual-market.hsi" \
+  --suffix "hk/industry/mutual-market/hsi" \
   --params '{"startDate": "2024-12-31", "endDate": "2024-12-31"}' \
   --columns "industryCode,date,shareholdingsMoney" \
   --limit 20
@@ -439,14 +439,14 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 1. 获取所有行业的南向资金（当日和前一日）
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.industry.mutual-market.hsi" \
+  --suffix "hk/industry/mutual-market/hsi" \
   --params '{"startDate": "2024-12-30", "endDate": "2024-12-31"}' \
   --columns "industryCode,date,shareholdingsMoney" \
   --limit 50
 
 # 2. 获取行业名称
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.industry" \
+  --suffix "hk/industry" \
   --params '{}' \
   --columns "industryCode,industryName"
 
