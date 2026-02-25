@@ -11,7 +11,7 @@
 ```bash
 # 港币兑美元汇率
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "macro.currency-exchange-rate" \
+  --suffix "macro/currency-exchange-rate" \
   --params '{"fromCurrency": "HKD", "toCurrency": "USD", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
   --columns "date,close,open,high,low" \
   --limit 365
@@ -20,7 +20,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 港币兑人民币汇率
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "macro.currency-exchange-rate" \
+  --suffix "macro/currency-exchange-rate" \
   --params '{"fromCurrency": "HKD", "toCurrency": "CNY", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
   --columns "date,close,open,high,low" \
   --limit 365
@@ -29,7 +29,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 港币兑欧元汇率
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "macro.currency-exchange-rate" \
+  --suffix "macro/currency-exchange-rate" \
   --params '{"fromCurrency": "HKD", "toCurrency": "EUR", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
   --columns "date,close,open,high,low" \
   --limit 365
@@ -38,7 +38,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 港币兑日元汇率
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "macro.currency-exchange-rate" \
+  --suffix "macro/currency-exchange-rate" \
   --params '{"fromCurrency": "HKD", "toCurrency": "JPY", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
   --columns "date,close,open,high,low" \
   --limit 365
@@ -66,7 +66,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "macro.currency-exchange-rate" \
+  --suffix "macro/currency-exchange-rate" \
   --params '{"fromCurrency": "USD", "toCurrency": "HKD", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
   --columns "date,close,open,high,low" \
   --limit 365
@@ -78,7 +78,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "macro.currency-exchange-rate" \
+  --suffix "macro/currency-exchange-rate" \
   --params '{"fromCurrency": "CNY", "toCurrency": "HKD", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
   --columns "date,close,open,high,low" \
   --limit 365
@@ -90,7 +90,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fundamental" \
+  --suffix "hk/company.fundamental" \
   --params '{"stockCode": "00700", "date": "2024-12-31"}' \
   --columns "date,pe,pb,roe,dividendYield" \
   --limit 20
@@ -111,8 +111,8 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 1. **确定查询参数**：根据分析需求确定货币对、日期范围等参数
 2. **选择合适的 API**：
-   - 汇率数据：使用 `macro.currency-exchange-rate`
-   - 个股基本面：使用 `hk.company.fundamental`
+   - 汇率数据：使用 `macro/currency-exchange-rate`
+   - 个股基本面：使用 `hk/company.fundamental`
 3. **指定返回字段**：使用 `--columns` 参数指定需要的字段，节省 token
 4. **执行查询**：运行 `query_tool.py` 获取数据
 5. **数据分析**：对返回的 CSV 数据进行分析

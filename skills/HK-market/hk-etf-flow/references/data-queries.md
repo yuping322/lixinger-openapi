@@ -10,7 +10,7 @@
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.index.fundamental" \
+  --suffix "hk/index/fundamental" \
   --params '{"indexCode": "HSI", "date": "2024-12-31"}' \
   --columns "date,pe,pb,roe,dividendYield" \
   --limit 20
@@ -20,7 +20,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company" \
+  --suffix "hk/company" \
   --params '{"stockCodes": ["00700"]}' \
   --columns "stockCode,name,market" \
   --limit 20
@@ -40,8 +40,8 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ## 本 Skill 常用 API
 
-- `hk.index.fundamental`
-- `hk.company`
+- `hk/index/fundamental`
+- `hk/company`
 
 ---
 

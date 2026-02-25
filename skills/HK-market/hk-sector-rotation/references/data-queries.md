@@ -127,7 +127,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.index.fundamental" \
+  --suffix "hk/index/fundamental" \
   --params '{"stockCodes": ["HSI"], "startDate": "2024-12-01", "endDate": "2024-12-31", "metricsList": ["cp", "cpc"]}' \
   --columns "date,cp,cpc" \
   --limit 30
@@ -155,7 +155,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company" \
+  --suffix "hk/company" \
   --params '{}' \
   --columns "stockCode,name,market" \
   --limit 1000
@@ -167,7 +167,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.industries" \
+  --suffix "hk/company.industries" \
   --params '{"stockCode": "00700"}' \
   --columns "stockCode,industryCode,industryName,industryLevel"
 ```
@@ -445,7 +445,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 获取恒生指数表现
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.index.fundamental" \
+  --suffix "hk/index/fundamental" \
   --params '{"stockCodes": ["HSI"], "date": "2024-12-31", "metricsList": ["cpc"]}' \
   --columns "date,cpc"
 ```
@@ -477,13 +477,13 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ### 核心 API ⭐
 - `hk.industry.fundamental.hsi` - 港股行业基本面（最重要）
 - `hk.industry.mutual-market.hsi` - 港股行业南向资金（最重要）
-- `hk.index.fundamental` - 港股指数基本面（市场基准）
+- `hk/index/fundamental` - 港股指数基本面（市场基准）
 
 ### 辅助 API
 - `hk.industry` - 行业分类信息
 - `hk.industry.candlestick.hsi` - 行业K线数据
-- `hk.company` - 港股公司信息
-- `hk.company.industries` - 个股行业归属
+- `hk/company` - 港股公司信息
+- `hk/company.industries` - 个股行业归属
 
 ---
 
@@ -583,7 +583,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 # 2. 获取市场基准
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.index.fundamental" \
+  --suffix "hk/index/fundamental" \
   --params '{"stockCodes": ["HSI"], "date": "2024-12-31", "metricsList": ["cpc"]}' \
   --columns "cpc"
 

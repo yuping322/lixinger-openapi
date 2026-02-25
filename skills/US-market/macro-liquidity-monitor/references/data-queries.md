@@ -10,7 +10,7 @@
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.index.k-line" \
+  --suffix "cn/index.k-line" \
   --params '{"indexCode": "000001", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
   --columns "date,open,high,low,close,volume" \
   --limit 20
@@ -20,7 +20,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "macro.money-supply" \
+  --suffix "macro/money-supply" \
   --params '{"date": "2024-12-31"}' \
   --columns "date,m0,m1,m2" \
   --limit 20
@@ -30,7 +30,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "macro.price-index" \
+  --suffix "macro/price-index" \
   --params '{}'
 ```
 
@@ -46,7 +46,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "macro.gdp" \
+  --suffix "macro/gdp" \
   --params '{}'
 ```
 
@@ -64,13 +64,13 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ## 本 Skill 常用 API
 
-- `cn.index.k-line`
-- `macro.money-supply`
-- `macro.price-index`
+- `cn/index.k-line`
+- `macro/money-supply`
+- `macro/price-index`
 - `cn.industry`
-- `macro.gdp`
-- `us.index.fundamental`
-- `cn.index.fundamental`
+- `macro/gdp`
+- `us/index/fundamental`
+- `cn/index/fundamental`
 
 ---
 

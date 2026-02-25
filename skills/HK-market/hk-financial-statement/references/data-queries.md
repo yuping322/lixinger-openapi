@@ -37,7 +37,7 @@
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fs.non-financial" \
+  --suffix "hk/company/fs/non_financial" \
   --params '{"stockCodes": ["00700"], "date": "latest", "metricsList": ["q.ps.toi.t", "q.ps.np.t", "q.ps.gp_m.t", "q.ps.np_s_r.t", "q.bs.ta.t", "q.bs.tl.t", "q.bs.se.t", "q.cf.ncffoa.t", "q.cf.ncffia.t", "q.cf.ncfffa.t"]}' \
   --columns "date,q.ps.toi.t,q.ps.np.t,q.ps.gp_m.t,q.ps.np_s_r.t,q.bs.ta.t,q.bs.tl.t,q.bs.se.t,q.cf.ncffoa.t,q.cf.ncffia.t,q.cf.ncfffa.t"
 ```
@@ -60,7 +60,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fs.non-financial" \
+  --suffix "hk/company/fs/non_financial" \
   --params '{"stockCodes": ["00700"], "date": "2024-12-31", "metricsList": ["q.ps.toi.t", "q.ps.oc.t", "q.ps.gp.t", "q.ps.gp_m.t", "q.ps.se.t", "q.ps.ae.t", "q.ps.fe.t", "q.ps.rade.t", "q.ps.tp.t", "q.ps.np.t", "q.ps.npatoshopc.t", "q.ps.beps.t"]}' \
   --columns "date,q.ps.toi.t,q.ps.oc.t,q.ps.gp.t,q.ps.gp_m.t,q.ps.se.t,q.ps.ae.t,q.ps.fe.t,q.ps.rade.t,q.ps.tp.t,q.ps.np.t,q.ps.npatoshopc.t,q.ps.beps.t"
 ```
@@ -85,7 +85,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fs.non-financial" \
+  --suffix "hk/company/fs/non_financial" \
   --params '{"stockCodes": ["00700"], "date": "2024-12-31", "metricsList": ["q.bs.ta.t", "q.bs.ca.t", "q.bs.nca.t", "q.bs.tl.t", "q.bs.cl.t", "q.bs.ncl.t", "q.bs.se.t", "q.bs.cae.t", "q.bs.inv.t", "q.bs.ar.t", "q.bs.ap.t"]}' \
   --columns "date,q.bs.ta.t,q.bs.ca.t,q.bs.nca.t,q.bs.tl.t,q.bs.cl.t,q.bs.ncl.t,q.bs.se.t,q.bs.cae.t,q.bs.inv.t,q.bs.ar.t,q.bs.ap.t"
 ```
@@ -109,7 +109,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fs.non-financial" \
+  --suffix "hk/company/fs/non_financial" \
   --params '{"stockCodes": ["00700"], "date": "2024-12-31", "metricsList": ["q.cf.ncffoa.t", "q.cf.ncffia.t", "q.cf.ncfffa.t", "q.cf.nicce.t", "q.cf.fcf.t", "q.cf.capex.t"]}' \
   --columns "date,q.cf.ncffoa.t,q.cf.ncffia.t,q.cf.ncfffa.t,q.cf.nicce.t,q.cf.fcf.t,q.cf.capex.t"
 ```
@@ -128,7 +128,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fs.non-financial" \
+  --suffix "hk/company/fs/non_financial" \
   --params '{"stockCodes": ["00700"], "startDate": "2020-01-01", "endDate": "2024-12-31", "metricsList": ["q.ps.toi.t", "q.ps.np.t", "q.ps.gp_m.t", "q.ps.np_s_r.t", "q.bs.ta.t", "q.bs.se.t", "q.cf.fcf.t"]}' \
   --columns "date,q.ps.toi.t,q.ps.np.t,q.ps.gp_m.t,q.ps.np_s_r.t,q.bs.ta.t,q.bs.se.t,q.cf.fcf.t" \
   --limit 20
@@ -140,7 +140,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fs.non-financial" \
+  --suffix "hk/company/fs/non_financial" \
   --params '{"stockCodes": ["00700"], "date": "2024-12-31", "metricsList": ["q.ps.toi.t", "q.ps.toi.t_y2y", "q.ps.toi.t_c2c", "q.ps.np.t", "q.ps.np.t_y2y", "q.ps.np.t_c2c"]}' \
   --columns "date,q.ps.toi.t,q.ps.toi.t_y2y,q.ps.toi.t_c2c,q.ps.np.t,q.ps.np.t_y2y,q.ps.np.t_c2c"
 ```
@@ -155,7 +155,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fs.non-financial" \
+  --suffix "hk/company/fs/non_financial" \
   --params '{"stockCodes": ["00700"], "date": "2024-12-31", "metricsList": ["q.ps.toi.c", "q.ps.np.c", "q.ps.gp_m.c", "q.ps.np_s_r.c"]}' \
   --columns "date,q.ps.toi.c,q.ps.np.c,q.ps.gp_m.c,q.ps.np_s_r.c"
 ```
@@ -171,7 +171,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fs.non-financial" \
+  --suffix "hk/company/fs/non_financial" \
   --params '{"stockCodes": ["00700"], "date": "2024-12-31", "metricsList": ["q.ps.toi.ttm", "q.ps.np.ttm", "q.ps.gp_m.ttm", "q.ps.np_s_r.ttm", "q.cf.fcf.ttm"]}' \
   --columns "date,q.ps.toi.ttm,q.ps.np.ttm,q.ps.gp_m.ttm,q.ps.np_s_r.ttm,q.cf.fcf.ttm"
 ```
@@ -182,7 +182,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fundamental.non-financial" \
+  --suffix "hk/company/fundamental/non_financial" \
   --params '{"stockCodes": ["00700"], "date": "2024-12-31", "metricsList": ["pe", "pb", "ps", "dyr", "roe", "roa", "mc"]}' \
   --columns "date,pe,pb,ps,dyr,roe,roa,mc"
 ```
@@ -193,7 +193,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company" \
+  --suffix "hk/company" \
   --params '{"stockCodes": ["00700"]}' \
   --columns "stockCode,name,market,fsTableType,ipoDate,areaCode"
 ```
@@ -408,7 +408,7 @@ def calculate_financial_health_score(ratios):
 ```bash
 # 获取最新季度完整财务数据
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fs.non-financial" \
+  --suffix "hk/company/fs/non_financial" \
   --params '{"stockCodes": ["00700"], "date": "latest", "metricsList": ["q.ps.toi.t", "q.ps.oc.t", "q.ps.np.t", "q.ps.gp_m.t", "q.ps.np_s_r.t", "q.bs.ta.t", "q.bs.ca.t", "q.bs.tl.t", "q.bs.cl.t", "q.bs.se.t", "q.cf.ncffoa.t", "q.cf.fcf.t"]}' \
   --columns "date,q.ps.toi.t,q.ps.oc.t,q.ps.np.t,q.ps.gp_m.t,q.ps.np_s_r.t,q.bs.ta.t,q.bs.ca.t,q.bs.tl.t,q.bs.cl.t,q.bs.se.t,q.cf.ncffoa.t,q.cf.fcf.t"
 ```
@@ -417,7 +417,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 获取近5年财务数据
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fs.non-financial" \
+  --suffix "hk/company/fs/non_financial" \
   --params '{"stockCodes": ["00700"], "startDate": "2020-01-01", "endDate": "2024-12-31", "metricsList": ["q.ps.toi.t", "q.ps.np.t", "q.ps.toi.t_y2y", "q.ps.np.t_y2y"]}' \
   --columns "date,q.ps.toi.t,q.ps.np.t,q.ps.toi.t_y2y,q.ps.np.t_y2y" \
   --limit 20
@@ -427,7 +427,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 获取估值指标
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fundamental.non-financial" \
+  --suffix "hk/company/fundamental/non_financial" \
   --params '{"stockCodes": ["00700"], "date": "2024-12-31", "metricsList": ["pe", "pb", "roe", "roa", "mc"]}' \
   --columns "date,pe,pb,roe,roa,mc"
 ```
@@ -474,13 +474,13 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ## 本 Skill 常用 API
 
 ### 核心 API ⭐
-- `hk.company.fs.non-financial` - 港股财务报表（最重要）
-- `hk.company.fundamental.non-financial` - 港股基本面数据
+- `hk/company/fs/non_financial` - 港股财务报表（最重要）
+- `hk/company/fundamental/non_financial` - 港股基本面数据
 
 ### 辅助 API
-- `hk.company` - 港股公司信息
-- `hk.company.industries` - 港股行业分类
-- `hk.company.dividend` - 分红数据
+- `hk/company` - 港股公司信息
+- `hk/company.industries` - 港股行业分类
+- `hk/company/dividend` - 分红数据
 
 ---
 
@@ -526,7 +526,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 1. 获取最新财务数据
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fs.non-financial" \
+  --suffix "hk/company/fs/non_financial" \
   --params '{"stockCodes": ["00700"], "date": "latest", "metricsList": ["q.ps.toi.t", "q.ps.np.t", "q.ps.beps.t", "q.bs.ta.t", "q.bs.tl.t", "q.bs.se.t"]}' \
   --columns "date,q.ps.toi.t,q.ps.np.t,q.ps.beps.t,q.bs.ta.t,q.bs.tl.t,q.bs.se.t"
 
@@ -546,7 +546,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 1. 获取财务数据
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fs.non-financial" \
+  --suffix "hk/company/fs/non_financial" \
   --params '{"stockCodes": ["00700"], "date": "2024-12-31", "metricsList": ["q.ps.toi.ttm", "q.ps.oc.ttm", "q.ps.np.ttm", "q.bs.ta.t", "q.bs.ca.t", "q.bs.cl.t", "q.bs.tl.t", "q.bs.se.t", "q.bs.inv.t", "q.bs.ar.t"]}' \
   --columns "date,q.ps.toi.ttm,q.ps.oc.ttm,q.ps.np.ttm,q.bs.ta.t,q.bs.ca.t,q.bs.cl.t,q.bs.tl.t,q.bs.se.t,q.bs.inv.t,q.bs.ar.t"
 
@@ -559,7 +559,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 获取5年财务趋势
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fs.non-financial" \
+  --suffix "hk/company/fs/non_financial" \
   --params '{"stockCodes": ["00700"], "startDate": "2020-01-01", "endDate": "2024-12-31", "metricsList": ["q.ps.toi.t", "q.ps.toi.t_y2y", "q.ps.np.t", "q.ps.np.t_y2y", "q.ps.gp_m.t", "q.ps.np_s_r.t"]}' \
   --columns "date,q.ps.toi.t,q.ps.toi.t_y2y,q.ps.np.t,q.ps.np.t_y2y,q.ps.gp_m.t,q.ps.np_s_r.t" \
   --limit 20

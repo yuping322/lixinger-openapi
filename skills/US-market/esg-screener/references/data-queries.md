@@ -9,7 +9,7 @@
 ### 查询美股市场数据
 
 ```bash
-python3 skills/lixinger-data-query/scripts/query_tool.py --suffix "us.index.fundamental" --params '{"indexCode": "SPX", "date": "2024-12-31"}' --columns "date,pe,pb,roe,dividendYield" --limit 20
+python3 skills/lixinger-data-query/scripts/query_tool.py --suffix "us/index/fundamental" --params '{"indexCode": "SPX", "date": "2024-12-31"}' --columns "date,pe,pb,roe,dividendYield" --limit 20
 ```
 
 ---

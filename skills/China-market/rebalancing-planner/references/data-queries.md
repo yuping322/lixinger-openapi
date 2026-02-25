@@ -10,7 +10,7 @@
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.fundamental.non-financial" \
+  --suffix "cn/company/fundamental/non_financial" \
   --params '{"date": "2024-12-31"}' \
   --columns "stockCode,name,pe,pb,roe,dividendYield" \
   --limit 20
@@ -30,7 +30,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ## 本 Skill 常用 API
 
-- `cn.company.fundamental.non-financial`
+- `cn/company/fundamental/non_financial`
 
 ---
 

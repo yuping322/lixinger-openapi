@@ -10,7 +10,7 @@
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.equity-pledge" \
+  --suffix "cn/company.equity-pledge" \
   --params '{"stockCode": "600519", "startDate": "2020-01-01", "endDate": "2026-02-24"}'
 ```
 
@@ -28,7 +28,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ## 本 Skill 常用 API
 
-- `cn.company.equity-pledge`
+- `cn/company.equity-pledge`
 
 ---
 

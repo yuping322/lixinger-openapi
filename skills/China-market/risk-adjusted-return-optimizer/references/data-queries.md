@@ -10,7 +10,7 @@
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "us.index.fundamental" \
+  --suffix "us/index/fundamental" \
   --params '{"indexCode": "SPX", "date": "2024-12-31"}' \
   --columns "date,pe,pb,roe,dividendYield" \
   --limit 20
@@ -30,7 +30,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ## 本 Skill 常用 API
 
-- `us.index.fundamental`
+- `us/index/fundamental`
 
 ---
 

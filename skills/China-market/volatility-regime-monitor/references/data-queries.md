@@ -10,7 +10,7 @@
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.index.k-line" \
+  --suffix "cn/index.k-line" \
   --params '{"indexCode": "000001", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
   --columns "date,open,high,low,close,volume" \
   --limit 20
@@ -30,7 +30,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ## 本 Skill 常用 API
 
-- `cn.index.k-line`
+- `cn/index.k-line`
 
 ---
 

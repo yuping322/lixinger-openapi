@@ -10,7 +10,7 @@
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.index.k-line" \
+  --suffix "cn/index.k-line" \
   --params '{"indexCode": "000001", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
   --columns "date,open,high,low,close,volume" \
   --limit 20
@@ -20,7 +20,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "macro.money-supply" \
+  --suffix "macro/money-supply" \
   --params '{"date": "2024-12-31"}' \
   --columns "date,m0,m1,m2" \
   --limit 20
@@ -30,7 +30,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.executive-shareholding" \
+  --suffix "cn/company.executive-shareholding" \
   --params '{}'
 ```
 
@@ -38,7 +38,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "us.index.fundamental" \
+  --suffix "us/index/fundamental" \
   --params '{"indexCode": "SPX", "date": "2024-12-31"}' \
   --columns "date,pe,pb,roe,dividendYield" \
   --limit 20
@@ -48,7 +48,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.index.fundamental" \
+  --suffix "cn/index/fundamental" \
   --params '{"indexCode": "000001", "date": "2024-12-31"}' \
   --columns "date,pe,pb,roe,dividendYield" \
   --limit 20
@@ -68,11 +68,11 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ## 本 Skill 常用 API
 
-- `cn.index.k-line`
-- `macro.money-supply`
-- `cn.company.executive-shareholding`
-- `us.index.fundamental`
-- `cn.index.fundamental`
+- `cn/index.k-line`
+- `macro/money-supply`
+- `cn/company.executive-shareholding`
+- `us/index/fundamental`
+- `cn/index/fundamental`
 
 ---
 

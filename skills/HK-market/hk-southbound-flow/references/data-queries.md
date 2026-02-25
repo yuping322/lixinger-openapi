@@ -35,7 +35,7 @@
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.index.mutual-market" \
+  --suffix "hk/index.mutual-market" \
   --params '{"indexCode": "HSI", "startDate": "2024-12-01", "endDate": "2024-12-31"}' \
   --columns "date,shareholdingsMoney,shareholdingsMoneyToMarketCap" \
   --limit 30
@@ -58,7 +58,7 @@ net_inflow = shareholdingsMoney_today - shareholdingsMoney_yesterday
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.mutual-market" \
+  --suffix "hk/company.mutual-market" \
   --params '{"stockCode": "00700", "startDate": "2024-12-01", "endDate": "2024-12-31"}' \
   --columns "date,shareholdings" \
   --limit 30
@@ -97,7 +97,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company" \
+  --suffix "hk/company" \
   --params '{"mutualMarkets": ["sh", "sz"]}' \
   --columns "stockCode,name,market,mutualMarket" \
   --limit 500
@@ -114,7 +114,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.candlestick" \
+  --suffix "hk/company.candlestick" \
   --params '{"stockCode": "00700", "startDate": "2024-12-01", "endDate": "2024-12-31"}' \
   --columns "date,close,change,changePercent,volume,amount" \
   --limit 30
@@ -133,7 +133,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company" \
+  --suffix "hk/company" \
   --params '{"stockCodes": ["00700", "09988", "03690"]}' \
   --columns "stockCode,name,market,mutualMarket,listDate"
 ```
@@ -155,7 +155,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.industries" \
+  --suffix "hk/company.industries" \
   --params '{"stockCode": "00700"}' \
   --columns "stockCode,industryCode,industryName"
 ```
@@ -169,7 +169,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 # 示例：查询腾讯、阿里、美团的南向资金
 for stock in ["00700", "09988", "03690"]; do
   python3 skills/lixinger-data-query/scripts/query_tool.py \
-    --suffix "hk.company.mutual-market" \
+    --suffix "hk/company.mutual-market" \
     --params "{\"stockCode\": \"$stock\", \"startDate\": \"2024-12-31\", \"endDate\": \"2024-12-31\"}" \
     --columns "date,shareholdings"
 done
@@ -309,7 +309,7 @@ top_10_inflows = stock_inflows[:10]
 ```bash
 # 获取恒生指数南向资金（近30天）
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.index.mutual-market" \
+  --suffix "hk/index.mutual-market" \
   --params '{"indexCode": "HSI", "startDate": "2024-12-01", "endDate": "2024-12-31"}' \
   --columns "date,shareholdingsMoney,shareholdingsMoneyToMarketCap" \
   --limit 30
@@ -329,7 +329,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 获取港股通标的列表
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company" \
+  --suffix "hk/company" \
   --params '{"mutualMarkets": ["sh", "sz"]}' \
   --columns "stockCode,name" \
   --limit 500
@@ -341,7 +341,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 获取重点股票的价格表现
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.candlestick" \
+  --suffix "hk/company.candlestick" \
   --params '{"stockCode": "00700", "startDate": "2024-12-01", "endDate": "2024-12-31"}' \
   --columns "date,close,changePercent,amount" \
   --limit 30
@@ -366,15 +366,15 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ## 本 Skill 常用 API
 
 ### 核心 API ⭐
-- `hk.index.mutual-market` - 指数层面南向资金（最重要）
-- `hk.company.mutual-market` - 个股层面南向资金（最重要）
+- `hk/index.mutual-market` - 指数层面南向资金（最重要）
+- `hk/company.mutual-market` - 个股层面南向资金（最重要）
 - `hk.industry.mutual-market.hsi` - 行业层面南向资金
 
 ### 辅助 API
-- `hk.company` - 港股通标的列表
-- `hk.company.candlestick` - 个股价格数据
+- `hk/company` - 港股通标的列表
+- `hk/company.candlestick` - 个股价格数据
 - `hk.industry` - 行业分类信息
-- `hk.company.industries` - 个股行业归属
+- `hk/company.industries` - 个股行业归属
 
 ---
 
@@ -420,7 +420,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 1. 获取恒生指数南向资金（近5天）
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.index.mutual-market" \
+  --suffix "hk/index.mutual-market" \
   --params '{"indexCode": "HSI", "startDate": "2024-12-27", "endDate": "2024-12-31"}' \
   --columns "date,shareholdingsMoney" \
   --limit 5
@@ -458,7 +458,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 1. 获取港股通标的列表
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company" \
+  --suffix "hk/company" \
   --params '{"mutualMarkets": ["sh", "sz"]}' \
   --columns "stockCode,name" \
   --limit 500

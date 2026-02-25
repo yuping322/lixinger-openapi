@@ -6,31 +6,143 @@
 
 ## 查询示例
 
-### 查询Cn.Company.Fundamental.Non Financial
+### 查询 Cn.Company.Fundamental.Non Financial
+
+**API 路径**: `cn/company/fundamental/non_financial`
+
+**必需参数**: 
+- `stockCodes`: 股票代码数组
+- `date` 或 `startDate`: 日期
+- `metricsList`: 指标列表（⚠️ 必需！）
+
+**参数限制**:
+- ⚠️ 使用 `startDate` 时只能传 1 个 stockCode
+- ⚠️ 使用 `date` 时可以传多个 stockCodes（最多 100 个）
+
+**查询示例**:
 
 ```bash
+# 示例 1: 查询单日多个股票（推荐用于筛选）
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.fundamental.non-financial" \
-  --params '{"date": "2024-12-31"}' \
-  --columns "stockCode,name,pe,pb,roe,dividendYield" \
+  --suffix "cn/company/fundamental/non_financial" \
+  --params '{"stockCodes": ["600519", "000858"], "date": "2024-12-31", "metricsList": ["pe_ttm", "pb", "roe"]}' \
+  --columns "stockCode,name,pe_ttm,pb,roe" \
   --limit 20
+
+# 示例 2: 查询单个股票的时间序列（推荐用于趋势分析）
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/fundamental/non_financial" \
+  --params '{"stockCodes": ["600519"], "startDate": "2024-01-01", "endDate": "2024-12-31", "metricsList": ["pe_ttm", "pb"]}' \
+  --columns "date,stockCode,pe_ttm,pb"
+```
+
+**常用指标**:
+- `pe_ttm`: 市盈率TTM
+- `pb`: 市净率
+- `roe`: 净资产收益率
+- `ps_ttm`: 市销率TTM
+- `dividend_r`: 股息率
+
+**常见错误**:
+
+❌ **错误 1**: 缺少 metricsList
+```bash
+--params '{"stockCodes": ["600519"], "date": "2024-12-31"}'
+```
+✅ **正确**:
+```bash
+--params '{"stockCodes": ["600519"], "date": "2024-12-31", "metricsList": ["pe_ttm"]}'
+```
+
+❌ **错误 2**: startDate + 多个 stockCodes
+```bash
+--params '{"stockCodes": ["600519", "000858"], "startDate": "2024-01-01", "metricsList": ["pe_ttm"]}'
+```
+✅ **正确**:
+```bash
+--params '{"stockCodes": ["600519"], "startDate": "2024-01-01", "metricsList": ["pe_ttm"]}'
+```
+
+---
+
+### 查询 Cn.Index.Fundamental
+
+**API 路径**: `cn/index/fundamental`
+
+**必需参数**: 
+- `stockCodes`: 指数代码数组
+- `date` 或 `startDate`: 日期
+- `metricsList`: 指标列表（⚠️ 必需！）
+
+**参数限制**:
+- ⚠️ 使用 `startDate` 时只能传 1 个 stockCode（重要！）
+- ⚠️ 使用 `date` 时可以传多个 stockCodes（最多 100 个）
+
+**查询示例**:
+
+```bash
+# 示例 1: 查询单日多个指数（推荐）
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/index/fundamental" \
+  --params '{"stockCodes": ["000001", "399001", "000300"], "date": "2024-12-31", "metricsList": ["pe_ttm.mcw", "pb.mcw"]}' \
+  --columns "date,stockCode,pe_ttm.mcw,pb.mcw"
+
+# 示例 2: 查询单个指数的时间序列
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/index/fundamental" \
+  --params '{"stockCodes": ["000300"], "startDate": "2024-01-01", "endDate": "2024-12-31", "metricsList": ["pe_ttm.mcw"]}' \
+  --columns "date,stockCode,pe_ttm.mcw"
+
+# 示例 3: 如需多个指数的时间序列，需要循环查询
+for code in 000001 399001 000300; do
+  python3 skills/lixinger-data-query/scripts/query_tool.py \
+    --suffix "cn/index/fundamental" \
+    --params "{\"stockCodes\": [\"${code}\"], \"startDate\": \"2024-01-01\", \"metricsList\": [\"pe_ttm.mcw\"]}" \
+    > index_${code}.csv
+done
+```
+
+**常用指标**:
+- `pe_ttm.mcw`: 市盈率TTM（市值加权）
+- `pb.mcw`: 市净率（市值加权）
+- `pe_ttm.ew`: 市盈率TTM（等权）
+- `cpc`: 涨跌幅
+- `mc`: 市值
+
+**常见错误**:
+
+❌ **错误**: startDate + 多个 stockCodes（这是最常见的错误！）
+```bash
+--params '{"stockCodes": ["000001", "399001"], "startDate": "2024-01-01", "metricsList": ["pe_ttm.mcw"]}'
+# 错误信息: "stockCodes" must contain 1 items
+```
+✅ **正确方案 1**: 使用 date 查询单日
+```bash
+--params '{"stockCodes": ["000001", "399001"], "date": "2024-12-31", "metricsList": ["pe_ttm.mcw"]}'
+```
+✅ **正确方案 2**: 循环查询每个指数
+```bash
+for code in 000001 399001; do
+  python3 ... --params "{\"stockCodes\": [\"${code}\"], \"startDate\": \"2024-01-01\", ...}"
+done
 ```
 
 ---
 
 ## 参数说明
 
-- `--suffix`: API 路径（参考下方可用 API 列表）
-- `--params`: JSON 格式参数
+- `--suffix`: API 路径（使用斜杠格式，如 `cn/company/fundamental/non_financial`）
+- `--params`: JSON 格式参数（注意内层使用双引号）
 - `--columns`: 指定返回字段（推荐使用，节省 30-40% token）
-- `--row-filter`: 过滤条件
+- `--row-filter`: 过滤条件（如 `"pe_ttm > 10 and pb < 2"`）
 - `--limit`: 限制返回行数
 
 ---
 
 ## 本 Skill 常用 API
 
-- `cn.company.fundamental.non-financial`
+- `cn/company/fundamental/non_financial`: 公司基本面数据
+- `cn/index/fundamental`: 指数基本面数据
 
 ---
 
@@ -44,7 +156,7 @@ cat skills/lixinger-data-query/SKILL.md
 grep -r "关键字" skills/lixinger-data-query/api_new/api-docs/
 
 # 查看具体 API 文档
-cat skills/lixinger-data-query/api_new/api-docs/{api_name}.md
+cat skills/lixinger-data-query/api_new/api-docs/[api_name].md
 ```
 
 **相关文档**: `skills/lixinger-data-query/SKILL.md`

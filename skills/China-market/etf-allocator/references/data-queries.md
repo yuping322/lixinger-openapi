@@ -11,7 +11,7 @@
 ```bash
 # 查询沪深300、中证500、创业板指的估值数据
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.index.fundamental" \
+  --suffix "cn/index/fundamental" \
   --params '{"date": "2024-12-31", "stockCodes": ["000300", "000905", "399006"], "metricsList": ["pe_ttm.mcw", "pb.mcw", "pe_ttm.y10.mcw.cvpos", "pb.y10.mcw.cvpos", "mc"]}' \
   --limit 10
 ```
@@ -43,7 +43,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 查询沪深300近1年的估值历史
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.index.fundamental" \
+  --suffix "cn/index/fundamental" \
   --params '{"startDate": "2024-01-01", "endDate": "2024-12-31", "stockCodes": ["000300"], "metricsList": ["pe_ttm.mcw", "pb.mcw", "pe_ttm.y10.mcw.cvpos"]}' \
   --limit 365
 ```
@@ -63,7 +63,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 查询主要行业指数估值
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.index.fundamental" \
+  --suffix "cn/index/fundamental" \
   --params '{"date": "2024-12-31", "stockCodes": ["000807", "000808", "000809"], "metricsList": ["pe_ttm.mcw", "pb.mcw", "pe_ttm.y5.mcw.cvpos"]}' \
   --limit 10
 ```
@@ -85,7 +85,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 查询沪深300成分股
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.index.constituent" \
+  --suffix "cn/index.constituent" \
   --params '{"indexCode": "000300", "date": "2024-12-31"}' \
   --columns "stockCode,stockName,weight" \
   --limit 300
@@ -107,7 +107,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 查询沪深300近1年K线数据
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.index.k-line" \
+  --suffix "cn/index.k-line" \
   --params '{"indexCode": "000300", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
   --columns "date,open,high,low,close,volume,amount" \
   --limit 365
@@ -131,9 +131,9 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 1. **确定查询参数**：根据分析需求确定指数代码、日期范围等参数
 2. **选择合适的 API**：
-   - 估值数据：使用 `cn.index.fundamental`（必须包含 `metricsList` 参数）
-   - 成分股数据：使用 `cn.index.constituent`
-   - K线数据：使用 `cn.index.k-line`
+   - 估值数据：使用 `cn/index/fundamental`（必须包含 `metricsList` 参数）
+   - 成分股数据：使用 `cn/index.constituent`
+   - K线数据：使用 `cn/index.k-line`
 3. **指定返回字段**：使用 `--columns` 参数指定需要的字段（可选，但推荐使用）
 4. **执行查询**：运行 `query_tool.py` 获取数据
 5. **数据分析**：对返回的 CSV 数据进行分析
@@ -160,7 +160,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ## 注意事项
 
 1. **日期格式**：所有日期参数使用 YYYY-MM-DD 格式
-2. **metricsList 必须参数**：使用 `cn.index.fundamental` API 时，`metricsList` 是必须参数
+2. **metricsList 必须参数**：使用 `cn/index/fundamental` API 时，`metricsList` 是必须参数
 3. **stockCodes 限制**：使用 `startDate` 时，`stockCodes` 只能包含一个指数代码
 4. **时间间隔**：startDate 和 endDate 的时间间隔不超过10年
 5. **指数代码格式**：A股指数代码为6位数字，如 "000300"

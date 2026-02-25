@@ -31,7 +31,7 @@
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company" \
+  --suffix "hk/company" \
   --params '{"stockCodes": ["00700", "09988", "00005", "00011"]}' \
   --columns "stockCode,name,market,areaCode,fsTableType,ipoDate" \
   --limit 100
@@ -43,7 +43,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.index.constituents" \
+  --suffix "hk/index.constituents" \
   --params '{"indexCode": "HSI"}' \
   --columns "stockCode,name,weight" \
   --limit 100
@@ -55,7 +55,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.industries" \
+  --suffix "hk/company.industries" \
   --params '{"stockCode": "00700"}' \
   --columns "industryCode,industryName,industryLevel"
 ```
@@ -66,7 +66,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fundamental.non-financial" \
+  --suffix "hk/company/fundamental/non_financial" \
   --params '{"stockCodes": ["00700"], "date": "2024-12-31"}' \
   --columns "date,stockCode,mc,pe,pb,roe" \
   --limit 20
@@ -78,7 +78,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.mutual-market" \
+  --suffix "hk/company.mutual-market" \
   --params '{"stockCode": "00700", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
   --columns "date,shareholdings,shareholdingsRatio" \
   --limit 100
@@ -90,7 +90,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.index.fundamental" \
+  --suffix "hk/index/fundamental" \
   --params '{"stockCodes": ["HSI"], "date": "2024-12-31", "metricsList": ["mc", "pe_ttm.mcw", "pb.mcw"]}' \
   --columns "date,mc,pe_ttm.mcw,pb.mcw"
 ```
@@ -126,7 +126,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 1. 获取每只股票的行业分类
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.industries" \
+  --suffix "hk/company.industries" \
   --params '{"stockCode": "00700"}' \
   --columns "industryCode,industryName,industryLevel"
 
@@ -157,17 +157,17 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ## 本 Skill 常用 API
 
 ### 核心 API
-- `hk.company` - 港股公司基本信息
-- `hk.company.fundamental.non-financial` - 港股基本面数据
-- `hk.company.industries` - 港股行业分类
-- `hk.index.constituents` - 港股指数成分股
-- `hk.index.fundamental` - 港股指数基本面
+- `hk/company` - 港股公司基本信息
+- `hk/company/fundamental/non_financial` - 港股基本面数据
+- `hk/company.industries` - 港股行业分类
+- `hk/index.constituents` - 港股指数成分股
+- `hk/index/fundamental` - 港股指数基本面
 - `hk.industry.fundamental.hsi` - 港股行业基本面
 
 ### 辅助 API
-- `hk.company.mutual-market` - 港股通持仓
-- `hk.company.candlestick` - 港股K线数据
-- `hk.index.candlestick` - 港股指数K线
+- `hk/company.mutual-market` - 港股通持仓
+- `hk/company.candlestick` - 港股K线数据
+- `hk/index.candlestick` - 港股指数K线
 
 ---
 

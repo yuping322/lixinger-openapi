@@ -10,7 +10,7 @@
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.fundamental.non-financial" \
+  --suffix "cn/company/fundamental/non_financial" \
   --params '{"date": "2024-12-31"}' \
   --columns "stockCode,name,pe,pb,roe,dividendYield" \
   --limit 20
@@ -20,7 +20,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.index.k-line" \
+  --suffix "cn/index.k-line" \
   --params '{"indexCode": "000001", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
   --columns "date,open,high,low,close,volume" \
   --limit 20
@@ -30,7 +30,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.revenue-structure" \
+  --suffix "cn/company.revenue-structure" \
   --params '{}'
 ```
 
@@ -46,7 +46,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.fs.non-financial" \
+  --suffix "cn/company/fs/non_financial" \
   --params '{"stockCode": "600519", "startDate": "2020-01-01", "endDate": "2026-02-24"}' \
   --columns "date,revenue,netProfit,roe,grossProfitMargin" \
   --limit 20
@@ -66,15 +66,15 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ## 本 Skill 常用 API
 
-- `cn.company.fundamental.non-financial`
-- `cn.index.k-line`
-- `cn.company.revenue-structure`
+- `cn/company/fundamental/non_financial`
+- `cn/index.k-line`
+- `cn/company.revenue-structure`
 - `cn.industry`
-- `cn.company.fs.non-financial`
-- `cn.company.fs.security`
-- `cn.company.fs.bank`
-- `us.index.fundamental`
-- `cn.index.fundamental`
+- `cn/company/fs/non_financial`
+- `cn/company.fs.security`
+- `cn/company.fs.bank`
+- `us/index/fundamental`
+- `cn/index/fundamental`
 
 ---
 

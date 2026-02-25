@@ -10,7 +10,7 @@
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "macro.money-supply" \
+  --suffix "macro/money-supply" \
   --params '{"date": "2024-12-31"}' \
   --columns "date,m0,m1,m2" \
   --limit 20
@@ -30,7 +30,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ## 本 Skill 常用 API
 
-- `macro.money-supply`
+- `macro/money-supply`
 
 ---
 

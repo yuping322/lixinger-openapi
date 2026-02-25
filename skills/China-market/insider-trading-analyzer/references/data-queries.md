@@ -10,7 +10,7 @@
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.trading-abnormal" \
+  --suffix "cn/company.trading-abnormal" \
   --params '{"date": "2024-12-31"}' \
   --columns "date,stockCode,name,buyAmount,sellAmount,netAmount" \
   --limit 20
@@ -20,7 +20,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.block-deal" \
+  --suffix "cn/company/block-deal" \
   --params '{"stockCode": "600519", "startDate": "2020-01-01", "endDate": "2026-02-24"}' \
   --columns "date,price,volume,premium,buyerName,sellerName" \
   --limit 20
@@ -30,7 +30,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.executive-shareholding" \
+  --suffix "cn/company.executive-shareholding" \
   --params '{}'
 ```
 
@@ -48,9 +48,9 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ## 本 Skill 常用 API
 
-- `cn.company.trading-abnormal`
-- `cn.company.block-deal`
-- `cn.company.executive-shareholding`
+- `cn/company.trading-abnormal`
+- `cn/company/block-deal`
+- `cn/company.executive-shareholding`
 
 ---
 

@@ -10,7 +10,7 @@
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.major-shareholder-change" \
+  --suffix "cn/company/major-shareholder-change" \
   --params '{}'
 ```
 
@@ -18,7 +18,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.shareholders-num" \
+  --suffix "cn/company/shareholders-num" \
   --params '{"stockCode": "600519"}'
 ```
 
@@ -36,8 +36,8 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ## 本 Skill 常用 API
 
-- `cn.company.major-shareholder-change`
-- `cn.company.shareholders-num`
+- `cn/company/major-shareholder-change`
+- `cn/company/shareholders-num`
 
 ---
 

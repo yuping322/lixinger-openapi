@@ -10,7 +10,7 @@
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "us.index.fundamental" \
+  --suffix "us/index/fundamental" \
   --params '{"indexCode": "SPX", "date": "2024-12-31"}' \
   --columns "date,pe,pb,roe,dividendYield" \
   --limit 20
@@ -20,7 +20,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.fs.non-financial" \
+  --suffix "cn/company/fs/non_financial" \
   --params '{"stockCode": "600519", "startDate": "2020-01-01", "endDate": "2026-02-24"}' \
   --columns "date,revenue,netProfit,roe,grossProfitMargin" \
   --limit 20
@@ -30,7 +30,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.fs.security" \
+  --suffix "cn/company.fs.security" \
   --params '{}'
 ```
 
@@ -38,7 +38,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.fs.bank" \
+  --suffix "cn/company.fs.bank" \
   --params '{}'
 ```
 
@@ -56,10 +56,10 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ## 本 Skill 常用 API
 
-- `us.index.fundamental`
-- `cn.company.fs.non-financial`
-- `cn.company.fs.security`
-- `cn.company.fs.bank`
+- `us/index/fundamental`
+- `cn/company/fs/non_financial`
+- `cn/company.fs.security`
+- `cn/company.fs.bank`
 
 ---
 

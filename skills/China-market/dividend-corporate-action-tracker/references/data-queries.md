@@ -10,7 +10,7 @@
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.dividend" \
+  --suffix "cn/company/dividend" \
   --params '{"stockCode": "600519", "startDate": "2020-01-01", "endDate": "2026-02-24"}' \
   --columns "date,dividend,dividendAmount,annualNetProfitDividendRatio,exDate" \
   --limit 20
@@ -30,7 +30,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ## 本 Skill 常用 API
 
-- `cn.company.dividend`
+- `cn/company/dividend`
 
 ---
 

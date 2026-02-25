@@ -10,7 +10,7 @@
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.index.k-line" \
+  --suffix "cn/index.k-line" \
   --params '{"indexCode": "000001", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
   --columns "date,open,high,low,close,volume" \
   --limit 20
@@ -20,7 +20,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.shareholders-num" \
+  --suffix "cn/company/shareholders-num" \
   --params '{"stockCode": "600519"}'
 ```
 
@@ -28,7 +28,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "macro.money-supply" \
+  --suffix "macro/money-supply" \
   --params '{"date": "2024-12-31"}' \
   --columns "date,m0,m1,m2" \
   --limit 20
@@ -46,7 +46,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.major-shareholder-change" \
+  --suffix "cn/company/major-shareholder-change" \
   --params '{}'
 ```
 
@@ -64,13 +64,13 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ## 本 Skill 常用 API
 
-- `cn.index.k-line`
-- `cn.company.shareholders-num`
-- `macro.money-supply`
+- `cn/index.k-line`
+- `cn/company/shareholders-num`
+- `macro/money-supply`
 - `cn.industry`
-- `cn.company.major-shareholder-change`
-- `us.index.fundamental`
-- `cn.index.fundamental`
+- `cn/company/major-shareholder-change`
+- `us/index/fundamental`
+- `cn/index/fundamental`
 
 ---
 

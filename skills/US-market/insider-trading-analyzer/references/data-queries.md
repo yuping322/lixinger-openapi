@@ -10,7 +10,7 @@
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.fundamental.non-financial" \
+  --suffix "cn/company/fundamental/non_financial" \
   --params '{"date": "2024-12-31"}' \
   --columns "stockCode,name,pe,pb,roe,dividendYield" \
   --limit 20
@@ -20,7 +20,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.index.k-line" \
+  --suffix "cn/index.k-line" \
   --params '{"indexCode": "000001", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
   --columns "date,open,high,low,close,volume" \
   --limit 20
@@ -30,7 +30,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.revenue-structure" \
+  --suffix "cn/company.revenue-structure" \
   --params '{}'
 ```
 
@@ -38,7 +38,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "macro.money-supply" \
+  --suffix "macro/money-supply" \
   --params '{"date": "2024-12-31"}' \
   --columns "date,m0,m1,m2" \
   --limit 20
@@ -48,7 +48,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.trading-abnormal" \
+  --suffix "cn/company.trading-abnormal" \
   --params '{"date": "2024-12-31"}' \
   --columns "date,stockCode,name,buyAmount,sellAmount,netAmount" \
   --limit 20
@@ -68,16 +68,16 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ## 本 Skill 常用 API
 
-- `cn.company.fundamental.non-financial`
-- `cn.index.k-line`
-- `cn.company.revenue-structure`
-- `macro.money-supply`
-- `cn.company.trading-abnormal`
+- `cn/company/fundamental/non_financial`
+- `cn/index.k-line`
+- `cn/company.revenue-structure`
+- `macro/money-supply`
+- `cn/company.trading-abnormal`
 - `cn.industry`
-- `cn.company.executive-shareholding`
-- `us.index.fundamental`
-- `cn.company.block-deal`
-- `cn.index.fundamental`
+- `cn/company.executive-shareholding`
+- `us/index/fundamental`
+- `cn/company/block-deal`
+- `cn/index/fundamental`
 
 ---
 

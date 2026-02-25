@@ -32,7 +32,7 @@
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.dividend" \
+  --suffix "hk/company/dividend" \
   --params '{"stockCode": "00005", "startDate": "2020-01-01", "endDate": "2024-12-31"}' \
   --columns "date,dividend,dividendAmount,annualNetProfitDividendRatio,exDate,paymentDate,fsEndDate" \
   --limit 100
@@ -53,7 +53,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company" \
+  --suffix "hk/company" \
   --params '{"stockCodes": ["00005", "00011", "00002", "00006", "00388"]}' \
   --columns "stockCode,name,market,fsTableType,ipoDate" \
   --limit 100
@@ -65,7 +65,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fundamental.non-financial" \
+  --suffix "hk/company/fundamental/non_financial" \
   --params '{"stockCodes": ["00005"], "date": "2024-12-31", "metricsList": ["mc", "pe", "pb", "roe", "dyr"]}' \
   --columns "date,stockCode,mc,pe,pb,roe,dyr"
 ```
@@ -83,7 +83,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fs.non-financial" \
+  --suffix "hk/company/fs/non_financial" \
   --params '{"stockCodes": ["00005"], "startDate": "2020-01-01", "endDate": "2024-12-31", "metricsList": ["np", "fcf", "revenue"]}' \
   --columns "date,np,fcf,revenue" \
   --limit 20
@@ -100,7 +100,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.candlestick" \
+  --suffix "hk/company.candlestick" \
   --params '{"stockCode": "00005", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
   --columns "date,close,volume,amount" \
   --limit 300
@@ -112,7 +112,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.industries" \
+  --suffix "hk/company.industries" \
   --params '{"stockCode": "00005"}' \
   --columns "industryCode,industryName,industryLevel"
 ```
@@ -123,7 +123,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.index.fundamental" \
+  --suffix "hk/index/fundamental" \
   --params '{"stockCodes": ["HSI"], "date": "2024-12-31", "metricsList": ["dyr.mcw", "pe_ttm.mcw", "pb.mcw"]}' \
   --columns "date,dyr.mcw,pe_ttm.mcw,pb.mcw"
 ```
@@ -189,13 +189,13 @@ fcf_coverage = free_cash_flow / total_dividend
 ```bash
 # 1. 获取所有港股通股票
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company" \
+  --suffix "hk/company" \
   --params '{"mutualMarkets": ["ah"]}' \
   --columns "stockCode,name"
 
 # 2. 获取这些股票的股息率
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fundamental.non-financial" \
+  --suffix "hk/company/fundamental/non_financial" \
   --params '{"stockCodes": ["00700", "09988", ...], "date": "2024-12-31", "metricsList": ["dyr"]}' \
   --columns "stockCode,dyr"
 
@@ -217,15 +217,15 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ## 本 Skill 常用 API
 
 ### 核心 API ⭐
-- `hk.company.dividend` - 港股分红数据（最重要）
-- `hk.company.fundamental.non-financial` - 港股基本面（含股息率）
-- `hk.company.fs.non-financial` - 港股财务报表
+- `hk/company/dividend` - 港股分红数据（最重要）
+- `hk/company/fundamental/non_financial` - 港股基本面（含股息率）
+- `hk/company/fs/non_financial` - 港股财务报表
 
 ### 辅助 API
-- `hk.company` - 港股公司信息
-- `hk.company.candlestick` - 港股K线数据
-- `hk.company.industries` - 港股行业分类
-- `hk.index.fundamental` - 港股指数基本面
+- `hk/company` - 港股公司信息
+- `hk/company.candlestick` - 港股K线数据
+- `hk/company.industries` - 港股行业分类
+- `hk/index/fundamental` - 港股指数基本面
 - `hk.industry.fundamental.hsi` - 港股行业基本面
 
 ---
@@ -246,20 +246,20 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 1. 获取5年分红历史
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.dividend" \
+  --suffix "hk/company/dividend" \
   --params '{"stockCode": "00005", "startDate": "2020-01-01", "endDate": "2024-12-31"}' \
   --columns "date,dividend,dividendAmount,annualNetProfitDividendRatio" \
   --limit 20
 
 # 2. 获取当前股息率
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fundamental.non-financial" \
+  --suffix "hk/company/fundamental/non_financial" \
   --params '{"stockCodes": ["00005"], "date": "2024-12-31", "metricsList": ["dyr", "pe", "pb"]}' \
   --columns "date,dyr,pe,pb"
 
 # 3. 获取财务数据评估可持续性
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fs.non-financial" \
+  --suffix "hk/company/fs/non_financial" \
   --params '{"stockCodes": ["00005"], "startDate": "2020-01-01", "metricsList": ["np", "fcf"]}' \
   --columns "date,np,fcf" \
   --limit 20
@@ -276,7 +276,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 # 2. 获取股息率数据
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk.company.fundamental.non-financial" \
+  --suffix "hk/company/fundamental/non_financial" \
   --params '{"stockCodes": ["00005", "00011", ...], "date": "2024-12-31", "metricsList": ["dyr", "pe"]}' \
   --columns "stockCode,dyr,pe"
 
