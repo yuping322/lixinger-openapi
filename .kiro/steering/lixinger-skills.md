@@ -1,41 +1,26 @@
-# 理杏仁金融分析技能包
+# 金融分析技能包
 
-你现在可以访问一个完整的金融量化分析技能包，基于理杏仁开放平台 API，支持 A股、港股、美股三大市场。
+完整的金融量化分析工具集，支持 A股、港股、美股三大市场。
 
-## 📊 技能包概览
+## 📊 可用资源
 
 - **116 个专业分析 Skills**：66 个 A股 + 13 个港股 + 37 个美股
-- **162 个理杏仁 API**：覆盖基本面、财务、行情、宏观等数据
-- **1000+ AkShare 接口**：补充特殊数据源
-- **三级优先级体系**：Skills → 理杏仁 API → AkShare
+- **162 个数据 API**：覆盖基本面、财务、行情、宏观等
+- **1000+ AkShare 接口**：补充数据源
+- **三级优先级**：Skills → 数据 API → AkShare
 
 ## 🔍 如何查找 Skills
 
-**不要记忆技能列表！使用 grep 动态查找：**
+**使用 grep 动态查找，不要记忆列表：**
 
 ```bash
-# 按关键词搜索 A股 skills
+# 按关键词搜索
 ls skills/China-market/ | grep -i "关键词"
-
-# 按关键词搜索港股 skills
 ls skills/HK-market/ | grep -i "关键词"
-
-# 按关键词搜索美股 skills
 ls skills/US-market/ | grep -i "关键词"
-
-# 示例：查找分红相关 skills
-ls skills/China-market/ | grep -i "dividend"
-# 输出：dividend-corporate-action-tracker, high-dividend-strategy
 ```
 
-**常用关键词映射**：
-- 分红/股息 → dividend, yield
-- 估值 → valuation, undervalued
-- 风险 → risk, monitor
-- 资金流向 → flow, fund
-- 事件驱动 → event, disclosure, notice
-- 组合管理 → portfolio, rebalancing
-- 行业板块 → industry, sector, board
+**常用关键词**：dividend（分红）、valuation（估值）、risk（风险）、flow（资金）、event（事件）、portfolio（组合）、industry/sector（行业板块）
 
 ---
 
@@ -133,61 +118,63 @@ echo "## 追加分析：分红历史" >> ${PROJECT}/README.md
 
 ## 💡 使用方式
 
-### ⚠️ 重要：使用优先级（必须严格遵守）
+### ⚠️ 使用优先级（严格遵守）
 
-**三级优先级体系：市场分析 Skills > 数据查询工具 > AkShare 接口**
+**三级优先级：市场分析 Skills > 数据 API > AkShare**
 
-#### 第一优先级：市场分析 Skills（最优先）
+#### 第一优先级：市场分析 Skills
 
-使用 `skills/China-market/`、`skills/HK-market/`、`skills/US-market/` 中的 116 个分析 skills。
+使用 `skills/China-market/`、`skills/HK-market/`、`skills/US-market/` 中的分析 skills。
 
-**为什么优先使用**：
-- 提供完整的分析方法论和工作流程
-- 包含数据获取、分析逻辑、输出模板
-- 适合复杂的金融分析任务
-- 开箱即用，无需自己编写分析逻辑
+**优势**：提供完整方法论、数据获取、分析逻辑、输出模板，开箱即用。
 
-**如何查找**：
+**查找方法**：
 ```bash
-# 使用 grep 动态查找，不要浏览列表
 ls skills/China-market/ | grep -i "关键词"
 ```
 
-#### 第二优先级：理杏仁数据查询工具（备选）
+#### 第二优先级：数据 API
 
-使用 `skills/lixinger-data-query/` 的 162 个理杏仁 API。
+使用 `skills/lixinger-data-query/` 的 162 个 API。
 
-**何时使用**：
-- 找不到合适的市场分析 skill
-- 需要简单的数据查询
-- 需要自定义分析逻辑
+**使用场景**：找不到合适的 skill，或需要简单数据查询。
 
-**如何使用**：
+**使用前必须 grep 查看 API 文档**：
 ```bash
+# 查找相关 API
+grep -r "关键词" skills/lixinger-data-query/api_new/api-docs/
+
+# 查看 API 文档（确保参数正确）
+cat skills/lixinger-data-query/api_new/api-docs/[api_name].md
+
+# 执行查询
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/company/dividend" \
   --params '{"stockCode": "600519"}' \
   --columns "date,dividendPerShare"
 ```
 
-#### 第三优先级：AkShare 接口（最后备选）
+#### 第三优先级：AkShare 接口
 
-使用 `skills/lixinger-data-query/api_new/akshare_data/` 的 1000+ AkShare 接口。
+使用 `skills/lixinger-data-query/api_new/akshare_data/` 的 1000+ 接口。
 
-**何时使用**：
-- 市场分析 skills 和理杏仁 API 都无法满足需求
-- 需要特殊的数据源（如集思录可转债、东方财富龙虎榜等）
+**使用场景**：前两者无法满足需求，或需要补充数据源。
 
-**如何使用**：
-```python
-import akshare as ak
-bond_cb_jsl_df = ak.bond_cb_jsl(cookie="")
-print(bond_cb_jsl_df)
+**使用前必须 grep 查看接口文档**：
+```bash
+# 查找相关接口
+grep -r "关键词" skills/lixinger-data-query/api_new/akshare_data/
+
+# 查看接口文档（确保用法正确）
+cat skills/lixinger-data-query/api_new/akshare_data/[interface_name].md
+
+# 使用 Python 调用
+python3 -c "import akshare as ak; print(ak.interface_name())"
 ```
 
-### 数据获取（核心）
+### 数据获取核心规则
 
-**所有市场分析 skills 都使用 `query_tool.py` 获取数据**：
+**所有 skills 都使用 `query_tool.py` 获取数据**：
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
@@ -198,165 +185,141 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```
 
 **关键参数**：
-- `--suffix`: API 路径（参考 `skills/lixinger-data-query/SKILL.md`）
+- `--suffix`: API 路径（使用斜杠 `/` 而非点号 `.`）
 - `--params`: JSON 格式参数
-- `--columns`: 指定返回字段（推荐使用，节省 30-40% token）
+- `--columns`: 指定返回字段（节省 30-40% token）
 - `--row-filter`: 过滤条件
 - `--limit`: 限制返回行数
 
-### 工作流程（优化版）
+**⚠️ 日期规则**：
+- **永远使用最近的日期**（如当前月份、上个月、最近一年）
+- **不要使用过时日期**（如 2024 年的日期会导致分析结果无意义）
+- 示例：`"date": "2026-02-25"` 或 `"startDate": "2025-02-01"`
 
-当用户提出金融分析问题时，**严格按照以下流程执行**：
+### 工作流程
+
+当用户提出金融分析问题时，**严格按照以下流程**：
 
 #### 步骤 0：创建或复用项目文件夹
 
 ```bash
 # 新对话：创建新项目文件夹
-if [ 新对话 ]; then
-  PROJECT="analysis_$(date +%Y%m%d_%H%M%S)_主题"
-  mkdir -p ${PROJECT}/{data,output}
-fi
+PROJECT="analysis_$(date +%Y%m%d_%H%M%S)_主题"
+mkdir -p ${PROJECT}/{data,output}
 
 # 有上文：复用当前项目文件夹
-if [ 有上文 ]; then
-  PROJECT="analysis_20260225_143052_主题"  # 已存在
-fi
+PROJECT="analysis_20260225_143052_主题"  # 已存在
 ```
 
-#### 步骤 1：使用 grep 查找合适的 Skill（第一优先级）
+#### 步骤 1：grep 查找合适的 Skill
 
 ```bash
-# 使用 grep 动态查找，不要浏览列表
 ls skills/China-market/ | grep -i "关键词"
-
-# 示例：查找高股息相关 skills
-ls skills/China-market/ | grep -i "dividend"
-# 输出：dividend-corporate-action-tracker, high-dividend-strategy
 ```
 
 #### 步骤 2：查看 Skill 文档
 
 ```bash
-# 查看 Skill 说明
 cat skills/China-market/high-dividend-strategy/SKILL.md
-
-# 查看数据获取指南
 cat skills/China-market/high-dividend-strategy/references/data-queries.md
 ```
 
-#### 步骤 3：获取数据并保存到项目文件夹
+#### 步骤 3：获取数据（保存到项目文件夹）
+
+**⚠️ 使用 API 前必须 grep 查看文档**：
 
 ```bash
-# 下载数据到项目的 data/ 目录
+# 1. 查看 API 文档（确保参数正确）
+cat skills/lixinger-data-query/api_new/api-docs/cn_company_dividend.md
+
+# 2. 下载数据到项目的 data/ 目录（使用最近日期）
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/company/dividend" \
-  --params '{"stockCode": "600519"}' \
+  --params '{"stockCode": "600519", "startDate": "2025-01-01"}' \
   > ${PROJECT}/data/dividend_data.csv
 ```
 
 #### 步骤 4：执行分析并生成报告
 
-- 按照 Skill 的方法论进行分析
-- 将最终报告保存到 `${PROJECT}/output/report.md`
+- 按照 Skill 方法论分析
+- 报告保存到 `${PROJECT}/output/report.md`
 
-#### 步骤 5：如果找不到合适的 Skill，使用理杏仁 API（第二优先级）
+#### 步骤 5：如果找不到 Skill，使用数据 API
 
 ```bash
-# 搜索理杏仁 API
+# 1. 搜索 API
 grep -r "关键词" skills/lixinger-data-query/api_new/api-docs/
 
-# 查看 API 文档
+# 2. 查看 API 文档（必须）
 cat skills/lixinger-data-query/api_new/api-docs/[api_name].md
 
-# 使用 query_tool.py 查询
+# 3. 执行查询
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/company/dividend" \
   --params '{"stockCode": "600519"}'
 ```
 
-#### 步骤 6：如果理杏仁 API 也无法满足，使用 AkShare（第三优先级）
+#### 步骤 6：如果 API 也无法满足，使用 AkShare
 
 ```bash
-# 搜索 AkShare 接口
+# 1. 搜索接口
 grep -r "关键词" skills/lixinger-data-query/api_new/akshare_data/
 
-# 查看接口文档
+# 2. 查看接口文档（必须）
 cat skills/lixinger-data-query/api_new/akshare_data/[interface_name].md
 
-# 使用 Python 调用
+# 3. 使用 Python 调用
 python3 -c "import akshare as ak; print(ak.interface_name())"
 ```
 
 ---
 
-## 🎯 使用示例（优化版）
+## 🎯 使用示例
 
-### 示例 1：高股息股票筛选（完整流程）
+### 示例 1：高股息股票筛选
 
-**用户问**："帮我筛选一下高股息的股票"
-
-**执行步骤**：
+**用户问**："帮我筛选高股息股票"
 
 ```bash
-# 1. 创建项目文件夹（新对话）
+# 1. 创建项目文件夹
 PROJECT="analysis_$(date +%Y%m%d_%H%M%S)_high_dividend"
 mkdir -p ${PROJECT}/{data,output}
 
-# 2. 使用 grep 查找相关 Skill
+# 2. grep 查找 Skill
 ls skills/China-market/ | grep -i "dividend"
-# 输出：dividend-corporate-action-tracker, high-dividend-strategy
 
-# 3. 选择 high-dividend-strategy，查看文档
+# 3. 查看 Skill 文档
 cat skills/China-market/high-dividend-strategy/SKILL.md
 
-# 4. 创建分析方案
-cat > ${PROJECT}/README.md << 'EOF'
-# 高股息股票筛选分析
+# 4. 查看 API 文档（必须）
+cat skills/lixinger-data-query/api_new/api-docs/cn_company_dividend.md
 
-## 使用 Skill
-- skills/China-market/high-dividend-strategy/
-
-## 筛选标准
-- 股息率 ≥ 4%
-- 连续分红 ≥ 5年
-- 分红率 30%-70%
-
-## 执行时间
-2026-02-25 14:30:52
-EOF
-
-# 5. 获取数据（示例：查询知名高股息股票）
-for code in 601398 601288 600900 601088; do
+# 5. 获取数据（使用最近日期）
+for code in 601398 601288 600900; do
   python3 skills/lixinger-data-query/scripts/query_tool.py \
     --suffix "cn/company/dividend" \
-    --params "{\"stockCode\": \"${code}\"}" \
+    --params "{\"stockCode\": \"${code}\", \"startDate\": \"2025-01-01\"}" \
     > ${PROJECT}/data/dividend_${code}.csv
 done
 
-# 6. 按照 Skill 方法论进行分析
-# 7. 生成报告保存到 output/report.md
+# 6. 分析并生成报告到 output/report.md
 ```
 
 ### 示例 2：继续分析（同一对话）
 
 **用户问**："这些股票的分红历史怎么样？"
 
-**执行步骤**：
-
 ```bash
-# 1. 复用当前项目文件夹
-PROJECT="analysis_20260225_143052_high_dividend"  # 已存在
+# 复用当前项目文件夹
+PROJECT="analysis_20260225_143052_high_dividend"
 
-# 2. 追加数据
+# 追加数据
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/company/dividend" \
   --params '{"stockCode": "601398", "startDate": "2020-01-01"}' \
   > ${PROJECT}/data/dividend_history_601398.csv
 
-# 3. 更新 README.md
-echo "## 追加分析：分红历史" >> ${PROJECT}/README.md
-
-# 4. 更新报告
+# 更新报告
 ```
 
 ---
@@ -422,9 +385,9 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ---
 
-## 📋 常用 API 速查表
+## 📋 常用 API 速查
 
-### ⚠️ 重要：API 路径格式
+### ⚠️ API 路径格式
 
 **必须使用斜杠 `/` 而不是点号 `.`**
 
@@ -438,15 +401,15 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ### A股常用 API
 
-| API 路径 | 说明 | 必需参数 | 示例 |
-|---|---|---|---|
-| `cn/company` | 公司基本信息 | stockCodes | `{"stockCodes": ["600519"]}` |
-| `cn/company/dividend` | 分红数据 | stockCode | `{"stockCode": "600519"}` |
-| `cn/company/fundamental/non_financial` | 基本面数据（PE/PB等） | stockCodes, date/startDate, metricsList | `{"stockCodes": ["600519"], "date": "2024-12-31", "metricsList": ["pe_ttm", "pb"]}` |
-| `cn/company/fs/non_financial` | 财务数据（营收/利润等） | stockCodes, date/startDate, metricsList | `{"stockCodes": ["600519"], "date": "2024-12-31", "metricsList": ["or", "np"]}` |
-| `cn/company/announcement` | 公告数据 | stockCode, startDate | `{"stockCode": "600519", "startDate": "2024-01-01"}` |
-| `cn/index/fundamental` | 指数基本面 | stockCodes, date/startDate, metricsList | `{"stockCodes": ["000001"], "date": "2024-12-31", "metricsList": ["pe_ttm.mcw", "pb.mcw"]}` |
-| `cn/index/constituents` | 指数成分股 | indexCode, date | `{"indexCode": "000300", "date": "2024-12-31"}` |
+| API 路径 | 说明 | 必需参数 |
+|---|---|---|
+| `cn/company` | 公司基本信息 | stockCodes |
+| `cn/company/dividend` | 分红数据 | stockCode |
+| `cn/company/fundamental/non_financial` | 基本面（PE/PB等） | stockCodes, date/startDate, metricsList |
+| `cn/company/fs/non_financial` | 财务（营收/利润等） | stockCodes, date/startDate, metricsList |
+| `cn/company/announcement` | 公告数据 | stockCode, startDate |
+| `cn/index/fundamental` | 指数基本面 | stockCodes, date/startDate, metricsList |
+| `cn/index/constituents` | 指数成分股 | indexCode, date |
 
 ### 港股常用 API
 
@@ -474,149 +437,90 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 | `macro/ppi` | PPI数据 | date |
 | `macro/gdp` | GDP数据 | date |
 
-### 常见错误和解决方法
+### 常见错误
 
-#### 错误 1：`Error: Api was not found. (Code: 0)`
+#### 错误 1：`Api was not found`
 
-**原因**：API 路径格式错误或不存在
+**原因**：API 路径格式错误
 
-**解决方法**：
+**解决**：
 ```bash
-# 1. 检查路径格式（使用斜杠而不是点号）
---suffix "cn/company/dividend"  # ✅ 正确
---suffix "cn.company.dividend"  # ❌ 错误
+# 1. 使用斜杠而非点号
+--suffix "cn/company/dividend"  # ✅
+--suffix "cn.company.dividend"  # ❌
 
-# 2. 查看 API 文档确认路径
-cat skills/lixinger-data-query/SKILL.md
-
-# 3. 搜索相关 API
+# 2. grep 查看 API 文档确认路径
 grep -r "dividend" skills/lixinger-data-query/api_new/api-docs/
 ```
 
-#### 错误 2：`Error: "metricsList" is required`
+#### 错误 2：`"metricsList" is required`
 
-**原因**：fundamental 类 API 必须提供 metricsList 参数
+**原因**：fundamental 类 API 必须提供 metricsList
 
-**解决方法**：
+**解决**：
 ```bash
-# ❌ 错误：缺少 metricsList
---params '{"stockCodes": ["600519"], "date": "2024-12-31"}'
+# ❌ 缺少 metricsList
+--params '{"stockCodes": ["600519"], "date": "2026-02-25"}'
 
-# ✅ 正确：包含 metricsList
---params '{"stockCodes": ["600519"], "date": "2024-12-31", "metricsList": ["pe_ttm", "pb", "roe"]}'
+# ✅ 包含 metricsList
+--params '{"stockCodes": ["600519"], "date": "2026-02-25", "metricsList": ["pe_ttm", "pb"]}'
 ```
 
-#### 错误 3：`Error: "stockCodes" is required`
+#### 错误 3：`"stockCodes" is required`
 
 **原因**：参数名称错误（单数 vs 复数）
 
-**解决方法**：
+**解决**：grep 查看 API 文档确认参数名
 ```bash
-# 注意：不同 API 使用不同的参数名
-# - cn/company: 使用 stockCodes（复数）
-# - cn/company/dividend: 使用 stockCode（单数）
-
-# 查看 API 文档确认参数名
 cat skills/lixinger-data-query/api_new/api-docs/cn_company.md
 ```
 
 ---
 
-## 💡 重要提示
+## 💡 核心原则
 
-### 0. 工作流程核心原则（最重要）
+### 0. 工作流程
 
-**必须严格遵守的执行顺序：**
-
-1. **新对话创建项目文件夹，有上文复用文件夹**
-   ```bash
-   # 新对话
-   PROJECT="analysis_$(date +%Y%m%d_%H%M%S)_主题"
-   mkdir -p ${PROJECT}/{data,output}
-   
-   # 有上文
-   PROJECT="analysis_20260225_143052_主题"  # 已存在
-   ```
-
+1. **新对话创建项目文件夹，有上文复用**
 2. **先 grep 搜索，不要浏览列表**
-   ```bash
-   ls skills/China-market/ | grep -i "关键词"
-   ```
+3. **使用 API 前必须 grep 查看文档**
+4. **永远使用最近日期，不用过时日期**
+5. **数据保存到项目的 data/ 目录**
+6. **报告保存到项目的 output/ 目录**
 
-3. **数据保存到项目的 data/ 目录**
-   ```bash
-   python3 ... > ${PROJECT}/data/filename.csv
-   ```
+### 1. 优先级
 
-4. **报告保存到项目的 output/ 目录**
-   ```bash
-   # 分析完成后保存到 output/report.md
-   ```
+**三级优先级（从高到低）**：
+1. 市场分析 Skills（提供完整方法论）
+2. 数据 API（需要自己编写分析逻辑）
+3. AkShare 接口（补充数据源）
 
-### 1. Skill 使用优先级
+### 2. 数据获取
 
-**三级优先级体系（从高到低）**：
+- **唯一工具**：`query_tool.py`
+- **使用前必须 grep 查看 API 文档**
+- **使用 `--columns` 过滤字段**（节省 30-40% token）
+- **永远使用最近日期**
 
-1. **第一优先级：市场分析 Skills**
-   - 使用 grep 动态查找，不要记忆列表
-   - 提供完整方法论和工作流程
-   - **必须优先使用**
-
-2. **第二优先级：理杏仁数据查询工具**
-   - 仅在找不到合适 Skill 时使用
-   - 需要自己编写分析逻辑
-
-3. **第三优先级：AkShare 接口**
-   - 仅在前两者都无法满足时使用
-   - 用于特殊数据源
-
-### 2. 数据获取原则
-
-- **始终使用 `query_tool.py`**：唯一的数据获取工具
-- **使用 `--columns` 过滤字段**：节省 30-40% token
-- **数据保存到项目文件夹**：便于管理和复用
-
-### 3. 项目管理原则
+### 3. 项目管理
 
 - **一个对话 = 一个项目文件夹**
-- **新对话 = 创建新文件夹**
-- **有上文 = 复用当前文件夹**
-- **项目命名规范**：`analysis_YYYYMMDD_HHMMSS_主题`
+- **命名规范**：`analysis_YYYYMMDD_HHMMSS_主题`
 - **README.md 记录分析方案**
 
 ### 4. 查找技巧
 
-**使用 grep 而不是浏览列表：**
-
 ```bash
 # 按功能查找
-ls skills/China-market/ | grep -i "dividend"    # 分红
-ls skills/China-market/ | grep -i "risk"        # 风险
-ls skills/China-market/ | grep -i "flow"        # 资金流向
-ls skills/China-market/ | grep -i "event"       # 事件驱动
-ls skills/China-market/ | grep -i "portfolio"   # 组合管理
+ls skills/China-market/ | grep -i "dividend"
+ls skills/China-market/ | grep -i "risk"
+ls skills/China-market/ | grep -i "flow"
 ```
 
 ---
 
 ## 📚 相关文档
 
-- **查询工具主文档**：`skills/lixinger-data-query/SKILL.md`
-- **LLM 使用指南**：`skills/lixinger-data-query/LLM_USAGE_GUIDE.md`
-- **查询示例**：`skills/lixinger-data-query/EXAMPLES.md`
+- **数据查询工具**：`skills/lixinger-data-query/SKILL.md`
 - **API 文档目录**：`skills/lixinger-data-query/api_new/api-docs/`
-- **理杏仁官方文档**：https://open.lixinger.com/
-
----
-
-**版本**: v4.1.0  
-**更新日期**: 2026-02-25  
-**主要改进**：
-- 极简化项目管理规则：一个对话 = 一个项目文件夹
-- 新对话创建新文件夹，有上文复用文件夹
-- 所有操作都在同一个文件夹中，无需判断简单/复杂
-- 文件夹命名精确到秒：analysis_YYYYMMDD_HHMMSS_主题
-
-**技能总数**: 116 个市场分析 Skills + 162 个理杏仁 API + 1000+ AkShare 接口  
-**数据源**: 理杏仁开放平台 + AkShare  
-**支持市场**: A股、港股、美股
+- **AkShare 接口**：`skills/lixinger-data-query/api_new/akshare_data/`
