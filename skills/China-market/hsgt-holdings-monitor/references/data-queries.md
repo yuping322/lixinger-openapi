@@ -1,6 +1,6 @@
 # 数据获取指南
 
-使用 `query_tool.py` 获取 hsgt-holdings-monitor_UNSUPPORTED 所需的数据。
+使用 `query_tool.py` 获取 hsgt-holdings-monitor 所需的数据。
 
 ---
 

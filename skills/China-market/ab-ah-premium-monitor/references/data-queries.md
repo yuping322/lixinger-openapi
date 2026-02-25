@@ -1,6 +1,6 @@
 # 数据获取指南
 
-使用 `query_tool.py` 获取 ab-ah-premium-monitor_UNSUPPORTED 所需的数据。
+使用 `query_tool.py` 获取 ab-ah-premium-monitor 所需的数据。
 
 ---
 

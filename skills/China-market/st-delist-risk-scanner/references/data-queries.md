@@ -1,6 +1,6 @@
 # 数据获取指南
 
-使用 `query_tool.py` 获取 st-delist-risk-scanner_UNSUPPORTED 所需的数据。
+使用 `query_tool.py` 获取 st-delist-risk-scanner 所需的数据。
 
 ---
 

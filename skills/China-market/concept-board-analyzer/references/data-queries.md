@@ -1,6 +1,6 @@
 # 数据获取指南
 
-使用 `query_tool.py` 获取 concept-board-analyzer_UNSUPPORTED 所需的数据。
+使用 `query_tool.py` 获取 concept-board-analyzer 所需的数据。
 
 ---
 
