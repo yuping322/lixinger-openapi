@@ -1,7 +1,3 @@
----
-inclusion: always
----
-
 # 理杏仁金融分析技能包
 
 你现在可以访问一个完整的金融量化分析技能包，基于理杏仁开放平台 API，支持 A股、港股、美股三大市场。
@@ -43,55 +39,51 @@ ls skills/China-market/ | grep -i "dividend"
 
 ---
 
-## � 项目工作目录管理
+## 📁 项目工作目录管理（极简版）
 
-**对于复杂的市场分析任务，必须创建专门的项目文件夹来组织工作：**
+### 核心规则：一个对话会话 = 一个项目文件夹
 
-### 何时创建项目文件夹
+**规则极其简单**：
+- **新对话** → 创建新项目文件夹
+- **有上文** → 复用当前项目文件夹
+- **所有操作**（数据查询、分析、报告）都在同一个文件夹中
 
-当遇到以下情况时，在当前工作目录创建项目子文件夹：
-
-- 使用市场分析 Skills 进行复杂分析
-- 需要下载和保存多个数据文件
-- 需要生成分析报告和图表
-- 需要保存分析方案和执行记录
-
-### 项目文件夹命名规范
+### 文件夹命名规范
 
 ```bash
-# 格式：analysis_YYYYMMDD_主题关键词
-# 示例：
-analysis_20260225_high_dividend_screening/
-analysis_20260225_event_study_600089/
-analysis_20260225_market_overview/
+# 格式：analysis_YYYYMMDD_HHMMSS_主题关键词
+analysis_20260225_143052_high_dividend/
+analysis_20260225_144523_event_study_600089/
+analysis_20260225_150138_market_overview/
 ```
 
 ### 项目文件夹结构
 
 ```
-analysis_YYYYMMDD_主题/
+analysis_20260225_143052_high_dividend/
 ├── README.md              # 分析方案和执行记录
 ├── data/                  # 原始数据文件
-│   ├── stock_list.csv
 │   ├── dividend_data.csv
-│   └── price_data.csv
-├── analysis/              # 分析脚本和中间结果
-│   └── analysis.py
-├── output/                # 最终输出报告
-│   └── report.md
-└── logs/                  # 执行日志
-    └── execution.log
+│   ├── price_data.csv
+│   └── company_info.csv
+└── output/                # 最终输出报告
+    └── report.md
 ```
 
-### 创建项目文件夹示例
+### 工作流程
+
+#### 第一次提问（新对话）
 
 ```bash
-# 1. 创建项目文件夹
-mkdir -p analysis_20260225_high_dividend/data
-mkdir -p analysis_20260225_high_dividend/output
+# 用户开启新对话
+用户: "帮我筛选高股息股票"
 
-# 2. 创建 README.md 记录分析方案
-cat > analysis_20260225_high_dividend/README.md << 'EOF'
+# AI 创建新项目文件夹
+PROJECT="analysis_$(date +%Y%m%d_%H%M%S)_high_dividend"
+mkdir -p ${PROJECT}/{data,output}
+
+# 创建 README.md
+cat > ${PROJECT}/README.md << 'EOF'
 # 高股息股票筛选分析
 
 ## 分析目标
@@ -100,29 +92,42 @@ cat > analysis_20260225_high_dividend/README.md << 'EOF'
 ## 使用 Skill
 - skills/China-market/high-dividend-strategy/
 
-## 数据来源
-- 理杏仁 API: cn/company/fundamental/non-financial
-- 理杏仁 API: cn/company/dividend
-
-## 执行步骤
-1. 查询股息率数据
-2. 查询分红历史数据
-3. 计算可持续性指标
-4. 生成筛选报告
-
 ## 执行时间
-2026-02-25
+2026-02-25 14:30:52
 EOF
 
-# 3. 下载数据到 data/ 目录
-python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn/company/dividend" \
-  --params '{"stockCode": "600519"}' \
-  > analysis_20260225_high_dividend/data/dividend_600519.csv
+# 下载数据到 data/
+python3 skills/lixinger-data-query/scripts/query_tool.py ... \
+  > ${PROJECT}/data/dividend_data.csv
 
-# 4. 生成报告到 output/ 目录
-# (分析完成后将报告保存到这里)
+# 生成报告到 output/
+# (分析完成后保存)
 ```
+
+#### 后续提问（同一对话）
+
+```bash
+# 用户在同一对话中继续
+用户: "这些股票的分红历史怎么样？"
+
+# AI 复用当前项目文件夹
+PROJECT="analysis_20260225_143052_high_dividend"  # 已存在
+
+# 追加数据到 data/
+python3 skills/lixinger-data-query/scripts/query_tool.py ... \
+  > ${PROJECT}/data/dividend_history.csv
+
+# 更新 README.md
+echo "## 追加分析：分红历史" >> ${PROJECT}/README.md
+
+# 更新报告到 output/
+```
+
+### 用户如何控制
+
+- **想开始新分析？** → 开启新对话
+- **想继续当前分析？** → 在当前对话中继续提问
+- **想查看历史分析？** → 查看对应的项目文件夹
 
 ---
 
@@ -134,11 +139,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 #### 第一优先级：市场分析 Skills（最优先）
 
-使用 `skills/China-market/`、`skills/HK-market/`、`skills/US-market/` 中的 116 个分析 skills：
-
-- **A股市场**：66 个专业分析 skills（`skills/China-market/`）
-- **港股市场**：13 个专业分析 skills（`skills/HK-market/`）
-- **美股市场**：37 个专业分析 skills（`skills/US-market/`）
+使用 `skills/China-market/`、`skills/HK-market/`、`skills/US-market/` 中的 116 个分析 skills。
 
 **为什么优先使用**：
 - 提供完整的分析方法论和工作流程
@@ -148,19 +149,13 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 **如何查找**：
 ```bash
-# 查找 A股分析 skills
-ls skills/China-market/
-
-# 查找港股分析 skills
-ls skills/HK-market/
-
-# 查找美股分析 skills
-ls skills/US-market/
+# 使用 grep 动态查找，不要浏览列表
+ls skills/China-market/ | grep -i "关键词"
 ```
 
 #### 第二优先级：理杏仁数据查询工具（备选）
 
-使用 `skills/lixinger-data-query/` 的 162 个理杏仁 API：
+使用 `skills/lixinger-data-query/` 的 162 个理杏仁 API。
 
 **何时使用**：
 - 找不到合适的市场分析 skill
@@ -169,16 +164,15 @@ ls skills/US-market/
 
 **如何使用**：
 ```bash
-# 使用 query_tool.py 查询理杏仁 API
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.dividend" \
+  --suffix "cn/company/dividend" \
   --params '{"stockCode": "600519"}' \
   --columns "date,dividendPerShare"
 ```
 
 #### 第三优先级：AkShare 接口（最后备选）
 
-使用 `skills/lixinger-data-query/api_new/akshare_data/` 的 1000+ AkShare 接口：
+使用 `skills/lixinger-data-query/api_new/akshare_data/` 的 1000+ AkShare 接口。
 
 **何时使用**：
 - 市场分析 skills 和理杏仁 API 都无法满足需求
@@ -187,8 +181,6 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 **如何使用**：
 ```python
 import akshare as ak
-
-# 示例：查询可转债数据
 bond_cb_jsl_df = ak.bond_cb_jsl(cookie="")
 print(bond_cb_jsl_df)
 ```
@@ -199,7 +191,7 @@ print(bond_cb_jsl_df)
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.dividend" \
+  --suffix "cn/company/dividend" \
   --params '{"stockCode": "600519"}' \
   --columns "date,dividendPerShare,dividendYield" \
   --limit 20
@@ -216,50 +208,26 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 当用户提出金融分析问题时，**严格按照以下流程执行**：
 
-#### 步骤 0：判断是否需要创建项目文件夹
-
-如果是复杂的市场分析任务（使用 Skills），创建项目文件夹：
+#### 步骤 0：创建或复用项目文件夹
 
 ```bash
-# 创建项目文件夹
-PROJECT_NAME="analysis_$(date +%Y%m%d)_主题关键词"
-mkdir -p ${PROJECT_NAME}/{data,output}
+# 新对话：创建新项目文件夹
+if [ 新对话 ]; then
+  PROJECT="analysis_$(date +%Y%m%d_%H%M%S)_主题"
+  mkdir -p ${PROJECT}/{data,output}
+fi
 
-# 创建 README.md 记录分析方案
-cat > ${PROJECT_NAME}/README.md << EOF
-# 分析标题
-
-## 分析目标
-[描述分析目标]
-
-## 使用 Skill
-- skills/[market]/[skill-name]/
-
-## 数据来源
-- [列出使用的 API]
-
-## 执行步骤
-1. [步骤1]
-2. [步骤2]
-
-## 执行时间
-$(date +%Y-%m-%d)
-EOF
+# 有上文：复用当前项目文件夹
+if [ 有上文 ]; then
+  PROJECT="analysis_20260225_143052_主题"  # 已存在
+fi
 ```
 
 #### 步骤 1：使用 grep 查找合适的 Skill（第一优先级）
 
-**不要浏览技能列表！直接搜索：**
-
 ```bash
-# A股分析
+# 使用 grep 动态查找，不要浏览列表
 ls skills/China-market/ | grep -i "关键词"
-
-# 港股分析
-ls skills/HK-market/ | grep -i "关键词"
-
-# 美股分析
-ls skills/US-market/ | grep -i "关键词"
 
 # 示例：查找高股息相关 skills
 ls skills/China-market/ | grep -i "dividend"
@@ -283,14 +251,13 @@ cat skills/China-market/high-dividend-strategy/references/data-queries.md
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/company/dividend" \
   --params '{"stockCode": "600519"}' \
-  --columns "date,dividendPerShare,dividendYield" \
-  > ${PROJECT_NAME}/data/dividend_data.csv
+  > ${PROJECT}/data/dividend_data.csv
 ```
 
 #### 步骤 4：执行分析并生成报告
 
 - 按照 Skill 的方法论进行分析
-- 将最终报告保存到 `${PROJECT_NAME}/output/report.md`
+- 将最终报告保存到 `${PROJECT}/output/report.md`
 
 #### 步骤 5：如果找不到合适的 Skill，使用理杏仁 API（第二优先级）
 
@@ -303,9 +270,8 @@ cat skills/lixinger-data-query/api_new/api-docs/[api_name].md
 
 # 使用 query_tool.py 查询
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company.dividend" \
-  --params '{"stockCode": "600519"}' \
-  --columns "date,dividendPerShare"
+  --suffix "cn/company/dividend" \
+  --params '{"stockCode": "600519"}'
 ```
 
 #### 步骤 6：如果理杏仁 API 也无法满足，使用 AkShare（第三优先级）
@@ -332,8 +298,8 @@ python3 -c "import akshare as ak; print(ak.interface_name())"
 **执行步骤**：
 
 ```bash
-# 1. 创建项目文件夹
-PROJECT="analysis_20260225_high_dividend"
+# 1. 创建项目文件夹（新对话）
+PROJECT="analysis_$(date +%Y%m%d_%H%M%S)_high_dividend"
 mkdir -p ${PROJECT}/{data,output}
 
 # 2. 使用 grep 查找相关 Skill
@@ -356,7 +322,7 @@ cat > ${PROJECT}/README.md << 'EOF'
 - 分红率 30%-70%
 
 ## 执行时间
-2026-02-25
+2026-02-25 14:30:52
 EOF
 
 # 5. 获取数据（示例：查询知名高股息股票）
@@ -371,69 +337,26 @@ done
 # 7. 生成报告保存到 output/report.md
 ```
 
-### 示例 2：事件研究分析（完整流程）
+### 示例 2：继续分析（同一对话）
 
-**用户问**："分析一下特变电工发布业绩预告后股价的表现"
-
-**执行步骤**：
-
-```bash
-# 1. 创建项目文件夹
-PROJECT="analysis_20260225_event_study_600089"
-mkdir -p ${PROJECT}/{data,output}
-
-# 2. 使用 grep 查找相关 Skill
-ls skills/China-market/ | grep -i "event"
-# 输出：event-driven-detector, event-study
-
-# 3. 选择 event-study，查看文档
-cat skills/China-market/event-study/SKILL.md
-
-# 4. 创建分析方案
-cat > ${PROJECT}/README.md << 'EOF'
-# 特变电工业绩预告事件研究
-
-## 股票代码
-600089
-
-## 事件日期
-2025-08-21
-
-## 使用 Skill
-- skills/China-market/event-study/
-
-## 执行时间
-2026-02-25
-EOF
-
-# 5. 获取公告数据
-python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn/company/announcement" \
-  --params '{"stockCode": "600089", "startDate": "2025-08-01", "endDate": "2025-09-30"}' \
-  > ${PROJECT}/data/announcements.csv
-
-# 6. 获取股价数据
-python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn/company/fundamental/non-financial" \
-  --params '{"stockCodes": ["600089"], "startDate": "2025-08-01", "endDate": "2025-09-30", "metricsList": ["sp", "spc", "tv"]}' \
-  > ${PROJECT}/data/price_data.csv
-
-# 7. 按照 Skill 方法论进行事件研究分析
-# 8. 生成报告保存到 output/report.md
-```
-
-### 示例 3：简单数据查询（无需项目文件夹）
-
-**用户问**："查询贵州茅台的基本信息"
+**用户问**："这些股票的分红历史怎么样？"
 
 **执行步骤**：
 
 ```bash
-# 简单查询，无需创建项目文件夹
+# 1. 复用当前项目文件夹
+PROJECT="analysis_20260225_143052_high_dividend"  # 已存在
+
+# 2. 追加数据
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn/company" \
-  --params '{"stockCodes": ["600519"]}' \
-  --columns "stockCode,name,industry"
+  --suffix "cn/company/dividend" \
+  --params '{"stockCode": "601398", "startDate": "2020-01-01"}' \
+  > ${PROJECT}/data/dividend_history_601398.csv
+
+# 3. 更新 README.md
+echo "## 追加分析：分红历史" >> ${PROJECT}/README.md
+
+# 4. 更新报告
 ```
 
 ---
@@ -462,33 +385,11 @@ skills/
 │   └── ... (其他 65 个 skills)
 │
 ├── HK-market/                     # 13 个港股分析 skills（首选）
-│   ├── hk-market-overview/
-│   │   ├── SKILL.md
-│   │   └── references/
-│   │       └── data-queries.md
-│   └── ... (其他 12 个 skills)
+│   └── ... (13 个 skills)
 │
 └── US-market/                     # 37 个美股分析 skills（首选）
-    ├── market-breadth-monitor/
-    │   ├── SKILL.md
-    │   └── references/
-    │       └── data-queries.md
-    └── ... (其他 36 个 skills)
+    └── ... (37 个 skills)
 ```
-
-### 关键文档
-
-1. **API 列表**：`skills/lixinger-data-query/SKILL.md`
-   - 包含所有 162 个 API 的列表和说明
-   - 仅在找不到合适的分析 skill 时参考
-
-2. **LLM 使用指南**：`skills/lixinger-data-query/LLM_USAGE_GUIDE.md`
-   - 详细的调用流程和参数构造技巧
-
-3. **数据获取指南**：
-   - A股：`skills/China-market/{skill-name}/references/data-queries.md`
-   - 港股：`skills/HK-market/{skill-name}/references/data-queries.md`
-   - 美股：`skills/US-market/{skill-name}/references/data-queries.md`
 
 ---
 
@@ -514,7 +415,7 @@ cat token.cfg
 ```bash
 # 直接运行，无需激活虚拟环境
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn.company" \
+  --suffix "cn/company" \
   --params '{"stockCodes": ["600519"]}' \
   --columns "stockCode,name"
 ```
@@ -527,14 +428,19 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 **必须严格遵守的执行顺序：**
 
-1. **先 grep 搜索，不要浏览列表**
+1. **新对话创建项目文件夹，有上文复用文件夹**
    ```bash
-   ls skills/China-market/ | grep -i "关键词"
+   # 新对话
+   PROJECT="analysis_$(date +%Y%m%d_%H%M%S)_主题"
+   mkdir -p ${PROJECT}/{data,output}
+   
+   # 有上文
+   PROJECT="analysis_20260225_143052_主题"  # 已存在
    ```
 
-2. **复杂分析必须创建项目文件夹**
+2. **先 grep 搜索，不要浏览列表**
    ```bash
-   mkdir -p analysis_YYYYMMDD_主题/{data,output}
+   ls skills/China-market/ | grep -i "关键词"
    ```
 
 3. **数据保存到项目的 data/ 目录**
@@ -572,9 +478,10 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ### 3. 项目管理原则
 
-- **复杂分析必须创建项目文件夹**
-- **简单查询无需项目文件夹**
-- **项目命名规范**：`analysis_YYYYMMDD_主题`
+- **一个对话 = 一个项目文件夹**
+- **新对话 = 创建新文件夹**
+- **有上文 = 复用当前文件夹**
+- **项目命名规范**：`analysis_YYYYMMDD_HHMMSS_主题`
 - **README.md 记录分析方案**
 
 ### 4. 查找技巧
@@ -602,13 +509,13 @@ ls skills/China-market/ | grep -i "portfolio"   # 组合管理
 
 ---
 
-**版本**: v4.0.0  
+**版本**: v4.1.0  
 **更新日期**: 2026-02-25  
 **主要改进**：
-- 删除冗长的技能列表，改为动态 grep 查找
-- 添加项目工作目录管理机制
-- 优化工作流程，强调先搜索再执行
-- 简化文档结构，提高可读性
+- 极简化项目管理规则：一个对话 = 一个项目文件夹
+- 新对话创建新文件夹，有上文复用文件夹
+- 所有操作都在同一个文件夹中，无需判断简单/复杂
+- 文件夹命名精确到秒：analysis_YYYYMMDD_HHMMSS_主题
 
 **技能总数**: 116 个市场分析 Skills + 162 个理杏仁 API + 1000+ AkShare 接口  
 **数据源**: 理杏仁开放平台 + AkShare  
