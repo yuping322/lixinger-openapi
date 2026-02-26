@@ -44,30 +44,130 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ---
 
+### 查询客户集中度
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/customers" \
+  --params '{"stockCode":"600519","startDate":"2023-01-01"}' \
+  --columns "date,declarationDate,top5Customer"
+```
+
+### 查询供应商集中度
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/suppliers" \
+  --params '{"stockCode":"600519","startDate":"2023-01-01"}' \
+  --columns "date,declarationDate,top5Supplier"
+```
+
+### 查询公募基金持股
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/fund-shareholders" \
+  --params '{"stockCode":"600519","startDate":"2025-01-01"}' \
+  --columns "date,fundCode,name,holdings,marketCap,proportionOfCapitalization" \
+  --limit 20
+```
+
+### 查询基金公司持股
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/fund-collection-shareholders" \
+  --params '{"stockCode":"600519","startDate":"2025-01-01"}' \
+  --limit 20
+```
+
+### 查询问询函
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/inquiry" \
+  --params '{"stockCode":"600519","startDate":"2023-01-01"}' \
+  --columns "date,type,displayTypeText,linkText"
+```
+
+### 查询监管措施
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/measures" \
+  --params '{"stockCode":"600519","startDate":"2023-01-01"}' \
+  --columns "date,type,displayTypeText,referent"
+```
+
+### 查询前十大流通股东
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/nolimit-shareholders" \
+  --params '{"stockCode":"600519","startDate":"2025-01-01"}' \
+  --columns "date,declarationDate,shareholderName,shareholderType,shares,sharesRatio"
+```
+
+### 查询股本变动历史
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/equity-change" \
+  --params '{"stockCode":"600519","startDate":"2023-01-01"}' \
+  --columns "date,changeDate,changeReason,totalShares,circulatingShares"
+```
+
+---
+
 ## 本 Skill 常用 API
 
-- `cn/company/profile`
-- `cn/company`
-- `cn/company/fundamental/non_financial`
-- `cn/company/fs/non_financial`
-- `cn/company/operating-data`
-- `cn/company/operation-revenue-constitution`
-- `cn/company/majority-shareholders`
-- `cn/company/major-shareholders-shares-change`
-- `cn/company/senior-executive-shares-change`
-- `cn/company/shareholders-num`
-- `cn/company/pledge`
-- `cn/company/announcement`
-- `cn/company/trading-abnormal`
-- `cn/company/allotment`
-- `cn/company/dividend`
-- `cn/company/candlestick`
-- `cn/company/margin-trading-and-securities-lending`
-- `cn/company/mutual-market`
-- `cn/company/hot/tr_dri`
-- `cn/company/block-deal`
-- `cn/company/industries`
-- `cn/company/indices`
+**基础信息**:
+- `cn/company/profile` - 公司概况
+- `cn/company` - 公司基本信息
+
+**财务与估值**:
+- `cn/company/fundamental/non_financial` - 基本面数据（PE/PB/ROE等）
+- `cn/company/fs/non_financial` - 财报数据（营收/利润等）
+- `cn/company/operating-data` - 经营数据
+- `cn/company/operation-revenue-constitution` - 营收构成
+
+**业务质量**（新增）:
+- `cn/company/customers` - 客户集中度
+- `cn/company/suppliers` - 供应商集中度
+
+**股东与股权**:
+- `cn/company/majority-shareholders` - 前十大股东
+- `cn/company/nolimit-shareholders` - 前十大流通股东（新增）
+- `cn/company/major-shareholders-shares-change` - 大股东增减持
+- `cn/company/senior-executive-shares-change` - 高管增减持
+- `cn/company/shareholders-num` - 股东人数
+- `cn/company/pledge` - 股权质押
+- `cn/company/equity-change` - 股本变动（新增）
+
+**机构持仓**（新增）:
+- `cn/company/fund-shareholders` - 公募基金持股
+- `cn/company/fund-collection-shareholders` - 基金公司持股
+
+**公告与监管**:
+- `cn/company/announcement` - 公告
+- `cn/company/inquiry` - 问询函（新增）
+- `cn/company/measures` - 监管措施（新增）
+- `cn/company/trading-abnormal` - 龙虎榜
+
+**分红与配股**:
+- `cn/company/allotment` - 配股
+- `cn/company/dividend` - 分红
+
+**交易与资金**:
+- `cn/company/candlestick` - K线数据
+- `cn/company/margin-trading-and-securities-lending` - 融资融券
+- `cn/company/mutual-market` - 北向资金
+- `cn/company/hot/tr_dri` - 市场热度
+- `cn/company/block-deal` - 大宗交易
+
+**行业与指数**:
+- `cn/company/industries` - 所属行业
+- `cn/company/indices` - 所属指数
 
 ---
 
