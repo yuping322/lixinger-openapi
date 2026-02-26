@@ -39,7 +39,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/industry" \
-  --params \'{"source": "sw", "level": "one"}\' \
+  --params '{"source": "sw", "level": "one"}' \
   --limit 20
 ```
 

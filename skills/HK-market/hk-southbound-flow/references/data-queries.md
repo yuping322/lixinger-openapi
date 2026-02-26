@@ -169,10 +169,10 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 需要循环调用，每次查询一只股票
 # 示例：查询腾讯、阿里、美团的南向资金
-for stock in ["00700", "09988", "03690"]; do
+for stock in 00700 09988 03690; do
   python3 skills/lixinger-data-query/scripts/query_tool.py \
     --suffix "hk/company/mutual-market" \
-    --params "{\"stockCode\": \"$stock\", \"startDate\": \"2024-12-31\", \"endDate\": \"2024-12-31\"}" \
+    --params "{\"stockCode\": \"${stock}\", \"startDate\": \"2026-01-01\", \"endDate\": \"2026-02-24\"}" \
     --columns "date,shareholdings"
 done
 ```
@@ -439,11 +439,14 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 # 1. 获取所有行业的南向资金（当日和前一日）
-python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk/industry/mutual-market/hsi" \
-  --params '{"startDate": "2026-01-01", "endDate": "2026-02-24"}' \
-  --columns "industryCode,date,shareholdingsMoney" \
-  --limit 50
+# 注意：hk/industry/mutual-market/hsi API 要求 stockCode 参数，需要循环查询每个行业
+for code in H50 H51 H52 H53 H54 H55 H56 H57 H58 H59; do
+  python3 skills/lixinger-data-query/scripts/query_tool.py \
+    --suffix "hk/industry/mutual-market/hsi" \
+    --params "{\"stockCode\": \"${code}\", \"startDate\": \"2026-01-01\", \"endDate\": \"2026-02-24\"}" \
+    --columns "date,shareholdingsMoney" \
+    --limit 50
+done
 
 # 2. 获取行业名称
 python3 skills/lixinger-data-query/scripts/query_tool.py \

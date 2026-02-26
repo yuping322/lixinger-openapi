@@ -217,6 +217,20 @@
 - `us/index/fundamental`
 - `hk/industry/fundamental/hsi`
 
+**0.4.4 A股 fs API 不支持部分现金流和资产负债表指标**
+```bash
+# ❌ 错误：使用不支持的现金流和资产负债表指标
+--params '{"metricsList": ["q.cf.cfo.t", "q.bs.te.t"]}'
+# Error: (q.cf.cfo.t,q.bs.te.t) are invalid fs metrics
+
+# ✅ 正确：使用支持的指标
+--params '{"metricsList": ["q.ps.toi.t", "q.ps.np.t", "q.bs.ta.t", "q.ps.gp_m.t"]}'
+```
+**cn/company/fs/non_financial 限制**：
+- 支持：`q.ps.*` (利润表指标), `q.bs.ta.t` (总资产)
+- 不支持：`q.cf.cfo.t` (经营现金流), `q.bs.te.t` (股东权益) 等大部分现金流和资产负债表指标
+- 替代方案：使用 `cn/company/fundamental/non_financial` API 或查看原始财报
+
 #### 错误类型 0.5：API 限制和特殊规则
 
 **0.5.1 港股 fs API 仅支持利润表**

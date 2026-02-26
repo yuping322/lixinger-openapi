@@ -122,8 +122,12 @@ done
 ```
 ✅ **正确方案 2**: 循环查询每个指数
 ```bash
+# 示例：循环查询每个指数
 for code in 000001 399001; do
-  python3 ... --params "{\"stockCodes\": [\"${code}\"], \"startDate\": \"2024-01-01\", ...}"
+  python3 skills/lixinger-data-query/scripts/query_tool.py \
+    --suffix "cn/index/fundamental" \
+    --params "{\"stockCodes\": [\"${code}\"], \"startDate\": \"2026-01-01\", \"metricsList\": [\"pe_ttm.mcw\", \"pb.mcw\"]}" \
+    --limit 10
 done
 ```
 

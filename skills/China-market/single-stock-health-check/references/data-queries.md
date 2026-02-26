@@ -27,8 +27,10 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/company/fs/non_financial" \
-  --params '{"stockCodes":["600519"],"startDate":"2023-01-01","endDate":"2026-02-23","metricsList":["q.ps.toi.t","q.ps.np.t","q.cf.cfo.t","q.bs.ta.t","q.bs.te.t","q.ps.gp_m.t"]}'
+  --params '{"stockCodes":["600519"],"startDate":"2023-01-01","endDate":"2026-02-23","metricsList":["q.ps.toi.t","q.ps.np.t","q.bs.ta.t","q.ps.gp_m.t","q.ps.op.t","q.ps.ebitda.t"]}'
 ```
+
+**注意**: `cn/company/fs/non_financial` API 对现金流量表和资产负债表指标支持有限。`q.cf.cfo.t` (经营现金流) 和 `q.bs.te.t` (股东权益) 不可用。如需这些指标，请使用 `cn/company/fundamental/non_financial` API 或查看原始财报。
 
 ---
 

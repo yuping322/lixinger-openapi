@@ -1,259 +1,243 @@
 #!/usr/bin/env python3
 """
 测试所有 data-queries.md 文件中的示例命令
+一次跑完所有测试，不中途退出，保存完整日志
 """
 import os
 import re
-import subprocess
 import json
+import subprocess
 import random
 from pathlib import Path
-from typing import List, Dict, Tuple
+from datetime import datetime
 
-def find_all_data_queries_files() -> List[Path]:
+def find_data_queries_files():
     """查找所有 data-queries.md 文件"""
-    skills_dir = Path("skills")
     files = []
-    
-    for market in ["China-market", "HK-market", "US-market"]:
-        market_dir = skills_dir / market
-        if market_dir.exists():
-            for skill_dir in market_dir.iterdir():
-                if skill_dir.is_dir():
-                    data_queries = skill_dir / "references" / "data-queries.md"
-                    if data_queries.exists():
-                        files.append(data_queries)
-    
-    return sorted(files)
+    for root, dirs, filenames in os.walk('skills'):
+        for filename in filenames:
+            if filename == 'data-queries.md':
+                filepath = os.path.join(root, filename)
+                files.append(filepath)
+    return files
 
-def extract_examples_from_file(file_path: Path) -> List[Dict]:
-    """从 data-queries.md 文件中提取示例命令"""
-    with open(file_path, 'r', encoding='utf-8') as f:
+def extract_commands(filepath):
+    """从 markdown 文件中提取命令"""
+    commands = []
+    with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
     
-    examples = []
-    
-    # 匹配代码块中的 python3 命令
-    # 匹配 ```bash 或 ```sh 代码块
-    code_blocks = re.findall(r'```(?:bash|sh)\n(.*?)```', content, re.DOTALL)
+    # 提取代码块中的命令
+    code_blocks = re.findall(r'```bash\n(.*?)\n```', content, re.DOTALL)
     
     for block in code_blocks:
-        # 查找 python3 query_tool.py 命令
+        # 查找 python3 命令
         lines = block.strip().split('\n')
-        command_lines = []
+        cmd_lines = []
         in_command = False
-        skip_block = False
-        
-        # 检查是否包含循环语句、变量替换或输出重定向
-        block_text = '\n'.join(lines)
-        if any([
-            'for ' in block_text and ' in ' in block_text,
-            '${' in block_text,  # 变量替换
-            ' > ' in block_text and '.csv' in block_text,  # 输出重定向到文件
-        ]):
-            skip_block = True
-        
-        if skip_block:
-            continue
+        in_for_loop = False
         
         for line in lines:
-            # 跳过注释
-            if line.strip().startswith('#'):
+            line_stripped = line.strip()
+            
+            # 检测 for 循环
+            if line_stripped.startswith('for ') and ' in ' in line_stripped:
+                in_for_loop = True
                 continue
             
-            # 检测命令开始
-            if 'python3' in line and 'query_tool.py' in line:
-                in_command = True
-                command_lines = [line]
-            elif in_command:
-                # 继续收集多行命令
-                if line.strip().endswith('\\'):
-                    command_lines.append(line)
-                elif line.strip():
-                    command_lines.append(line)
-                    # 命令结束
-                    full_command = ' '.join(command_lines)
-                    examples.append({
-                        'file': str(file_path),
-                        'command': full_command
-                    })
-                    in_command = False
-                    command_lines = []
-                else:
-                    # 空行，命令结束
-                    if command_lines:
-                        full_command = ' '.join(command_lines)
-                        examples.append({
-                            'file': str(file_path),
-                            'command': full_command
-                        })
-                    in_command = False
-                    command_lines = []
-    
-    return examples
-
-def clean_command(command: str) -> str:
-    """清理命令字符串"""
-    # 移除反斜杠和多余空格
-    command = command.replace('\\', ' ')
-    command = re.sub(r'\s+', ' ', command)
-    return command.strip()
-
-def run_command(command: str, timeout: int = 60, max_retries: int = 2) -> Tuple[bool, str]:
-    """执行命令并返回结果，支持重试"""
-    for attempt in range(max_retries):
-        try:
-            result = subprocess.run(
-                command,
-                shell=True,
-                capture_output=True,
-                text=True,
-                timeout=timeout
-            )
+            # 跳过 for 循环中的命令
+            if in_for_loop:
+                if line_stripped == 'done':
+                    in_for_loop = False
+                continue
             
-            if result.returncode == 0:
-                return True, result.stdout
-            else:
-                # Check if it's a network error that should be retried
-                error_msg = result.stderr
-                if 'SSLError' in error_msg or 'ConnectionError' in error_msg:
-                    if attempt < max_retries - 1:
-                        continue  # Retry
-                return False, error_msg
-        except subprocess.TimeoutExpired:
-            return False, f"Command timeout after {timeout}s"
-        except Exception as e:
-            return False, str(e)
+            # 开始一个新命令
+            if line_stripped.startswith('python3'):
+                in_command = True
+                cmd_lines.append(line_stripped)
+            # 继续当前命令（以 -- 开头或以 \ 结尾的行）
+            elif in_command and (line_stripped.startswith('--') or (cmd_lines and cmd_lines[-1].rstrip().endswith('\\'))):
+                cmd_lines.append(line_stripped)
+            # 命令结束
+            elif in_command:
+                break
+        
+        if cmd_lines:
+            # 合并命令行，移除反斜杠和多余空格
+            cmd = ' '.join(cmd_lines)
+            cmd = cmd.replace(' \\', '')  # 移除反斜杠
+            cmd = re.sub(r'\s+', ' ', cmd)  # 合并多余空格
+            commands.append(cmd.strip())
     
-    return False, "Max retries exceeded"
+    return commands
+
+def run_command(cmd, timeout=30):
+    """运行命令并返回结果"""
+    try:
+        result = subprocess.run(
+            cmd,
+            shell=True,
+            capture_output=True,
+            text=True,
+            timeout=timeout
+        )
+        return {
+            'success': result.returncode == 0,
+            'stdout': result.stdout,
+            'stderr': result.stderr,
+            'returncode': result.returncode
+        }
+    except subprocess.TimeoutExpired:
+        return {
+            'success': False,
+            'stdout': '',
+            'stderr': 'Command timeout',
+            'returncode': -1
+        }
+    except Exception as e:
+        return {
+            'success': False,
+            'stdout': '',
+            'stderr': str(e),
+            'returncode': -1
+        }
 
 def main():
-    print("=" * 80)
-    print("测试所有 data-queries.md 文件中的示例命令（随机顺序）")
-    print("=" * 80)
-    print()
+    start_time = datetime.now()
+    timestamp = start_time.strftime('%Y%m%d_%H%M%S')
+    
+    print("=" * 120)
+    print("测试所有 data-queries.md 文件中的示例命令（随机顺序，不中途退出）")
+    print("=" * 120)
     
     # 查找所有文件
-    files = find_all_data_queries_files()
-    print(f"✅ 找到 {len(files)} 个 data-queries.md 文件")
-    print()
+    files = find_data_queries_files()
+    print(f"\n✅ 找到 {len(files)} 个 data-queries.md 文件\n")
     
-    # 提取所有示例
-    all_examples = []
-    for file_path in files:
-        examples = extract_examples_from_file(file_path)
-        all_examples.extend(examples)
-    
-    print(f"✅ 提取到 {len(all_examples)} 个示例命令")
-    print()
-    
-    # 随机打乱顺序
-    random.shuffle(all_examples)
-    print("✅ 已随机打乱测试顺序")
-    print()
-    
-    # 测试每个示例
-    results = {
-        'total': len(all_examples),
-        'passed': 0,
-        'failed': 0,
-        'details': []
-    }
-    
-    for i, example in enumerate(all_examples, 1):
-        file_path = example['file']
-        command = clean_command(example['command'])
-        
-        # 获取 skill 名称
-        skill_name = Path(file_path).parent.parent.name
-        market = Path(file_path).parent.parent.parent.name
-        
-        print(f"[{i}/{len(all_examples)}] 测试: {market}/{skill_name}")
-        print(f"命令: {command[:100]}..." if len(command) > 100 else f"命令: {command}")
-        
-        success, output = run_command(command)
-        
-        if success:
-            print(f"✅ 成功")
-            results['passed'] += 1
-            results['details'].append({
+    # 提取所有命令
+    all_tests = []
+    for filepath in files:
+        commands = extract_commands(filepath)
+        for cmd in commands:
+            # 提取市场和 skill 名称
+            parts = filepath.split(os.sep)
+            market = parts[1] if len(parts) > 1 else 'unknown'
+            skill = parts[2] if len(parts) > 2 else 'unknown'
+            
+            all_tests.append({
                 'market': market,
-                'skill': skill_name,
-                'file': file_path,
-                'command': command,
-                'status': 'passed',
-                'output': output[:200] if len(output) > 200 else output
+                'skill': skill,
+                'file': filepath,
+                'command': cmd
             })
+    
+    print(f"✅ 提取到 {len(all_tests)} 个示例命令\n")
+    
+    # 随机打乱测试顺序
+    random.shuffle(all_tests)
+    print("✅ 已随机打乱测试顺序\n")
+    
+    # 运行测试
+    results = []
+    success_count = 0
+    fail_count = 0
+    errors_by_type = {}
+    
+    for i, test in enumerate(all_tests, 1):
+        print(f"[{i}/{len(all_tests)}] 测试: {test['market']}/{test['skill']}", end=' ')
+        
+        result = run_command(test['command'])
+        
+        test['result'] = result
+        test['test_number'] = i
+        results.append(test)
+        
+        if result['success']:
+            print("✅")
+            success_count += 1
         else:
-            print(f"❌ 失败")
-            print()
-            print("=" * 80)
-            print("错误详情")
-            print("=" * 80)
-            print(f"Market: {market}")
-            print(f"Skill: {skill_name}")
-            print(f"File: {file_path}")
-            print(f"Command: {command}")
-            print()
-            print("错误信息:")
-            print(output)
-            print("=" * 80)
+            print("❌")
+            fail_count += 1
             
-            results['failed'] += 1
-            results['details'].append({
-                'market': market,
-                'skill': skill_name,
-                'file': file_path,
-                'command': command,
-                'status': 'failed',
-                'error': output
+            # 分类错误
+            error_msg = result['stderr']
+            if 'ValidationError' in error_msg:
+                if 'are invalid' in error_msg:
+                    error_type = 'Invalid metrics'
+                elif 'is required' in error_msg:
+                    error_type = 'Missing required parameter'
+                elif 'must contain' in error_msg:
+                    error_type = 'Parameter constraint violation'
+                else:
+                    error_type = 'ValidationError (other)'
+            elif 'Api was not found' in error_msg:
+                error_type = 'API not found'
+            elif 'timeout' in error_msg.lower():
+                error_type = 'Timeout'
+            else:
+                error_type = 'Other error'
+            
+            if error_type not in errors_by_type:
+                errors_by_type[error_type] = []
+            errors_by_type[error_type].append({
+                'test_number': i,
+                'market': test['market'],
+                'skill': test['skill'],
+                'file': test['file'],
+                'command': test['command'],
+                'error': error_msg
             })
-            
-            # 保存当前结果
-            output_file = "test_data_queries_results.json"
-            with open(output_file, 'w', encoding='utf-8') as f:
-                json.dump(results, f, indent=2, ensure_ascii=False)
-            
-            print(f"\n⚠️  遇到错误，测试停止")
-            print(f"✅ 部分结果已保存到: {output_file}")
-            print(f"进度: {i}/{len(all_examples)} ({results['passed']} 成功, {results['failed']} 失败)")
-            
-            # 立即退出
-            return False
-        
-        print()
     
-    # 输出总结
-    print("=" * 80)
-    print("测试总结")
-    print("=" * 80)
-    print(f"总计: {results['total']}")
-    print(f"成功: {results['passed']} ({results['passed']/results['total']*100:.1f}%)")
-    print(f"失败: {results['failed']} ({results['failed']/results['total']*100:.1f}%)")
-    print()
+    end_time = datetime.now()
+    duration = (end_time - start_time).total_seconds()
     
-    # 保存详细结果
-    output_file = "test_data_queries_results.json"
-    with open(output_file, 'w', encoding='utf-8') as f:
+    # 保存完整结果
+    results_file = f'test_results_{timestamp}.json'
+    with open(results_file, 'w', encoding='utf-8') as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
     
-    print(f"✅ 详细结果已保存到: {output_file}")
+    # 生成错误报告
+    error_report_file = f'test_errors_{timestamp}.md'
+    with open(error_report_file, 'w', encoding='utf-8') as f:
+        f.write(f"# 测试错误报告\n\n")
+        f.write(f"**测试时间**: {start_time.strftime('%Y-%m-%d %H:%M:%S')}\n")
+        f.write(f"**测试时长**: {duration:.1f} 秒\n")
+        f.write(f"**总测试数**: {len(all_tests)}\n")
+        f.write(f"**成功**: {success_count} ({success_count/len(all_tests)*100:.1f}%)\n")
+        f.write(f"**失败**: {fail_count} ({fail_count/len(all_tests)*100:.1f}%)\n\n")
+        
+        f.write(f"## 错误分类统计\n\n")
+        for error_type, errors in sorted(errors_by_type.items(), key=lambda x: len(x[1]), reverse=True):
+            f.write(f"- **{error_type}**: {len(errors)} 个\n")
+        
+        f.write(f"\n## 详细错误列表\n\n")
+        for error_type, errors in sorted(errors_by_type.items(), key=lambda x: len(x[1]), reverse=True):
+            f.write(f"### {error_type} ({len(errors)} 个)\n\n")
+            for i, error in enumerate(errors, 1):
+                f.write(f"#### 错误 {i}: [{error['test_number']}/{len(all_tests)}] {error['market']}/{error['skill']}\n\n")
+                f.write(f"**文件**: `{error['file']}`\n\n")
+                f.write(f"**命令**:\n```bash\n{error['command']}\n```\n\n")
+                f.write(f"**错误信息**:\n```\n{error['error']}\n```\n\n")
+                f.write("---\n\n")
     
-    # 输出失败的命令
-    if results['failed'] > 0:
-        print()
-        print("=" * 80)
-        print("失败的命令")
-        print("=" * 80)
-        for detail in results['details']:
-            if detail['status'] == 'failed':
-                print(f"\n{detail['market']}/{detail['skill']}")
-                print(f"文件: {detail['file']}")
-                print(f"命令: {detail['command'][:100]}...")
-                print(f"错误: {detail['error'][:200]}")
+    # 打印总结
+    print("\n" + "=" * 120)
+    print("测试完成")
+    print("=" * 120)
+    print(f"测试时长: {duration:.1f} 秒")
+    print(f"总计: {len(all_tests)} 个测试")
+    print(f"成功: {success_count} ({success_count/len(all_tests)*100:.1f}%)")
+    print(f"失败: {fail_count} ({fail_count/len(all_tests)*100:.1f}%)")
     
-    return results['failed'] == 0
+    if errors_by_type:
+        print(f"\n错误分类:")
+        for error_type, errors in sorted(errors_by_type.items(), key=lambda x: len(x[1]), reverse=True):
+            print(f"  - {error_type}: {len(errors)} 个")
+    
+    print(f"\n✅ 完整结果已保存到: {results_file}")
+    print(f"✅ 错误报告已保存到: {error_report_file}\n")
+    
+    return 0 if fail_count == 0 else 1
 
 if __name__ == '__main__':
-    success = main()
-    exit(0 if success else 1)
+    exit(main())
