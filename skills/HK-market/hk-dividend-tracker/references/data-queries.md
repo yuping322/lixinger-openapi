@@ -33,7 +33,7 @@
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/company/dividend" \
-  --params '{"stockCodes": ["00005"], "startDate": "2020-01-01", "endDate": "2024-12-31"}' \
+  --params '{"stockCodes": ["00005"], "startDate": "2020-01-01", "endDate": "2026-02-24"}' \
   --columns "date,dividend,dividendAmount,annualNetProfitDividendRatio,exDate,paymentDate,fsEndDate" \
   --limit 100
 ```
@@ -66,7 +66,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/company/fundamental/non_financial" \
-  --params '{"stockCodes": ["00005"], "date": "2024-12-31", "metricsList": ["mc", "pe", "pb", "roe", "dyr"]}' \
+  --params '{"stockCodes": ["00005"], "date": "2026-02-24", "metricsList": ["mc", "pe", "pb", "roe", "dyr"]}' \
   --columns "date,stockCode,mc,pe,pb,roe,dyr"
 ```
 
@@ -84,7 +84,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/company/fs/non_financial" \
-  --params '{"stockCodes": ["00005"], "startDate": "2020-01-01", "endDate": "2024-12-31", "metricsList": ["np", "fcf", "revenue"]}' \
+  --params '{"stockCodes": ["00005"], "startDate": "2020-01-01", "endDate": "2026-02-24", "metricsList": ["np", "fcf", "revenue"]}' \
   --columns "date,np,fcf,revenue" \
   --limit 20
 ```
@@ -101,7 +101,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/company.candlestick" \
-  --params '{"stockCodes": ["00005"], "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
+  --params '{"stockCodes": ["00005"], "startDate": "2026-01-01", "endDate": "2026-02-24"}' \
   --columns "date,close,volume,amount" \
   --limit 300
 ```
@@ -124,7 +124,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/index/fundamental" \
-  --params '{"stockCodes": ["HSI"], "date": "2024-12-31", "metricsList": ["dyr.mcw", "pe_ttm.mcw", "pb.mcw"]}' \
+  --params '{"stockCodes": ["HSI"], "date": "2026-02-24", "metricsList": ["dyr.mcw", "pe_ttm.mcw", "pb.mcw"]}' \
   --columns "date,dyr.mcw,pe_ttm.mcw,pb.mcw"
 ```
 
@@ -135,7 +135,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/industry/fundamental/hsi" \
-  --params '{"industryCode": "HK001", "date": "2024-12-31", "metricsList": ["dyr.mcw", "pe_ttm.mcw"]}' \
+  --params '{"industryCode": "HK001", "date": "2026-02-24", "metricsList": ["dyr.mcw", "pe_ttm.mcw"]}' \
   --columns "date,dyr.mcw,pe_ttm.mcw"
 ```
 
@@ -196,7 +196,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 # 2. 获取这些股票的股息率
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/company/fundamental/non_financial" \
-  --params '{"stockCodes": ["00700", "09988", ...], "date": "2024-12-31", "metricsList": ["dyr"]}' \
+  --params '{"stockCodes": ["00700", "09988", ...], "date": "2026-02-24", "metricsList": ["dyr"]}' \
   --columns "stockCode,dyr"
 
 # 3. 筛选股息率 > 5% 的股票
@@ -247,14 +247,14 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 # 1. 获取5年分红历史
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/company/dividend" \
-  --params '{"stockCodes": ["00005"], "startDate": "2020-01-01", "endDate": "2024-12-31"}' \
+  --params '{"stockCodes": ["00005"], "startDate": "2020-01-01", "endDate": "2026-02-24"}' \
   --columns "date,dividend,dividendAmount,annualNetProfitDividendRatio" \
   --limit 20
 
 # 2. 获取当前股息率
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/company/fundamental/non_financial" \
-  --params '{"stockCodes": ["00005"], "date": "2024-12-31", "metricsList": ["dyr", "pe", "pb"]}' \
+  --params '{"stockCodes": ["00005"], "date": "2026-02-24", "metricsList": ["dyr", "pe", "pb"]}' \
   --columns "date,dyr,pe,pb"
 
 # 3. 获取财务数据评估可持续性
@@ -277,7 +277,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 # 2. 获取股息率数据
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/company/fundamental/non_financial" \
-  --params '{"stockCodes": ["00005", "00011", ...], "date": "2024-12-31", "metricsList": ["dyr", "pe"]}' \
+  --params '{"stockCodes": ["00005", "00011", ...], "date": "2026-02-24", "metricsList": ["dyr", "pe"]}' \
   --columns "stockCode,dyr,pe"
 
 # 3. 筛选股息率 > 5% 且 PE < 10 的股票

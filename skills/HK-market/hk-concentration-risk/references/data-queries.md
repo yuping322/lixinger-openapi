@@ -67,7 +67,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/company/fundamental/non_financial" \
-  --params '{"stockCodes": ["00700"], "date": "2024-12-31"}' \
+  --params '{"stockCodes": ["00700"], "date": "2026-02-24"}' \
   --columns "date,stockCode,mc,pe,pb,roe" \
   --limit 20
 ```
@@ -79,7 +79,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/company.mutual-market" \
-  --params '{"stockCode": "00700", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
+  --params '{"stockCode": "00700", "startDate": "2026-01-01", "endDate": "2026-02-24"}' \
   --columns "date,shareholdings,shareholdingsRatio" \
   --limit 100
 ```
@@ -91,7 +91,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/index/fundamental" \
-  --params '{"stockCodes": ["HSI"], "date": "2024-12-31", "metricsList": ["mc", "pe_ttm.mcw", "pb.mcw"]}' \
+  --params '{"stockCodes": ["HSI"], "date": "2026-02-24", "metricsList": ["mc", "pe_ttm.mcw", "pb.mcw"]}' \
   --columns "date,mc,pe_ttm.mcw,pb.mcw"
 ```
 
@@ -102,7 +102,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/industry/fundamental/hsi" \
-  --params '{"industryCode": "HK001", "date": "2024-12-31", "metricsList": ["mc", "pe_ttm.mcw"]}' \
+  --params '{"industryCode": "HK001", "date": "2026-02-24", "metricsList": ["mc", "pe_ttm.mcw"]}' \
   --columns "date,mc,pe_ttm.mcw"
 ```
 

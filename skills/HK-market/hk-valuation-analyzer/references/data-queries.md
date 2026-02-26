@@ -38,7 +38,7 @@
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/index/fundamental" \
-  --params '{"stockCodes": ["HSI"], "date": "2024-12-31", "metricsList": ["pe_ttm.mcw", "pe_ttm.y10.mcw.cvpos", "pb.mcw", "pb.y10.mcw.cvpos", "ps_ttm.mcw", "ps_ttm.y10.mcw.cvpos", "dyr.mcw", "dyr.y10.mcw.cvpos", "mc", "cp", "cpc"]}' \
+  --params '{"stockCodes": ["HSI"], "date": "2026-02-24", "metricsList": ["pe_ttm.mcw", "pe_ttm.y10.mcw.cvpos", "pb.mcw", "pb.y10.mcw.cvpos", "ps_ttm.mcw", "ps_ttm.y10.mcw.cvpos", "dyr.mcw", "dyr.y10.mcw.cvpos", "mc", "cp", "cpc"]}' \
   --columns "date,pe_ttm.mcw,pe_ttm.y10.mcw.cvpos,pb.mcw,pb.y10.mcw.cvpos,ps_ttm.mcw,ps_ttm.y10.mcw.cvpos,dyr.mcw,dyr.y10.mcw.cvpos,mc,cp,cpc"
 ```
 
@@ -66,7 +66,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/index/fundamental" \
-  --params '{"stockCodes": ["HSI", "HSCEI", "HSCCI", "HSTECH"], "date": "2024-12-31", "metricsList": ["pe_ttm.mcw", "pe_ttm.y10.mcw.cvpos", "pb.mcw", "dyr.mcw"]}' \
+  --params '{"stockCodes": ["HSI", "HSCEI", "HSCCI", "HSTECH"], "date": "2026-02-24", "metricsList": ["pe_ttm.mcw", "pe_ttm.y10.mcw.cvpos", "pb.mcw", "dyr.mcw"]}' \
   --columns "date,pe_ttm.mcw,pe_ttm.y10.mcw.cvpos,pb.mcw,dyr.mcw"
 ```
 
@@ -77,7 +77,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/index/fundamental" \
-  --params '{"stockCodes": ["HSI"], "startDate": "2020-01-01", "endDate": "2024-12-31", "metricsList": ["pe_ttm.mcw", "pb.mcw", "dyr.mcw", "mc"]}' \
+  --params '{"stockCodes": ["HSI"], "startDate": "2020-01-01", "endDate": "2026-02-24", "metricsList": ["pe_ttm.mcw", "pb.mcw", "dyr.mcw", "mc"]}' \
   --columns "date,pe_ttm.mcw,pb.mcw,dyr.mcw,mc" \
   --limit 1000
 ```
@@ -89,7 +89,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/industry/fundamental/hsi" \
-  --params '{"stockCodes": ["H50", "H5010", "H5020", "H5030", "H5040"], "date": "2024-12-31", "metricsList": ["pe_ttm.mcw", "pe_ttm.y10.mcw.cvpos", "pb.mcw", "pb.y10.mcw.cvpos", "dyr.mcw", "mc"]}' \
+  --params '{"stockCodes": ["H50", "H5010", "H5020", "H5030", "H5040"], "date": "2026-02-24", "metricsList": ["pe_ttm.mcw", "pe_ttm.y10.mcw.cvpos", "pb.mcw", "pb.y10.mcw.cvpos", "dyr.mcw", "mc"]}' \
   --columns "date,pe_ttm.mcw,pe_ttm.y10.mcw.cvpos,pb.mcw,pb.y10.mcw.cvpos,dyr.mcw,mc"
 ```
 
@@ -107,7 +107,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/industry/fundamental/hsi" \
-  --params '{"date": "2024-12-31", "metricsList": ["pe_ttm.mcw", "pe_ttm.y10.mcw.cvpos", "pb.mcw", "dyr.mcw", "mc"]}' \
+  --params '{"date": "2026-02-24", "metricsList": ["pe_ttm.mcw", "pe_ttm.y10.mcw.cvpos", "pb.mcw", "dyr.mcw", "mc"]}' \
   --columns "industryCode,date,pe_ttm.mcw,pe_ttm.y10.mcw.cvpos,pb.mcw,dyr.mcw,mc" \
   --limit 50
 ```
@@ -130,7 +130,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/company/fundamental/non_financial" \
-  --params '{"stockCodes": ["00700"], "date": "2024-12-31", "metricsList": ["pe", "pe.y10.cvpos", "pb", "pb.y10.cvpos", "ps", "dyr", "mc", "roe", "roa"]}' \
+  --params '{"stockCodes": ["00700"], "date": "2026-02-24", "metricsList": ["pe", "pe.y10.cvpos", "pb", "pb.y10.cvpos", "ps", "dyr", "mc", "roe", "roa"]}' \
   --columns "date,stockCode,pe,pe.y10.cvpos,pb,pb.y10.cvpos,ps,dyr,mc,roe,roa"
 ```
 
@@ -151,7 +151,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/company/fundamental/non_financial" \
-  --params '{"stockCodes": ["00700"], "startDate": "2020-01-01", "endDate": "2024-12-31", "metricsList": ["pe", "pb", "ps", "dyr", "mc"]}' \
+  --params '{"stockCodes": ["00700"], "startDate": "2020-01-01", "endDate": "2026-02-24", "metricsList": ["pe", "pb", "ps", "dyr", "mc"]}' \
   --columns "date,pe,pb,ps,dyr,mc" \
   --limit 1000
 ```
@@ -163,7 +163,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/company/fs/non_financial" \
-  --params '{"stockCodes": ["00700"], "startDate": "2020-01-01", "endDate": "2024-12-31", "metricsList": ["fcf", "np", "revenue", "totalAssets", "totalLiabilities"]}' \
+  --params '{"stockCodes": ["00700"], "startDate": "2020-01-01", "endDate": "2026-02-24", "metricsList": ["fcf", "np", "revenue", "totalAssets", "totalLiabilities"]}' \
   --columns "date,fcf,np,revenue,totalAssets,totalLiabilities" \
   --limit 20
 ```
@@ -351,7 +351,7 @@ def valuation_range(historical_pe, current_price):
 # 获取恒生指数估值及分位数
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/index/fundamental" \
-  --params '{"stockCodes": ["HSI"], "date": "2024-12-31", "metricsList": ["pe_ttm.mcw", "pe_ttm.y10.mcw.cvpos", "pb.mcw", "pb.y10.mcw.cvpos", "dyr.mcw", "dyr.y10.mcw.cvpos"]}' \
+  --params '{"stockCodes": ["HSI"], "date": "2026-02-24", "metricsList": ["pe_ttm.mcw", "pe_ttm.y10.mcw.cvpos", "pb.mcw", "pb.y10.mcw.cvpos", "dyr.mcw", "dyr.y10.mcw.cvpos"]}' \
   --columns "date,pe_ttm.mcw,pe_ttm.y10.mcw.cvpos,pb.mcw,pb.y10.mcw.cvpos,dyr.mcw,dyr.y10.mcw.cvpos"
 ```
 
@@ -360,7 +360,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 # 获取所有行业估值
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/industry/fundamental/hsi" \
-  --params '{"date": "2024-12-31", "metricsList": ["pe_ttm.mcw", "pe_ttm.y10.mcw.cvpos", "pb.mcw", "dyr.mcw"]}' \
+  --params '{"date": "2026-02-24", "metricsList": ["pe_ttm.mcw", "pe_ttm.y10.mcw.cvpos", "pb.mcw", "dyr.mcw"]}' \
   --columns "industryCode,pe_ttm.mcw,pe_ttm.y10.mcw.cvpos,pb.mcw,dyr.mcw" \
   --limit 50
 ```
@@ -370,7 +370,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 # 获取个股估值指标
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/company/fundamental/non_financial" \
-  --params '{"stockCodes": ["00700"], "date": "2024-12-31", "metricsList": ["pe", "pe.y10.cvpos", "pb", "pb.y10.cvpos", "dyr", "mc", "roe"]}' \
+  --params '{"stockCodes": ["00700"], "date": "2026-02-24", "metricsList": ["pe", "pe.y10.cvpos", "pb", "pb.y10.cvpos", "dyr", "mc", "roe"]}' \
   --columns "date,pe,pe.y10.cvpos,pb,pb.y10.cvpos,dyr,mc,roe"
 ```
 
@@ -379,7 +379,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 # 获取历史FCF数据
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/company/fs/non_financial" \
-  --params '{"stockCodes": ["00700"], "startDate": "2020-01-01", "endDate": "2024-12-31", "metricsList": ["fcf", "np", "revenue"]}' \
+  --params '{"stockCodes": ["00700"], "startDate": "2020-01-01", "endDate": "2026-02-24", "metricsList": ["fcf", "np", "revenue"]}' \
   --columns "date,fcf,np,revenue" \
   --limit 20
 ```
@@ -458,7 +458,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 # 1. 获取恒生指数估值
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/index/fundamental" \
-  --params '{"stockCodes": ["HSI"], "date": "2024-12-31", "metricsList": ["pe_ttm.mcw", "pe_ttm.y10.mcw.cvpos", "pb.mcw", "pb.y10.mcw.cvpos", "dyr.mcw", "dyr.y10.mcw.cvpos"]}' \
+  --params '{"stockCodes": ["HSI"], "date": "2026-02-24", "metricsList": ["pe_ttm.mcw", "pe_ttm.y10.mcw.cvpos", "pb.mcw", "pb.y10.mcw.cvpos", "dyr.mcw", "dyr.y10.mcw.cvpos"]}' \
   --columns "date,pe_ttm.mcw,pe_ttm.y10.mcw.cvpos,pb.mcw,pb.y10.mcw.cvpos,dyr.mcw,dyr.y10.mcw.cvpos"
 
 # 2. 计算估值评分（需要脚本处理）
@@ -476,7 +476,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 # 1. 获取所有行业估值
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/industry/fundamental/hsi" \
-  --params '{"date": "2024-12-31", "metricsList": ["pe_ttm.mcw", "pe_ttm.y10.mcw.cvpos", "pb.mcw"]}' \
+  --params '{"date": "2026-02-24", "metricsList": ["pe_ttm.mcw", "pe_ttm.y10.mcw.cvpos", "pb.mcw"]}' \
   --columns "industryCode,pe_ttm.mcw,pe_ttm.y10.mcw.cvpos,pb.mcw" \
   --limit 50
 
@@ -495,14 +495,14 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 # 1. 获取历史FCF数据
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/company/fs/non_financial" \
-  --params '{"stockCodes": ["00700"], "startDate": "2020-01-01", "endDate": "2024-12-31", "metricsList": ["fcf", "np"]}' \
+  --params '{"stockCodes": ["00700"], "startDate": "2020-01-01", "endDate": "2026-02-24", "metricsList": ["fcf", "np"]}' \
   --columns "date,fcf,np" \
   --limit 20
 
 # 2. 获取当前市值
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/company/fundamental/non_financial" \
-  --params '{"stockCodes": ["00700"], "date": "2024-12-31", "metricsList": ["mc"]}' \
+  --params '{"stockCodes": ["00700"], "date": "2026-02-24", "metricsList": ["mc"]}' \
   --columns "mc"
 
 # 3. 计算DCF估值（需要脚本处理）

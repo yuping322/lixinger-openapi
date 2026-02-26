@@ -25,14 +25,14 @@
 # 示例 1: 查询单日多个股票（推荐用于筛选）
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/company/fundamental/non_financial" \
-  --params '{"stockCodes": ["600519", "000858"], "date": "2024-12-31", "metricsList": ["pe_ttm", "pb", "roe"]}' \
+  --params '{"stockCodes": ["600519", "000858"], "date": "2026-02-24", "metricsList": ["pe_ttm", "pb", "roe"]}' \
   --columns "stockCode,name,pe_ttm,pb,roe" \
   --limit 20
 
 # 示例 2: 查询单个股票的时间序列（推荐用于趋势分析）
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/company/fundamental/non_financial" \
-  --params '{"stockCodes": ["600519"], "startDate": "2024-01-01", "endDate": "2024-12-31", "metricsList": ["pe_ttm", "pb"]}' \
+  --params '{"stockCodes": ["600519"], "startDate": "2026-01-01", "endDate": "2026-02-24", "metricsList": ["pe_ttm", "pb"]}' \
   --columns "date,stockCode,pe_ttm,pb"
 ```
 
@@ -47,20 +47,20 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ❌ **错误 1**: 缺少 metricsList
 ```bash
---params '{"stockCodes": ["600519"], "date": "2024-12-31"}'
+--params '{"stockCodes": ["600519"], "date": "2026-02-24"}'
 ```
 ✅ **正确**:
 ```bash
---params '{"stockCodes": ["600519"], "date": "2024-12-31", "metricsList": ["pe_ttm"]}'
+--params '{"stockCodes": ["600519"], "date": "2026-02-24", "metricsList": ["pe_ttm"]}'
 ```
 
 ❌ **错误 2**: startDate + 多个 stockCodes
 ```bash
---params '{"stockCodes": ["600519", "000858"], "startDate": "2024-01-01", "metricsList": ["pe_ttm"]}'
+--params '{"stockCodes": ["600519", "000858"], "startDate": "2026-01-01", "metricsList": ["pe_ttm"]}'
 ```
 ✅ **正确**:
 ```bash
---params '{"stockCodes": ["600519"], "startDate": "2024-01-01", "metricsList": ["pe_ttm"]}'
+--params '{"stockCodes": ["600519"], "startDate": "2026-01-01", "metricsList": ["pe_ttm"]}'
 ```
 
 ---
@@ -84,13 +84,13 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 # 示例 1: 查询单日多个指数（推荐）
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/index/fundamental" \
-  --params '{"stockCodes": ["000001", "399001", "000300"], "date": "2024-12-31", "metricsList": ["pe_ttm.mcw", "pb.mcw"]}' \
+  --params '{"stockCodes": ["000001", "399001", "000300"], "date": "2026-02-24", "metricsList": ["pe_ttm.mcw", "pb.mcw"]}' \
   --columns "date,stockCode,pe_ttm.mcw,pb.mcw"
 
 # 示例 2: 查询单个指数的时间序列
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/index/fundamental" \
-  --params '{"stockCodes": ["000300"], "startDate": "2024-01-01", "endDate": "2024-12-31", "metricsList": ["pe_ttm.mcw"]}' \
+  --params '{"stockCodes": ["000300"], "startDate": "2026-01-01", "endDate": "2026-02-24", "metricsList": ["pe_ttm.mcw"]}' \
   --columns "date,stockCode,pe_ttm.mcw"
 
 # 示例 3: 如需多个指数的时间序列，需要循环查询
@@ -113,12 +113,12 @@ done
 
 ❌ **错误**: startDate + 多个 stockCodes（这是最常见的错误！）
 ```bash
---params '{"stockCodes": ["000001", "399001"], "startDate": "2024-01-01", "metricsList": ["pe_ttm.mcw"]}'
+--params '{"stockCodes": ["000001", "399001"], "startDate": "2026-01-01", "metricsList": ["pe_ttm.mcw"]}'
 # 错误信息: "stockCodes" must contain 1 items
 ```
 ✅ **正确方案 1**: 使用 date 查询单日
 ```bash
---params '{"stockCodes": ["000001", "399001"], "date": "2024-12-31", "metricsList": ["pe_ttm.mcw"]}'
+--params '{"stockCodes": ["000001", "399001"], "date": "2026-02-24", "metricsList": ["pe_ttm.mcw"]}'
 ```
 ✅ **正确方案 2**: 循环查询每个指数
 ```bash

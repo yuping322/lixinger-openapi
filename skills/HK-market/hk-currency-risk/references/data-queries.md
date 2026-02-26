@@ -12,7 +12,7 @@
 # 港币兑美元汇率
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "macro/currency-exchange-rate" \
-  --params '{"fromCurrency": "HKD", "toCurrency": "USD", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
+  --params '{"fromCurrency": "HKD", "toCurrency": "USD", "startDate": "2026-01-01", "endDate": "2026-02-24"}' \
   --columns "date,close,open,high,low" \
   --limit 365
 ```
@@ -21,7 +21,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 # 港币兑人民币汇率
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "macro/currency-exchange-rate" \
-  --params '{"fromCurrency": "HKD", "toCurrency": "CNY", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
+  --params '{"fromCurrency": "HKD", "toCurrency": "CNY", "startDate": "2026-01-01", "endDate": "2026-02-24"}' \
   --columns "date,close,open,high,low" \
   --limit 365
 ```
@@ -30,7 +30,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 # 港币兑欧元汇率
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "macro/currency-exchange-rate" \
-  --params '{"fromCurrency": "HKD", "toCurrency": "EUR", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
+  --params '{"fromCurrency": "HKD", "toCurrency": "EUR", "startDate": "2026-01-01", "endDate": "2026-02-24"}' \
   --columns "date,close,open,high,low" \
   --limit 365
 ```
@@ -39,7 +39,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 # 港币兑日元汇率
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "macro/currency-exchange-rate" \
-  --params '{"fromCurrency": "HKD", "toCurrency": "JPY", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
+  --params '{"fromCurrency": "HKD", "toCurrency": "JPY", "startDate": "2026-01-01", "endDate": "2026-02-24"}' \
   --columns "date,close,open,high,low" \
   --limit 365
 ```
@@ -67,7 +67,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "macro/currency-exchange-rate" \
-  --params '{"fromCurrency": "USD", "toCurrency": "HKD", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
+  --params '{"fromCurrency": "USD", "toCurrency": "HKD", "startDate": "2026-01-01", "endDate": "2026-02-24"}' \
   --columns "date,close,open,high,low" \
   --limit 365
 ```
@@ -79,7 +79,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "macro/currency-exchange-rate" \
-  --params '{"fromCurrency": "CNY", "toCurrency": "HKD", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
+  --params '{"fromCurrency": "CNY", "toCurrency": "HKD", "startDate": "2026-01-01", "endDate": "2026-02-24"}' \
   --columns "date,close,open,high,low" \
   --limit 365
 ```
@@ -91,7 +91,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/company.fundamental" \
-  --params '{"stockCode": "00700", "date": "2024-12-31"}' \
+  --params '{"stockCode": "00700", "date": "2026-02-24"}' \
   --columns "date,pe,pb,roe,dividendYield" \
   --limit 20
 ```

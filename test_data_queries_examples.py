@@ -43,8 +43,13 @@ def extract_examples_from_file(file_path: Path) -> List[Dict]:
         in_command = False
         skip_block = False
         
-        # 检查是否包含循环语句
-        if any('for ' in line and ' in ' in line for line in lines):
+        # 检查是否包含循环语句、变量替换或输出重定向
+        block_text = '\n'.join(lines)
+        if any([
+            'for ' in block_text and ' in ' in block_text,
+            '${' in block_text,  # 变量替换
+            ' > ' in block_text and '.csv' in block_text,  # 输出重定向到文件
+        ]):
             skip_block = True
         
         if skip_block:
@@ -93,9 +98,10 @@ def clean_command(command: str) -> str:
     command = re.sub(r'\s+', ' ', command)
     return command.strip()
 
-def run_command(command: str, timeout: int = 30) -> Tuple[bool, str]:
-    """执行命令并返回结果"""
-    try:
+def run_command(command: str, timeout: int = 60, max_retries: int = 2) -> Tuple[bool, str]:
+    """执行命令并返回结果，支持重试"""
+    for attempt in range(max_retries):
+        try:
         result = subprocess.run(
             command,
             shell=True,

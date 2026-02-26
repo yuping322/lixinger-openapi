@@ -12,7 +12,7 @@
 # 查询沪深300、中证500、创业板指的估值数据
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/index/fundamental" \
-  --params '{"date": "2024-12-31", "stockCodes": ["000300", "000905", "399006"], "metricsList": ["pe_ttm.mcw", "pb.mcw", "pe_ttm.y10.mcw.cvpos", "pb.y10.mcw.cvpos", "mc"]}' \
+  --params '{"date": "2026-02-24", "stockCodes": ["000300", "000905", "399006"], "metricsList": ["pe_ttm.mcw", "pb.mcw", "pe_ttm.y10.mcw.cvpos", "pb.y10.mcw.cvpos", "mc"]}' \
   --limit 10
 ```
 
@@ -44,7 +44,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 # 查询沪深300近1年的估值历史
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/index/fundamental" \
-  --params '{"startDate": "2024-01-01", "endDate": "2024-12-31", "stockCodes": ["000300"], "metricsList": ["pe_ttm.mcw", "pb.mcw", "pe_ttm.y10.mcw.cvpos"]}' \
+  --params '{"startDate": "2026-01-01", "endDate": "2026-02-24", "stockCodes": ["000300"], "metricsList": ["pe_ttm.mcw", "pb.mcw", "pe_ttm.y10.mcw.cvpos"]}' \
   --limit 365
 ```
 
@@ -64,7 +64,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 # 查询主要行业指数估值
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/index/fundamental" \
-  --params '{"date": "2024-12-31", "stockCodes": ["000807", "000808", "000809"], "metricsList": ["pe_ttm.mcw", "pb.mcw", "pe_ttm.y5.mcw.cvpos"]}' \
+  --params '{"date": "2026-02-24", "stockCodes": ["000807", "000808", "000809"], "metricsList": ["pe_ttm.mcw", "pb.mcw", "pe_ttm.y5.mcw.cvpos"]}' \
   --limit 10
 ```
 
@@ -86,7 +86,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 # 查询沪深300成分股
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/index/constituents" \
-  --params '{"stockCode": "000300", "type": "normal", "date": "2024-12-31"}' \
+  --params '{"stockCode": "000300", "type": "normal", "date": "2026-02-24"}' \
   --columns "stockCode,stockName,weight" \
   --limit 300
 ```
@@ -108,7 +108,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 # 查询沪深300近1年K线数据
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/index/candlestick" \
-  --params '{"stockCode": "000300", "type": "normal", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
+  --params '{"stockCode": "000300", "type": "normal", "startDate": "2026-01-01", "endDate": "2026-02-24"}' \
   --columns "date,open,high,low,close,volume,amount" \
   --limit 365
 ```

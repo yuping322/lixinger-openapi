@@ -11,7 +11,7 @@
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "macro/money-supply" \
-  --params '{"date": "2024-12-31"}' \
+  --params '{"date": "2026-02-24"}' \
   --columns "date,m0,m1,m2" \
   --limit 20
 ```

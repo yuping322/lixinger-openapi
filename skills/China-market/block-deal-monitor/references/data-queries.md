@@ -24,7 +24,7 @@
 # 示例 1: 查询单个股票的大宗交易（推荐）
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/company/block-deal" \
-  --params '{"stockCode": "600519", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
+  --params '{"stockCode": "600519", "startDate": "2026-01-01", "endDate": "2026-02-24"}' \
   --columns "date,stockCode,price,volume,amount,premium,buyerName,sellerName" \
   --limit 20
 
@@ -32,7 +32,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 for code in 600519 000858 601398; do
   python3 skills/lixinger-data-query/scripts/query_tool.py \
     --suffix "cn/company/block-deal" \
-    --params '{"stockCode": "'"${code}"'", "startDate": "2024-01-01"}' \
+    --params '{"stockCode": "'"${code}"'", "startDate": "2026-01-01"}' \
     --columns "date,stockCode,price,volume,amount" \
     > blockdeal_${code}.csv
 done
@@ -40,7 +40,7 @@ done
 # 示例 3: 筛选大额交易（使用 row-filter）
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/company/block-deal" \
-  --params '{"stockCode": "600519", "startDate": "2024-01-01"}' \
+  --params '{"stockCode": "600519", "startDate": "2026-01-01"}' \
   --columns "date,price,volume,amount,premium,buyerName,sellerName" \
   --row-filter "amount > 10000"
 ```
@@ -59,11 +59,11 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ❌ **错误**: 使用 stockCodes 数组
 ```bash
---params '{"stockCodes": ["600519"], "startDate": "2024-01-01"}'
+--params '{"stockCodes": ["600519"], "startDate": "2026-01-01"}'
 ```
 ✅ **正确**: 使用单个 stockCode
 ```bash
---params '{"stockCode": "600519", "startDate": "2024-01-01"}'
+--params '{"stockCode": "600519", "startDate": "2026-01-01"}'
 ```
 
 ---
@@ -78,7 +78,8 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/company/major-shareholders-shares-change" \
   --params '{"stockCode": "600519", "startDate": "2026-01-01"}' \
-  --columns "date,stockCode,shareholderName,changeReason,changeAmount"
+  --columns "date,stockCode,shareholderName,changeReason,changeAmount" \
+  --limit 20
 ```
 
 ---

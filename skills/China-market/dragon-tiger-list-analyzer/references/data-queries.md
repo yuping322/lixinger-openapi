@@ -11,7 +11,7 @@
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/company/trading-abnormal" \
-  --params '{"date": "2024-12-31"}' \
+  --params '{"date": "2026-02-24"}' \
   --columns "date,stockCode,name,buyAmount,sellAmount,netAmount" \
   --limit 20
 ```

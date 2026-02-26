@@ -11,15 +11,17 @@
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/industry" \
-  --params '{}'
+  --params '{"source": "sw", "level": "one"}' \
+  --limit 20
 ```
 
 ### 查询Cn.Company.Revenue Structure
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn/company.revenue-structure" \
-  --params '{}'
+  --suffix "cn/company/operation-revenue-constitution" \
+  --params '{"stockCode": "300750", "startDate": "2025-02-01"}' \
+  --limit 10
 ```
 
 ### 查询Us.Index.Fundamental
@@ -27,7 +29,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "us/index/fundamental" \
-  --params '{"date": "2024-12-31", "stockCodes": [".INX"], "metricsList": ["pe_ttm.mcw", "pb.mcw", "dyr.mcw", "mc"]}' \
+  --params '{"date": "2026-02-24", "stockCodes": [".INX"], "metricsList": ["pe_ttm.mcw", "pb.mcw", "dyr.mcw", "mc"]}' \
   --columns "date,stockCode,pe_ttm.mcw,pb.mcw,dyr.mcw,mc" \
   --limit 20
 ```
@@ -46,8 +48,8 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ## 本 Skill 常用 API
 
-- `cn.industry`
-- `cn/company.revenue-structure`
+- `cn/industry`
+- `cn/company/operation-revenue-constitution`
 - `us/index/fundamental`
 
 ---

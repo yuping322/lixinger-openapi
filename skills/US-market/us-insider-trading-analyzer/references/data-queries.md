@@ -21,7 +21,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/index/candlestick" \
-  --params '{"stockCode": "000001", "type": "normal", "startDate": "2024-01-01", "endDate": "2024-12-31"}' \
+  --params '{"stockCode": "000001", "type": "normal", "startDate": "2026-01-01", "endDate": "2026-02-24"}' \
   --columns "date,open,high,low,close,volume" \
   --limit 20
 ```
@@ -39,7 +39,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "macro/money-supply" \
-  --params '{"date": "2024-12-31"}' \
+  --params '{"date": "2026-02-24"}' \
   --columns "date,m0,m1,m2" \
   --limit 20
 ```
@@ -49,7 +49,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/company/trading-abnormal" \
-  --params '{"date": "2024-12-31"}' \
+  --params '{"date": "2026-02-24"}' \
   --columns "date,stockCode,name,buyAmount,sellAmount,netAmount" \
   --limit 20
 ```
