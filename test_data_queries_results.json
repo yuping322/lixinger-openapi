@@ -1,15 +1,87 @@
 {
   "total": 369,
-  "passed": 0,
+  "passed": 9,
   "failed": 1,
   "details": [
+    {
+      "market": "US-market",
+      "skill": "us-options-strategy-analyzer",
+      "file": "skills/US-market/us-options-strategy-analyzer/references/data-queries.md",
+      "command": "python3 skills/lixinger-data-query/scripts/query_tool.py --suffix \"macro/money-supply\" --params '{\"areaCode\": \"cn\", \"startDate\": \"2025-02-01\", \"endDate\": \"2026-02-24\", \"metricsList\": [\"m.m0.t\", \"m.m1.t\", \"m.m2.t\"]}' --columns \"date,m0,m1,m2\" --limit 20",
+      "status": "passed",
+      "output": "date\n2026-01-31T00:00:00+08:00\n2025-12-31T00:00:00+08:00\n2025-11-30T00:00:00+08:00\n2025-10-31T00:00:00+08:00\n2025-09-30T00:00:00+08:00\n2025-08-31T00:00:00+08:00\n2025-07-31T00:00:00+08:00\n2025-06-30T00"
+    },
     {
       "market": "HK-market",
       "skill": "hk-southbound-flow",
       "file": "skills/HK-market/hk-southbound-flow/references/data-queries.md",
-      "command": "python3 skills/lixinger-data-query/scripts/query_tool.py --suffix \"hk/company\" --params '{\"mutualMarkets\": [\"sh\", \"sz\"]}' --columns \"stockCode,name\" --limit 500",
+      "command": "python3 skills/lixinger-data-query/scripts/query_tool.py --suffix \"hk/company\" --params '{\"stockCodes\": [\"00700\", \"09988\", \"03690\"]}' --columns \"stockCode,name,market,mutualMarket,listDate\"",
+      "status": "passed",
+      "output": "stockCode,name,market\n00700,腾讯控股,h\n09988,阿里巴巴-W,h\n03690,美团-W,h\n\n"
+    },
+    {
+      "market": "China-market",
+      "skill": "macro-liquidity-monitor",
+      "file": "skills/China-market/macro-liquidity-monitor/references/data-queries.md",
+      "command": "python3 skills/lixinger-data-query/scripts/query_tool.py --suffix \"macro/gdp\" --params '{\"areaCode\": \"cn\", \"startDate\": \"2025-01-01\", \"endDate\": \"2026-02-24\", \"metricsList\": [\"q.gdp.t\", \"q.gdp.t_y2y\"]}' --limit 20",
+      "status": "passed",
+      "output": "areaCode,date,q.gdp.t,q.gdp.t_y2y\ncn,2025-12-31T00:00:00+08:00,140187920000000.0,0.05\ncn,2025-09-30T00:00:00+08:00,101396790000000.0,0.052\ncn,2025-06-30T00:00:00+08:00,65986160000000.0,0.053\ncn,2025-0"
+    },
+    {
+      "market": "US-market",
+      "skill": "us-insider-trading-analyzer",
+      "file": "skills/US-market/us-insider-trading-analyzer/references/data-queries.md",
+      "command": "python3 skills/lixinger-data-query/scripts/query_tool.py --suffix \"macro/money-supply\" --params '{\"areaCode\": \"cn\", \"startDate\": \"2025-02-01\", \"endDate\": \"2026-02-24\", \"metricsList\": [\"m.m0.t\", \"m.m1.t\", \"m.m2.t\"]}' --columns \"date,m0,m1,m2\" --limit 20",
+      "status": "passed",
+      "output": "date\n2026-01-31T00:00:00+08:00\n2025-12-31T00:00:00+08:00\n2025-11-30T00:00:00+08:00\n2025-10-31T00:00:00+08:00\n2025-09-30T00:00:00+08:00\n2025-08-31T00:00:00+08:00\n2025-07-31T00:00:00+08:00\n2025-06-30T00"
+    },
+    {
+      "market": "US-market",
+      "skill": "us-suitability-report-generator",
+      "file": "skills/US-market/us-suitability-report-generator/references/data-queries.md",
+      "command": "python3 skills/lixinger-data-query/scripts/query_tool.py --suffix \"macro/money-supply\" --params '{\"areaCode\": \"cn\", \"startDate\": \"2025-02-01\", \"endDate\": \"2026-02-24\", \"metricsList\": [\"m.m0.t\", \"m.m1.t\", \"m.m2.t\"]}' --columns \"date,m0,m1,m2\" --limit 20",
+      "status": "passed",
+      "output": "date\n2026-01-31T00:00:00+08:00\n2025-12-31T00:00:00+08:00\n2025-11-30T00:00:00+08:00\n2025-10-31T00:00:00+08:00\n2025-09-30T00:00:00+08:00\n2025-08-31T00:00:00+08:00\n2025-07-31T00:00:00+08:00\n2025-06-30T00"
+    },
+    {
+      "market": "US-market",
+      "skill": "us-financial-statement-analyzer",
+      "file": "skills/US-market/us-financial-statement-analyzer/references/data-queries.md",
+      "command": "python3 skills/lixinger-data-query/scripts/query_tool.py --suffix \"cn/company/fs/non_financial\" --params '{\"stockCodes\": [\"600519\"], \"startDate\": \"2020-01-01\", \"endDate\": \"2026-02-24\", \"metricsList\": [\"q.ps.toi.t\", \"q.ps.np.t\", \"q.ps.gp_m.t\"]}' --limit 20",
+      "status": "passed",
+      "output": "# NOTE: Output truncated to 20 rows.\ndate,currency,reportDate,reportType,standardDate,stockCode,q.ps.toi.t,q.ps.gp_m.t,q.ps.np.t,auditOpinionType\n2025-09-30T00:00:00+08:00,CNY,2025-10-30T00:00:00+08:0"
+    },
+    {
+      "market": "China-market",
+      "skill": "liquidity-impact-estimator",
+      "file": "skills/China-market/liquidity-impact-estimator/references/data-queries.md",
+      "command": "python3 skills/lixinger-data-query/scripts/query_tool.py --suffix \"macro/money-supply\" --params '{\"areaCode\": \"cn\", \"startDate\": \"2025-02-01\", \"endDate\": \"2026-02-24\", \"metricsList\": [\"m.m0.t\", \"m.m1.t\", \"m.m2.t\"]}' --columns \"date,m0,m1,m2\" --limit 20",
+      "status": "passed",
+      "output": "date\n2026-01-31T00:00:00+08:00\n2025-12-31T00:00:00+08:00\n2025-11-30T00:00:00+08:00\n2025-10-31T00:00:00+08:00\n2025-09-30T00:00:00+08:00\n2025-08-31T00:00:00+08:00\n2025-07-31T00:00:00+08:00\n2025-06-30T00"
+    },
+    {
+      "market": "US-market",
+      "skill": "us-portfolio-health-check",
+      "file": "skills/US-market/us-portfolio-health-check/references/data-queries.md",
+      "command": "python3 skills/lixinger-data-query/scripts/query_tool.py --suffix \"cn/company/dividend\" --params '{\"stockCode\": \"600519\", \"type\": \"normal\", \"startDate\": \"2020-01-01\", \"endDate\": \"2026-02-24\"}' --columns \"date,dividend,dividendAmount,annualNetProfitDividendRatio,exDate\" --limit 20",
+      "status": "passed",
+      "output": "date,dividend,dividendAmount,annualNetProfitDividendRatio,exDate\n2025-11-06T00:00:00+08:00,23.957,30000637541.0,,2025-12-19T00:00:00+08:00\n2025-08-13T00:00:00+08:00,0.0,,,\n2025-04-03T00:00:00+08:00,27"
+    },
+    {
+      "market": "China-market",
+      "skill": "shareholder-risk-check",
+      "file": "skills/China-market/shareholder-risk-check/references/data-queries.md",
+      "command": "python3 skills/lixinger-data-query/scripts/query_tool.py --suffix \"cn/company/shareholders-num\" --params '{\"stockCode\": \"600519\"}'",
+      "status": "passed",
+      "output": "\n\n"
+    },
+    {
+      "market": "HK-market",
+      "skill": "hk-southbound-flow",
+      "file": "skills/HK-market/hk-southbound-flow/references/data-queries.md",
+      "command": "python3 skills/lixinger-data-query/scripts/query_tool.py --suffix \"hk/company.candlestick\" --params '{\"stockCode\": \"00700\", \"startDate\": \"2026-01-01\", \"endDate\": \"2026-02-24\"}' --columns \"date,close,changePercent,amount\" --limit 30",
       "status": "failed",
-      "error": "Error: {'name': 'ValidationError', 'messages': [{'value': 'sh', 'path': ['mutualMarkets', 0], 'message': '\"mutualMarkets[0]\" must be one of [ha, ah]'}]} [{'value': 'sh', 'path': ['mutualMarkets', 0], 'message': '\"mutualMarkets[0]\" must be one of [ha, ah]'}] (Code: 0)\n"
+      "error": "Error: {'name': 'ValidationError', 'messages': [{'path': ['type'], 'message': '\"type\" is required'}]} [{'path': ['type'], 'message': '\"type\" is required'}] (Code: 0)\n"
     }
   ]
 }

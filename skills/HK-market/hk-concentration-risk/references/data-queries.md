@@ -166,7 +166,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ### 辅助 API
 - `hk/company.mutual-market` - 港股通持仓
-- `hk/company.candlestick` - 港股K线数据
+- `hk/company/candlestick` - 港股K线数据
 - `hk/index.candlestick` - 港股指数K线
 
 ---

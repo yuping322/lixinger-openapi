@@ -30,8 +30,9 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "cn/company.revenue-structure" \
-  --params '{}'
+  --suffix "cn/company/operation-revenue-constitution" \
+  --params '{"stockCode": "600519", "date": "2026-02-24"}' \
+  --limit 20
 ```
 
 ### 查询Cn.Industry
@@ -39,7 +40,8 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/industry" \
-  --params '{}'
+  --params '{"source": "sw", "level": "one"}' \
+  --limit 20
 ```
 
 ### 查询Cn.Company.Fs.Non Financial
@@ -47,8 +49,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/company/fs/non_financial" \
-  --params '{"stockCodes": ["600519"], "type": "normal", "startDate": "2020-01-01", "endDate": "2026-02-24"}' \
-  --columns "date,revenue,netProfit,roe,grossProfitMargin" \
+  --params '{"stockCodes": ["600519"], "startDate": "2020-01-01", "endDate": "2026-02-24", "metricsList": ["q.ps.toi.t", "q.ps.np.t", "q.ps.gp_m.t"]}' \
   --limit 20
 ```
 
@@ -68,11 +69,9 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 - `cn/company/fundamental/non_financial`
 - `cn/index/candlestick`
-- `cn/company.revenue-structure`
-- `cn.industry`
+- `cn/company/operation-revenue-constitution`
+- `cn/industry`
 - `cn/company/fs/non_financial`
-- `cn/company.fs.security`
-- `cn/company.fs.bank`
 - `us/index/fundamental`
 - `cn/index/fundamental`
 

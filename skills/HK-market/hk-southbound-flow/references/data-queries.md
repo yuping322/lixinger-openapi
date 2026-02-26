@@ -114,7 +114,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk/company.candlestick" \
+  --suffix "hk/company/candlestick" \
   --params '{"stockCode": "00700", "startDate": "2026-01-01", "endDate": "2026-02-24"}' \
   --columns "date,close,change,changePercent,volume,amount" \
   --limit 30
@@ -341,7 +341,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 # 获取重点股票的价格表现
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk/company.candlestick" \
+  --suffix "hk/company/candlestick" \
   --params '{"stockCode": "00700", "startDate": "2026-01-01", "endDate": "2026-02-24"}' \
   --columns "date,close,changePercent,amount" \
   --limit 30
@@ -372,7 +372,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ### 辅助 API
 - `hk/company` - 港股通标的列表
-- `hk/company.candlestick` - 个股价格数据
+- `hk/company/candlestick` - 个股价格数据
 - `hk.industry` - 行业分类信息
 - `hk/company.industries` - 个股行业归属
 

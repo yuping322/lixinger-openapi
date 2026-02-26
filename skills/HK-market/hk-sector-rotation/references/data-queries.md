@@ -117,8 +117,9 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/industry" \
-  --params '{}' \
-  --columns "industryCode,industryName,industryLevel"
+  --params '{"source": "hsi"}' \
+  --columns "industryCode,industryName,industryLevel" \
+  --limit 50
 ```
 
 **用途**: 获取所有行业分类信息，用于行业名称映射
@@ -537,8 +538,9 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 # 2. 获取行业名称
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/industry" \
-  --params '{}' \
-  --columns "industryCode,industryName"
+  --params '{"source": "hsi"}' \
+  --columns "industryCode,industryName" \
+  --limit 50
 
 # 3. 排序并输出TOP5强势行业（需要脚本处理）
 # 输出示例：

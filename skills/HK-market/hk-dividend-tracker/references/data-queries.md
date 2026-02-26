@@ -100,7 +100,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
-  --suffix "hk/company.candlestick" \
+  --suffix "hk/company/candlestick" \
   --params '{"stockCodes": ["00005"], "startDate": "2026-01-01", "endDate": "2026-02-24"}' \
   --columns "date,close,volume,amount" \
   --limit 300
@@ -223,7 +223,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ### 辅助 API
 - `hk/company` - 港股公司信息
-- `hk/company.candlestick` - 港股K线数据
+- `hk/company/candlestick` - 港股K线数据
 - `hk/company.industries` - 港股行业分类
 - `hk/index/fundamental` - 港股指数基本面
 - `hk.industry.fundamental.hsi` - 港股行业基本面

@@ -51,7 +51,8 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/industry" \
-  --params '{}'
+  --params '{"source": "sw", "level": "one"}' \
+  --limit 20
 ```
 
 ---
@@ -72,7 +73,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 - `cn/index/candlestick`
 - `macro/money-supply`
 - `cn/company/trading-abnormal`
-- `cn.industry`
+- `cn/industry`
 - `us/index/fundamental`
 - `cn/company/block-deal`
 - `cn/index/fundamental`
