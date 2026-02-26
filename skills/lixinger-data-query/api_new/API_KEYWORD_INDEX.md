@@ -1,4 +1,4 @@
-# 理杏仁 API 中文关键词索引（增强版）
+# 理杏仁 API 中文关键词索引
 
 快速查找：使用 `grep` 搜索中文关键词，找到对应的 API。
 
@@ -11,6 +11,9 @@ grep -i "市盈率\|PE\|pe_ttm" skills/lixinger-data-query/api_new/API_KEYWORD_I
 
 # 示例：查找营收相关 API
 grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/API_KEYWORD_INDEX.md
+
+# 示例：查找 ROE 相关 API
+grep -i "ROE\|净资产收益率\|roe" skills/lixinger-data-query/api_new/API_KEYWORD_INDEX.md
 ```
 
 ---
@@ -40,7 +43,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company.md`
 
-<!-- 搜索关键词: 地区代码 mutualMarketFlag name total exchange 公司总数 是否是融资融券标的 areaCode mutualMarkets company 互联互通 公司名称 stockCode 交易所 delistedDate fsTableType 上市时间 market 市场 ipoDate 股票信息 marginTradingAndSecuritiesLendingFlag 是否是互联互通标的 股票代码 退市时间 财报类型 -->
+<!-- 搜索关键词: name mutualMarketFlag exchange 公司总数 areaCode marginTradingAndSecuritiesLendingFlag 互联互通 地区代码 上市时间 是否是融资融券标的 财报类型 股票信息 market 退市时间 市场 mutualMarkets delistedDate fsTableType total company 公司名称 交易所 stockCode 是否是互联互通标的 ipoDate 股票代码 -->
 
 ---
 
@@ -61,7 +64,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_allotment.md`
 
-<!-- 搜索关键词: allotment 公告日期 货币 currency allotmentShares 实际配股数量 除权除息日 配股价格 date allotmentPrice 配股比例 配股 allotmentRatio exDate -->
+<!-- 搜索关键词: allotmentPrice exDate date currency 公告日期 配股 配股比例 allotmentShares 除权除息日 配股价格 实际配股数量 allotmentRatio 货币 allotment -->
 
 ---
 
@@ -81,7 +84,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_announcement.md`
 
-<!-- 搜索关键词: 链接文本 公告日期 types linkType 链接地址 公告 announcement linkUrl 种类 全部 :all 财务报表 :fs 业绩预告 :fsfc 经营数据 :o_d 权益分派 :eac 董事会 :bm 监事会 :sm 股东大会 :shm 股权激励 :so 解禁 :ntsu 债券 :b 可转换债券 :c_b 股权变更 :eat 澄清及风险提示 :c_rp 投资者关系 :irs 问询函 :i_l 配股 :sa 增发 :spo 回购 :srp IPO :ipo 其它 :other date 链接类型 linkText -->
+<!-- 搜索关键词: 链接类型 date 公告日期 链接文本 链接地址 announcement types 种类 全部 :all 财务报表 :fs 业绩预告 :fsfc 经营数据 :o_d 权益分派 :eac 董事会 :bm 监事会 :sm 股东大会 :shm 股权激励 :so 解禁 :ntsu 债券 :b 可转换债券 :c_b 股权变更 :eat 澄清及风险提示 :c_rp 投资者关系 :irs 问询函 :i_l 配股 :sa 增发 :spo 回购 :srp IPO :ipo 其它 :other 公告 linkUrl linkType linkText -->
 
 ---
 
@@ -104,7 +107,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_block-deal.md`
 
-<!-- 搜索关键词: 数据时间 tradingVolume buyBranch tradingPrice sellBranch 成交金额 block-deal tradingAmount 大宗交易 成交量 股票代码 卖出营业部 成交价 discountRate 折价率 买入营业部 stockCode date -->
+<!-- 搜索关键词: tradingPrice 买入营业部 date tradingAmount 数据时间 stockCode 成交量 大宗交易 tradingVolume sellBranch discountRate 折价率 成交金额 buyBranch 卖出营业部 成交价 股票代码 block-deal -->
 
 ---
 
@@ -130,7 +133,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_candlestick.md`
 
-<!-- 搜索关键词: 复权因子 volume to_r 最低价 close 开盘价 换手率 stockCode 金额 complexFactor low 成交量 date K线数据 open 数据时间 最高价 amount 收盘价 股票代码 high 涨跌幅 candlestick change -->
+<!-- 搜索关键词: volume 复权因子 amount high change close 开盘价 数据时间 K线数据 涨跌幅 candlestick 换手率 open date 最高价 最低价 complexFactor stockCode 金额 low to_r 股票代码 成交量 收盘价 -->
 
 ---
 
@@ -144,14 +147,10 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 - **数据时间** (`date`)
 - **公告日期** (`declarationDate`)
-- **** (`Number`)
-- **** (`Number`)
-- **** (`String`)
-- **** (`Number`)
 
 **文档**: `api_new/api-docs/cn_company_customers.md`
 
-<!-- 搜索关键词:  数据时间 客户 公告日期 String date Number customers declarationDate -->
+<!-- 搜索关键词: date 数据时间 公告日期 客户 customers declarationDate -->
 
 ---
 
@@ -179,7 +178,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_dividend.md`
 
-<!-- 搜索关键词: paymentDate 分红到账日 annualNetProfit 股权登记日 bonusSharesFromProfit content 送股(股) bonusSharesFromCapitalReserve currency 转增(股) 年度净利润分红比例 分红金额 fsEndDate 年度净利润 annualNetProfitDividendRatio 货币 除权除息日 date 分红 exDate 财报时间 公告日期 registerDate dividend dividendAmount 内容 -->
+<!-- 搜索关键词: exDate bonusSharesFromProfit annualNetProfit 股权登记日 currency annualNetProfitDividendRatio content 分红 分红到账日 dividendAmount 年度净利润分红比例 dividend 送股(股) date 分红金额 paymentDate 转增(股) 财报时间 内容 年度净利润 registerDate 公告日期 bonusSharesFromCapitalReserve 除权除息日 fsEndDate 货币 -->
 
 ---
 
@@ -205,7 +204,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_equity-change.md`
 
-<!-- 搜索关键词: 流通H股 限售A股变动比例 limitedSharesA 流通A股变动比例 changeReason outstandingSharesAChangeRatio 流通H股变动比例 限售A股 变动日期 date 变动原因 流通A股 equity-change outstandingSharesHChangeRatio declarationDate 总股本变动比例 limitedSharesAChangeRatio 公告日期 capitalizationChangeRatio 股本变动 总股本 outstandingSharesH outstandingSharesA capitalization -->
+<!-- 搜索关键词: limitedSharesAChangeRatio 股本变动 outstandingSharesAChangeRatio 总股本变动比例 limitedSharesA capitalizationChangeRatio 流通H股变动比例 变动日期 流通A股 限售A股 date changeReason 流通A股变动比例 流通H股 变动原因 declarationDate capitalization 限售A股变动比例 总股本 公告日期 outstandingSharesA outstandingSharesH equity-change outstandingSharesHChangeRatio -->
 
 ---
 
@@ -227,7 +226,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_fs_non_financial.md`
 
-<!-- 搜索关键词: auditOpinionType 财报数据 审计意见 无保留意见 :unqualified_opinion 保留意见 :qualified_opinion 保留意见与解释性说明 :qualified_opinion_with_explanatory_notes 否定意见 :adverse_opinion 拒绝表示意见 :disclaimer_of_opinion 解释性说明 :explanatory_statement 无法表示意见 :unable_to_express_an_opinion 带强调事项段的无保留意见 :unqualified_opinion_with_highlighted_matter_paragraph currency 公告时间 股票代码 货币类型 non_financial reportDate stockCode date standardDate 财报类型 reportType 标准财年时间（不同公司的财年不一样，有的年报12月结束，有的却是3月结束，还有的7月结束。例如2017-01-01到2017-06-30结束的年报，调整到2016-Q4，其余的季报和中报都相应的做类似调整。调整后具有通用性。） 财报日期 -->
+<!-- 搜索关键词: 财报类型 财报数据 date non_financial 审计意见 无保留意见 :unqualified_opinion 保留意见 :qualified_opinion 保留意见与解释性说明 :qualified_opinion_with_explanatory_notes 否定意见 :adverse_opinion 拒绝表示意见 :disclaimer_of_opinion 解释性说明 :explanatory_statement 无法表示意见 :unable_to_express_an_opinion 带强调事项段的无保留意见 :unqualified_opinion_with_highlighted_matter_paragraph currency auditOpinionType 公告时间 standardDate 标准财年时间（不同公司的财年不一样，有的年报12月结束，有的却是3月结束，还有的7月结束。例如2017-01-01到2017-06-30结束的年报，调整到2016-Q4，其余的季报和中报都相应的做类似调整。调整后具有通用性。） stockCode 货币类型 财报日期 reportDate reportType 股票代码 -->
 
 ---
 
@@ -249,7 +248,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_fund-collection-shareholders.md`
 
-<!-- 搜索关键词: 持仓 proportionOfCapitalization 基金公司代码 fundCollectionCode 流通A股占比 公告日期 市值 姓名 name holdings marketCap 基金公司持股 date 流通A股 outstandingSharesA fund-collection-shareholders -->
+<!-- 搜索关键词: name 流通A股占比 date marketCap 公告日期 fund-collection-shareholders outstandingSharesA 基金公司代码 持仓 fundCollectionCode holdings 流通A股 市值 基金公司持股 proportionOfCapitalization 姓名 -->
 
 ---
 
@@ -273,7 +272,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_fund-shareholders.md`
 
-<!-- 搜索关键词: 持仓 当前股票所在基金持仓排名 市值 name holdings marketCap 流通A股占比 基金名称 公募基金持股 fundCode fund-shareholders date 流通A股 marketCapRank 数据时间 proportionOfCapitalization 基金持仓占基金规模比例 netValueRatio outstandingSharesA 基金代码 -->
+<!-- 搜索关键词: name marketCap 基金代码 基金名称 当前股票所在基金持仓排名 netValueRatio 数据时间 流通A股 基金持仓占基金规模比例 持仓 date holdings 市值 marketCapRank 流通A股占比 公募基金持股 fundCode outstandingSharesA proportionOfCapitalization fund-shareholders -->
 
 ---
 
@@ -285,7 +284,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_fundamental_financial.md`
 
-<!-- 搜索关键词: non_financial 基本面数据 -->
+<!-- 搜索关键词: 基本面数据 non_financial -->
 
 ---
 
@@ -297,7 +296,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_fundamental_non_financial.md`
 
-<!-- 搜索关键词: non_financial 基本面数据 -->
+<!-- 搜索关键词: 基本面数据 non_financial -->
 
 ---
 
@@ -329,7 +328,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_hot_tr_dri.md`
 
-<!-- 搜索关键词: cagr_p_r_y3 近三年年化投资收益率 近二十年年化投资收益率 近一年投资收益率 cagr_p_r_d14 last_data_date cagr_p_r_fs cagr_p_r_y1 今年以来投资收益率 cagr_p_r_y20 近30日投资收益率 近90日投资收益率 上市以来总投资收益率 近14日投资收益率 cagr_p_r_d90 stockCode cagr_p_r_d7 cagr_p_r_fys cagr_p_r_d60 p_r_fs 近十年年化投资收益率 p_r 近7日投资收益率 cagr_p_r_y5 period_date 数据时间 投资收益率计算起始日期 tr_dri 指定时间段投资收益率 分红再投入收益率 股票代码 近五年年化投资收益率 cagr_p_r_y10 cagr_p_r_d30 上市至今年化投资收益率 近60日投资收益率 -->
+<!-- 搜索关键词: 近二十年年化投资收益率 cagr_p_r_d7 cagr_p_r_d30 p_r cagr_p_r_y1 股票代码 今年以来投资收益率 近90日投资收益率 p_r_fs 数据时间 cagr_p_r_y20 cagr_p_r_d14 cagr_p_r_d90 近30日投资收益率 分红再投入收益率 上市以来总投资收益率 近60日投资收益率 cagr_p_r_fs 近7日投资收益率 投资收益率计算起始日期 cagr_p_r_fys 近五年年化投资收益率 上市至今年化投资收益率 近一年投资收益率 last_data_date tr_dri 近三年年化投资收益率 cagr_p_r_d60 stockCode 近十年年化投资收益率 period_date 近14日投资收益率 指定时间段投资收益率 cagr_p_r_y5 cagr_p_r_y3 cagr_p_r_y10 -->
 
 ---
 
@@ -348,7 +347,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_indices.md`
 
-<!-- 搜索关键词: 指数来源 中证 :csi 国证 :cni 恒生 :hsi 美指 :usi 理杏仁 :lxri areaCode 地区代码 indices source name stockCode 指数代码 指数名称 股票所属指数信息 -->
+<!-- 搜索关键词: name indices 指数名称 指数来源 中证 :csi 国证 :cni 恒生 :hsi 美指 :usi 理杏仁 :lxri source stockCode areaCode 股票所属指数信息 地区代码 指数代码 -->
 
 ---
 
@@ -367,7 +366,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_industries.md`
 
-<!-- 搜索关键词: areaCode 地区代码 source 行业代码 name 股票所属行业信息 行业来源 申万 :sw 申万2021版 :sw_2021 国证 :cni 行业名称 stockCode industries -->
+<!-- 搜索关键词: name industries 行业代码 source 股票所属行业信息 stockCode areaCode 行业来源 申万 :sw 申万2021版 :sw_2021 国证 :cni 行业名称 地区代码 -->
 
 ---
 
@@ -388,7 +387,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_inquiry.md`
 
-<!-- 搜索关键词: displayTypeText type 链接文本 公告日期 linkType 链接地址 linkUrl 问询函 inquiry date 链接类型 种类 问询函 :il 定期报告审核意见函 :olo_prpa 重大资产重组预案审核意见函 :olo_romarp 显示类型文本 linkText -->
+<!-- 搜索关键词: 链接类型 date displayTypeText 种类 问询函 :il 定期报告审核意见函 :olo_prpa 重大资产重组预案审核意见函 :olo_romarp type 公告日期 问询函 链接文本 链接地址 显示类型文本 linkUrl linkType inquiry linkText -->
 
 ---
 
@@ -413,7 +412,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_major-shareholders-shares-change.md`
 
-<!-- 搜索关键词: sharesChangeAmount major-shareholders-shares-change shareholderName 变动持股量 sharesChangeRatio sharesHeldAfterChange 变动数量占总股本比例 增减持平均价格【如果没有价格上下限，我们会根据数据时间所在交易日的成交均价做计算】 变动后占比 date 股东名称 priceCeiling priceFloor 大股东增减持 数据时间 changeQuantity 增减持金额 quantityHeldAfterChange 增(减)持价格下限 变动后持股数量 增(减)持价格上限 avgPrice -->
+<!-- 搜索关键词: sharesChangeRatio 股东名称 增(减)持价格上限 变动后占比 sharesChangeAmount 数据时间 shareholderName 增(减)持价格下限 增减持平均价格【如果没有价格上下限，我们会根据数据时间所在交易日的成交均价做计算】 major-shareholders-shares-change date priceCeiling 增减持金额 priceFloor sharesHeldAfterChange 大股东增减持 变动持股量 quantityHeldAfterChange 变动后持股数量 avgPrice 变动数量占总股本比例 changeQuantity -->
 
 ---
 
@@ -434,7 +433,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_majority-shareholders.md`
 
-<!-- 搜索关键词: 持仓 数据时间 前十大股东持股 proportionOfCapitalization 姓名 性质 name holdings 总股本占比 majority-shareholders date 总股本 property capitalization -->
+<!-- 搜索关键词: name 性质 date 总股本 capitalization 总股本占比 数据时间 前十大股东持股 majority-shareholders holdings property 持仓 proportionOfCapitalization 姓名 -->
 
 ---
 
@@ -460,7 +459,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_margin-trading-and-securities-lending.md`
 
-<!-- 搜索关键词: securitiesMargin 融资融券余额 financingSecuritiesBalance securitiesRepaymentAmount 融券卖出金额 融资买入金额 financingRepaymentAmount securitiesBalance 融资余额 融券偿还金额 融券余额 date securitiesRepaymentVolume margin-trading-and-securities-lending financingPurchaseAmount securitiesSellVolume 公告日期 融券卖出量 融资融券 融券余量 financingBalance securitiesSellAmount 融券偿还量 融资偿还金额 -->
+<!-- 搜索关键词: 融资偿还金额 融券余量 融券余额 securitiesRepaymentAmount securitiesRepaymentVolume 融券偿还量 securitiesSellVolume financingPurchaseAmount 融资融券余额 financingSecuritiesBalance 融资融券 融券卖出量 date 融券偿还金额 融资余额 securitiesBalance 融券卖出金额 financingBalance margin-trading-and-securities-lending securitiesSellAmount securitiesMargin 融资买入金额 公告日期 financingRepaymentAmount -->
 
 ---
 
@@ -482,7 +481,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_measures.md`
 
-<!-- 搜索关键词: referent displayTypeText type 链接文本 对象 公告日期 measures linkType 监管措施 链接地址 linkUrl 种类 监管警示 :sw 通报批评 :bc 公开谴责及认定 :pcar 监管工作函 :sl date 链接类型 显示类型文本 linkText -->
+<!-- 搜索关键词: 链接类型 date displayTypeText type 公告日期 链接文本 链接地址 种类 监管警示 :sw 通报批评 :bc 公开谴责及认定 :pcar 监管工作函 :sl 显示类型文本 linkUrl linkType referent measures 对象 监管措施 linkText -->
 
 ---
 
@@ -499,7 +498,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_mutual-market.md`
 
-<!-- 搜索关键词: 数据时间 shareholdings 互联互通 mutual-market date 持股数量 -->
+<!-- 搜索关键词: date shareholdings mutual-market 持股数量 数据时间 互联互通 -->
 
 ---
 
@@ -520,7 +519,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_nolimit-shareholders.md`
 
-<!-- 搜索关键词: 持仓 数据时间 流通A股占比 姓名 nolimit-shareholders 性质 name 前十大流通股东持股 holdings proportionOfOutstandingSharesA date 流通A股 property outstandingSharesA -->
+<!-- 搜索关键词: name 性质 流通A股占比 date 流通A股 proportionOfOutstandingSharesA 数据时间 outstandingSharesA 持仓 holdings property nolimit-shareholders 前十大流通股东持股 姓名 -->
 
 ---
 
@@ -535,13 +534,10 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 - **数据时间** (`date`)
 - **公告日期** (`declarationDate`)
 - **开始日期** (`startDate`)
-- **** (`String`)
-- **** (`String`)
-- **** (`String`)
 
 **文档**: `api_new/api-docs/cn_company_operating-data.md`
 
-<!-- 搜索关键词:  数据时间 开始日期 经营数据 公告日期 startDate String date operating-data declarationDate -->
+<!-- 搜索关键词: date startDate operating-data 开始日期 数据时间 公告日期 declarationDate 经营数据 -->
 
 ---
 
@@ -555,17 +551,10 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 - **数据时间** (`date`)
 - **公告日期** (`declarationDate`)
-- **** (`String`)
-- **** (`String`)
-- **** (`Number`)
-- **** (`Number`)
-- **** (`Number`)
-- **** (`Number`)
-- **** (`Number`)
 
 **文档**: `api_new/api-docs/cn_company_operation-revenue-constitution.md`
 
-<!-- 搜索关键词:  数据时间 公告日期 营收构成 operation-revenue-constitution String date Number declarationDate -->
+<!-- 搜索关键词: date 数据时间 公告日期 营收构成 operation-revenue-constitution declarationDate -->
 
 ---
 
@@ -594,7 +583,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_pledge.md`
 
-<!-- 搜索关键词: pledgeMatters 股权质押 质押数量 出质人 质押终止日 pledgeDischargeAmount pledgeStartDate 质押起始日 pledgeSharesNature 质权人 占总股比例 accumulatedPledgePercentageOfTotalEquity 累计质押占总股比例 质押股份性质 isPledgeRepurchaseTransactions pledgeDischargeExplanation pledgePercentageOfTotalEquity date 质押解除日 质押解除数量 数据时间 pledgee pledgeAmount 质押事项 是否质押式回购交易 pledgeDischargeDate 质押解除解释 pledgeEndDate pledge pledgor -->
+<!-- 搜索关键词: 占总股比例 pledgeMatters 质押解除解释 是否质押式回购交易 pledgeEndDate 数据时间 pledgor 质押股份性质 isPledgeRepurchaseTransactions pledgeDischargeDate 质押解除日 date accumulatedPledgePercentageOfTotalEquity 质权人 pledgeSharesNature pledgePercentageOfTotalEquity pledgeStartDate pledge pledgeDischargeAmount 质押事项 质押解除数量 股权质押 质押起始日 pledgeDischargeExplanation 出质人 pledgee 质押数量 累计质押占总股比例 pledgeAmount 质押终止日 -->
 
 ---
 
@@ -616,7 +605,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_profile.md`
 
-<!-- 搜索关键词: actualControllerTypes companyName profile 历史名称 新名称 :newName 老名称 :oldName province 股票代码 city 省份 实际控制人类型 自然人 :natural_person 集体 :collective 外企 :foreign_company 国有 :state_owned 城市 公司名称 stockCode actualControllerName historyStockNames 公司概况 实际控制人 -->
+<!-- 搜索关键词: city 历史名称 新名称 :newName 老名称 :oldName actualControllerName profile 公司名称 城市 stockCode companyName historyStockNames 省份 actualControllerTypes 实际控制人 province 实际控制人类型 自然人 :natural_person 集体 :collective 外企 :foreign_company 国有 :state_owned 股票代码 公司概况 -->
 
 ---
 
@@ -643,7 +632,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_senior-executive-shares-change.md`
 
-<!-- 搜索关键词: 高管增减持 sharesChangeAmount afterChangeShares shareholderName senior-executive-shares-change 变动持股量 职务 持股人与高管关系 变动后持股量 changedSharesForCapitalizationProportion changeReason beforeChangeShares duty 变动前持股量 高管姓名 成交均价 date 变动原因 股东名称 增减持占总股本比例 数据时间 executiveName changedShares 增减持金额 relationBetweenES avgPrice -->
+<!-- 搜索关键词: 高管增减持 高管姓名 股东名称 sharesChangeAmount executiveName 成交均价 变动前持股量 changedSharesForCapitalizationProportion 数据时间 shareholderName 持股人与高管关系 relationBetweenES 变动后持股量 date 增减持金额 changeReason changedShares beforeChangeShares 变动原因 增减持占总股本比例 afterChangeShares 职务 变动持股量 avgPrice senior-executive-shares-change duty -->
 
 ---
 
@@ -662,7 +651,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_company_shareholders-num.md`
 
-<!-- 搜索关键词: 数据时间 股东人数变化比例 股东人数 shareholdersNumberChangeRate total date 股价涨跌幅 shareholders-num spc -->
+<!-- 搜索关键词: 股东人数变化比例 date shareholders-num shareholdersNumberChangeRate 数据时间 股价涨跌幅 股东人数 spc total -->
 
 ---
 
@@ -676,14 +665,10 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 - **数据时间** (`date`)
 - **公告日期** (`declarationDate`)
-- **** (`Number`)
-- **** (`Number`)
-- **** (`String`)
-- **** (`Number`)
 
 **文档**: `api_new/api-docs/cn_company_suppliers.md`
 
-<!-- 搜索关键词:  数据时间 供应商 公告日期 String suppliers date Number declarationDate -->
+<!-- 搜索关键词: date 数据时间 suppliers 公告日期 供应商 declarationDate -->
 
 ---
 
@@ -697,23 +682,10 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 - **数据时间** (`date`)
 - **披露原因** (`reasonForDisclosure`)
-- **** (`String`)
-- **** (`Number`)
-- **** (`Number`)
-- **** (`Number`)
-- **** (`Number`)
-- **** (`Number`)
-- **** (`Number`)
-- **** (`Number`)
-- **** (`Number`)
-- **** (`Number`)
-- **** (`Number`)
-- **** (`String`)
-- **** (`Number`)
 
 **文档**: `api_new/api-docs/cn_company_trading-abnormal.md`
 
-<!-- 搜索关键词:  数据时间 龙虎榜 String reasonForDisclosure trading-abnormal date Number 披露原因 -->
+<!-- 搜索关键词: date 数据时间 trading-abnormal reasonForDisclosure 披露原因 龙虎榜 -->
 
 ---
 
@@ -741,7 +713,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_index.md`
 
-<!-- 搜索关键词: index 地区代码 计算方式 派氏加权 :paasche 分级靠档加权 :grading_weighted 股息率加权 :dividend_grading 等权 :equal 自由流通市值加权 :free_float_cap 修正资本化加权 :modified_cap_weighted 流通市值加权 :negotiable_mc_weighted 债券成分券流通金额加权 :circulation_amount_of_constituent_bonds name 指数来源 国证 :cni 中证 :csi 理杏仁 :lxri 指数信息 areaCode 财务报表类型 非金融 :non_financial 银行 :bank 证券 :security 保险 :insurance 房地产投资信托 :reit 其他金融 :other_financial 混合 :hybrid 发布时间 currency launchDate stockCode 指数代码 rebalancingFrequency 指数名称 series fsTableType source 货币 market 市场 调样频率 年度 :annually 半年 :semi-annually 季度 :quarterly 月度 :monthly 不定期 :irregularly 定期 :aperiodically 类型 规模 :size 综合 :composite 行业 :sector 风格 :style 主题 :thematic 策略 :strategy caculationMethod -->
+<!-- 搜索关键词: name 指数来源 国证 :cni 中证 :csi 理杏仁 :lxri areaCode 类型 规模 :size 综合 :composite 行业 :sector 风格 :style 主题 :thematic 策略 :strategy 计算方式 派氏加权 :paasche 分级靠档加权 :grading_weighted 股息率加权 :dividend_grading 等权 :equal 自由流通市值加权 :free_float_cap 修正资本化加权 :modified_cap_weighted 流通市值加权 :negotiable_mc_weighted 债券成分券流通金额加权 :circulation_amount_of_constituent_bonds series 地区代码 财务报表类型 非金融 :non_financial 银行 :bank 证券 :security 保险 :insurance 房地产投资信托 :reit 其他金融 :other_financial 混合 :hybrid caculationMethod market currency 发布时间 市场 launchDate 指数名称 调样频率 年度 :annually 半年 :semi-annually 季度 :quarterly 月度 :monthly 不定期 :irregularly 定期 :aperiodically index source rebalancingFrequency fsTableType 指数代码 stockCode 货币 指数信息 -->
 
 ---
 
@@ -764,7 +736,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_index_candlestick.md`
 
-<!-- 搜索关键词: 数据时间 close 最高价 收盘价 low amount 开盘价 成交量 volume high 涨跌幅 date candlestick K线数据 open 金额 最低价 change -->
+<!-- 搜索关键词: change volume date close 开盘价 数据时间 K线数据 金额 low amount 最高价 candlestick 最低价 涨跌幅 成交量 open 收盘价 high -->
 
 ---
 
@@ -782,7 +754,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_index_constituent-weightings.md`
 
-<!-- 搜索关键词: 数据时间 constituent-weightings 股票代码 weighting 指数样本权重 权重 stockCode date -->
+<!-- 搜索关键词: date constituent-weightings 数据时间 stockCode 指数样本权重 weighting 股票代码 权重 -->
 
 ---
 
@@ -795,12 +767,10 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 **返回字段**:
 
 - **指数代码** (`stockCode`)
-- **** (`String`)
-- **** (`String`)
 
 **文档**: `api_new/api-docs/cn_index_constituents.md`
 
-<!-- 搜索关键词:  样本信息 constituents String stockCode 指数代码 -->
+<!-- 搜索关键词: 指数代码 stockCode 样本信息 constituents -->
 
 ---
 
@@ -817,7 +787,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_index_drawdown.md`
 
-<!-- 搜索关键词: 数据时间 value date 回撤 drawdown 指数回撤 -->
+<!-- 搜索关键词: date 回撤 数据时间 drawdown value 指数回撤 -->
 
 ---
 
@@ -841,7 +811,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_index_fundamental.md`
 
-<!-- 搜索关键词: fundamental 基本面数据 -->
+<!-- 搜索关键词: 基本面数据 fundamental -->
 
 ---
 
@@ -869,7 +839,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_index_hot_mm_ha.md`
 
-<!-- 搜索关键词: 陆股通过去1个季度持股金额占市值变化比例 mm_sh_nba_q4 last_data_date mm_sh_nba_q3 陆股通过去2个季度持股金额占市值变化比例 mm_sha_mc_rc_q3 互联互通 stockCode 陆股通过去1个季度净买入金额 陆股通持仓金额 mm_sha_mc_rc_q4 mm_sha_mc_rc_q1 mm_sha 陆股通过去3个季度持股金额占市值变化比例 cpc 陆股通过去4个季度净买入金额 mm_sha_mc_rc_q2 陆股通过去3个季度净买入金额 陆股通持仓金额占市值比例 mm_ha mm_sh_nba_q2 mm_sh_nba_q1 陆股通过去4个季度持股金额占市值变化比例 数据时间 mm_sha_mc_r 股票代码 涨跌幅 陆股通过去2个季度净买入金额 -->
+<!-- 搜索关键词: 陆股通过去3个季度净买入金额 陆股通过去2个季度持股金额占市值变化比例 mm_sha_mc_r 互联互通 陆股通过去1个季度持股金额占市值变化比例 mm_sha_mc_rc_q3 陆股通过去4个季度持股金额占市值变化比例 mm_sh_nba_q2 陆股通过去2个季度净买入金额 数据时间 涨跌幅 mm_sha_mc_rc_q1 mm_sha_mc_rc_q2 mm_sh_nba_q3 cpc mm_sha_mc_rc_q4 last_data_date mm_ha 陆股通持仓金额占市值比例 陆股通持仓金额 mm_sh_nba_q4 陆股通过去1个季度净买入金额 mm_sha stockCode 陆股通过去3个季度持股金额占市值变化比例 股票代码 mm_sh_nba_q1 陆股通过去4个季度净买入金额 -->
 
 ---
 
@@ -889,7 +859,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_index_margin-trading-and-securities-lending.md`
 
-<!-- 搜索关键词: 数据时间 margin-trading-and-securities-lending 融资余额占流通市值比例 融券余额占流通市值比例 securitiesBalance 融券余额 融资融券 securitiesBalanceToMarketCap financingBalance financingBalanceToMarketCap date 融资余额 -->
+<!-- 搜索关键词: margin-trading-and-securities-lending date 融券余额占流通市值比例 financingBalanceToMarketCap 融资余额 数据时间 融资余额占流通市值比例 securitiesBalance 融券余额 融资融券 securitiesBalanceToMarketCap financingBalance -->
 
 ---
 
@@ -907,7 +877,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_index_mutual-market.md`
 
-<!-- 搜索关键词: shareholdingsMoneyToMarketCap 数据时间 港资持仓金额占市值比例 互联互通 shareholdingsMoney mutual-market date 持股金额 -->
+<!-- 搜索关键词: date mutual-market 持股金额 数据时间 shareholdingsMoneyToMarketCap 互联互通 shareholdingsMoney 港资持仓金额占市值比例 -->
 
 ---
 
@@ -928,7 +898,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_index_tracking-fund.md`
 
-<!-- 搜索关键词: exchange areaCode 地区代码 基金名称 name 简称 market 市场 指数跟踪基金信息 shortName stockCode 交易所 tracking-fund 基金代码 -->
+<!-- 搜索关键词: name market 基金代码 交易所 市场 指数跟踪基金信息 stockCode 基金名称 shortName exchange areaCode 地区代码 简称 tracking-fund -->
 
 ---
 
@@ -954,7 +924,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_industry.md`
 
-<!-- 搜索关键词: 地区代码 industry name areaCode 财务报表类型 非金融 :non_financial 银行 :bank 证券 :security 保险 :insurance 房地产投资信托 :reit 其他金融 :other_financial 混合 :hybrid 发布时间 行业代码 launchDate currency 行业名称 stockCode fsTableType source 货币 market 市场 行业来源 国证 :cni 申万 :sw 申万2021版 :sw_2021 股票信息 行业分类等级 level -->
+<!-- 搜索关键词: name areaCode 行业名称 地区代码 财务报表类型 非金融 :non_financial 银行 :bank 证券 :security 保险 :insurance 房地产投资信托 :reit 其他金融 :other_financial 混合 :hybrid 股票信息 market currency 发布时间 市场 launchDate 行业代码 source level fsTableType 行业分类等级 stockCode 货币 行业来源 国证 :cni 申万 :sw 申万2021版 :sw_2021 industry -->
 
 ---
 
@@ -967,12 +937,10 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 **返回字段**:
 
 - **指数代码** (`stockCode`)
-- **** (`String`)
-- **** (`String`)
 
 **文档**: `api_new/api-docs/cn_industry_constituents_sw_2021.md`
 
-<!-- 搜索关键词:  样本信息 sw_2021 String stockCode 指数代码 -->
+<!-- 搜索关键词: 指数代码 stockCode 样本信息 sw_2021 -->
 
 ---
 
@@ -1023,7 +991,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_industry_hot_mm_ha_sw_2021.md`
 
-<!-- 搜索关键词: 陆股通过去1个季度持股金额占市值变化比例 mm_sh_nba_q4 last_data_date mm_sh_nba_q3 陆股通过去2个季度持股金额占市值变化比例 mm_sha_mc_rc_q3 互联互通 stockCode 陆股通过去1个季度净买入金额 陆股通持仓金额 mm_sha_mc_rc_q4 mm_sha_mc_rc_q1 mm_sha 陆股通过去3个季度持股金额占市值变化比例 陆股通过去4个季度净买入金额 sw_2021 mm_sha_mc_rc_q2 陆股通持仓金额占市值比例 陆股通过去3个季度净买入金额 mm_sh_nba_q2 mm_sh_nba_q1 陆股通过去4个季度持股金额占市值变化比例 数据时间 mm_sha_mc_r 股票代码 陆股通过去2个季度净买入金额 -->
+<!-- 搜索关键词: 陆股通过去3个季度净买入金额 陆股通过去2个季度持股金额占市值变化比例 mm_sha_mc_r 互联互通 陆股通过去1个季度持股金额占市值变化比例 mm_sha_mc_rc_q3 陆股通过去4个季度持股金额占市值变化比例 mm_sh_nba_q2 陆股通过去2个季度净买入金额 数据时间 sw_2021 mm_sha_mc_rc_q1 mm_sha_mc_rc_q2 mm_sh_nba_q3 mm_sha_mc_rc_q4 last_data_date 陆股通持仓金额占市值比例 陆股通持仓金额 mm_sh_nba_q4 陆股通过去1个季度净买入金额 mm_sha stockCode 陆股通过去3个季度持股金额占市值变化比例 股票代码 mm_sh_nba_q1 陆股通过去4个季度净买入金额 -->
 
 ---
 
@@ -1043,7 +1011,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_industry_margin-trading-and-securities-lending_sw_2021.md`
 
-<!-- 搜索关键词: 数据时间 融资余额占流通市值比例 融券余额占流通市值比例 securitiesBalance 融券余额 sw_2021 融资融券 securitiesBalanceToMarketCap financingBalance financingBalanceToMarketCap date 融资余额 -->
+<!-- 搜索关键词: date 融券余额占流通市值比例 financingBalanceToMarketCap 融资余额 数据时间 融资余额占流通市值比例 sw_2021 securitiesBalance 融券余额 融资融券 securitiesBalanceToMarketCap financingBalance -->
 
 ---
 
@@ -1061,7 +1029,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_industry_mutual-market_sw_2021.md`
 
-<!-- 搜索关键词: shareholdingsMoneyToMarketCap 数据时间 sw_2021 港资持仓金额占市值比例 互联互通 shareholdingsMoney date 持股金额 -->
+<!-- 搜索关键词: date 持股金额 数据时间 shareholdingsMoneyToMarketCap 互联互通 shareholdingsMoney 港资持仓金额占市值比例 sw_2021 -->
 
 ---
 
@@ -1084,7 +1052,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund-company.md`
 
-<!-- 搜索关键词: fundsNum 基金公司代码 基金公司信息 成立日期 fund-company assetScale name 基金公司类型 基金公司 :fund_company 证券公司 :securities_company 证券公司资产管理子公司 :securities_company_amsc 保险资产管理公司 :insurance_am_company inceptionDate 基金数量 stockCode fundCollectionType 基金公司名称 总资产规模 -->
+<!-- 搜索关键词: name 基金公司类型 基金公司 :fund_company 证券公司 :securities_company 证券公司资产管理子公司 :securities_company_amsc 保险资产管理公司 :insurance_am_company 基金公司信息 总资产规模 assetScale 基金数量 stockCode inceptionDate fund-company 基金公司代码 基金公司名称 fundCollectionType 成立日期 fundsNum -->
 
 ---
 
@@ -1104,7 +1072,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund-company_asset-scale.md`
 
-<!-- 搜索关键词: equityAssetScale hybridAssetScale 股票型资产规模 混合型资产规模 资产规模 qdiiAssetScale bondAssetScale asset-scale 债券型资产规模 date QDII型资产规模 日期 -->
+<!-- 搜索关键词: date asset-scale 债券型资产规模 hybridAssetScale 资产规模 日期 混合型资产规模 qdiiAssetScale 股票型资产规模 QDII型资产规模 bondAssetScale equityAssetScale -->
 
 ---
 
@@ -1136,7 +1104,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund-company_fund-manager-list.md`
 
-<!-- 搜索关键词: fundManagerCodes 基金经理列表 基金经理代码数组 fund-manager-list -->
+<!-- 搜索关键词: 基金经理列表 fundManagerCodes fund-manager-list 基金经理代码数组 -->
 
 ---
 
@@ -1159,7 +1127,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund-company_hot_fc_as.md`
 
-<!-- 搜索关键词: fc_h_as QDII型资产规模 fc_b_as 股票型资产规模 fc_nb_as 基金公司资产规模 最新数据时间 混合型资产规模 股票代码 fc_q_as 非债券基金资产规模 fc_e_as 债券型资产规模 stockCode fc_as fc_as_d 总资产规模 -->
+<!-- 搜索关键词: 基金公司资产规模 非债券基金资产规模 债券型资产规模 总资产规模 fc_nb_as stockCode fc_as_d 混合型资产规模 股票型资产规模 fc_e_as QDII型资产规模 最新数据时间 fc_b_as 股票代码 fc_as fc_h_as fc_q_as -->
 
 ---
 
@@ -1178,7 +1146,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund-company_shareholdings.md`
 
-<!-- 搜索关键词: 持股 shareholdings 持仓股数 股票代码 持仓市值 holdings marketCap stockCode date 日期 -->
+<!-- 搜索关键词: 持仓股数 date shareholdings marketCap 日期 stockCode 持仓市值 持股 holdings 股票代码 -->
 
 ---
 
@@ -1198,7 +1166,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund-manager.md`
 
-<!-- 搜索关键词: fund-manager 出生年份 gender 基金经理信息 性别 履历 name birthYear 基金经理代码 stockCode 基金经理姓名 resume -->
+<!-- 搜索关键词: name resume 性别 birthYear 基金经理信息 stockCode 履历 基金经理代码 gender 基金经理姓名 出生年份 fund-manager -->
 
 ---
 
@@ -1233,7 +1201,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund-manager_hot_fmp.md`
 
-<!-- 搜索关键词: 最新收益率时间 十年收益率 fm_p_r_m1_rp fm_p_r_y10_rp 相同基金经理类型一年收益率排名 fm_p_r_y1 相同基金经理类型一个月收益率排名 基金经理收益率 六个月收益率 管理基金以来年化收益率 fm_p_r_m6_rp fm_p_r_y1_rp fm_p_r_m3 fm_p_r_y10 fmp stockCode fm_p_r_d 五年收益率 fm_p_r_y3 三个月收益率 fm_p_r_m6 fm_p_r_y5 fm_p_r_m1 一年收益率 相同基金经理类型五年收益率排名 fm_p_r_fys 相同基金经理类型三年收益率排名 fm_cagr_p_r_fs 三年收益率 相同基金经理类型管理基金以来年化收益率排名 相同基金经理类型六个月收益率排名 一个月收益率 fm_p_r_y5_rp fm_p_r_y3_rp 股票代码 fm_p_r_m3_rp 相同基金经理类型今年以来收益率排名 相同基金经理类型三个月收益率排名 相同基金经理类型十年收益率排名 fm_cagr_p_r_fs_rp fm_p_r_fys_rp 今年以来收益率 -->
+<!-- 搜索关键词: fm_p_r_y10 fm_p_r_fys_rp fm_p_r_m6 最新收益率时间 相同基金经理类型六个月收益率排名 fm_p_r_y1_rp fm_p_r_y3_rp fm_p_r_y10_rp 相同基金经理类型管理基金以来年化收益率排名 fm_p_r_fys fm_p_r_m6_rp 今年以来收益率 相同基金经理类型三个月收益率排名 fm_p_r_y1 一年收益率 相同基金经理类型今年以来收益率排名 fmp 管理基金以来年化收益率 fm_cagr_p_r_fs fm_p_r_y5 六个月收益率 相同基金经理类型一个月收益率排名 基金经理收益率 相同基金经理类型三年收益率排名 相同基金经理类型五年收益率排名 fm_p_r_y3 fm_p_r_m3_rp 三个月收益率 相同基金经理类型十年收益率排名 fm_cagr_p_r_fs_rp fm_p_r_m3 一个月收益率 fm_p_r_m1 十年收益率 fm_p_r_m1_rp stockCode 相同基金经理类型一年收益率排名 五年收益率 股票代码 fm_p_r_y5_rp fm_p_r_d 三年收益率 -->
 
 ---
 
@@ -1249,7 +1217,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund-manager_management-funds.md`
 
-<!-- 搜索关键词: management-funds 管理的基金信息 基金数组。 子字段: 基金名称: name: (String) 基金代码: code: (String) 任职日期: appointmentDate: (Date) 离任日期: departureDate: (Date) funds -->
+<!-- 搜索关键词: funds 基金数组。 子字段: 基金名称: name: (String) 基金代码: code: (String) 任职日期: appointmentDate: (Date) 离任日期: departureDate: (Date) management-funds 管理的基金信息 -->
 
 ---
 
@@ -1267,7 +1235,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund-manager_profit-ratio.md`
 
-<!-- 搜索关键词: 公告日期 value profit-ratio 计算起始日期 利润率 数额 date startDate -->
+<!-- 搜索关键词: date startDate profit-ratio 利润率 公告日期 数额 计算起始日期 value -->
 
 ---
 
@@ -1287,7 +1255,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund-manager_shareholdings.md`
 
-<!-- 搜索关键词: 持仓 shareholdings 公告日期 市值 holdingsToCcRatio 股票代码 holdings marketCap stockCode date 基金经理持仓 持股占流通股比例 -->
+<!-- 搜索关键词: date shareholdings marketCap 公告日期 holdingsToCcRatio stockCode 持股占流通股比例 持仓 基金经理持仓 holdings 股票代码 市值 -->
 
 ---
 
@@ -1313,7 +1281,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund.md`
 
-<!-- 搜索关键词: 地区代码 name shortName total inceptionDate fundSecondLevel exchange areaCode 基金名称 fund 简称 stockCode 基金总数 交易所 基金类型 股票型 :company 混合型 :hybrid 债券型 :bond QDII :QDII REIT :reit FOF :fof 商品基金 :commodity delistedDate 基金一级类型，目前只有商品基金有这个类型。 互认基金 :mutual_recognition market 市场 基金信息 合同生效日 fundFirstLevel 退市时间 基金代码 -->
+<!-- 搜索关键词: name 基金代码 基金名称 fundSecondLevel exchange areaCode 地区代码 简称 market 退市时间 市场 基金信息 fund 基金类型 股票型 :company 混合型 :hybrid 债券型 :bond QDII :QDII REIT :reit FOF :fof 商品基金 :commodity delistedDate inceptionDate shortName 基金一级类型，目前只有商品基金有这个类型。 互认基金 :mutual_recognition 基金总数 total 交易所 stockCode 合同生效日 fundFirstLevel -->
 
 ---
 
@@ -1334,7 +1302,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund_announcement.md`
 
-<!-- 搜索关键词: 链接文本 公告日期 types lang linkType 链接地址 公告 announcement linkUrl date 链接类型 语言 linkText 种类 全部 :all 财务报表 :fs 招募设立 :s_u 分红 :dividend 拆分折算 :split 其它 :other -->
+<!-- 搜索关键词: 链接类型 date 种类 全部 :all 财务报表 :fs 招募设立 :s_u 分红 :dividend 拆分折算 :split 其它 :other 公告日期 lang 语言 announcement 链接文本 链接地址 types 公告 linkUrl linkType linkText -->
 
 ---
 
@@ -1351,7 +1319,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund_asset-combination.md`
 
-<!-- 搜索关键词: ac 资产组合 资产组合 子字段: 权益类投资: ei: (Number) (其中)股票: ei_c: (Number) (其中)优先股: ei_ps: (Number) (其中)存托凭证: ei_dr: (Number) (其中)房地产信托: ei_ret: (Number) 权益类投资占比: ei_r: (Number) 基金投资: fi: (Number) 基金投资占比: fi_r: (Number) 固定收益投资: fii: (Number) (其中)债券: fii_b: (Number) (其中)资产支持证券: fii_abs: (Number) 固定收益投资占比: fii_r: (Number) 贵金属投资: pmi: (Number) 贵金属投资占比: pmi_r: (Number) 金融衍生品投资: fdi: (Number) (其中)远期: fdi_fd: (Number) (其中)期货: fdi_fs: (Number) (其中)期权: fdi_o: (Number) (其中)权证: fdi_W: (Number) 金融衍生品投资占比: fdi_r: (Number) 返售型金融资产: rfa: (Number) (其中)买断式: rfa_br: (Number) 返售型金融资产占比: rfa_r: (Number) 银行存款及结算备付金: bs_a_sr: (Number) 银行存款及结算备付金占比: bs_a_sr_r: (Number) 货币市场工具: mmt: (Number) 货币市场工具占比: mmt_r: (Number) 其他资产: oa: (Number) 其他资产占比: oa_r: (Number) date 财报日期 asset-combination -->
+<!-- 搜索关键词: date asset-combination 资产组合 子字段: 权益类投资: ei: (Number) (其中)股票: ei_c: (Number) (其中)优先股: ei_ps: (Number) (其中)存托凭证: ei_dr: (Number) (其中)房地产信托: ei_ret: (Number) 权益类投资占比: ei_r: (Number) 基金投资: fi: (Number) 基金投资占比: fi_r: (Number) 固定收益投资: fii: (Number) (其中)债券: fii_b: (Number) (其中)资产支持证券: fii_abs: (Number) 固定收益投资占比: fii_r: (Number) 贵金属投资: pmi: (Number) 贵金属投资占比: pmi_r: (Number) 金融衍生品投资: fdi: (Number) (其中)远期: fdi_fd: (Number) (其中)期货: fdi_fs: (Number) (其中)期权: fdi_o: (Number) (其中)权证: fdi_W: (Number) 金融衍生品投资占比: fdi_r: (Number) 返售型金融资产: rfa: (Number) (其中)买断式: rfa_br: (Number) 返售型金融资产占比: rfa_r: (Number) 银行存款及结算备付金: bs_a_sr: (Number) 银行存款及结算备付金占比: bs_a_sr_r: (Number) 货币市场工具: mmt: (Number) 货币市场工具占比: mmt_r: (Number) 其他资产: oa: (Number) 其他资产占比: oa_r: (Number) ac 财报日期 资产组合 -->
 
 ---
 
@@ -1368,7 +1336,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund_asset-industry-combination.md`
 
-<!-- 搜索关键词: 按行业分类的股票投资组合 asset-industry-combination aic_cn 按行业分类的股票投资组合 子字段: 行业名称: name: (String) 公允价值: value: (Number) 比例: proportion: (Number) date 财报日期 -->
+<!-- 搜索关键词: date asset-industry-combination 财报日期 按行业分类的股票投资组合 按行业分类的股票投资组合 子字段: 行业名称: name: (String) 公允价值: value: (Number) 比例: proportion: (Number) aic_cn -->
 
 ---
 
@@ -1392,7 +1360,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund_candlestick.md`
 
-<!-- 搜索关键词: 复权因子 volume 最低价 close 开盘价 金额 complexFactor low 成交量 date K线数据 open 数据时间 最高价 amount 收盘价 high 涨跌幅 candlestick change -->
+<!-- 搜索关键词: volume 复权因子 amount high change close 开盘价 数据时间 K线数据 涨跌幅 candlestick open date 最高价 最低价 complexFactor 金额 low 成交量 收盘价 -->
 
 ---
 
@@ -1410,7 +1378,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund_dividend.md`
 
-<!-- 搜索关键词: 分红金额(每份) 除权除息日 股权登记日 dividend date 分红 exDate -->
+<!-- 搜索关键词: dividend exDate date 股权登记日 除权除息日 分红 分红金额(每份) -->
 
 ---
 
@@ -1427,7 +1395,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund_drawdown.md`
 
-<!-- 搜索关键词: 数据时间 基金回撤 value date 回撤 drawdown -->
+<!-- 搜索关键词: date 回撤 数据时间 基金回撤 drawdown value -->
 
 ---
 
@@ -1447,7 +1415,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund_exchange-traded-close-price.md`
 
-<!-- 搜索关键词: 数据时间 close low 收盘价 最高价 开盘价 exchange-traded-close-price high date open 场内基金收盘价 最低价 -->
+<!-- 搜索关键词: date close 开盘价 数据时间 exchange-traded-close-price low 最低价 最高价 场内基金收盘价 open 收盘价 high -->
 
 ---
 
@@ -1467,7 +1435,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund_fees.md`
 
-<!-- 搜索关键词: 费用 c_f 公告日期 m_f_r m_f c_f_r 托管费用率 fees 托管费用 date 管理报酬 管理报酬费用率 -->
+<!-- 搜索关键词: c_f date fees 公告日期 管理报酬费用率 托管费用 托管费用率 管理报酬 m_f_r m_f 费用 c_f_r -->
 
 ---
 
@@ -1499,7 +1467,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund_hot_f_nlacan.md`
 
-<!-- 搜索关键词: 最近20个交易日平均溢价率 净值日期 净值估算值 最近5个交易日平均溢价率 收盘价涨跌幅 f_nlacan 净值估算日期 f_nv_env 收盘价溢价率 f_pnv_pr_avg_d10 成交金额 f_nv_d 最新收盘价溢价率信息 f_nv_eicpcr 净值估算前值 净值估算前值时间 stockCode f_nv_cr 收盘价格 f_c_cr 基金净值 f_pnv_pr_avg_d5 f_nv_eicpd 净值涨跌幅 价格时间 最近10个交易日平均溢价率 f_c_c f_c_d f_nv f_nv_esnv 股票代码 净值估算对应的指数涨跌幅 f_nv_esvd f_c_a f_pnv_pr f_pnv_pr_avg_d20 -->
+<!-- 搜索关键词: f_nv_eicpcr 基金净值 f_pnv_pr_avg_d10 f_c_a f_nv_esvd 净值估算值 f_pnv_pr 净值估算对应的指数涨跌幅 f_pnv_pr_avg_d5 最近20个交易日平均溢价率 f_nv_d f_nlacan 最新收盘价溢价率信息 f_nv 净值估算前值 成交金额 净值估算日期 净值日期 收盘价溢价率 收盘价格 最近5个交易日平均溢价率 f_c_c f_nv_esnv 净值涨跌幅 f_nv_eicpd 价格时间 f_pnv_pr_avg_d20 净值估算前值时间 stockCode f_c_cr f_nv_cr 收盘价涨跌幅 f_nv_env 股票代码 f_c_d 最近10个交易日平均溢价率 -->
 
 ---
 
@@ -1516,7 +1484,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund_manager.md`
 
-<!-- 搜索关键词: manager managers 基金经理 stockCode 基金经理数组。 子字段: 基金经理姓名: name: (String) 基金经理代码: managerCode: (String) 任职日期: appointmentDate: (Date) 离任日期: departureDate: (Date) 基金代码 -->
+<!-- 搜索关键词: 基金经理 基金代码 基金经理数组。 子字段: 基金经理姓名: name: (String) 基金经理代码: managerCode: (String) 任职日期: appointmentDate: (Date) 离任日期: departureDate: (Date) stockCode manager managers -->
 
 ---
 
@@ -1533,7 +1501,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund_net-value-of-dividend-reinvestment.md`
 
-<!-- 搜索关键词: 数据时间 理杏仁分红再投入净值 netValue date net-value-of-dividend-reinvestment -->
+<!-- 搜索关键词: net-value-of-dividend-reinvestment netValue date 数据时间 理杏仁分红再投入净值 -->
 
 ---
 
@@ -1550,7 +1518,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund_net-value.md`
 
-<!-- 搜索关键词: 数据时间 净值 net-value netValue date -->
+<!-- 搜索关键词: 净值 date netValue 数据时间 net-value -->
 
 ---
 
@@ -1579,7 +1547,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund_profile.md`
 
-<!-- 搜索关键词: m_stock_code 基金主代码 risk_r_c 基金公司 财报日期 investment_o ipo_date f_c_name 联接基金 子基金代码 s_f_stock_codes 场内简称 investment_s feeder_funds 风险收益特征 投资目标 inception_date op_mode profile p_c_benchmark 投资策略 业绩比较基准 上市日期 date 合同生效日 e_t_short_name 基金概况 基金托管人 运作方式 c_name -->
+<!-- 搜索关键词: inception_date 基金托管人 profile 风险收益特征 risk_r_c s_f_stock_codes 子基金代码 investment_s op_mode c_name 场内简称 投资目标 基金公司 上市日期 e_t_short_name 业绩比较基准 date 投资策略 investment_o 联接基金 基金概况 运作方式 ipo_date f_c_name m_stock_code p_c_benchmark feeder_funds 财报日期 合同生效日 基金主代码 -->
 
 ---
 
@@ -1603,7 +1571,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund_shareholders-structure.md`
 
-<!-- 搜索关键词: h_a f_f_s 持有人户数 持有人结构 持有人平均份额 联接基金份额 个人持有份额 f_f_s_r h_s_a ind_h_s 个人持有份额占比 ind_h_s_r date 联接基金份额占比 数据时间 shareholders-structure 机构投资占比 ins_h_s 机构持有份额 ins_h_s_r -->
+<!-- 搜索关键词: 机构持有份额 ind_h_s ind_h_s_r f_f_s 持有人户数 个人持有份额占比 联接基金份额 数据时间 持有人平均份额 持有人结构 机构投资占比 ins_h_s shareholders-structure 个人持有份额 f_f_s_r date h_s_a 联接基金份额占比 ins_h_s_r h_a -->
 
 ---
 
@@ -1615,7 +1583,6 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **返回字段**:
 
-- **** (`date`)
 - **持仓股票代码** (`stockCode`)
 - **股票地区代码** (`stockAreaCode`)
 - **持股数量** (`holdings`)
@@ -1624,7 +1591,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund_shareholdings.md`
 
-<!-- 搜索关键词:  shareholdings 持仓占比 基金持仓 股票地区代码 持仓股票代码 holdings marketCap 持仓市值 stockCode date stockAreaCode netValueRatio 持股数量 -->
+<!-- 搜索关键词: marketCap shareholdings 持股数量 基金持仓 持仓占比 股票地区代码 stockCode stockAreaCode 持仓市值 holdings netValueRatio 持仓股票代码 -->
 
 ---
 
@@ -1644,7 +1611,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund_shares.md`
 
-<!-- 搜索关键词: 数据时间 场内基金规模 场内基金份额 et_as as 基金规模 基金份额 shares date s et_shares -->
+<!-- 搜索关键词: 场内基金规模 as date et_shares 数据时间 场内基金份额 基金规模 et_as s shares 基金份额 -->
 
 ---
 
@@ -1661,7 +1628,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund_split.md`
 
-<!-- 搜索关键词: 拆分折算比例 拆分 splitRatio 拆分折算日 date split -->
+<!-- 搜索关键词: date 拆分折算比例 split splitRatio 拆分折算日 拆分 -->
 
 ---
 
@@ -1678,7 +1645,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund_total-net-value.md`
 
-<!-- 搜索关键词: totalNetValue 数据时间 date total-net-value 基金累积净值 -->
+<!-- 搜索关键词: totalNetValue date 数据时间 total-net-value 基金累积净值 -->
 
 ---
 
@@ -1695,7 +1662,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/cn_fund_turnover-rate.md`
 
-<!-- 搜索关键词: 数据时间 换手率 value turnover-rate 数额 date -->
+<!-- 搜索关键词: date 数据时间 数额 value turnover-rate 换手率 -->
 
 ---
 
@@ -1725,7 +1692,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_company.md`
 
-<!-- 搜索关键词: 地区代码 AH同时上市公司对应的A股代码 mutualMarketFlag name total exchange 公司总数 areaCode mutualMarkets company 互联互通 公司名称 stockCode 交易所 delistedDate fsTableType 上市时间 market 市场 sharesPerLot ipoDate stockCodeA 股票信息 是否是互联互通标的 股票代码 每手股数 退市时间 财报类型 -->
+<!-- 搜索关键词: name mutualMarketFlag exchange 公司总数 areaCode AH同时上市公司对应的A股代码 互联互通 地区代码 上市时间 sharesPerLot 财报类型 股票信息 market 退市时间 市场 mutualMarkets stockCodeA 每手股数 delistedDate fsTableType total company 公司名称 交易所 stockCode 是否是互联互通标的 ipoDate 股票代码 -->
 
 ---
 
@@ -1746,7 +1713,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_company_allotment.md`
 
-<!-- 搜索关键词: allotment 公告日期 货币 currency allotmentShares 实际配股数量 除权除息日 配股价格 date allotmentPrice 配股比例 配股 allotmentRatio exDate -->
+<!-- 搜索关键词: allotmentPrice exDate date currency 公告日期 配股 配股比例 allotmentShares 除权除息日 配股价格 实际配股数量 allotmentRatio 货币 allotment -->
 
 ---
 
@@ -1766,7 +1733,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_company_announcement.md`
 
-<!-- 搜索关键词: 链接文本 公告日期 types linkType 链接地址 公告 announcement linkUrl 种类 全部 :all 财务报表 :fs 配售 :spo 供股 :sa 回购 :srp 会议及表决 :m_a_v 翌日披露报表—其他 :ndd_r 月报表 :mr IPO :ipo date 链接类型 linkText -->
+<!-- 搜索关键词: 种类 全部 :all 财务报表 :fs 配售 :spo 供股 :sa 回购 :srp 会议及表决 :m_a_v 翌日披露报表—其他 :ndd_r 月报表 :mr IPO :ipo 链接类型 date 公告日期 链接文本 链接地址 announcement types 公告 linkUrl linkType linkText -->
 
 ---
 
@@ -1791,7 +1758,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_company_candlestick.md`
 
-<!-- 搜索关键词: volume to_r 最低价 close 开盘价 换手率 stockCode 金额 low 成交量 date K线数据 open 数据时间 最高价 amount 收盘价 股票代码 high 涨跌幅 candlestick change -->
+<!-- 搜索关键词: volume amount high change close 开盘价 数据时间 K线数据 涨跌幅 candlestick 换手率 open date 最高价 最低价 stockCode 金额 low to_r 股票代码 成交量 收盘价 -->
 
 ---
 
@@ -1819,7 +1786,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_company_dividend.md`
 
-<!-- 搜索关键词: paymentDate 分红到账日 annualNetProfit 股权登记日 bonusSharesFromProfit content 送股(股) bonusSharesFromCapitalReserve currency 分红金额（港币） 转增(股) 年度净利润分红比例 fsEndDate annualNetProfitDividendRatio 年度净利润（港币） 货币 除权除息日 date 分红 exDate 财报时间 公告日期 registerDate dividend dividendAmount 内容 -->
+<!-- 搜索关键词: exDate bonusSharesFromProfit annualNetProfit 股权登记日 currency annualNetProfitDividendRatio content 分红 分红到账日 dividendAmount 年度净利润分红比例 dividend 送股(股) date paymentDate 分红金额（港币） 转增(股) 财报时间 内容 registerDate 公告日期 bonusSharesFromCapitalReserve 年度净利润（港币） 除权除息日 fsEndDate 货币 -->
 
 ---
 
@@ -1836,7 +1803,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_company_employee.md`
 
-<!-- 搜索关键词: 公告日期 dataList 员工信息 date 数据列表 子字段: 项目名称: itemName: (String) 父项名称: parentItemName: (String) 数据显示类型: displayType: (String) 数额: value: (Number) employee -->
+<!-- 搜索关键词: date 公告日期 员工信息 数据列表 子字段: 项目名称: itemName: (String) 父项名称: parentItemName: (String) 数据显示类型: displayType: (String) 数额: value: (Number) employee dataList -->
 
 ---
 
@@ -1854,7 +1821,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_company_equity-change.md`
 
-<!-- 搜索关键词: 总股本 H股股本 变动日期 股本变动 date capitalizationH equity-change capitalization -->
+<!-- 搜索关键词: date 总股本 H股股本 股本变动 变动日期 capitalizationH equity-change capitalization -->
 
 ---
 
@@ -1876,7 +1843,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_company_fs_non_financial.md`
 
-<!-- 搜索关键词: auditOpinionType 财报数据 审计意见 无保留意见 :unqualified_opinion 保留意见 :qualified_opinion 保留意见与解释性说明 :qualified_opinion_with_explanatory_notes 否定意见 :adverse_opinion 拒绝表示意见 :disclaimer_of_opinion 解释性说明 :explanatory_statement 无法表示意见 :unable_to_express_an_opinion 带强调事项段的无保留意见 :unqualified_opinion_with_highlighted_matter_paragraph currency 公告时间 股票代码 货币类型 non_financial reportDate stockCode date standardDate 财报类型 reportType 标准财年时间（不同公司的财年不一样，有的年报12月结束，有的却是3月结束，还有的7月结束。例如2017-01-01到2017-06-30结束的年报，调整到2016-Q4，其余的季报和中报都相应的做类似调整。调整后具有通用性。） 财报日期 -->
+<!-- 搜索关键词: 财报类型 财报数据 date non_financial 审计意见 无保留意见 :unqualified_opinion 保留意见 :qualified_opinion 保留意见与解释性说明 :qualified_opinion_with_explanatory_notes 否定意见 :adverse_opinion 拒绝表示意见 :disclaimer_of_opinion 解释性说明 :explanatory_statement 无法表示意见 :unable_to_express_an_opinion 带强调事项段的无保留意见 :unqualified_opinion_with_highlighted_matter_paragraph currency auditOpinionType 公告时间 standardDate 标准财年时间（不同公司的财年不一样，有的年报12月结束，有的却是3月结束，还有的7月结束。例如2017-01-01到2017-06-30结束的年报，调整到2016-Q4，其余的季报和中报都相应的做类似调整。调整后具有通用性。） stockCode 货币类型 财报日期 reportDate reportType 股票代码 -->
 
 ---
 
@@ -1896,7 +1863,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_company_fund-collection-shareholders.md`
 
-<!-- 搜索关键词: 内资基金公司持股 数据时间 持仓 基金公司代码 fundCollectionCode 市值 姓名 name holdings marketCap date fund-collection-shareholders -->
+<!-- 搜索关键词: name date marketCap 数据时间 fund-collection-shareholders 基金公司代码 持仓 fundCollectionCode holdings 内资基金公司持股 市值 姓名 -->
 
 ---
 
@@ -1917,7 +1884,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_company_fund-shareholders.md`
 
-<!-- 搜索关键词: 持仓 数据时间 fund-shareholders 基金持仓占基金规模比例 当前股票所在基金持仓排名 市值 holdings marketCap 内资基金持股 date netValueRatio fundCode marketCapRank 基金代码 -->
+<!-- 搜索关键词: marketCapRank date 内资基金持股 marketCap 基金代码 fundCode 数据时间 当前股票所在基金持仓排名 持仓 holdings netValueRatio 基金持仓占基金规模比例 市值 fund-shareholders -->
 
 ---
 
@@ -1929,7 +1896,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_company_fundamental_non_financial.md`
 
-<!-- 搜索关键词: non_financial 基本面数据 -->
+<!-- 搜索关键词: 基本面数据 non_financial -->
 
 ---
 
@@ -1959,7 +1926,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_company_hot_tr_dri.md`
 
-<!-- 搜索关键词: cagr_p_r_y3 近三年年化投资收益率 近一年投资收益率 cagr_p_r_d14 last_data_date cagr_p_r_fs cagr_p_r_y1 今年以来投资收益率 近30日投资收益率 近90日投资收益率 近14日投资收益率 cagr_p_r_d90 stockCode cagr_p_r_d7 cagr_p_r_fys cagr_p_r_d60 近十年年化投资收益率 p_r 近7日投资收益率 cagr_p_r_y5 period_date 数据时间 投资收益率计算起始日期 tr_dri 指定时间段投资收益率 分红再投入收益率 股票代码 近五年年化投资收益率 cagr_p_r_y10 cagr_p_r_d30 上市至今年化投资收益率 近60日投资收益率 -->
+<!-- 搜索关键词: cagr_p_r_d7 cagr_p_r_d30 p_r cagr_p_r_y1 股票代码 今年以来投资收益率 近90日投资收益率 数据时间 cagr_p_r_d14 cagr_p_r_d90 近30日投资收益率 分红再投入收益率 近60日投资收益率 cagr_p_r_fs 近7日投资收益率 投资收益率计算起始日期 cagr_p_r_fys 近五年年化投资收益率 上市至今年化投资收益率 近一年投资收益率 last_data_date tr_dri 近三年年化投资收益率 cagr_p_r_d60 stockCode 近十年年化投资收益率 period_date 近14日投资收益率 指定时间段投资收益率 cagr_p_r_y5 cagr_p_r_y3 cagr_p_r_y10 -->
 
 ---
 
@@ -1978,7 +1945,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_company_indices.md`
 
-<!-- 搜索关键词: 指数来源 中证 :csi 国证 :cni 恒生 :hsi 美指 :usi 理杏仁 :lxri areaCode 地区代码 indices source name stockCode 指数代码 指数名称 股票所属指数信息 -->
+<!-- 搜索关键词: name indices 指数名称 指数来源 中证 :csi 国证 :cni 恒生 :hsi 美指 :usi 理杏仁 :lxri source stockCode areaCode 股票所属指数信息 地区代码 指数代码 -->
 
 ---
 
@@ -1997,7 +1964,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_company_industries.md`
 
-<!-- 搜索关键词: areaCode 地区代码 source 行业代码 name 股票所属行业信息 行业来源 申万 :sw 申万2021版 :sw_2021 国证 :cni 行业名称 stockCode industries -->
+<!-- 搜索关键词: name industries 行业代码 source 股票所属行业信息 stockCode areaCode 行业来源 申万 :sw 申万2021版 :sw_2021 国证 :cni 行业名称 地区代码 -->
 
 ---
 
@@ -2016,7 +1983,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_company_latest-shareholders.md`
 
-<!-- 搜索关键词: percentageOfIssuedVotingShares 姓名 numOfSharesInterestedList name 最后申报有关通知之日期 持有权益的股份数目 子字段: 数额: value: (Number) 股份类型: sharesType: (String) 占已发行的有投票权股份百分比 子字段: 数额: value: (Number) 股份类型: sharesType: (String) date latest-shareholders 最新股东 -->
+<!-- 搜索关键词: name date percentageOfIssuedVotingShares numOfSharesInterestedList 持有权益的股份数目 子字段: 数额: value: (Number) 股份类型: sharesType: (String) 占已发行的有投票权股份百分比 子字段: 数额: value: (Number) 股份类型: sharesType: (String) 最后申报有关通知之日期 最新股东 latest-shareholders 姓名 -->
 
 ---
 
@@ -2032,7 +1999,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_company_mutual-market.md`
 
-<!-- 搜索关键词: 互联互通 mutual-market 持股数量 shareholdings -->
+<!-- 搜索关键词: shareholdings 持股数量 互联互通 mutual-market -->
 
 ---
 
@@ -2047,14 +2014,10 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 - **数据时间** (`date`)
 - **公告日期** (`declarationDate`)
 - **货币** (`currency`)
-- **** (`String`)
-- **** (`String`)
-- **** (`Number`)
-- **** (`Number`)
 
 **文档**: `api_new/api-docs/hk_company_operation-revenue-constitution.md`
 
-<!-- 搜索关键词:  数据时间 公告日期 货币 currency 营收构成 operation-revenue-constitution String date Number declarationDate -->
+<!-- 搜索关键词: date currency 数据时间 公告日期 营收构成 货币 operation-revenue-constitution declarationDate -->
 
 ---
 
@@ -2083,7 +2046,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_company_profile.md`
 
-<!-- 搜索关键词: 公司网址 董事长 过户处 listingCategory 注册地址 B股 stockCode 公司概况 officeAddress 上市类型 财政年度结算日期 profile classBdescription listingDate capitalStructureClassA website 上市日期 办公地址 summary registrar registeredAddress classAdescription B股股本结构 A股股本结构 股票代码 fiscalYearEnd chairman A股 capitalStructureClassB -->
+<!-- 搜索关键词: profile classBdescription listingCategory fiscalYearEnd 上市类型 公司网址 财政年度结算日期 B股股本结构 注册地址 summary 上市日期 capitalStructureClassA 办公地址 listingDate A股 chairman 过户处 A股股本结构 B股 公司概况 董事长 classAdescription stockCode registrar registeredAddress officeAddress 股票代码 website capitalStructureClassB -->
 
 ---
 
@@ -2106,7 +2069,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_company_repurchase.md`
 
-<!-- 搜索关键词: 最高价 num repurchase 自决议通过以来回购股数占通过决议时股本百分比 methodOfRepurchase lowestPrice highestPrice 回购股数 ratioPurchasedSinceResolution 成交均价 numPurchasedInYearSinceResolution totalPaid 本年内至今（自决议案通过以来）在交易所购回的股数 回购方式 回购 avgPrice 总金额 最低价 -->
+<!-- 搜索关键词: lowestPrice 自决议通过以来回购股数占通过决议时股本百分比 repurchase 本年内至今（自决议案通过以来）在交易所购回的股数 ratioPurchasedSinceResolution highestPrice methodOfRepurchase 回购 最高价 最低价 totalPaid avgPrice 回购方式 成交均价 回购股数 总金额 numPurchasedInYearSinceResolution num -->
 
 ---
 
@@ -2126,7 +2089,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_company_shareholders-equity-change.md`
 
-<!-- 搜索关键词: percentageOfIssuedVotingShares 姓名 shareholders-equity-change numOfSharesInterestedList name numOfSharesInvolvedList 持有权益的股份数目 子字段: 数额: value: (Number) 股份类型: sharesType: (String) 占已发行的有投票权股份百分比 子字段: 数额: value: (Number) 股份类型: sharesType: (String) date 股东权益变动 日期 持有权益的股份数量 子字段: 数额: value: (Number) 股份类型: sharesType: (String) -->
+<!-- 搜索关键词: name shareholders-equity-change date percentageOfIssuedVotingShares 日期 numOfSharesInterestedList 持有权益的股份数目 子字段: 数额: value: (Number) 股份类型: sharesType: (String) 占已发行的有投票权股份百分比 子字段: 数额: value: (Number) 股份类型: sharesType: (String) 股东权益变动 持有权益的股份数量 子字段: 数额: value: (Number) 股份类型: sharesType: (String) numOfSharesInvolvedList 姓名 -->
 
 ---
 
@@ -2144,7 +2107,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_company_short-selling.md`
 
-<!-- 搜索关键词: 做空 做空股数 shares 做空金额 date shareMoney 日期 short-selling -->
+<!-- 搜索关键词: shareMoney 做空金额 date 日期 做空 short-selling shares 做空股数 -->
 
 ---
 
@@ -2163,7 +2126,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_company_split.md`
 
-<!-- 搜索关键词: content 公告日期 拆分折算比例 拆分 内容 splitRatio 除权除息日 date exDate split -->
+<!-- 搜索关键词: 内容 exDate date 公告日期 拆分折算比例 除权除息日 content split splitRatio 拆分 -->
 
 ---
 
@@ -2191,7 +2154,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_index.md`
 
-<!-- 搜索关键词: index 地区代码 计算方式 派氏加权 :paasche 分级靠档加权 :grading_weighted 股息率加权 :dividend_grading 等权 :equal 自由流通市值加权 :free_float_cap 修正资本化加权 :modified_cap_weighted 流通市值加权 :negotiable_mc_weighted 债券成分券流通金额加权 :circulation_amount_of_constituent_bonds name 指数信息 areaCode 财务报表类型 非金融 :non_financial 银行 :bank 证券 :security 保险 :insurance 房地产投资信托 :reit 其他金融 :other_financial 混合 :hybrid 发布时间 currency launchDate 指数来源 恒生 :hsi stockCode 指数代码 rebalancingFrequency 指数名称 series fsTableType source 货币 market 市场 调样频率 年度 :annually 半年 :semi-annually 季度 :quarterly 月度 :monthly 不定期 :irregularly 定期 :aperiodically 类型 规模 :size 综合 :composite 行业 :sector 风格 :style 主题 :thematic 策略 :strategy caculationMethod -->
+<!-- 搜索关键词: name 指数来源 恒生 :hsi areaCode 类型 规模 :size 综合 :composite 行业 :sector 风格 :style 主题 :thematic 策略 :strategy 计算方式 派氏加权 :paasche 分级靠档加权 :grading_weighted 股息率加权 :dividend_grading 等权 :equal 自由流通市值加权 :free_float_cap 修正资本化加权 :modified_cap_weighted 流通市值加权 :negotiable_mc_weighted 债券成分券流通金额加权 :circulation_amount_of_constituent_bonds series 地区代码 财务报表类型 非金融 :non_financial 银行 :bank 证券 :security 保险 :insurance 房地产投资信托 :reit 其他金融 :other_financial 混合 :hybrid caculationMethod market currency 发布时间 市场 launchDate 指数名称 调样频率 年度 :annually 半年 :semi-annually 季度 :quarterly 月度 :monthly 不定期 :irregularly 定期 :aperiodically index source rebalancingFrequency fsTableType 指数代码 stockCode 货币 指数信息 -->
 
 ---
 
@@ -2214,7 +2177,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_index_candlestick.md`
 
-<!-- 搜索关键词: 数据时间 close 最高价 收盘价 low amount 开盘价 成交量 volume high 涨跌幅 date candlestick K线数据 open 金额 最低价 change -->
+<!-- 搜索关键词: change volume date close 开盘价 数据时间 K线数据 金额 low amount 最高价 candlestick 最低价 涨跌幅 成交量 open 收盘价 high -->
 
 ---
 
@@ -2227,12 +2190,10 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 **返回字段**:
 
 - **指数代码** (`stockCode`)
-- **** (`String`)
-- **** (`String`)
 
 **文档**: `api_new/api-docs/hk_index_constituents.md`
 
-<!-- 搜索关键词:  样本信息 constituents String stockCode 指数代码 -->
+<!-- 搜索关键词: 指数代码 stockCode 样本信息 constituents -->
 
 ---
 
@@ -2249,7 +2210,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_index_drawdown.md`
 
-<!-- 搜索关键词: 数据时间 value date 回撤 drawdown 指数回撤 -->
+<!-- 搜索关键词: date 回撤 数据时间 drawdown value 指数回撤 -->
 
 ---
 
@@ -2273,7 +2234,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_index_fundamental.md`
 
-<!-- 搜索关键词: fundamental 基本面数据 -->
+<!-- 搜索关键词: 基本面数据 fundamental -->
 
 ---
 
@@ -2307,7 +2268,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_index_hot_mm_ah.md`
 
-<!-- 搜索关键词: 港股通过去120个交易日持股金额占市值变化比例 mm_ah mm_sh_nba_d20 mm_sh_nba_d120 mm_sha_mc_rc_d240 港股通过去240个交易日持股金额占市值变化比例 last_data_date mm_sha_mc_rc_d20 港股通持仓金额 mm_sha_mc_rc_d60 港股通过去1个交易日净买入金额 mm_sh_nba_d1 港股通过去240个交易日净买入金额 港股通过去5个交易日持股金额占市值变化比例 港股通过去5个交易日净买入金额 港股通过去60个交易日净买入金额 港股通今年以來持股金额占市值变化比例 mm_sh_nba_d5 港股通过去20个交易日持股金额占市值变化比例 互联互通 mm_sha_mc_rc_d120 stockCode mm_sh_nba_ys mm_sha mm_sha_mc_rc_d5 cpc 港股通过去1个交易日持股金额占市值变化比例 港股通过去120个交易日净买入金额 港股通过去20个交易日净买入金额 mm_sh_nba_d60 mm_sha_mc_rc_ys 数据时间 mm_sha_mc_r 港股通持仓金额占市值比例 股票代码 mm_sha_mc_rc_d1 港股通过去60个交易日持股金额占市值变化比例 涨跌幅 mm_sh_nba_d240 港股通今年以来净买入金额 -->
+<!-- 搜索关键词: mm_sh_nba_d1 港股通持仓金额占市值比例 mm_sha_mc_rc_ys mm_sha_mc_rc_d120 港股通今年以來持股金额占市值变化比例 mm_sha_mc_r 互联互通 mm_sh_nba_d20 港股通今年以来净买入金额 港股通过去240个交易日持股金额占市值变化比例 mm_sha_mc_rc_d20 港股通过去60个交易日持股金额占市值变化比例 港股通过去20个交易日净买入金额 mm_sha_mc_rc_d1 港股通过去1个交易日净买入金额 数据时间 mm_sh_nba_d240 港股通过去60个交易日净买入金额 涨跌幅 港股通过去120个交易日持股金额占市值变化比例 港股通过去5个交易日净买入金额 mm_sh_nba_d60 mm_ah 港股通过去5个交易日持股金额占市值变化比例 mm_sh_nba_d5 cpc mm_sha_mc_rc_d5 mm_sha_mc_rc_d60 last_data_date 港股通过去240个交易日净买入金额 mm_sha_mc_rc_d240 港股通过去1个交易日持股金额占市值变化比例 港股通过去20个交易日持股金额占市值变化比例 mm_sh_nba_d120 港股通过去120个交易日净买入金额 mm_sha stockCode mm_sh_nba_ys 股票代码 港股通持仓金额 -->
 
 ---
 
@@ -2325,7 +2286,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_index_mutual-market.md`
 
-<!-- 搜索关键词: shareholdingsMoneyToMarketCap 数据时间 内资持仓金额占市值比例 互联互通 shareholdingsMoney mutual-market date 持股金额 -->
+<!-- 搜索关键词: date mutual-market 持股金额 数据时间 shareholdingsMoneyToMarketCap 互联互通 shareholdingsMoney 内资持仓金额占市值比例 -->
 
 ---
 
@@ -2346,7 +2307,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_index_tracking-fund.md`
 
-<!-- 搜索关键词: exchange areaCode 地区代码 基金名称 name 简称 market 市场 指数跟踪基金信息 shortName stockCode 交易所 tracking-fund 基金代码 -->
+<!-- 搜索关键词: name market 基金代码 交易所 市场 指数跟踪基金信息 stockCode 基金名称 shortName exchange areaCode 地区代码 简称 tracking-fund -->
 
 ---
 
@@ -2372,7 +2333,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_industry.md`
 
-<!-- 搜索关键词: 地区代码 industry name areaCode 财务报表类型 非金融 :non_financial 银行 :bank 证券 :security 保险 :insurance 房地产投资信托 :reit 其他金融 :other_financial 混合 :hybrid 发布时间 行业代码 launchDate currency 行业名称 stockCode 行业来源 恒生 :hsi fsTableType source 货币 market 市场 股票信息 行业分类等级 level -->
+<!-- 搜索关键词: name areaCode 行业名称 地区代码 财务报表类型 非金融 :non_financial 银行 :bank 证券 :security 保险 :insurance 房地产投资信托 :reit 其他金融 :other_financial 混合 :hybrid 股票信息 market currency 发布时间 市场 launchDate 行业代码 source level 行业来源 恒生 :hsi fsTableType 行业分类等级 stockCode 货币 industry -->
 
 ---
 
@@ -2385,12 +2346,10 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 **返回字段**:
 
 - **指数代码** (`stockCode`)
-- **** (`String`)
-- **** (`String`)
 
 **文档**: `api_new/api-docs/hk_industry_constituents_hsi.md`
 
-<!-- 搜索关键词:  样本信息 hsi String stockCode 指数代码 -->
+<!-- 搜索关键词: hsi 指数代码 stockCode 样本信息 -->
 
 ---
 
@@ -2414,7 +2373,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_industry_fundamental_hsi.md`
 
-<!-- 搜索关键词: hsi 基本面数据 -->
+<!-- 搜索关键词: 基本面数据 hsi -->
 
 ---
 
@@ -2447,7 +2406,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_industry_hot_mm_ah_hsi.md`
 
-<!-- 搜索关键词: 港股通过去120个交易日持股金额占市值变化比例 mm_sh_nba_d20 mm_sh_nba_d120 mm_sha_mc_rc_d240 港股通过去240个交易日持股金额占市值变化比例 last_data_date mm_sha_mc_rc_d20 港股通持仓金额 mm_sha_mc_rc_d60 港股通过去1个交易日净买入金额 mm_sh_nba_d1 港股通过去240个交易日净买入金额 港股通过去5个交易日持股金额占市值变化比例 港股通过去5个交易日净买入金额 港股通过去60个交易日净买入金额 港股通今年以來持股金额占市值变化比例 mm_sh_nba_d5 港股通过去20个交易日持股金额占市值变化比例 互联互通 mm_sha_mc_rc_d120 stockCode mm_sh_nba_ys mm_sha mm_sha_mc_rc_d5 港股通过去1个交易日持股金额占市值变化比例 港股通过去120个交易日净买入金额 港股通过去20个交易日净买入金额 mm_sh_nba_d60 mm_sha_mc_rc_ys 数据时间 mm_sha_mc_r 港股通持仓金额占市值比例 hsi 股票代码 mm_sha_mc_rc_d1 港股通过去60个交易日持股金额占市值变化比例 mm_sh_nba_d240 港股通今年以来净买入金额 -->
+<!-- 搜索关键词: mm_sh_nba_d1 港股通持仓金额占市值比例 mm_sha_mc_rc_ys mm_sha_mc_rc_d120 港股通今年以來持股金额占市值变化比例 mm_sha_mc_r 互联互通 mm_sh_nba_d20 港股通今年以来净买入金额 港股通过去240个交易日持股金额占市值变化比例 mm_sha_mc_rc_d20 港股通过去60个交易日持股金额占市值变化比例 港股通过去20个交易日净买入金额 mm_sha_mc_rc_d1 港股通过去1个交易日净买入金额 数据时间 mm_sh_nba_d240 港股通过去60个交易日净买入金额 港股通过去120个交易日持股金额占市值变化比例 港股通过去5个交易日净买入金额 mm_sh_nba_d60 港股通过去5个交易日持股金额占市值变化比例 mm_sh_nba_d5 mm_sha_mc_rc_d5 mm_sha_mc_rc_d60 last_data_date 港股通过去240个交易日净买入金额 mm_sha_mc_rc_d240 港股通过去1个交易日持股金额占市值变化比例 港股通过去20个交易日持股金额占市值变化比例 hsi mm_sh_nba_d120 mm_sha stockCode 港股通过去120个交易日净买入金额 mm_sh_nba_ys 股票代码 港股通持仓金额 -->
 
 ---
 
@@ -2465,7 +2424,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/hk_industry_mutual-market_hsi.md`
 
-<!-- 搜索关键词: shareholdingsMoneyToMarketCap 数据时间 hsi 内资持仓金额占市值比例 互联互通 shareholdingsMoney date 持股金额 -->
+<!-- 搜索关键词: date 持股金额 hsi 数据时间 shareholdingsMoneyToMarketCap 互联互通 shareholdingsMoney 内资持仓金额占市值比例 -->
 
 ---
 
@@ -2493,7 +2452,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/us_index.md`
 
-<!-- 搜索关键词: index 地区代码 计算方式 派氏加权 :paasche 分级靠档加权 :grading_weighted 股息率加权 :dividend_grading 等权 :equal 自由流通市值加权 :free_float_cap 修正资本化加权 :modified_cap_weighted 流通市值加权 :negotiable_mc_weighted 债券成分券流通金额加权 :circulation_amount_of_constituent_bonds name 指数信息 areaCode 财务报表类型 非金融 :non_financial 银行 :bank 证券 :security 保险 :insurance 房地产投资信托 :reit 其他金融 :other_financial 混合 :hybrid 发布时间 currency launchDate stockCode 指数代码 rebalancingFrequency 指数名称 series fsTableType source 货币 market 市场 调样频率 年度 :annually 半年 :semi-annually 季度 :quarterly 月度 :monthly 不定期 :irregularly 定期 :aperiodically 类型 规模 :size 综合 :composite 行业 :sector 风格 :style 主题 :thematic 策略 :strategy caculationMethod 指数来源 美指 :usi -->
+<!-- 搜索关键词: name areaCode 类型 规模 :size 综合 :composite 行业 :sector 风格 :style 主题 :thematic 策略 :strategy 计算方式 派氏加权 :paasche 分级靠档加权 :grading_weighted 股息率加权 :dividend_grading 等权 :equal 自由流通市值加权 :free_float_cap 修正资本化加权 :modified_cap_weighted 流通市值加权 :negotiable_mc_weighted 债券成分券流通金额加权 :circulation_amount_of_constituent_bonds series 地区代码 财务报表类型 非金融 :non_financial 银行 :bank 证券 :security 保险 :insurance 房地产投资信托 :reit 其他金融 :other_financial 混合 :hybrid caculationMethod market currency 发布时间 市场 launchDate 指数来源 美指 :usi 指数名称 调样频率 年度 :annually 半年 :semi-annually 季度 :quarterly 月度 :monthly 不定期 :irregularly 定期 :aperiodically index source rebalancingFrequency fsTableType 指数代码 stockCode 货币 指数信息 -->
 
 ---
 
@@ -2516,7 +2475,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/us_index_candlestick.md`
 
-<!-- 搜索关键词: 数据时间 close 最高价 收盘价 low amount 开盘价 成交量 volume high 涨跌幅 date candlestick K线数据 open 金额 最低价 change -->
+<!-- 搜索关键词: change volume date close 开盘价 数据时间 K线数据 金额 low amount 最高价 candlestick 最低价 涨跌幅 成交量 open 收盘价 high -->
 
 ---
 
@@ -2529,12 +2488,10 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 **返回字段**:
 
 - **指数代码** (`stockCode`)
-- **** (`String`)
-- **** (`String`)
 
 **文档**: `api_new/api-docs/us_index_constituents.md`
 
-<!-- 搜索关键词:  样本信息 constituents String stockCode 指数代码 -->
+<!-- 搜索关键词: 指数代码 stockCode 样本信息 constituents -->
 
 ---
 
@@ -2551,7 +2508,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/us_index_drawdown.md`
 
-<!-- 搜索关键词: 数据时间 value date 回撤 drawdown 指数回撤 -->
+<!-- 搜索关键词: date 回撤 数据时间 drawdown value 指数回撤 -->
 
 ---
 
@@ -2575,7 +2532,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/us_index_fundamental.md`
 
-<!-- 搜索关键词: fundamental 基本面数据 -->
+<!-- 搜索关键词: 基本面数据 fundamental -->
 
 ---
 
@@ -2605,7 +2562,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/us_index_hot_cp.md`
 
-<!-- 搜索关键词: 近三月涨跌幅 cpc_y1 发布以来年化涨跌幅 近一年涨跌幅 cp_cac_y3 近五年年化涨跌幅 收盘点位 cpc_m1 last_data_date 近一周涨跌幅 近三年年化涨跌幅 cp cpc_w1 cpc_w2 stockCode cp_cac_y5 cpc_fys 近二周涨跌幅 cpc 近二年年化涨跌幅 近一月涨跌幅 cp_cac_y10 近六月涨跌幅 数据时间 cp_cac_y2 cp_cac_fs 今年以来涨跌幅 股票代码 涨跌幅 cpc_m3 cpc_m6 近十年年化涨跌幅 -->
+<!-- 搜索关键词: cp_cac_y3 近二年年化涨跌幅 cp_cac_y2 收盘点位 cpc_w1 cp_cac_fs 近一周涨跌幅 cpc_m1 数据时间 cp_cac_y10 涨跌幅 近一月涨跌幅 cpc_y1 近三年年化涨跌幅 近五年年化涨跌幅 cpc_fys cpc_m3 近六月涨跌幅 近三月涨跌幅 cpc last_data_date 发布以来年化涨跌幅 cpc_w2 今年以来涨跌幅 cp 近十年年化涨跌幅 stockCode 近一年涨跌幅 近二周涨跌幅 股票代码 cp_cac_y5 cpc_m6 -->
 
 ---
 
@@ -2633,7 +2590,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/us_index_hot_ifet_sni.md`
 
-<!-- 搜索关键词: ifet_sni_w2 ifet_sni_m6 ifet_sni_y2 过去1个月场内基金认购净流入 ifet_sni_ytd 过去1周场内基金认购净流入 过去2周场内基金认购净流入 last_data_date ifet_as ifet_ssni_m1 ifet_sni ifet_sni_w1 stockCode 过去3个月场内基金认购净流入 今年以来场内基金认购净流入 ifet_sni_m3 cpc 场内基金认购净流入 ifet_sni_y1 过去1天场内基金认购净流入 过去1年场内基金认购净流入 过去6个月场内基金认购净流入 数据时间 过去2年场内基金认购净流入 ifet_sni_fys 股票代码 涨跌幅 场内基金资产规模 -->
+<!-- 搜索关键词: ifet_sni_fys 过去2周场内基金认购净流入 ifet_as ifet_sni 过去3个月场内基金认购净流入 数据时间 ifet_sni_m6 涨跌幅 过去1个月场内基金认购净流入 过去1周场内基金认购净流入 cpc 过去6个月场内基金认购净流入 场内基金认购净流入 last_data_date ifet_ssni_m1 ifet_sni_ytd ifet_sni_w2 过去2年场内基金认购净流入 ifet_sni_y1 ifet_sni_w1 ifet_sni_m3 stockCode 过去1年场内基金认购净流入 ifet_sni_y2 过去1天场内基金认购净流入 股票代码 场内基金资产规模 今年以来场内基金认购净流入 -->
 
 ---
 
@@ -2654,7 +2611,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/us_index_tracking-fund.md`
 
-<!-- 搜索关键词: exchange areaCode 地区代码 基金名称 name 简称 market 市场 指数跟踪基金信息 shortName stockCode 交易所 tracking-fund 基金代码 -->
+<!-- 搜索关键词: name market 基金代码 交易所 市场 指数跟踪基金信息 stockCode 基金名称 shortName exchange areaCode 地区代码 简称 tracking-fund -->
 
 ---
 
@@ -2680,7 +2637,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/macro_central-bank-balance-sheet.md`
 
-<!-- 搜索关键词: 央行资产负债表 central-bank-balance-sheet -->
+<!-- 搜索关键词: central-bank-balance-sheet 央行资产负债表 -->
 
 ---
 
@@ -2704,7 +2661,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/macro_crude-oil.md`
 
-<!-- 搜索关键词: 原油 crude-oil -->
+<!-- 搜索关键词: crude-oil 原油 -->
 
 ---
 
@@ -2728,7 +2685,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/macro_domestic-debt-securities.md`
 
-<!-- 搜索关键词: domestic-debt-securities 国内各类债券 -->
+<!-- 搜索关键词: 国内各类债券 domestic-debt-securities -->
 
 ---
 
@@ -2872,7 +2829,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/macro_money-supply.md`
 
-<!-- 搜索关键词: 货币供应 money-supply -->
+<!-- 搜索关键词: money-supply 货币供应 -->
 
 ---
 
@@ -2908,7 +2865,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/macro_non-ferrous-metals.md`
 
-<!-- 搜索关键词: non-ferrous-metals 有色金属 -->
+<!-- 搜索关键词: 有色金属 non-ferrous-metals -->
 
 ---
 
@@ -2956,7 +2913,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/macro_population.md`
 
-<!-- 搜索关键词: population 人口 -->
+<!-- 搜索关键词: 人口 population -->
 
 ---
 
@@ -2968,7 +2925,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/macro_price-index.md`
 
-<!-- 搜索关键词: price-index 价格指数 -->
+<!-- 搜索关键词: 价格指数 price-index -->
 
 ---
 
@@ -3028,7 +2985,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/macro_rmbidx.md`
 
-<!-- 搜索关键词: rmbidx 人民币指数 -->
+<!-- 搜索关键词: 人民币指数 rmbidx -->
 
 ---
 
@@ -3064,7 +3021,7 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/macro_stamp-duty.md`
 
-<!-- 搜索关键词: stamp-duty 印花税 -->
+<!-- 搜索关键词: 印花税 stamp-duty -->
 
 ---
 
@@ -3088,6 +3045,6 @@ grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/
 
 **文档**: `api_new/api-docs/macro_usdx.md`
 
-<!-- 搜索关键词: 美元指数 usdx -->
+<!-- 搜索关键词: usdx 美元指数 -->
 
 ---
