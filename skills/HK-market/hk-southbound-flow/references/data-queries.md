@@ -320,8 +320,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 # 获取所有行业的南向资金（当日）
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "hk/industry/mutual-market/hsi" \
-  --params '{"startDate": "2026-01-01", "endDate": "2026-02-24"}' \
-  --columns "industryCode,date,shareholdingsMoney" \
+  --params '{"stockCode": "HK001", "startDate": "2026-01-01", "endDate": "2026-02-24", "metricsList": ["shareholdingsMoney"]}' \
   --limit 20
 ```
 

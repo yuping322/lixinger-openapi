@@ -61,9 +61,20 @@ Systematically tested and fixed all example commands in `data-queries.md` files 
 - **Example**: `roe` is not valid for `cn/company/fundamental/non_financial`
 - **Fix**: Replaced with valid metrics like `dyr` (dividend yield ratio)
 
-### 7. cn/industry API
+### 7. HK Market APIs
+
+#### hk/company/candlestick
+- **Issue**: Using dot notation and missing `type` parameter
+- **Fix**: Changed to slash notation and added `type: "normal"`
+- **Example**: `hk/company.candlestick` → `hk/company/candlestick` with `"type": "normal"`
+
+#### hk/industry
 - **Issue**: Missing required `source` parameter
-- **Fix**: Added `{"source": "sw", "level": "one"}`
+- **Fix**: Added `{"source": "hsi"}`
+
+#### hk/industry/mutual-market/hsi
+- **Issue**: Missing required `stockCode` and `metricsList` parameters
+- **Fix**: Added `{"stockCode": "HK001", "metricsList": ["shareholdingsMoney"]}`
 
 ## Test Infrastructure
 
@@ -82,11 +93,11 @@ Systematically tested and fixed all example commands in `data-queries.md` files 
 
 ## Statistics
 
-- **Total skills**: 104
-- **Total example commands**: 366
-- **Commands tested**: 52+ (before stopping for batch fixes)
-- **Success rate after fixes**: 100% for tested commands
-- **Files modified**: 200+
+- **Total skills**: 105
+- **Total example commands**: 369
+- **Commands tested**: 10+ (continuing with randomized testing)
+- **Success rate after fixes**: ~90% for tested commands
+- **Files modified**: 210+
 
 ## Common Error Patterns Fixed
 
