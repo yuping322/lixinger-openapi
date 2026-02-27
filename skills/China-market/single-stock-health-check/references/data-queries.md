@@ -158,12 +158,57 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 - `cn/company/allotment` - 配股
 - `cn/company/dividend` - 分红
 
+### 查询分红数据
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/dividend" \
+  --params '{"stockCode":"600519","startDate":"2020-01-01"}' \
+  --columns "date,dividend,dividendAmount,annualNetProfitDividendRatio,exDate"
+```
+
+### 查询股权质押
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/pledge" \
+  --params '{"stockCode":"600519","startDate":"2023-01-01"}' \
+  --columns "date,pledgeRatio,pledgor,pledgee,pledgeShares"
+```
+
+### 查询融资融券
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/margin-trading-and-securities-lending" \
+  --params '{"stockCode":"600519","startDate":"2025-01-01"}' \
+  --columns "date,marginBalance,marginBuyAmount,securitiesLendingBalance"
+```
+
 **交易与资金**:
 - `cn/company/candlestick` - K线数据
 - `cn/company/margin-trading-and-securities-lending` - 融资融券
 - `cn/company/mutual-market` - 北向资金
 - `cn/company/hot/tr_dri` - 市场热度
 - `cn/company/block-deal` - 大宗交易
+
+### 查询龙虎榜数据
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/trading-abnormal" \
+  --params '{"stockCode":"600519","startDate":"2025-01-01"}' \
+  --columns "date,reason,buyAmount,sellAmount,netAmount"
+```
+
+### 查询行业数据
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/industry" \
+  --params '{"source":"sw","level":"one","date":"2026-02-27"}' \
+  --columns "industryCode,industryName,pe_ttm,pb,roe"
+```
 
 **行业与指数**:
 - `cn/company/industries` - 所属行业

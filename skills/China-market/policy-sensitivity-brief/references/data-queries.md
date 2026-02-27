@@ -148,6 +148,53 @@ done
 - `cn/company/fundamental/non_financial`: 公司基本面数据
 - `cn/index/fundamental`: 指数基本面数据
 
+### 查询行业数据（用于政策影响行业分析）
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/industry" \
+  --params '{"source":"sw","level":"one","date":"2026-02-27"}' \
+  --columns "industryCode,industryName,pe_ttm,pb,roe"
+```
+
+### 查询宏观经济数据（用于政策背景分析）
+
+```bash
+# 货币供应量
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "macro/money-supply" \
+  --params '{"areaCode":"cn","startDate":"2023-01-01","endDate":"2026-02-27","metricsList":["m.m0.t","m.m1.t","m.m2.t"]}' \
+  --columns "date,m.m0.t,m.m1.t,m.m2.t"
+
+# GDP 数据
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "macro/gdp" \
+  --params '{"areaCode":"cn","startDate":"2023-01-01","endDate":"2026-02-27","metricsList":["m.gdp.t","m.gdp.yoy.t"]}' \
+  --columns "date,m.gdp.t,m.gdp.yoy.t"
+
+# 价格指数（CPI/PPI）
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "macro/price-index" \
+  --params '{"areaCode":"cn","startDate":"2023-01-01","endDate":"2026-02-27","metricsList":["m.cpi.t","m.ppi.t"]}' \
+  --columns "date,m.cpi.t,m.ppi.t"
+```
+
+### 查询 K线数据（用于计算政策发布前后涨跌幅）
+
+```bash
+# 个股 K线
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/candlestick" \
+  --params '{"stockCode":"600519","type":"normal","startDate":"2026-01-01","endDate":"2026-02-27"}' \
+  --columns "date,stockCode,close,pctChg,volume"
+
+# 指数 K线（用于板块轮动分析）
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/index/candlestick" \
+  --params '{"stockCode":"000300","type":"normal","startDate":"2026-01-01","endDate":"2026-02-27"}' \
+  --columns "date,stockCode,close,pctChg"
+```
+
 ---
 
 ## 查找更多 API

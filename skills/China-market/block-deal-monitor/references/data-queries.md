@@ -135,7 +135,34 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 - `cn/company/block-deal`: 大宗交易数据
 - `cn/company/major-shareholders-shares-change`: 大股东持股变动
 - `cn/company/shareholders-num`: 股东人数
-- `macro/money-supply`: 货币供应量
+- `macro/money-supply`: 货币供应量（可选）
+
+### 查询行业数据（用于行业对比分析）
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/industry" \
+  --params '{"source":"sw","level":"one","date":"2026-02-27"}' \
+  --columns "industryCode,industryName,pe_ttm,pb,roe"
+```
+
+### 查询基本面数据（用于分析大宗交易折价率合理性）
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/fundamental/non_financial" \
+  --params '{"stockCodes":["600519"],"date":"2026-02-24","metricsList":["pe_ttm","pb","mc","cmc"]}' \
+  --columns "stockCode,name,pe_ttm,pb,mc,cmc"
+```
+
+### 查询K线数据（用于计算大宗交易前后股价表现）
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/candlestick" \
+  --params '{"stockCode":"600519","type":"normal","startDate":"2026-01-01","endDate":"2026-02-27"}' \
+  --columns "date,close,pctChg,volume,amount"
+```
 
 ---
 

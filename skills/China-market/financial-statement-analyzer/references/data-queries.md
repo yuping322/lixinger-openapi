@@ -6,15 +6,17 @@
 
 ## 查询示例
 
-### 查询Us.Index.Fundamental
+### 查询Us.Index.Fundamental（仅供参考，China-market 建议使用中国数据）
 
 ```bash
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "us/index/fundamental" \
-  --params '{"date": "2026-02-24", "stockCodes": [".INX"], "metricsList": ["pe_ttm.mcw", "pb.mcw", "dyr.mcw", "mc"]}' \
+  --params '{"date":"2026-02-24","stockCodes":[".INX"],"metricsList":["pe_ttm.mcw","pb.mcw","dyr.mcw","mc"]}' \
   --columns "date,stockCode,pe_ttm.mcw,pb.mcw,dyr.mcw,mc" \
   --limit 20
 ```
+
+**注意**: 本 skill 为 China-market，建议优先使用中国公司和指数数据。
 
 ### 查询Cn.Company.Fs.Non Financial
 
@@ -39,8 +41,45 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ## 本 Skill 常用 API
 
-- `us/index/fundamental`
-- `cn/company/fs/non_financial`
+- `cn/company/fs/non_financial`: 中国公司财务报表
+- `cn/company/fundamental/non_financial`: 中国公司基本面数据
+
+### 查询中国公司财务报表
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/fs/non_financial" \
+  --params '{"stockCodes":["600519"],"startDate":"2021-01-01","endDate":"2026-02-27","metricsList":["q.ps.toi.t","q.ps.np.t","q.ps.gp_m.t","q.bs.ta.t","q.bs.tl.t"]}' \
+  --columns "date,stockCode,q.ps.toi.t,q.ps.np.t,q.ps.gp_m.t" \
+  --limit 20
+```
+
+### 查询估值数据（用于财务质量评估）
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/fundamental/non_financial" \
+  --params '{"stockCodes":["600519"],"date":"2026-02-24","metricsList":["pe_ttm","pb"]}' \
+  --columns "stockCode,name,pe_ttm,pb"
+```
+
+### 查询股东数据（用于股权结构分析）
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/major-shareholders-shares-change" \
+  --params '{"stockCode":"600519","startDate":"2023-01-01"}' \
+  --columns "date,shareholderName,changeReason,changeAmount,sharesRatio"
+```
+
+### 查询质押数据（用于风险评估）
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/pledge" \
+  --params '{"stockCode":"600519","startDate":"2023-01-01"}' \
+  --columns "date,pledgeRatio,pledgor,pledgee,pledgeShares"
+```
 
 ---
 

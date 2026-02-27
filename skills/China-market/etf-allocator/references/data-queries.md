@@ -12,7 +12,7 @@
 # 查询沪深300、中证500、创业板指的估值数据
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/index/fundamental" \
-  --params '{"date": "2026-02-24", "stockCodes": ["000300", "000905", "399006"], "metricsList": ["pe_ttm.mcw", "pb.mcw", "pe_ttm.y10.mcw.cvpos", "pb.y10.mcw.cvpos", "mc"]}' \
+  --params '{"date":"2026-02-24","stockCodes":["000300","000905","399006"],"metricsList":["pe_ttm.mcw","pb.mcw","pe_ttm.y10.mcw.cvpos","pb.y10.mcw.cvpos","mc"]}' \
   --limit 10
 ```
 
@@ -64,7 +64,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 # 查询主要行业指数估值
 python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/index/fundamental" \
-  --params '{"date": "2026-02-24", "stockCodes": ["000807", "000808", "000809"], "metricsList": ["pe_ttm.mcw", "pb.mcw", "pe_ttm.y5.mcw.cvpos"]}' \
+  --params '{"date":"2026-02-24","stockCodes":["000807","000808","000809"],"metricsList":["pe_ttm.mcw","pb.mcw","pe_ttm.y5.mcw.cvpos"]}' \
   --limit 10
 ```
 
@@ -77,6 +77,24 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 - `000812`: 通信
 - `000813`: 银行
 - `000814`: 非银金融
+
+### 3.1 查询行业数据（用于行业分布分析）
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/industry" \
+  --params '{"source":"sw","level":"one","date":"2026-02-27"}' \
+  --columns "industryCode,industryName,pe_ttm,pb,roe"
+```
+
+### 3.2 查询成分股基本面（用于个股筛选）
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/fundamental/non_financial" \
+  --params '{"stockCodes":["600519","601398","000858"],"date":"2026-02-24","metricsList":["pe_ttm","pb","mc"]}' \
+  --columns "stockCode,name,pe_ttm,pb,mc"
+```
 
 ### 4. 指数成分股数据（持仓分析）
 

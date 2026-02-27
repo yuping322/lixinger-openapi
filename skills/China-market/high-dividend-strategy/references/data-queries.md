@@ -128,6 +128,43 @@ done
 - `cn/company/dividend`: 分红数据
 - `cn/company/fundamental/non_financial`: 基本面数据（需要 metricsList）
 
+### 查询估值与财务指标（用于筛选高股息股票）
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/fundamental/non_financial" \
+  --params '{"stockCodes":["600519","601398","601857"],"date":"2026-02-24","metricsList":["dyr","pe_ttm","pb"]}' \
+  --columns "stockCode,name,dyr,pe_ttm,pb"
+```
+
+### 查询财务报表（用于分析分红可持续性）
+
+```bash
+# 查询利润表和现金流量表关键指标
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/company/fs/non_financial" \
+  --params '{"stockCodes":["600519"],"startDate":"2021-01-01","endDate":"2026-02-27","metricsList":["q.ps.np.t","q.ps.gp_m.t","q.ps.op_m.t"]}' \
+  --columns "date,stockCode,q.ps.np.t,q.ps.gp_m.t,q.ps.op_m.t"
+```
+
+### 查询行业分布（用于分散化分析）
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "cn/industry" \
+  --params '{"source":"sw","level":"one","date":"2026-02-27"}' \
+  --columns "industryCode,industryName,pe_ttm,pb,dyr"
+```
+
+### 查询宏观利率环境（用于评估高股息吸引力）
+
+```bash
+python3 skills/lixinger-data-query/scripts/query_tool.py \
+  --suffix "macro/money-supply" \
+  --params '{"areaCode":"cn","startDate":"2023-01-01","endDate":"2026-02-27","metricsList":["m.m0.t","m.m1.t","m.m2.t"]}' \
+  --columns "date,m.m0.t,m.m1.t,m.m2.t"
+```
+
 ---
 
 ## 查找更多 API
