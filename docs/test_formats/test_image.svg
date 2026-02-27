@@ -1,0 +1,60 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景渐变 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ade80;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:0.7" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="url(#bgGradient)"/>
+  
+  <!-- 标题区域 -->
+  <rect x="50" y="30" width="700" height="80" fill="white" rx="10" opacity="0.95"/>
+  <text x="400" y="65" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#667eea" text-anchor="middle">
+    📊 SVG 图片格式测试
+  </text>
+  <text x="400" y="95" font-family="Arial, sans-serif" font-size="16" fill="#666" text-anchor="middle">
+    测试日期: 2026-02-27 | 状态: ✅ 成功
+  </text>
+  
+  <!-- 图表区域 -->
+  <rect x="50" y="140" width="700" height="400" fill="white" rx="10" opacity="0.95"/>
+  
+  <!-- 柱状图标题 -->
+  <text x="400" y="175" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#333" text-anchor="middle">
+    格式支持测试结果
+  </text>
+  
+  <!-- 柱状图 -->
+  <g id="chart">
+    <!-- Markdown -->
+    <rect x="120" y="350" width="120" height="150" fill="url(#chartGradient)" rx="5"/>
+    <text x="180" y="520" font-family="Arial, sans-serif" font-size="14" fill="#333" text-anchor="middle">Markdown</text>
+    <text x="180" y="330" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#22c55e" text-anchor="middle">100%</text>
+    
+    <!-- HTML -->
+    <rect x="340" y="300" width="120" height="200" fill="url(#chartGradient)" rx="5"/>
+    <text x="400" y="520" font-family="Arial, sans-serif" font-size="14" fill="#333" text-anchor="middle">HTML</text>
+    <text x="400" y="280" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#22c55e" text-anchor="middle">100%</text>
+    
+    <!-- SVG/图片 -->
+    <rect x="560" y="250" width="120" height="250" fill="url(#chartGradient)" rx="5"/>
+    <text x="620" y="520" font-family="Arial, sans-serif" font-size="14" fill="#333" text-anchor="middle">SVG/图片</text>
+    <text x="620" y="230" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#22c55e" text-anchor="middle">100%</text>
+  </g>
+  
+  <!-- 图标装饰 -->
+  <circle cx="100" y="70" r="25" fill="#fbbf24" opacity="0.8"/>
+  <text x="100" y="80" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">✓</text>
+  
+  <!-- 底部信息 -->
+  <text x="400" y="570" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle" opacity="0.8">
+    测试环境: Kiro IDE | 生成时间: 2026-02-27 Friday
+  </text>
+</svg>
