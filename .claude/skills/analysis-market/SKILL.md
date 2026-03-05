@@ -87,7 +87,7 @@ cat > ${PROJECT}/README.md << 'EOF'
 EOF
 
 # 下载数据到 data/
-python3 ../lixinger-data-query/scripts/query_tool.py ... \
+python3 skills/lixinger-data-query/scripts/query_tool.py ... \
   > ${PROJECT}/data/dividend_data.csv
 
 # 如需复杂计算，创建 Python 脚本到 scripts/
@@ -118,7 +118,7 @@ EOF
 PROJECT="analysis_20260225_143052_high_dividend"  # 已存在
 
 # 追加数据到 data/
-python3 ../lixinger-data-query/scripts/query_tool.py ... \
+python3 skills/lixinger-data-query/scripts/query_tool.py ... \
   > ${PROJECT}/data/dividend_history.csv
 
 # 更新 README.md
@@ -154,26 +154,26 @@ ls ../China-market/ | grep -i "关键词"
 
 #### 第二优先级：数据 API
 
-使用 `../lixinger-data-query/` 的 162 个 API。
+使用 `skills/lixinger-data-query/` 的 162 个 API。
 
 **使用场景**：找不到合适的 skill，或需要简单数据查询。
 
 **使用前必须查找 API**：
 ```bash
 # 1. 使用中文关键词搜索索引（推荐，最快）
-grep -i "分红" ../lixinger-data-query/api_new/API_KEYWORD_INDEX.md
-grep -i "市盈率\|PE" ../lixinger-data-query/api_new/API_KEYWORD_INDEX.md
-grep -i "ROE\|净资产收益率" ../lixinger-data-query/api_new/API_KEYWORD_INDEX.md
+grep -i "分红" skills/lixinger-data-query/api_new/API_KEYWORD_INDEX.md
+grep -i "市盈率\|PE" skills/lixinger-data-query/api_new/API_KEYWORD_INDEX.md
+grep -i "ROE\|净资产收益率" skills/lixinger-data-query/api_new/API_KEYWORD_INDEX.md
 
 # 2. 或直接搜索 API 文档正文
-grep -r "分红" ../lixinger-data-query/api_new/api-docs/
-grep -r "股息" ../lixinger-data-query/api_new/api-docs/
+grep -r "分红" skills/lixinger-data-query/api_new/api-docs/
+grep -r "股息" skills/lixinger-data-query/api_new/api-docs/
 
 # 3. 查看 API 文档（确保参数正确）
-cat ../lixinger-data-query/api_new/api-docs/[api_name].md
+cat skills/lixinger-data-query/api_new/api-docs/[api_name].md
 
 # 4. 执行查询
-python3 ../lixinger-data-query/scripts/query_tool.py \
+python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/company/dividend" \
   --params '{"stockCode": "600519"}' \
   --columns "date,dividendPerShare"
@@ -181,17 +181,17 @@ python3 ../lixinger-data-query/scripts/query_tool.py \
 
 #### 第三优先级：AkShare 接口
 
-使用 `../lixinger-data-query/api_new/akshare_data/` 的 1000+ 接口。
+使用 `skills/lixinger-data-query/api_new/akshare_data/` 的 1000+ 接口。
 
 **使用场景**：前两者无法满足需求，或需要补充数据源。
 
 **使用前必须 grep 查看接口文档**：
 ```bash
 # 查找相关接口
-grep -r "关键词" ../lixinger-data-query/api_new/akshare_data/
+grep -r "关键词" skills/lixinger-data-query/api_new/akshare_data/
 
 # 查看接口文档（确保用法正确）
-cat ../lixinger-data-query/api_new/akshare_data/[interface_name].md
+cat skills/lixinger-data-query/api_new/akshare_data/[interface_name].md
 
 # 使用 Python 调用
 python3 -c "import akshare as ak; print(ak.interface_name())"
@@ -202,7 +202,7 @@ python3 -c "import akshare as ak; print(ak.interface_name())"
 **所有 skills 都使用 `query_tool.py` 获取数据**：
 
 ```bash
-python3 ../lixinger-data-query/scripts/query_tool.py \
+python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/company/dividend" \
   --params '{"stockCode": "600519"}' \
   --columns "date,dividendPerShare,dividendYield" \
@@ -264,10 +264,10 @@ cat ../China-market/high-dividend-strategy/references/data-queries.md
 
 ```bash
 # 1. 查看 API 文档（确保参数正确）
-cat ../lixinger-data-query/api_new/api-docs/cn_company_dividend.md
+cat skills/lixinger-data-query/api_new/api-docs/cn_company_dividend.md
 
 # 2. 下载数据到项目的 data/ 目录（使用最近日期）
-python3 ../lixinger-data-query/scripts/query_tool.py \
+python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/company/dividend" \
   --params '{"stockCode": "600519", "startDate": "2025-01-01"}' \
   > ${PROJECT}/data/dividend_data.csv
@@ -282,13 +282,13 @@ python3 ../lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 # 1. 搜索 API
-grep -r "关键词" ../lixinger-data-query/api_new/api-docs/
+grep -r "关键词" skills/lixinger-data-query/api_new/api-docs/
 
 # 2. 查看 API 文档（必须）
-cat ../lixinger-data-query/api_new/api-docs/[api_name].md
+cat skills/lixinger-data-query/api_new/api-docs/[api_name].md
 
 # 3. 总结思路后再执行查询
-python3 ../lixinger-data-query/scripts/query_tool.py \
+python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/company/dividend" \
   --params '{"stockCode": "600519"}'
 ```
@@ -297,10 +297,10 @@ python3 ../lixinger-data-query/scripts/query_tool.py \
 
 ```bash
 # 1. 搜索接口
-grep -r "关键词" ../lixinger-data-query/api_new/akshare_data/
+grep -r "关键词" skills/lixinger-data-query/api_new/akshare_data/
 
 # 2. 查看接口文档（必须）
-cat ../lixinger-data-query/api_new/akshare_data/[interface_name].md
+cat skills/lixinger-data-query/api_new/akshare_data/[interface_name].md
 
 # 3. 使用 Python 调用
 python3 -c "import akshare as ak; print(ak.interface_name())"
@@ -326,11 +326,11 @@ ls ../China-market/ | grep -i "dividend"
 cat ../China-market/high-dividend-strategy/SKILL.md
 
 # 4. 查看 API 文档（必须）
-cat ../lixinger-data-query/api_new/api-docs/cn_company_dividend.md
+cat skills/lixinger-data-query/api_new/api-docs/cn_company_dividend.md
 
 # 5. 获取数据（使用最近日期）
 for code in 601398 601288 600900; do
-  python3 ../lixinger-data-query/scripts/query_tool.py \
+  python3 skills/lixinger-data-query/scripts/query_tool.py \
     --suffix "cn/company/dividend" \
     --params "{\"stockCode\": \"${code}\", \"startDate\": \"2025-01-01\"}" \
     > ${PROJECT}/data/dividend_${code}.csv
@@ -371,7 +371,7 @@ python3 ${PROJECT}/scripts/calculate_metrics.py
 PROJECT="analysis_20260225_143052_high_dividend"
 
 # 追加数据
-python3 ../lixinger-data-query/scripts/query_tool.py \
+python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/company/dividend" \
   --params '{"stockCode": "601398", "startDate": "2020-01-01"}' \
   > ${PROJECT}/data/dividend_history_601398.csv
@@ -439,7 +439,7 @@ cat token.cfg
 
 ```bash
 # 直接运行，无需激活虚拟环境
-python3 ../lixinger-data-query/scripts/query_tool.py \
+python3 skills/lixinger-data-query/scripts/query_tool.py \
   --suffix "cn/company" \
   --params '{"stockCodes": ["600519"]}' \
   --columns "stockCode,name"
@@ -512,7 +512,7 @@ python3 ../lixinger-data-query/scripts/query_tool.py \
 --suffix "cn.company.dividend"  # ❌
 
 # 2. grep 查看 API 文档确认路径
-grep -r "dividend" ../lixinger-data-query/api_new/api-docs/
+grep -r "dividend" skills/lixinger-data-query/api_new/api-docs/
 ```
 
 #### 错误 2：`"metricsList" is required`
@@ -534,7 +534,7 @@ grep -r "dividend" ../lixinger-data-query/api_new/api-docs/
 
 **解决**：grep 查看 API 文档确认参数名
 ```bash
-cat ../lixinger-data-query/api_new/api-docs/cn_company.md
+cat skills/lixinger-data-query/api_new/api-docs/cn_company.md
 ```
 
 ---
@@ -606,6 +606,6 @@ ls ../China-market/ | grep -i "flow"
 
 ## 📚 相关文档
 
-- **数据查询工具**：`../lixinger-data-query/SKILL.md`
-- **API 文档目录**：`../lixinger-data-query/api_new/api-docs/`
-- **AkShare 接口**：`../lixinger-data-query/api_new/akshare_data/`
+- **数据查询工具**：`skills/lixinger-data-query/SKILL.md`
+- **API 文档目录**：`skills/lixinger-data-query/api_new/api-docs/`
+- **AkShare 接口**：`skills/lixinger-data-query/api_new/akshare_data/`
