@@ -147,11 +147,11 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 3. **货币代码**：使用标准的三字母货币代码（如 HKD、USD、CNY）
 4. **字段过滤**：建议使用 `--columns` 参数只返回需要的字段
 5. **数据限制**：使用 `--limit` 参数限制返回行数
-6. **API 文档**：详细的 API 文档位于 `skills/lixinger-data-query/api_new/api-docs/macro_currency-exchange-rate.md`
+6. **API 文档**：详细的 API 文档位于 `../../lixinger-data-query/api_new/api-docs/macro_currency-exchange-rate.md`
 
 ## 相关文档
 
 - **API 列表**：`skills/lixinger-data-query/SKILL.md`
 - **使用指南**：`skills/lixinger-data-query/LLM_USAGE_GUIDE.md`
 - **查询示例**：`skills/lixinger-data-query/EXAMPLES.md`
-- **汇率 API 文档**：`skills/lixinger-data-query/api_new/api-docs/macro_currency-exchange-rate.md`
+- **汇率 API 文档**：`../../lixinger-data-query/api_new/api-docs/macro_currency-exchange-rate.md`

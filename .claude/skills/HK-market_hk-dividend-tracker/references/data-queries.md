@@ -305,18 +305,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ## 查找更多 API
 
-```bash
-# 查看完整 API 列表
-cat skills/lixinger-data-query/SKILL.md
-
-# 搜索港股分红相关 API
-grep -r "dividend" skills/lixinger-data-query/api_new/api-docs/hk_*
-
-# 查看具体 API 文档
-cat skills/lixinger-data-query/api_new/api-docs/hk_company_dividend.md
-```
-
----
+详细的 API 查找和使用方法，请参考：`../../lixinger-data-query/SKILL.md`
 
 ## 相关文档
 

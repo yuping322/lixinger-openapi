@@ -57,15 +57,5 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ## 查找更多 API
 
-```bash
-# 查看完整 API 列表
-cat skills/lixinger-data-query/SKILL.md
+详细的 API 查找和使用方法，请参考：`../../lixinger-data-query/SKILL.md`
 
-# 搜索关键字
-grep -r "关键字" skills/lixinger-data-query/api_new/api-docs/
-
-# 查看具体 API 文档
-cat skills/lixinger-data-query/api_new/api-docs/{api_name}.md
-```
-
-**相关文档**: `skills/lixinger-data-query/SKILL.md`

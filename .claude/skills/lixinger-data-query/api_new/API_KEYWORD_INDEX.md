@@ -4,16 +4,16 @@
 
 ```bash
 # 示例：查找分红相关 API
-grep -i "分红\|股息\|dividend" skills/lixinger-data-query/api_new/API_KEYWORD_INDEX.md
+grep -i "分红\|股息\|dividend" API_KEYWORD_INDEX.md
 
 # 示例：查找市盈率相关 API
-grep -i "市盈率\|PE\|pe_ttm" skills/lixinger-data-query/api_new/API_KEYWORD_INDEX.md
+grep -i "市盈率\|PE\|pe_ttm" API_KEYWORD_INDEX.md
 
 # 示例：查找营收相关 API
-grep -i "营业收入\|营收\|revenue\|toi" skills/lixinger-data-query/api_new/API_KEYWORD_INDEX.md
+grep -i "营业收入\|营收\|revenue\|toi" API_KEYWORD_INDEX.md
 
 # 示例：查找 ROE 相关 API
-grep -i "ROE\|净资产收益率\|roe" skills/lixinger-data-query/api_new/API_KEYWORD_INDEX.md
+grep -i "ROE\|净资产收益率\|roe" API_KEYWORD_INDEX.md
 ```
 
 ---
