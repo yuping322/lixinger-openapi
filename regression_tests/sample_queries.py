@@ -3,7 +3,7 @@ import json
 import re
 from pathlib import Path
 
-SKILLS_DIR = Path("/Users/fengzhi/Downloads/git/lixinger-openapi/skills/China-market")
+SKILLS_DIR = Path("/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills")
 OUTPUT_FILE = Path("/Users/fengzhi/Downloads/git/lixinger-openapi/regression_tests/user_scenarios.json")
 
 def generate_questions(skill_name, description):
@@ -72,34 +72,34 @@ def main():
                 if match:
                     description = match.group(1).strip()
         
-        # 读取 data-queries.md 获取可用命令
-        dq_path = skill_path / "references" / "data_queries.md"
-        if not dq_path.exists():
-             dq_path = skill_path / "references" / "data-queries.md"
-             
-        commands = []
-        if dq_path.exists():
-            with open(dq_path, 'r', encoding='utf-8') as f:
-                content = f.read()
-                # 提取 toolkit.py 相关命令并转换为绝对路径
-                toolkit_abs = "/Users/fengzhi/Downloads/git/lixinger-openapi/skills/China-market/findata-toolkit-cn/scripts/toolkit.py"
-                commands = re.findall(r"python \.\./findata-toolkit-cn/scripts/toolkit\.py (.+)", content)
-                commands = list(set([f"python {toolkit_abs} {c}" for c in commands if "--help" not in c]))
+                # 读取 data-queries.md 获取可用命令
+                dq_path = skill_path / "references" / "data_queries.md"
+                if not dq_path.exists():
+                     dq_path = skill_path / "references" / "data-queries.md"
+                     
+                commands = []
+                if dq_path.exists():
+                    with open(dq_path, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                        # 提取 query_tool.py 相关命令并转换为绝对路径
+                        query_tool_abs = "/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/lixinger-data-query/scripts/query_tool.py"
+                        commands = re.findall(r"python \.\./lixinger-data-query/scripts/query_tool\.py (.+)", content)
+                        commands = list(set([f"python {query_tool_abs} {c}" for c in commands if "--help" not in c]))
 
-        questions = generate_questions(skill_dir, description)
-        
-        # 关联问题与指令
-        # 简单匹配：前 N 个问题对应前 M 个指令
-        scenarios.append({
-            "skill": skill_dir,
-            "description": description,
-            "test_cases": [
-                {
-                    "question": q,
-                    "cmd": commands[i % len(commands)] if commands else "python ../findata-toolkit-cn/scripts/toolkit.py --help"
-                } for i, q in enumerate(questions)
-            ]
-        })
+                questions = generate_questions(skill_dir, description)
+                
+                # 关联问题与指令
+                # 简单匹配：前 N 个问题对应前 M 个指令
+                scenarios.append({
+                    "skill": skill_dir,
+                    "description": description,
+                    "test_cases": [
+                        {
+                            "question": q,
+                            "cmd": commands[i % len(commands)] if commands else f"python {query_tool_abs} --help"
+                        } for i, q in enumerate(questions)
+                    ]
+                })
 
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         json.dump(scenarios, f, indent=2, ensure_ascii=False)

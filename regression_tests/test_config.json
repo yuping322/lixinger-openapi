@@ -2,7 +2,7 @@
   "description": "Comprehensive test configuration for lixinger-openapi skills",
   "version": "2.0.0",
   "test_environments": {
-    "query_tool_path": "skills/lixinger-data-query/scripts/query_tool.py",
+    "query_tool_path": ".claude/skills/lixinger-data-query/scripts/query_tool.py",
     "token_file": "token.cfg",
     "timeout_seconds": 60
   },

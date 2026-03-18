@@ -12,7 +12,7 @@
 |------|------|------|
 | `query_tool_tests.py` | 直接测试查询工具，10个核心API测试 | ✅ 完成 |
 | `validate_env.py` | 环境验证脚本，检查所有前置条件 | ✅ 完成 |
-| `run_all_tests.sh` | 统一测试运行器，支持快速和完整模式 | ✅ 完成 |
+| `run_tests.sh` | 统一测试运行器，支持快速和完整模式 | ✅ 完成 |
 | `generate_missing_tests.py` | 自动生成缺失的测试用例 | ✅ 完成 |
 | `test_config.json` | 集中化测试配置 | ✅ 完成 |
 
@@ -21,7 +21,7 @@
 | 文件 | 更新内容 | 状态 |
 |------|----------|------|
 | `e2e_runner.py` | 增强环境验证、错误处理、配置支持 | ✅ 完成 |
-| `user_scenarios.json` | 验证所有116个技能都有测试用例 | ✅ 完成 |
+| `user_scenarios.json` | 验证所有 119 个技能都有测试用例 | ✅ 完成 |
 
 ### 3. 文档完善
 
@@ -61,7 +61,7 @@ python3 e2e_runner.py
 ```
 
 **覆盖范围**:
-- ✅ 116个技能的完整测试
+- ✅ 119 个技能的完整测试
 - ✅ 用户问题 -> 技能触发 -> 数据获取流程
 - ✅ 环境验证和错误处理
 
@@ -90,7 +90,7 @@ python3 query_tool_tests.py
 ### 3. 运行完整测试
 
 ```bash
-./run_all_tests.sh --full
+./run_tests.sh --full
 ```
 
 ## 📈 测试结果

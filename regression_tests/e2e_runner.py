@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-核心测试 2: 端到端技能测试
-通过Claude/OpenCode测试所有116个技能的完整流程
+核心测试 2: 端端技能测试
+通过Claude/OpenCode测试所有 119 个技能的完整流程
 测试流程: 用户问题 -> 技能触发 -> 数据获取 -> 分析逻辑 -> 结果输出
 
 Version: 2.0.0
-Updated: 2026-02-24
+Updated: 2026-03-18
 """
 import os
 import json
@@ -39,7 +39,7 @@ def validate_environment() -> Tuple[bool, List[str]]:
         issues.append(f"Token file not found: {token_file}")
     
     # Check query tool
-    query_tool = PROJECT_ROOT / "skills/lixinger-data-query/scripts/query_tool.py"
+    query_tool = PROJECT_ROOT / ".claude/skills/lixinger-data-query/scripts/query_tool.py"
     if not query_tool.exists():
         issues.append(f"Query tool not found: {query_tool}")
     
@@ -78,19 +78,21 @@ def run_question(skill_name: str, question: str, case_index: int, config: Dict) 
         if skill_name == "lixinger-data-query":
             cmd = [
                 "python3",
-                str(PROJECT_ROOT / "skills/lixinger-data-query/scripts/query_tool.py"),
+                str(PROJECT_ROOT / ".claude/skills/lixinger-data-query/scripts/query_tool.py"),
                 "--suffix", "cn.company",
                 "--params", '{"stockCodes": ["600519"]}',
                 "--columns", "stockCode,name,listDate",
                 "--limit", "5"
             ]
         else:
-            # For analysis skills, check if skill directory exists
-            skill_dir = PROJECT_ROOT / "skills" / "China-market" / skill_name
+            # For analysis skills, check if skill directory exists in .claude/skills
+            skill_dir = PROJECT_ROOT / ".claude/skills" / f"China-market_{skill_name}"
             if not skill_dir.exists():
-                skill_dir = PROJECT_ROOT / "skills" / "HK-market" / skill_name
+                skill_dir = PROJECT_ROOT / ".claude/skills" / f"HK-market_{skill_name}"
             if not skill_dir.exists():
-                skill_dir = PROJECT_ROOT / "skills" / "US-market" / skill_name
+                skill_dir = PROJECT_ROOT / ".claude/skills" / f"US-market_{skill_name}"
+            if not skill_dir.exists():
+                skill_dir = PROJECT_ROOT / ".claude/skills" / skill_name
             
             if not skill_dir.exists():
                 raise FileNotFoundError(f"Skill directory not found: {skill_name}")

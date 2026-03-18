@@ -72,7 +72,7 @@ def main():
     
     # 3. Check query tool
     print("3️⃣  Checking query tool...")
-    query_tool = project_root / "skills/lixinger-data-query/scripts/query_tool.py"
+    query_tool = project_root / ".claude/skills/lixinger-data-query/scripts/query_tool.py"
     if query_tool.exists():
         print_status("Query tool", True, f"Found at {query_tool}")
     else:
@@ -83,7 +83,6 @@ def main():
     # 4. Check test files
     print("4️⃣  Checking test files...")
     test_files = [
-        "query_tool_tests.py",
         "e2e_runner.py",
         "user_scenarios.json",
         "test_config.json"
@@ -99,18 +98,11 @@ def main():
     
     # 5. Check skills directories
     print("5️⃣  Checking skills directories...")
-    skills_dir = project_root / "skills"
+    skills_dir = project_root / ".claude/skills"
     if skills_dir.exists():
-        markets = ["China-market", "HK-market", "US-market", "lixinger-data-query"]
-        for market in markets:
-            market_dir = skills_dir / market
-            if market_dir.exists():
-                print_status(f"skills/{market}", True)
-            else:
-                print_status(f"skills/{market}", False, f"Not found at {market_dir}")
-                all_passed = False
+        print_status(".claude/skills", True, f"Found at {skills_dir}")
     else:
-        print_status("skills directory", False, f"Not found at {skills_dir}")
+        print_status(".claude/skills", False, f"Not found at {skills_dir}")
         all_passed = False
     print()
     
@@ -144,9 +136,9 @@ def main():
         print(f"{GREEN}🎉 All checks passed! Environment is ready for testing.{NC}")
         print()
         print("Next steps:")
-        print("  1. Run basic tests:    python3 query_tool_tests.py")
-        print("  2. Run all tests:      ./run_all_tests.sh")
-        print("  3. Run full suite:     ./run_all_tests.sh --full")
+        print("  1. Run API tests:      python3 test_all_apis.py")
+        print("  2. Run all tests:      ./run_tests.sh")
+        print("  3. Run full suite:     ./run_tests.sh --full")
         sys.exit(0)
     else:
         print(f"{RED}❌ Some checks failed. Please fix the issues above.{NC}")

@@ -440,6 +440,36 @@
     ]
   },
   {
+    "skill": "stock-bond-yield-gap-monitor",
+    "description": "分析 A 股大盘（如沪深 300）的股权风险溢价 (ERP) 或股债性价比（Yield Gap），用于判断大类资产配置时点。当用户询问股债性价比、ERP、沪深 300 vs 国债收益率、或者大类资产配置建议时使用。",
+    "market": "China-market",
+    "questions": [
+      "分析当前沪深 300 的股债性价比",
+      "对比 10 年期国债收益率，给出目前的大类资产配置建议",
+      "现在的 ERP 指标是多少？处于历史什么分位？"
+    ]
+  },
+  {
+    "skill": "sector-valuation-heat-map",
+    "description": "生成 A 股行业板块的估值热力图，对比不同行业的 PE/PB 分位点及近期资金流向。当用户询问行业估值对比、哪些板块最便宜、行业热力图、或需要板块配置策略时使用。",
+    "market": "China-market",
+    "questions": [
+      "对比一下申万一级各行业的估值热力图",
+      "告诉我哪些板块现在是‘估值洼地’",
+      "哪些行业目前处于‘泡沫加速区’？"
+    ]
+  },
+  {
+    "skill": "portfolio-stress-test",
+    "description": "对 A 股投资组合进行历史情景压力测试（如 2015 年股灾、2020 年新冠冲击等），计算组合的潜在回撤和波动。当用户询问组合在某种极端情况下的表现、测试组合抗风险能力、或需要组合压力测试时使用。",
+    "market": "China-market",
+    "questions": [
+      "假如回到 2015 年 6 月的股灾期间，我的组合会发生多大的回撤？",
+      "测试一下我的持仓在流动性枯竭情景下的表现",
+      "面对市场极端波动，我的组合应该如何对冲？"
+    ]
+  },
+  {
     "skill": "weekly-market-brief-generator",
     "description": "生成周度市场简报（表现、宏观、资金、风险、观察清单），输出固定结构与表格。当用户要求市场周报/周度复盘/周度监控摘要时使用。",
     "market": "China-market",
@@ -452,7 +482,7 @@
   {
     "skill": "findata-toolkit-cn",
     "description": "A股金融数据工具包。提供脚本获取A股实时行情、财务指标、董监高增减持、北向资金、宏观经济数据（LPR、CPI/PPI、PMI、社融、M2）。用于需要实时A股市场数据支撑投资分析时。所有数据源免费，无需API密钥。",
-    "market": "HK-market",
+    "market": "China-market",
     "questions": [
       "最近市场有什么值得关注的情况吗？",
       "帮我分析一下当前的投资机会",
@@ -947,6 +977,156 @@
       "查询贵州茅台的基本面数据",
       "获取沪深300指数的估值数据",
       "查询美元兑人民币汇率"
+    ]
+  },
+  {
+    "skill": "ab-ah-premium-monitor",
+    "description": "Auto-generated test case for ab-ah-premium-monitor",
+    "market": "China-market",
+    "questions": [
+      "监控ab ah premium monitor的最新情况",
+      "分析ab ah premium monitor的风险指标",
+      "生成ab ah premium monitor的监控报告"
+    ]
+  },
+  {
+    "skill": "analysis-market",
+    "description": "Auto-generated test case for analysis-market",
+    "market": "General",
+    "questions": [
+      "分析analysis market的核心指标",
+      "提供analysis market的详细分析",
+      "评估analysis market的投资价值"
+    ]
+  },
+  {
+    "skill": "concept-board-analyzer",
+    "description": "Auto-generated test case for concept-board-analyzer",
+    "market": "China-market",
+    "questions": [
+      "分析concept board analyzer的核心指标",
+      "提供concept board analyzer的详细分析",
+      "评估concept board analyzer的投资价值"
+    ]
+  },
+  {
+    "skill": "esg-screener",
+    "description": "Auto-generated test case for esg-screener",
+    "market": "China-market",
+    "questions": [
+      "筛选符合esg screener条件的标的",
+      "扫描esg screener的投资机会",
+      "找出esg screener的候选清单"
+    ]
+  },
+  {
+    "skill": "goodwill-risk-monitor",
+    "description": "Auto-generated test case for goodwill-risk-monitor",
+    "market": "China-market",
+    "questions": [
+      "监控goodwill risk monitor的最新情况",
+      "分析goodwill risk monitor的风险指标",
+      "生成goodwill risk monitor的监控报告"
+    ]
+  },
+  {
+    "skill": "hsgt-holdings-monitor",
+    "description": "Auto-generated test case for hsgt-holdings-monitor",
+    "market": "China-market",
+    "questions": [
+      "监控hsgt holdings monitor的最新情况",
+      "分析hsgt holdings monitor的风险指标",
+      "生成hsgt holdings monitor的监控报告"
+    ]
+  },
+  {
+    "skill": "ipo-lockup-risk-monitor",
+    "description": "Auto-generated test case for ipo-lockup-risk-monitor",
+    "market": "China-market",
+    "questions": [
+      "监控ipo lockup risk monitor的最新情况",
+      "分析ipo lockup risk monitor的风险指标",
+      "生成ipo lockup risk monitor的监控报告"
+    ]
+  },
+  {
+    "skill": "limit-up-limit-down-risk-checker",
+    "description": "Auto-generated test case for limit-up-limit-down-risk-checker",
+    "market": "China-market",
+    "questions": [
+      "使用limit up limit down risk checker进行分析",
+      "获取limit up limit down risk checker的相关数据",
+      "生成limit up limit down risk checker的报告"
+    ]
+  },
+  {
+    "skill": "limit-up-pool-analyzer",
+    "description": "Auto-generated test case for limit-up-pool-analyzer",
+    "market": "China-market",
+    "questions": [
+      "分析limit up pool analyzer的核心指标",
+      "提供limit up pool analyzer的详细分析",
+      "评估limit up pool analyzer的投资价值"
+    ]
+  },
+  {
+    "skill": "margin-risk-monitor",
+    "description": "Auto-generated test case for margin-risk-monitor",
+    "market": "China-market",
+    "questions": [
+      "监控margin risk monitor的最新情况",
+      "分析margin risk monitor的风险指标",
+      "生成margin risk monitor的监控报告"
+    ]
+  },
+  {
+    "skill": "northbound-flow-analyzer",
+    "description": "Auto-generated test case for northbound-flow-analyzer",
+    "market": "China-market",
+    "questions": [
+      "分析northbound flow analyzer的核心指标",
+      "提供northbound flow analyzer的详细分析",
+      "评估northbound flow analyzer的投资价值"
+    ]
+  },
+  {
+    "skill": "share-repurchase-monitor",
+    "description": "Auto-generated test case for share-repurchase-monitor",
+    "market": "China-market",
+    "questions": [
+      "监控share repurchase monitor的最新情况",
+      "分析share repurchase monitor的风险指标",
+      "生成share repurchase monitor的监控报告"
+    ]
+  },
+  {
+    "skill": "single-stock-health-check",
+    "description": "Auto-generated test case for single-stock-health-check",
+    "market": "China-market",
+    "questions": [
+      "使用single stock health check进行分析",
+      "获取single stock health check的相关数据",
+      "生成single stock health check的报告"
+    ]
+  },
+  {
+    "skill": "st-delist-risk-scanner",
+    "description": "Auto-generated test case for st-delist-risk-scanner",
+    "market": "China-market",
+    "questions": [
+      "筛选符合st delist risk scanner条件的标的",
+      "扫描st delist risk scanner的投资机会",
+      "找出st delist risk scanner的候选清单"
+    ]
+  },
+  {
+    "skill": "us-esg-screener",
+    "description": "Auto-generated test case for us-esg-screener",
+    "market": "US-market",
+    "questions": [
+      "筛选符合us esg screener条件的标的",
+      "扫描us esg screener的投资机会",
+      "找出us esg screener的候选清单"
     ]
   }
 ]

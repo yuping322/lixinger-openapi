@@ -17,17 +17,17 @@ def get_all_skills():
     """Get all available skills from directories"""
     skills = {}
     
-    markets = {
-        "China-market": PROJECT_ROOT / "skills/China-market",
-        "HK-market": PROJECT_ROOT / "skills/HK-market",
-        "US-market": PROJECT_ROOT / "skills/US-market"
-    }
+    skills_dir = PROJECT_ROOT / ".claude/skills"
     
-    for market_name, market_dir in markets.items():
-        if market_dir.exists():
-            for skill_dir in market_dir.iterdir():
-                if skill_dir.is_dir() and not skill_dir.name.startswith('.'):
-                    skills[skill_dir.name] = market_name
+    if skills_dir.exists():
+        for skill_dir in skills_dir.iterdir():
+            if skill_dir.is_dir() and not skill_dir.name.startswith('.'):
+                # Handle names like China-market_ab-ah-premium-monitor
+                if '_' in skill_dir.name:
+                    market, skill_name = skill_dir.name.split('_', 1)
+                    skills[skill_name] = market
+                else:
+                    skills[skill_dir.name] = "General"
     
     return skills
 
