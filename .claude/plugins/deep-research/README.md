@@ -7,7 +7,7 @@
 ### 1) 直接用命令触发工作流
 
 - `/financial-quality [company]`：财务质量（FQE）MVP
-- `/competitive-positioning [company]`：竞争格局（CPE）骨架
+- `/competitive-positioning [company]`：竞争格局（CPE）manual-first MVP，参考 `skills/competitive-positioning-engine/examples/catl_300750/`
 - `/deep-research-qa [case_path]`：对 case 产物做 QA
 
 ### 2) 本地执行层（生成中间产物 JSON）
@@ -67,14 +67,19 @@ QA 检查项（v0.2）：
 
 ## 变更记录
 
-### v0.2（当前）
+### v0.3（当前）
 
-- `fqe_mvp.py`：新增趋势红旗 `fq_cash_003t`（OCF/NI 连续多期偏低）、`fq_rev_001t`（应收/收入比率趋势上升）
-- `fqe_mvp.py`：`earnings_quality` 拆出独立 `accrual_quality` 维度（Sloan 简化版应计比率）
-- `fqe_mvp.py`：`source` 字段 None 时有默认值，不再输出 null
-- `deep_research_qa.py`：新增 `_check_scores`（字段完整性、值域、grade 一致性、confidence 值域）
-- `deep_research_qa.py`：`--out` 不传时默认写 `<case>/integrated/qa_report.json`，同时 stdout 打印
-- `fqe_mvp_rules.json`：版本升至 0.2.0，补充 `fq_cash_003t` / `fq_rev_001t` 参数
+- `deep_research_qa.py`：新增 CPE 全套检查（文件完整性、claims 证据链、peer_clusters、cpe verdict 字段合法性、FQE×CPE 交叉一致性）；新增 `--skip-cpe` 参数；report 增加 `severity_counts`
+- `fqe_mvp.py`：应计质量口径修正（`total_assets` 优先）；趋势红旗改用 trailing run length
+- `fqe_mvp_rules.json`：升至 v0.3.0，趋势规则参数改为 `min_run`
+- `fqe-output-contract.json`：加入 `accrual_quality`、`score_metadata`、`grade_thresholds`
+- `competitive-positioning-engine`：从空壳升级为 manual-first MVP，新增宁德时代（300750）真实样例，新增 `cpe-output-contract.json`
+- 端到端验证：`research_cases/case_20260324_300750_catl/` 完整跑通（FQE grade=A + CPE leader/wide/narrowing，QA Pass，1 条 Info）
+
+### v0.2
+
+- `fqe_mvp.py`：新增趋势红旗 `fq_cash_003t` / `fq_rev_001t`；`earnings_quality` 拆出 `accrual_quality`；`source` 字段 None 时有默认值
+- `deep_research_qa.py`：新增 `_check_scores`（字段完整性、值域、grade 一致性、confidence 值域）；`--out` 默认写 `<case>/integrated/qa_report.json`
 
 ## 设计原则
 

@@ -1,0 +1,109 @@
+{
+  "_version": "0.1.0",
+  "_notes": "CPE 输出契约。四个文件构成一个完整 competitive_positioning/ 目录。所有 confidence 字段值域 [0,1]。status 取值：confirmed / tentative / disputed / stale。",
+
+  "market_map.json": {
+    "subject": { "ticker": "", "name": "", "as_of_date": "" },
+    "market_definition": {
+      "scope": "",
+      "geographic_scope": "",
+      "value_chain_position": "",
+      "notes": ""
+    },
+    "segments": [
+      {
+        "id": "",
+        "name": "",
+        "description": "",
+        "subject_presence": "primary | secondary | none",
+        "estimated_market_size_bn_cny": null,
+        "estimated_cagr_pct": null,
+        "concentration": "fragmented | moderate | concentrated | monopoly",
+        "key_players": []
+      }
+    ],
+    "overall_concentration": {
+      "cr3_pct": null,
+      "cr5_pct": null,
+      "hhi_approx": null,
+      "notes": ""
+    },
+    "data_sources": []
+  },
+
+  "peer_clusters.json": {
+    "subject": { "ticker": "", "name": "" },
+    "as_of_date": "",
+    "clusters": [
+      {
+        "id": "",
+        "label": "",
+        "rationale": "",
+        "peers": [
+          {
+            "ticker": "",
+            "name": "",
+            "exchange": "A | HK | US",
+            "inclusion_reason": "",
+            "key_similarity": [],
+            "key_difference": []
+          }
+        ]
+      }
+    ],
+    "excluded": [
+      {
+        "ticker": "",
+        "name": "",
+        "exclusion_reason": ""
+      }
+    ]
+  },
+
+  "claims.json": {
+    "subject": { "ticker": "", "name": "" },
+    "as_of_date": "",
+    "claims": [
+      {
+        "id": "",
+        "dimension": "scale | technology | cost | customer | brand | supply_chain | regulation | capital",
+        "claim": "",
+        "direction": "advantage | disadvantage | neutral",
+        "severity": "high | medium | low",
+        "supporting_evidence": [
+          {
+            "type": "quantitative | qualitative | market_data | regulatory",
+            "description": "",
+            "source": "",
+            "as_of_date": "",
+            "confidence": 0
+          }
+        ],
+        "counter_evidence": [],
+        "confidence": 0,
+        "status": "confirmed | tentative | disputed | stale"
+      }
+    ]
+  },
+
+  "verdict.json": {
+    "subject": { "ticker": "", "name": "" },
+    "as_of_date": "",
+    "position": "leader | challenger | niche | follower",
+    "moat_assessment": {
+      "moat_type": [],
+      "moat_strength": "wide | narrow | none",
+      "moat_trend": "widening | stable | narrowing",
+      "rationale": ""
+    },
+    "premium_discount_view": {
+      "direction": "premium | discount | fair",
+      "key_drivers": [],
+      "key_risks": [],
+      "notes": ""
+    },
+    "confidence": 0,
+    "key_uncertainties": [],
+    "summary": ""
+  }
+}

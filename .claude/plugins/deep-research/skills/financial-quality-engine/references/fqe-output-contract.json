@@ -1,4 +1,6 @@
 {
+  "_version": "0.3.0",
+  "_notes": "FQE verdict.json 输出契约。所有 score 字段值域 [0,1]，grade 取值 A/B/C/D。accrual_quality 为 v0.3 新增维度（Sloan 简化版，优先 total_assets/fallback equity）。",
   "company": "600519",
   "as_of_date": "2026-03-24",
   "normalized_earnings": {
@@ -8,18 +10,42 @@
   },
   "scores": {
     "earnings_quality": 0,
+    "accrual_quality": 0,
     "cash_quality": 0,
     "balance_sheet_quality": 0,
     "governance_quality": 0,
     "overall": 0
+  },
+  "score_metadata": {
+    "accrual_quality": {
+      "formula": "(NI - OCF) / avg_total_assets，均值后取反映射到 [0,1]",
+      "denominator_priority": "total_assets > equity（fallback）",
+      "good_anchor": "avg_accrual_ratio <= -0.02",
+      "bad_anchor": "avg_accrual_ratio >= 0.08"
+    },
+    "cash_quality": {
+      "formula": "0.55 * score(OCF/NI) + 0.45 * score(FCF/NI)"
+    },
+    "balance_sheet_quality": {
+      "formula": "0.5 * (1 - score(goodwill/equity)) + 0.5 * (1 - score(net_debt/equity))"
+    },
+    "earnings_quality": {
+      "formula": "0.40 * accrual_quality + 0.40 * cash_quality + 0.20 * governance_quality"
+    },
+    "overall": {
+      "formula": "0.25*earnings + 0.20*accrual + 0.25*cash + 0.20*bs + 0.10*gov - penalty",
+      "penalty_cap": 0.25,
+      "penalty_per_high_flag": 0.08,
+      "penalty_per_medium_flag": 0.04
+    }
   },
   "red_flags": [],
   "key_strengths": [],
   "key_uncertainties": [],
   "verdict": {
     "grade": "A/B/C/D",
+    "grade_thresholds": { "A": 0.80, "B": 0.65, "C": 0.45, "D": 0.0 },
     "summary": "",
     "confidence": 0
   }
 }
-

@@ -21,6 +21,8 @@ The current implementation is **backward compatible** with the old format and ad
 - `assumptions`: DCF assumptions and cost of capital inputs
 - `comps`: Multiples and target metrics
 - `market`: Trading market data for target price/upside
+- `source_map` (optional): Per-field provenance for mixed data sources
+- `source_notes` (optional): Human-readable source and reconciliation notes
 - `model_weights`: Weighting for DCF vs comps
 - `scenarios`: Optional DCF overrides for upside/downside
 - `industry_model`: Optional industry-specific model inputs
@@ -123,6 +125,31 @@ If `wacc` is omitted, the script can derive it from this block. For A-shares, de
 - `trading_currency`
 - `fx_to_valuation` (1 trading currency -> valuation currency)
 - `valuation_adjustment_pct` (market discount/premium, decimal)
+
+### `source_map` (optional)
+Recommended when fields are mixed across providers.
+
+Each key should be a canonical valuation field path, for example:
+- `financials.revenue`
+- `financials.operating_cash_flow`
+- `market.current_price`
+
+Recommended metadata per entry:
+- `provider`
+- `dataset`
+- `field`
+- `period_end`
+- `unit`
+- `transform` (for unit scaling or formula bridge)
+
+This block is not currently used in calculations, but is recommended for provenance, auditability, and future provider switching.
+
+### `source_notes` (optional)
+Human-readable reconciliation notes, for example:
+- mixed provider usage
+- reporting-period alignment
+- unit conversion notes
+- manual overrides
 
 ### `model_weights`
 - `dcf`

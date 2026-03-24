@@ -14,6 +14,35 @@
     "accounting_standard": "PRC GAAP",
     "trading_currency": "CNY"
   },
+  "source_map": {
+    "financials.revenue": {
+      "provider": "lixinger",
+      "dataset": "cn.company.fs.non_financial",
+      "field": "y.ps.toi.t",
+      "period_end": "2024-12-31",
+      "unit": "CNY",
+      "transform": "/ 1000000"
+    },
+    "financials.operating_cash_flow": {
+      "provider": "akshare",
+      "dataset": "stock_financial_report_sina",
+      "field": "经营活动产生的现金流量净额",
+      "period_end": "2024-12-31",
+      "unit": "CNY",
+      "transform": "/ 1000000"
+    },
+    "market.current_price": {
+      "provider": "lixinger",
+      "dataset": "cn.company.fundamental.non_financial",
+      "field": "sp",
+      "period_end": "2026-03-24",
+      "unit": "CNY"
+    }
+  },
+  "source_notes": [
+    "利润表和资产负债表来自理杏仁，经营现金流来自 AkShare，口径已统一为合并报表、CNY、百万元。",
+    "股本按 mc / sp 估算。"
+  ],
   "financials": {
     "revenue": 17000,
     "cost_of_revenue": 10300,

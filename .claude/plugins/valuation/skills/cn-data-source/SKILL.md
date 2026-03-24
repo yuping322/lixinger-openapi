@@ -2,6 +2,9 @@
 
 description: 从理杏仁开放平台获取A股公司数据，为 company-valuation、peer-analysis、scenario-modeling 等估值技能提供标准化输入。当目标公司是A股（股票代码为6位数字）时，优先调用此技能获取数据，再传入估值流程。
 
+> 数据源多 Provider 方案设计见 `docs/DATA_SOURCE_ARCHITECTURE_DESIGN.md`。
+> 当前执行层默认复用 `.claude/skills/lixinger-data-query`，以最小改动方式承载理杏仁、AkShare 及后续更多数据源。
+
 ## 数据工具
 
 使用项目根目录的 `query_tool.py`：
@@ -231,9 +234,54 @@ python3 .claude/skills/lixinger-data-query/scripts/query_tool.py \
     "listing_market": "A",
     "accounting_standard": "PRC GAAP",
     "trading_currency": "CNY"
-  }
+  },
+  "source_map": {
+    "financials.revenue": {
+      "provider": "lixinger",
+      "dataset": "cn.company.fs.non_financial",
+      "field": "y.ps.toi.t",
+      "period_end": "<财报期末>",
+      "unit": "CNY",
+      "transform": "/ 1000000"
+    },
+    "financials.operating_cash_flow": {
+      "provider": "akshare",
+      "dataset": "stock_financial_report_sina",
+      "field": "经营活动产生的现金流量净额",
+      "period_end": "<财报期末>",
+      "unit": "CNY",
+      "transform": "/ 1000000"
+    },
+    "market.current_price": {
+      "provider": "lixinger",
+      "dataset": "cn.company.fundamental.non_financial",
+      "field": "sp",
+      "period_end": "<最新交易日>",
+      "unit": "CNY"
+    }
+  },
+  "source_notes": [
+    "利润表/资产负债表优先来自理杏仁，现金流与宏观缺口字段由 AkShare 补齐。",
+    "混用时已统一报告期、单位、币种与合并口径。"
+  ]
 }
 ```
+
+## 多数据源组织建议
+
+后续接入更多数据源时，建议保持三层结构：
+
+1. **canonical 输入层**：下游估值只消费 `financials.*`、`balance_sheet.*`、`market.*` 等标准字段，不直接依赖供应商原始字段名。
+2. **source_map 溯源层**：每个关键字段记录 `provider`、`dataset`、`field`、`period_end`、`unit`、`transform`，方便回溯和替换数据源。
+3. **raw snapshot 原始层**：供应商原始返回单独存档，不混入估值入模 JSON；建议按 `provider/date/company` 归档。
+
+推荐按数据域维护主源优先级：
+- `financials`：`lixinger -> akshare -> manual`
+- `cashflow`：`akshare -> lixinger(若未来开放) -> manual`
+- `market`：`lixinger -> exchange/manual`
+- `macro`：`akshare -> lixinger -> manual`
+
+这样以后新增别的数据源时，只要补 `source_map` 和取数优先级，不需要改下游估值字段。
 
 ---
 

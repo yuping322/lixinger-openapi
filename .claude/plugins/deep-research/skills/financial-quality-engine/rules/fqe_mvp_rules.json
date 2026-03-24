@@ -1,6 +1,6 @@
 {
-  "version": "0.2.0",
-  "notes": "FQE MVP ruleset v0.2. 新增趋势规则 fq_cash_003t / fq_rev_001t。阈值为 Phase 1 启发式，后续迁移到行业分层校准。",
+  "version": "0.3.0",
+  "notes": "FQE MVP ruleset v0.3. 趋势规则语义修正：改用 min_run（trailing run length）替代 window/min_periods_below，确保'连续'语义与实现一致。应计质量口径修正：优先 total_assets，fallback equity。",
   "rules": {
     "fq_cash_003": {
       "name": "经营现金流支撑不足（单期）",
@@ -10,10 +10,10 @@
       }
     },
     "fq_cash_003t": {
-      "name": "OCF/NI 连续多期偏低（趋势）",
+      "name": "OCF/NI 连续多期偏低（trailing run）",
+      "notes": "min_run: 触发所需的最短连续期数（trailing run length，不是窗口内计数）",
       "params": {
-        "window": 3,
-        "min_periods_below": 2,
+        "min_run": 2,
         "ocf_to_ni_lt": 0.85
       }
     },
@@ -34,10 +34,10 @@
       }
     },
     "fq_rev_001t": {
-      "name": "应收/收入比率趋势上升（多期）",
+      "name": "应收/收入比率连续上升（trailing run）",
+      "notes": "min_run: 触发所需的最短连续上升期数（trailing run length）",
       "params": {
-        "window": 3,
-        "min_periods_rising": 2
+        "min_run": 2
       }
     },
     "fq_bs_002": {

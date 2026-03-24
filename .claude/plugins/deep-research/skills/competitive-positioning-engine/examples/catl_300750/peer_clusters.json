@@ -1,0 +1,121 @@
+{
+  "subject": { "ticker": "300750", "name": "宁德时代" },
+  "as_of_date": "2025-12-31",
+  "clusters": [
+    {
+      "id": "cluster_cn_tier1",
+      "label": "中国一线动力电池厂商",
+      "rationale": "同为中国市场出货量前五、具备完整 EV 动力电池产品线、已进入主流整车厂供应链的独立电池企业",
+      "peers": [
+        {
+          "ticker": "002594",
+          "name": "比亚迪（弗迪电池）",
+          "exchange": "A",
+          "inclusion_reason": "中国市场份额第二，自供为主但已对外供应；磷酸铁锂刀片电池技术路线与宁德时代形成直接竞争",
+          "key_similarity": ["中国市场规模相当", "磷酸铁锂 + 三元双线布局", "垂直整合程度高"],
+          "key_difference": ["比亚迪以整车自供为主，独立电池业务占比低", "整车业务提供稳定内部需求，抗周期性更强", "上市主体为整车+电池混合，估值逻辑不同"]
+        },
+        {
+          "ticker": "688567",
+          "name": "中创新航（CALB）",
+          "exchange": "A",
+          "inclusion_reason": "中国市场份额第三，主攻磷酸铁锂，广汽、长安等主要客户，与宁德时代存在直接客户竞争",
+          "key_similarity": ["纯电池独立厂商", "磷酸铁锂为主", "国内主流整车厂客户"],
+          "key_difference": ["规模约为宁德时代 1/6", "技术积累和专利储备差距明显", "海外布局尚处早期"]
+        },
+        {
+          "ticker": "300014",
+          "name": "亿纬锂能",
+          "exchange": "A",
+          "inclusion_reason": "动力+储能双线布局，大圆柱电池（46 系列）与宁德时代形成技术路线竞争，部分共同客户",
+          "key_similarity": ["动力+储能双线", "大圆柱电池布局", "海外客户拓展"],
+          "key_difference": ["规模约为宁德时代 1/10", "消费电池业务占比较高", "客户集中度较高（宝马大圆柱依赖）"]
+        },
+        {
+          "ticker": "002074",
+          "name": "国轩高科",
+          "exchange": "A",
+          "inclusion_reason": "中国市场份额前五，大众汽车战略入股，磷酸铁锂商用车和乘用车均有布局",
+          "key_similarity": ["磷酸铁锂为主", "商用车+乘用车双线", "海外工厂布局"],
+          "key_difference": ["大众持股带来客户绑定但也带来依赖风险", "技术和规模与宁德时代差距较大", "盈利能力显著弱于宁德时代"]
+        }
+      ]
+    },
+    {
+      "id": "cluster_global_tier1",
+      "label": "全球一线电池厂商（海外）",
+      "rationale": "全球动力电池装机量前十、在欧美日韩市场具备规模化供应能力的非中国电池企业，是宁德时代海外扩张的直接竞争对手",
+      "peers": [
+        {
+          "ticker": "373220.KS",
+          "name": "LG Energy Solution",
+          "exchange": "KR",
+          "inclusion_reason": "全球装机量第二，欧美市场份额最高的非中国电池厂，与宁德时代在欧洲客户上直接竞争",
+          "key_similarity": ["三元+磷酸铁锂双线", "欧美主流整车厂客户", "大圆柱电池布局"],
+          "key_difference": ["欧美本土化程度更高，受 IRA 补贴保护", "盈利能力近年承压（产能利用率低）", "技术路线偏三元，磷酸铁锂相对弱"]
+        },
+        {
+          "ticker": "6752.T",
+          "name": "Panasonic Energy",
+          "exchange": "JP",
+          "inclusion_reason": "特斯拉核心供应商，大圆柱电池（4680）先行者，北美市场重要竞争者",
+          "key_similarity": ["大圆柱电池技术", "特斯拉供应链"],
+          "key_difference": ["高度依赖特斯拉单一客户", "规模扩张速度慢于中国厂商", "日本本土成本结构偏高"]
+        },
+        {
+          "ticker": "006400.KS",
+          "name": "Samsung SDI",
+          "exchange": "KR",
+          "inclusion_reason": "全球前五，宝马、Stellantis 等欧洲客户，大圆柱电池竞争者",
+          "key_similarity": ["欧洲整车厂客户", "大圆柱电池布局", "三元技术"],
+          "key_difference": ["规模小于 LG Energy Solution", "匈牙利工厂建设中，欧洲本土化进行中", "消费电池业务占比较高"]
+        }
+      ]
+    },
+    {
+      "id": "cluster_ess_specialist",
+      "label": "储能专项竞争者",
+      "rationale": "在大型地面储能或工商业储能细分市场具备规模化竞争能力，与宁德时代储能业务形成直接竞争",
+      "peers": [
+        {
+          "ticker": "300014",
+          "name": "亿纬锂能（储能线）",
+          "exchange": "A",
+          "inclusion_reason": "储能电池出货量国内前三，大容量储能电芯（560Ah+）与宁德时代天恒系列直接竞争",
+          "key_similarity": ["大容量储能电芯", "国内外储能项目"],
+          "key_difference": ["储能业务占比低于宁德时代", "品牌溢价弱于宁德时代"]
+        },
+        {
+          "ticker": "未上市",
+          "name": "海辰储能",
+          "exchange": "未上市",
+          "inclusion_reason": "储能专项厂商，出货量快速增长，大容量电芯（628Ah）对宁德时代形成价格压力",
+          "key_similarity": ["储能专项", "大容量电芯"],
+          "key_difference": ["无动力电池业务，专注储能", "尚未上市，财务透明度低", "规模仍显著小于宁德时代"]
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "ticker": "002460",
+      "name": "赣锋锂业",
+      "exclusion_reason": "上游锂矿/锂盐企业，价值链位置不同，不在电芯制造竞争层"
+    },
+    {
+      "ticker": "002466",
+      "name": "天赐材料",
+      "exclusion_reason": "电解液材料供应商，上游原材料层，非直接竞争"
+    },
+    {
+      "ticker": "TSLA",
+      "name": "Tesla",
+      "exclusion_reason": "整车厂，虽有自研电池（4680）但主要是宁德时代客户，不在同一竞争层"
+    },
+    {
+      "ticker": "未上市",
+      "name": "蜂巢能源",
+      "exclusion_reason": "长城汽车系，主要自供，独立市场份额有限，暂不纳入核心 peer"
+    }
+  ]
+}

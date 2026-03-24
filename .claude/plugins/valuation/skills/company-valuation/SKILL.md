@@ -96,6 +96,7 @@ Run:
 ### Step 3: Normalize and Validate
 
 - Align fiscal periods, currency, and unit scale across all inputs.
+- If multiple providers are mixed, preserve per-field provenance via `source_map` or equivalent source notes.
 - Normalize for one-offs and accounting anomalies.
 - For A股非金融公司，优先形成 `reported -> normalized` 桥表，再进入估值。
 - QoE/accounting adjustments 优先覆盖政府补助、公允价值变动、资产处置收益、减值、信用减值、存货跌价等非核心项目。

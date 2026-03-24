@@ -1,0 +1,313 @@
+{
+  "subject": { "ticker": "300750", "name": "宁德时代" },
+  "as_of_date": "2025-12-31",
+  "claims": [
+    {
+      "id": "claim_scale_001",
+      "dimension": "scale",
+      "claim": "宁德时代是全球出货量最大的动力电池厂商，中国市场份额约 46%，全球份额约 37%，规模优势形成显著成本摊薄效应",
+      "direction": "advantage",
+      "severity": "high",
+      "supporting_evidence": [
+        {
+          "type": "market_data",
+          "description": "2025 年全球动力电池装机量：宁德时代约 37%，LG Energy Solution 约 14%，比亚迪约 16%",
+          "source": "SNE Research 2025 全球动力电池装机数据",
+          "as_of_date": "2025-12-31",
+          "confidence": 0.85
+        },
+        {
+          "type": "quantitative",
+          "description": "2024 年宁德时代电池销量约 390GWh，是第二名 LG Energy Solution（约 100GWh）的近 4 倍",
+          "source": "公司年报 + SNE Research",
+          "as_of_date": "2024-12-31",
+          "confidence": 0.80
+        }
+      ],
+      "counter_evidence": [
+        {
+          "type": "market_data",
+          "description": "比亚迪自供+外供合计份额持续提升，2025 年中国市场份额已接近 16%，对宁德时代形成追赶压力",
+          "source": "中国汽车动力电池产业创新联盟",
+          "as_of_date": "2025-12-31",
+          "confidence": 0.80
+        }
+      ],
+      "confidence": 0.88,
+      "status": "confirmed"
+    },
+    {
+      "id": "claim_tech_001",
+      "dimension": "technology",
+      "claim": "宁德时代在磷酸铁锂（CTP 麒麟电池）和三元（4C 快充）两条技术路线均处于行业前沿，专利储备全球领先",
+      "direction": "advantage",
+      "severity": "high",
+      "supporting_evidence": [
+        {
+          "type": "qualitative",
+          "description": "麒麟电池（CTP 3.0）体积利用率 72%，能量密度 255Wh/kg，量产时间早于主要竞争对手",
+          "source": "宁德时代技术发布会 2023",
+          "as_of_date": "2023-06-01",
+          "confidence": 0.82
+        },
+        {
+          "type": "quantitative",
+          "description": "截至 2024 年底，宁德时代全球有效专利超 19000 件，PCT 国际专利申请量连续多年全球第一",
+          "source": "宁德时代 2024 年报",
+          "as_of_date": "2024-12-31",
+          "confidence": 0.85
+        },
+        {
+          "type": "qualitative",
+          "description": "神行超充电池（LFP 4C）实现磷酸铁锂快充突破，充电 10 分钟续航 400km，打破三元快充垄断",
+          "source": "宁德时代产品发布 2023",
+          "as_of_date": "2023-08-16",
+          "confidence": 0.80
+        }
+      ],
+      "counter_evidence": [
+        {
+          "type": "qualitative",
+          "description": "比亚迪刀片电池在安全性和成本上具备竞争力，部分整车厂（如特斯拉上海）已切换至比亚迪供应",
+          "source": "行业报道",
+          "as_of_date": "2024-06-01",
+          "confidence": 0.70
+        },
+        {
+          "type": "qualitative",
+          "description": "固态电池领域，丰田/三星 SDI 等日韩厂商研发投入不低于宁德时代，技术路线存在不确定性",
+          "source": "行业研究",
+          "as_of_date": "2025-06-01",
+          "confidence": 0.65
+        }
+      ],
+      "confidence": 0.78,
+      "status": "confirmed"
+    },
+    {
+      "id": "claim_cost_001",
+      "dimension": "cost",
+      "claim": "宁德时代单 GWh 制造成本低于主要海外竞争对手（LG、Panasonic、Samsung SDI），但与比亚迪的成本差距正在收窄",
+      "direction": "advantage",
+      "severity": "high",
+      "supporting_evidence": [
+        {
+          "type": "quantitative",
+          "description": "2024 年宁德时代电池系统成本约 0.55 元/Wh，LG Energy Solution 约 0.75 元/Wh（含汇率折算），成本优势约 25-30%",
+          "source": "行业研究机构估算（GGII、BloombergNEF）",
+          "as_of_date": "2024-12-31",
+          "confidence": 0.65
+        },
+        {
+          "type": "quantitative",
+          "description": "宁德时代毛利率约 26%（2024），显著高于 LG Energy Solution（约 8%）和 Samsung SDI（约 12%）",
+          "source": "各公司年报",
+          "as_of_date": "2024-12-31",
+          "confidence": 0.88
+        }
+      ],
+      "counter_evidence": [
+        {
+          "type": "quantitative",
+          "description": "比亚迪弗迪电池磷酸铁锂成本与宁德时代差距已缩小至 5% 以内，部分规格甚至更低",
+          "source": "行业渠道调研",
+          "as_of_date": "2024-06-01",
+          "confidence": 0.60
+        },
+        {
+          "type": "qualitative",
+          "description": "海辰储能等储能专项厂商通过激进定价压缩储能电芯价差，宁德时代储能业务毛利率承压",
+          "source": "行业报道",
+          "as_of_date": "2025-06-01",
+          "confidence": 0.72
+        }
+      ],
+      "confidence": 0.72,
+      "status": "confirmed"
+    },
+    {
+      "id": "claim_customer_001",
+      "dimension": "customer",
+      "claim": "宁德时代客户覆盖全球前 20 大整车厂中的 16 家，客户多元化程度远超同行，单一客户依赖风险低",
+      "direction": "advantage",
+      "severity": "high",
+      "supporting_evidence": [
+        {
+          "type": "qualitative",
+          "description": "主要客户包括特斯拉、宝马、大众、奔驰、现代、本田、蔚来、理想、华为问界等，覆盖中外主流品牌",
+          "source": "宁德时代 2024 年报",
+          "as_of_date": "2024-12-31",
+          "confidence": 0.90
+        },
+        {
+          "type": "quantitative",
+          "description": "前五大客户收入占比约 45%（2024），相比 Panasonic（特斯拉占比 >70%）客户集中度显著更低",
+          "source": "宁德时代 2024 年报",
+          "as_of_date": "2024-12-31",
+          "confidence": 0.82
+        }
+      ],
+      "counter_evidence": [
+        {
+          "type": "qualitative",
+          "description": "特斯拉持续推进 4680 自研电池，已在 Model Y 部分车型切换，宁德时代特斯拉份额存在下降风险",
+          "source": "行业报道",
+          "as_of_date": "2025-03-01",
+          "confidence": 0.70
+        },
+        {
+          "type": "qualitative",
+          "description": "比亚迪系整车厂（比亚迪、腾势、仰望）全部自供，宁德时代无法进入，中国市场可寻址空间受限",
+          "source": "行业分析",
+          "as_of_date": "2025-12-31",
+          "confidence": 0.85
+        }
+      ],
+      "confidence": 0.80,
+      "status": "confirmed"
+    },
+    {
+      "id": "claim_supply_chain_001",
+      "dimension": "supply_chain",
+      "claim": "宁德时代通过参股/战略合作锁定锂、钴、镍等关键原材料，供应链韧性优于多数竞争对手",
+      "direction": "advantage",
+      "severity": "medium",
+      "supporting_evidence": [
+        {
+          "type": "qualitative",
+          "description": "参股赣锋锂业、天华新能等锂矿/锂盐企业；在澳大利亚、非洲布局锂矿权益；与华友钴业、格林美建立回收合作",
+          "source": "宁德时代公告及年报",
+          "as_of_date": "2024-12-31",
+          "confidence": 0.80
+        },
+        {
+          "type": "qualitative",
+          "description": "推进'矿山-冶炼-材料-电芯-回收'全链条布局，降低原材料价格波动对毛利率的冲击",
+          "source": "宁德时代战略规划",
+          "as_of_date": "2024-12-31",
+          "confidence": 0.72
+        }
+      ],
+      "counter_evidence": [
+        {
+          "type": "quantitative",
+          "description": "2022-2023 年碳酸锂价格大幅波动（从 60 万/吨跌至 8 万/吨），宁德时代库存减值压力显现，供应链对冲并不完全",
+          "source": "公司财报",
+          "as_of_date": "2023-12-31",
+          "confidence": 0.82
+        }
+      ],
+      "confidence": 0.70,
+      "status": "confirmed"
+    },
+    {
+      "id": "claim_regulation_001",
+      "dimension": "regulation",
+      "claim": "欧美贸易壁垒（IRA、CBAM、欧盟电池法规）对宁德时代海外扩张构成实质性障碍，是中期最大的外部风险",
+      "direction": "disadvantage",
+      "severity": "high",
+      "supporting_evidence": [
+        {
+          "type": "regulatory",
+          "description": "美国 IRA 法案要求电池关键矿物和组件来自美国或 FTA 国家，中国产电池无法享受补贴，宁德时代在美市场受限",
+          "source": "IRA 法案文本 2022",
+          "as_of_date": "2022-08-16",
+          "confidence": 0.92
+        },
+        {
+          "type": "regulatory",
+          "description": "欧盟电池法规（EU Battery Regulation 2023）要求碳足迹声明、回收内容比例、尽职调查，增加合规成本",
+          "source": "EU Battery Regulation 2023/1542",
+          "as_of_date": "2023-07-28",
+          "confidence": 0.88
+        },
+        {
+          "type": "qualitative",
+          "description": "宁德时代在美国通过与福特合作（LFP 技术授权+管理输出）的'曲线入美'模式，但仍面临政治风险",
+          "source": "行业报道",
+          "as_of_date": "2024-06-01",
+          "confidence": 0.75
+        }
+      ],
+      "counter_evidence": [
+        {
+          "type": "qualitative",
+          "description": "宁德时代在匈牙利建设欧洲工厂（德布勒森），本土化生产可规避部分欧盟壁垒",
+          "source": "宁德时代公告",
+          "as_of_date": "2024-12-31",
+          "confidence": 0.80
+        }
+      ],
+      "confidence": 0.85,
+      "status": "confirmed"
+    },
+    {
+      "id": "claim_tech_002",
+      "dimension": "technology",
+      "claim": "固态电池量产时间表存在不确定性，若日韩厂商（丰田、三星 SDI）率先实现规模化，宁德时代技术领先地位面临挑战",
+      "direction": "disadvantage",
+      "severity": "medium",
+      "supporting_evidence": [
+        {
+          "type": "qualitative",
+          "description": "丰田宣布 2027-2028 年推出固态电池车型，三星 SDI 计划 2027 年量产固态电池",
+          "source": "各公司公告",
+          "as_of_date": "2024-12-31",
+          "confidence": 0.70
+        }
+      ],
+      "counter_evidence": [
+        {
+          "type": "qualitative",
+          "description": "宁德时代已发布凝聚态电池（半固态），2024 年开始小批量交付；全固态电池研发投入持续加大",
+          "source": "宁德时代技术发布",
+          "as_of_date": "2024-04-01",
+          "confidence": 0.75
+        },
+        {
+          "type": "qualitative",
+          "description": "固态电池量产成本仍是主要障碍，多数机构预计 2030 年前难以大规模替代液态电池",
+          "source": "BloombergNEF 固态电池报告 2024",
+          "as_of_date": "2024-06-01",
+          "confidence": 0.72
+        }
+      ],
+      "confidence": 0.62,
+      "status": "tentative"
+    },
+    {
+      "id": "claim_cost_002",
+      "dimension": "cost",
+      "claim": "储能电池价格战加剧，宁德时代储能业务毛利率面临持续下行压力，2025-2026 年储能盈利能力存在不确定性",
+      "direction": "disadvantage",
+      "severity": "medium",
+      "supporting_evidence": [
+        {
+          "type": "quantitative",
+          "description": "2024 年储能电芯价格跌至 0.4 元/Wh 以下，同比下降约 30%，海辰、亿纬等厂商激进定价",
+          "source": "GGII 储能价格追踪",
+          "as_of_date": "2024-12-31",
+          "confidence": 0.82
+        },
+        {
+          "type": "quantitative",
+          "description": "宁德时代储能业务毛利率从 2022 年约 17% 下降至 2024 年约 22%（注：2024 年有所回升，但行业价格压力持续）",
+          "source": "宁德时代分业务毛利率披露",
+          "as_of_date": "2024-12-31",
+          "confidence": 0.75
+        }
+      ],
+      "counter_evidence": [
+        {
+          "type": "qualitative",
+          "description": "宁德时代天恒储能系统（6.25MWh）凭借系统集成能力和品牌溢价，在大型项目中仍能维持一定价格优势",
+          "source": "行业调研",
+          "as_of_date": "2025-06-01",
+          "confidence": 0.68
+        }
+      ],
+      "confidence": 0.72,
+      "status": "confirmed"
+    }
+  ]
+}

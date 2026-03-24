@@ -1,0 +1,68 @@
+{
+  "_notes": "动力电池行业市场地图（以宁德时代为主体）。数据截至 2025 年底，主要来源：SNE Research、中国汽车动力电池产业创新联盟、公司年报。数值为估算，需定期更新。",
+  "subject": {
+    "ticker": "300750",
+    "name": "宁德时代",
+    "as_of_date": "2025-12-31"
+  },
+  "market_definition": {
+    "scope": "动力电池（EV + PHEV）+ 储能电池（大型地面储能 + 工商业储能）",
+    "geographic_scope": "全球，重点中国市场（占全球约 60%）",
+    "value_chain_position": "电芯制造 + PACK 集成（核心）；向上延伸至正极材料/锂矿资源，向下延伸至电池回收",
+    "notes": "消费电池（3C）不在主要分析范围，但宁德时代有少量布局"
+  },
+  "segments": [
+    {
+      "id": "seg_ev_china",
+      "name": "中国动力电池（EV/PHEV）",
+      "description": "国内新能源乘用车 + 商用车动力电池装机",
+      "subject_presence": "primary",
+      "estimated_market_size_bn_cny": 580,
+      "estimated_cagr_pct": 0.18,
+      "concentration": "concentrated",
+      "key_players": ["300750 宁德时代", "002594 比亚迪", "CALB 中创新航", "Gotion 国轩高科", "SVOLT 蜂巢能源"]
+    },
+    {
+      "id": "seg_ev_global_ex_china",
+      "name": "海外动力电池（欧美日韩）",
+      "description": "欧洲、北美、日韩新能源车动力电池装机",
+      "subject_presence": "secondary",
+      "estimated_market_size_bn_cny": 420,
+      "estimated_cagr_pct": 0.22,
+      "concentration": "moderate",
+      "key_players": ["300750 宁德时代", "LG Energy Solution", "Panasonic", "Samsung SDI", "SK On"]
+    },
+    {
+      "id": "seg_ess_china",
+      "name": "中国大型储能",
+      "description": "电网侧 + 发电侧大型储能系统（BESS）",
+      "subject_presence": "primary",
+      "estimated_market_size_bn_cny": 180,
+      "estimated_cagr_pct": 0.35,
+      "concentration": "moderate",
+      "key_players": ["300750 宁德时代", "比亚迪储能", "亿纬锂能", "海辰储能", "瑞浦兰钧"]
+    },
+    {
+      "id": "seg_ess_global",
+      "name": "全球储能（海外）",
+      "description": "欧美澳大型地面储能及工商业储能",
+      "subject_presence": "secondary",
+      "estimated_market_size_bn_cny": 260,
+      "estimated_cagr_pct": 0.40,
+      "concentration": "fragmented",
+      "key_players": ["300750 宁德时代", "BYD Energy", "LG Energy Solution", "Fluence", "Tesla Megapack"]
+    }
+  ],
+  "overall_concentration": {
+    "cr3_pct": 0.62,
+    "cr5_pct": 0.75,
+    "hhi_approx": 1650,
+    "notes": "中国动力电池市场 CR3 约 62%（宁德时代约 46%、比亚迪约 16%、中创新航约 8%），属于高度集中市场；全球口径 CR3 约 55%"
+  },
+  "data_sources": [
+    "SNE Research 2025 全球动力电池装机数据",
+    "中国汽车动力电池产业创新联盟月度数据",
+    "宁德时代 2024 年报",
+    "GGII 高工锂电储能市场数据"
+  ]
+}
