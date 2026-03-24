@@ -1,41 +1,70 @@
-# Output Template (Draft)
+# Output Template: US Liquidity Impact Estimator
 
-> Goal: readable for humans, reusable for follow-on workflows.
+> Goal: estimate whether a stock or portfolio can be traded efficiently, at what size, and with what likely market impact.
 
-## 1) Executive Summary (3–5 bullets)
+## US Liquidity and Impact Report
 
-- **Order size assessment**: [Position size] represents [X]% of [ADV20/ADV60], indicating [low/moderate/high] liquidity impact risk
-- **Estimated execution cost**: Expected implementation shortfall of [X-Y] bps based on current volatility and spread conditions
-- **Liquidity regime**: [Stock/sector] liquidity is [improving/stable/deteriorating] vs historical norms; [ADV percentile] percentile
-- **Execution recommendation**: [Immediate execution feasible / Extend execution over N days / Reduce position size to X% ADV]
-- **Key risk**: [Primary concern, e.g., "Recent volume decline increases tail risk" or "Wide spreads suggest limit orders over market orders"]
+### 1) Executive Summary (3–5 bullets)
 
-## 2) Key Data (Table)
+- The current liquidity condition is `[excellent / good / moderate / weak]`.
+- The planned order size of `—` represents `—%` of `[ADV20 / ADV60]`, implying `[low / moderate / high]` impact risk.
+- Estimated execution cost is `—` bps under `[normal / stressed]` conditions.
+- The main cost driver is `[spread / volatility / thin depth / event-day conditions / concentrated order size]`.
+- Next, monitor `[ADV, spread, intraday volatility, event calendar, participation rate]`.
+
+### 2) Key Data Table
 
 | Metric | Value | Definition/Source | Notes |
 |---|---:|---|---|
-| — | — | — | — |
+| ADV20 / ADV60 | — | Average daily dollar volume | Base liquidity anchor |
+| Bid-ask spread | — | Spread or proxy | Explicit cost |
+| Realized volatility | — | Historical volatility | Impact amplifier |
+| Planned order size | — | User-defined | Execution input |
+| Participation rate | — | Order size / ADV | Execution burden |
+| Estimated shortfall | — | Cost estimate | Model output |
+| Days to liquidate | — | Size / expected daily participation | Practical view |
 
-## 3) Interpretation
+### 3) Interpretation
 
-- What happened:
-- Primary drivers:
-- Peer/history/benchmark comparison:
+#### 3.1 Can this be traded efficiently
 
-## 4) Risks and Monitoring
+- Explain whether the order can be done in one day or should be staged.
+- Identify whether the main issue is spread, depth, or event volatility.
+- State how current liquidity compares with normal conditions.
 
-| Risk | Trigger | Monitor | Mitigation |
+#### 3.2 Cost and impact logic
+
+- Link participation rate to expected slippage.
+- Explain how volatility and spread change the cost curve.
+- Distinguish normal-day assumptions from stressed-day assumptions.
+
+#### 3.3 Execution recommendations
+
+- Suggest immediate, staged, or algorithmic execution.
+- State maximum sensible participation rate.
+- Identify when the order should be delayed or reduced.
+
+### 4) Risks and Monitoring
+
+| Risk | Trigger | Monitor | Mitigation / what changes the view |
 |---|---|---|---|
-| — | — | — | — |
+| Impact is underestimated | ADV drops or vol spikes | ADV, vol, spread | Reduce size or extend horizon |
+| Event risk distorts execution | Earnings or news day | Event calendar, gap risk | Avoid normal-day assumptions |
+| Liquidity vanishes in stress | Spread widens sharply | Spread, intraday range | Pause or stagger trades |
+| Portfolio liquidation is harder than expected | Low-liquidity names dominate | Name-level ADV %, concentration | Sequence exits by liquidity |
 
-## 5) Next Steps
+### 5) Next Steps
 
-- **Monitor liquidity**: Track ADV and spread conditions daily; re-evaluate if ADV drops >= 20% or spreads widen materially
-- **Execution strategy**: [Specific recommendation, e.g., "Use VWAP algo over 3-5 days" or "Split into 3 tranches with limit orders"]
-- **Alternative venues**: Consider [dark pools / block trading desks / direct indexing] if available to reduce market impact
-- **Position sizing**: If impact exceeds [X] bps, consider reducing target position to [Y]% of ADV or extending horizon to [Z] days
-- **Contingency plan**: Set maximum acceptable slippage threshold; if exceeded, pause execution and reassess
+- Re-run the estimate under normal and stressed conditions.
+- Set a max participation-rate rule before execution.
+- For portfolios, create a name-by-name liquidation ladder.
 
-## 6) Disclaimer
+### 6) Data Gaps / Confidence
 
-> **Disclaimer**: This analysis is for informational and educational purposes only and does not constitute investment advice. Data may be incomplete or delayed. Past performance is not indicative of future results.
+- Missing data: full order-book depth, dark-pool access, execution algorithm detail.
+- Proxy used: ADV, spread, volatility, and participation-based impact assumptions.
+- Confidence level: Medium.
+
+### 7) Disclaimer
+
+> **Disclaimer**: This analysis is for informational and educational purposes only and does not constitute investment advice. Liquidity impact is path-dependent and can change rapidly around events, volatility shocks, and market-stress episodes.

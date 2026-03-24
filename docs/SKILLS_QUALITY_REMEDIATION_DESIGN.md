@@ -4,15 +4,17 @@
 
 本文档用于指导 `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills` 下现有 Skills 的质量整治工作。
 
-核心目标不是继续扩张新 Skill，而是先解决现有 108 个 Skill 的以下问题：
+本轮整治目标不是继续扩张新 Skill，而是先解决现有 Skill 文档体系中的交付问题，尤其是以下三类高优问题：
 
-1. 分析框架存在，但可执行性不足。
-2. 部分 Skill 依赖 `AkShare`，在当前环境下数据不可稳定获取。
-3. 大量筛选类 Skill 需要全市场或大范围扫描，和现有 API 约束不匹配。
-4. 参数约束散落，很多接口需要多次试错才能跑通。
-5. 存在未验证 API、跨市场复制污染、TODO 未完成、输出模板空心化等问题。
+1. 高频主入口 Skill 的方法论与输出补齐
+2. Draft 方法论补齐
+3. TODO 模板补齐
 
-本文档以 `analysis-market/SKILLS_MAP.md` 作为技能清单入口，但不再把其 `✅` 视为“稳定可用”的真实状态。
+这三类问题直接决定：
+
+- Skill 能否给出稳定、可复用、可解释的分析结果
+- 用户首次使用 Skill 时是否能拿到完整输出
+- 当前 108 个 Skill 是否只是“目录很多”，还是“真的能交付”
 
 ---
 
@@ -28,686 +30,737 @@
 - 美股 36 个
 - 基础工具 1 个
 
-问题在于：`SKILLS_MAP.md` 主要在做“覆盖面展示”和“新增缺口规划”，但没有真实反映每个 Skill 的执行质量、数据可得性、参数稳定性和交付成熟度。
+问题在于：`SKILLS_MAP.md` 更偏向“覆盖面展示”和“新增缺口规划”，但没有真实反映每个 Skill 的交付成熟度。
 
-### 2.2 参数问题已经集中暴露，但尚未沉到各 Skill
+### 2.2 当前最影响交付质量的不是“缺 Skill”，而是“文档未收口”
 
-`/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/analysis-market/analysis-best-practices.md` 已明确暴露常见失败模式：
+从当前文档可以明确看到三类直接影响交付的缺口：
 
-- `stockCode` / `stockCodes` 混用
-- `metricsList` 缺失
-- 指数指标缺少 `.mcw`
-- `source` 参数缺失
-- `type` 参数缺失
-- 某些 API 在使用 `startDate` 时只能单代码查询
-- API 路径应使用斜杠 `/`，而非点号 `.`
+#### 1）高频主入口 Skill 已有流程，但“方法论-模板-结论”闭环不完整
 
-这说明参数坑已经被发现，但没有被系统化沉淀到每个 Skill 的 `references/data-queries.md` 中。
+代表入口包括：
 
-### 2.3 代表性质量问题
+- `China-market_financial-statement-analyzer`
+- `China-market_single-stock-health-check`
+- `China-market_market-overview-dashboard`
+- `China-market_industry-board-analyzer`
+- `China-market_portfolio-health-check`
+- `US-market_us-financial-statement-analyzer`
+- `US-market_us-portfolio-health-check`
+- `HK-market_hk-market-overview`
+- `HK-market_hk-financial-statement`
 
-#### 1）未验证或疑似不存在的 API
+这些 Skill 往往最容易成为主入口或协同入口。一旦方法论、阈值、输出模板不完整，整个体系的“首次体验”会直接变差。
 
-`/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/China-market_esg-screener/references/data-queries.md` 中引用：
+#### 2）存在明确的 Draft 方法论文件
 
-- `cn/company/esg`
-- `cn/company/finance`
-- `cn/company/governance`
-- `cn/company/violation`
-
-这些接口在当前已核查的 `api_new/api-docs` 中没有明确对应文档，属于高风险误导项。
-
-#### 2）文档之间参数定义冲突
-
-`/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/analysis-market/SKILL.md` 中把 `cn/index/constituents` 的参数写成 `indexCode, date`，而：
-
-`/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/lixinger-data-query/api_new/api-docs/cn_index_constituents.md`
-
-实际文档写的是：
-
-- `stockCodes`
-- `date`
-
-这会直接导致调用试错。
-
-#### 3）猜测式查询与错误路径格式
-
-`/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/China-market_sector-valuation-heat-map/references/data-queries.md` 中存在：
-
-- `cn.industry.fundamental.sw_2021`
-- `cn.industry`
-- `cn.industry.candlestick`
-- `Need to check for money flow specific API`
-- `If ... unavailable, use proxy`
-
-这类内容说明该 Skill 更像分析草案，而非稳定可执行的查询设计。
-
-#### 4）AkShare 重依赖导致整类 Skill 不稳定
-
-`/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/China-market_hsgt-holdings-monitor/references/data-queries.md` 明显依赖：
-
-- `stock_hsgt_individual_em`
-- `stock_hsgt_hist_em`
-- `stock_hsgt_stock_statistics_em`
-- `stock_hsgt_board_rank_em`
-
-如果 `AkShare` 被封或数据不稳定，该类 Skill 将从“理论可分析”退化为“无法交付结果”。
-
-#### 5）方法论与输出模板仍处于草稿状态
-
-以下文件仍保留明显草稿内容：
+当前检出 4 份带核心 `[TODO]` 的方法论文档：
 
 - `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/China-market_macro-liquidity-monitor/references/methodology.md`
-- `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/China-market_limit-up-pool-analyzer/references/output-template.md`
+- `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/China-market_event-study/references/methodology.md`
+- `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/US-market_us-peer-comparison-analyzer/references/methodology.md`
+- `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/US-market_us-tax-aware-rebalancing-planner/references/methodology.md`
 
-问题表现为：
+这类文件的问题不是“小瑕疵”，而是：
 
-- `[TODO]` 未完成
-- 阈值来源未定义
-- 数据缺失时如何降级未定义
-- 输出结构未实体化
+- 指标口径没定
+- 阈值来源没定
+- 边界条件没定
+- 数据缺失降级没定
 
-#### 6）跨市场复制污染
+也就是说，Skill 即便能写出流程，也未形成稳定判断依据。
 
-`/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/US-market_us-dividend-aristocrat-calculator/references/data-queries.md` 中仍混用：
+#### 3）存在大量 TODO 输出模板
 
-- `cn/company/fundamental/non_financial`
-- `cn/company/dividend`
-- A 股代码 `600519`、`000858`、`300750`
+当前检出 57 个包含 `[TODO]` 的 Markdown 文件，其中：
 
-这说明部分美股 Skill 仍残留 A 股模板内容，属于高优先级修复项。
+- 4 个为 `methodology.md`
+- 53 个为 `output-template.md`
+
+也就是说，大量 Skill 的最终输出层仍停留在 Draft 状态。
+
+典型模板形态是：
+
+- 结论摘要处仍为 `[TODO]`
+- 风险与监控表格仅有空骨架
+- 下一步建议仍为 `[TODO]`
+- 没有置信度、缺失数据说明、补充核验项
+
+这会导致 Skill 即使拿到了数据，也难以稳定产出一份结构完整的结果。
+
+### 2.3 与这三类问题相比，参数/API/复制污染属于下一层问题
+
+参数坑、未验证 API、AkShare 风险、跨市场复制污染仍然重要，但如果当前主入口 Skill 的方法论和输出层不完整，那么即便接口修通，最终交付仍然会显得“浅、散、空”。
+
+因此，本轮优先顺序调整为：
+
+1. 先补“结果层”
+2. 再补“判断层”
+3. 最后再系统修“查询层”和“状态层”
 
 ---
 
 ## 3. 根因判断
 
-现有 Skills 的核心问题，不是“选题不够多”，而是“执行面没有形成工程闭环”。
+现有 Skills 的核心问题，不是“选题不够多”，而是“交付闭环没有完成”。
 
-### 3.1 根因一：把“分析框架”当成“可交付技能”
+### 3.1 把流程文档当成了完成态 Skill
 
-很多 Skill 拥有：
+很多 Skill 已具备：
 
-- 分析步骤
-- 输出模板
-- 指标列表
+- 工作流程
+- 指标清单
+- 参考查询
 
 但缺少：
 
-- 已验证 API 映射
-- 可运行参数契约
-- 批量查询限制说明
-- 缺失数据降级策略
-- 失败模式与异常处理
+- 指标口径定义
+- 阈值与样本期说明
+- 失效条件与边界条件
+- 结构化输出模板
+- 缺失数据和降级说明
 
-### 3.2 根因二：参数知识分散，未产品化
+### 3.2 方法论文档没有真正成为判断依据
 
-参数约束目前主要存在于：
+部分 Skill 虽引用 `references/methodology.md` 或相近文件，但方法论文档要么仍为 Draft，要么没有形成：
 
-- `analysis-market/SKILL.md`
-- `analysis-market/analysis-best-practices.md`
+- 计算公式
+- 分位方法
+- 信号阈值
+- 结论分级
+- 无效化条件
 
-但 Skill 运行入口却在各自 `references/data-queries.md`。导致使用者需要在多个文件之间来回切换，试错成本高。
+这样会导致不同人或不同轮次分析时，结论口径漂移。
 
-### 3.3 根因三：筛选类 Skill 的执行模型与数据源约束不匹配
+### 3.3 输出模板没有产品化
 
-筛选类 Skill 往往默认：
+大量 `output-template.md` 仍停留在“空模板”阶段。结果是：
 
-- 全市场候选池
-- 多字段快照
-- 历史回看
-- 行业中性或多因子打分
+- 输出内容不稳定
+- Skill 之间风格不统一
+- 很难形成可复用的标准产物
+- 后续无法被编排型 Skill 稳定消费
 
-但现实约束包括：
+### 3.4 高流量入口没有优先维护
 
-- `startDate` 单代码限制
-- 部分 API 需要 `metricsList`
-- 某些市场或主题没有完整基础数据
-- 大范围扫描会带来极高调用成本与失败率
+从体系结构看，真正最应该优先稳定的是主入口型 Skill，而不是长尾专项 Skill。因为主入口型 Skill：
 
-### 3.4 根因四：状态管理失真
-
-`SKILLS_MAP.md` 几乎把所有 Skill 标成 `✅`，但 `✅` 实际上同时覆盖了：
-
-- 真正稳定可用
-- 只能部分跑通
-- 强依赖 AkShare
-- 接口未核实
-- 输出仍为草稿
-
-这会误导后续维护与使用优先级。
+- 被引用概率更高
+- 覆盖分析面更广
+- 更容易成为后续 Skill 的上游
+- 一旦质量提升，会立刻带动整体观感提升
 
 ---
 
-## 4. 整治目标
+## 4. 本轮整治目标
 
 ### 4.1 总体目标
 
-建立一个“可执行优先、可验证优先、可降级优先”的 Skill 体系。
+建立一个“先能稳定交付，再逐步提高可执行精度”的 Skill 文档体系。
 
-### 4.2 本轮整治的明确目标
+### 4.2 具体目标
 
-1. 建立统一的 Skill 质量分级体系。
-2. 全量清理未验证 API、错误路径、参数冲突。
-3. 将高频参数规则沉到各 Skill 查询文档中。
-4. 重构筛选类 Skill 的执行模型，避免全市场硬扫。
-5. 为 AkShare 依赖 Skill 增加明确的降级模式。
-6. 补齐高频 Skill 的方法论、阈值依据、输出模板。
-7. 重写 `SKILLS_MAP.md` 的状态表达，让地图反映真实质量。
+1. 为高频主入口 Skill 补齐完整的方法论与输出结构。
+2. 清空当前 Draft 方法论中的核心 `[TODO]`。
+3. 清空当前输出模板中的核心 `[TODO]`。
+4. 形成统一的模板家族，而不是 50+ 份空壳模板各自漂移。
+5. 为后续参数/API/状态整治打下统一的结果层基线。
 
 ### 4.3 非目标
 
-本轮不以新增 Skill 数量为优先目标，以下事项后置：
+本轮暂不把以下事项作为最高优先级：
 
-- 新增情绪分析体系
-- 新增跨市场联动工具
-- 新增港股扩展工具链
-- 新增短线量化类 Skill
+- 新增 Skill 扩张
+- 全量 API 真值校验
+- 全量 AkShare 依赖重构
+- 全量筛选类 Skill 执行模型改造
+- `SKILLS_MAP.md` 全面状态重标
 
-前提是先把现有体系的质量基线拉起来。
+这些事项保留，但后置到本轮“交付层补齐”之后。
 
 ---
 
 ## 5. 质量模型设计
 
-### 5.1 Skill 状态分级
+### 5.1 Skill 文档的最小完成标准
 
-每个 Skill 必须标记以下状态字段：
+一个 Skill 至少需要同时具备以下 4 层内容：
 
-| 字段 | 取值 | 含义 |
-|---|---|---|
-| `status` | `stable` / `partial` / `experimental` / `broken` | 综合状态 |
-| `data_source` | `lixinger-only` / `lixinger+akshare` / `manual` | 数据依赖 |
-| `api_verified` | `yes` / `no` / `partial` | API 是否逐项核验 |
-| `batch_ready` | `yes` / `no` / `partial` | 是否支持稳定批量执行 |
-| `output_ready` | `yes` / `no` / `partial` | 输出模板是否完整 |
-| `methodology_ready` | `yes` / `no` / `partial` | 方法论是否完整 |
-| `fallback_mode` | 文本 | 数据缺失时的降级方案 |
-| `last_verified_at` | 日期 | 最近一次验证时间 |
+1. **工作流程层**：这个 Skill 做什么
+2. **方法论层**：这个 Skill 如何判断
+3. **查询说明层**：这个 Skill 如何取数
+4. **输出模板层**：这个 Skill 如何稳定交付
 
-### 5.2 状态判定标准
+本轮优先补的是第 2 层与第 4 层。
 
-#### `stable`
+### 5.2 方法论文档最低要求
 
-同时满足：
+每个高频或正式可用 Skill 的方法论文档至少包含：
 
-- API 全部已核验
-- 至少有 1 组近期示例可跑通
-- 无明显跨市场污染
-- 方法论完整
-- 输出模板完整
-- 数据缺失有明确降级
+- 数据口径与字段映射
+- 时间窗口与频率
+- 核心指标与计算公式
+- 标准化/分位/排名方法
+- 信号定义与阈值
+- 边界条件与无效化条件
+- 缺失数据处理与降级策略
+- 特定市场注意事项
 
-#### `partial`
+### 5.3 输出模板最低要求
 
-满足主要分析路径，但存在以下任一情况：
+每个正式可用 Skill 的输出模板至少包含：
 
-- 个别接口不稳定
-- 某些字段需代理替代
-- 历史查询需分批循环
-- 输出不够完整但主结论可交付
-
-#### `experimental`
-
-存在明显高风险因素：
-
-- 强依赖 AkShare
-- API 部分未验证
-- 参数仍需人工试错
-- 仅适合小范围或手工运行
-
-#### `broken`
-
-满足以下任一条件：
-
-- 核心 API 不存在或错误
-- 示例明显无法执行
-- 跨市场污染导致主要路径错误
-- 方法论和输出基本为空壳
+- 结论摘要
+- 关键数据表
+- 分析解释
+- 风险清单
+- 缺失数据说明
+- 监控清单或下一步建议
+- 免责声明
 
 ---
 
-## 6. 优先级设计
+## 6. 优先级设计（按当前业务要求重排）
 
 ### 6.1 总原则
 
-优先级排序遵循以下顺序：
+当前优先级遵循以下顺序：
 
-1. 先修“误导性最强”的问题。
-2. 再修“影响面最大”的基础问题。
-3. 再修“高价值但高失败率”的 Skill。
-4. 最后修“深度和模板不足”的问题。
+1. 先补高频主入口 Skill 的方法论与输出
+2. 再补所有 Draft 方法论
+3. 再补 TODO 模板
+4. 最后处理参数/API/状态等系统性问题
 
 ### 6.2 优先级规则
 
-#### P0：必须立即处理
+#### P0：立即执行
 
-- 未验证或疑似不存在的 API
-- 文档自相矛盾的参数定义
-- 跨市场复制污染
-- 错误的 API 路径格式
-- 被错误标为 `✅` 的高风险 Skill
-
-#### P1：高优先级整治
-
-- 筛选类 Skill 的执行重构
-- AkShare 依赖 Skill 的降级设计
-- 高频主入口 Skill 的方法论与输出补齐
-- 参数规则下沉至各 Skill
-
-#### P2：中优先级整治
-
+- 高频主入口 Skill 的方法论补齐
+- 高频主入口 Skill 的输出模板补齐
 - Draft 方法论补齐
 - TODO 模板补齐
-- 长尾 Skill 逐步核验
-- 状态地图与状态文档联动更新
+- 模板家族标准化
 
-#### P3：后置事项
+#### P1：次优先级
+
+- 参数规则下沉至各 Skill
+- 未验证 API 清理
+- 文档参数冲突修复
+- `SKILLS_MAP.md` 状态重标
+
+#### P2：后续跟进
+
+- 筛选类 Skill 执行模型重构
+- AkShare 依赖 Skill 降级设计
+- 跨市场复制污染清理
+- 长尾 Skill 全量核验
+
+#### P3：后置扩张
 
 - 新 Skill 扩张
-- 高阶跨市场联动
-- 另类数据实验
-- 高频量化/短线扩展
+- 跨市场联动增强
+- 另类数据扩展
+- 高频量化与短线扩展
 
 ---
 
 ## 7. 分阶段整治路线图
 
-## Phase 0：建立质量基线（P0）
+## Phase 0：建立补齐基线（P0）
 
 ### 目标
 
-先建立“真实状态”与“统一口径”，否则后续修复没有基准。
+先把“要补什么、按什么标准补”统一下来。
 
 ### 工作项
 
-1. 建立统一状态字段与判定标准。
-2. 重写 `SKILLS_MAP.md` 的完成状态定义。
-3. 把现有 108 个 Skill 分为 `stable / partial / experimental / broken`。
-4. 形成首版问题台账。
+1. 确认高频主入口 Skill 清单。
+2. 确认当前 Draft 方法论清单。
+3. 统计 TODO 模板并按模板类型分组。
+4. 形成统一的 `methodology` 最小字段标准。
+5. 形成统一的 `output-template` 最小字段标准。
 
 ### 交付物
 
-- Skills 状态分级表
-- 首版问题清单
-- `SKILLS_MAP.md` 状态口径说明
+- 主入口 Skill 清单
+- Draft 方法论清单
+- TODO 模板分类表
+- 方法论标准骨架
+- 输出模板标准骨架
 
 ### 验收标准
 
-- 不再使用单一 `✅` 代表全部已完成
-- 每个 Skill 至少有一个真实状态
+- 所有 P0 对象均有明确归属
+- 不再“看到 TODO 再临时补”，而是先有统一基线
 
 ---
 
-## Phase 1：修复误导性问题（P0）
+## Phase 1：补齐高频主入口 Skill 的方法论与输出（P0）
 
 ### 目标
 
-优先清理会直接误导使用者的错误信息。
+优先修复最容易被调用、最能代表整个体系质量的主入口 Skill。
 
-### 工作项
+### 建议优先 Skill
 
-1. 全量核对 `references/data-queries.md` 中所有 API 路径。
-2. 删除或标记未验证 API。
-3. 修正点号路径、错误后缀、参数名错误。
-4. 清理美股/港股文档中的 A 股模板污染。
-5. 修正总文档与 API 真值文档的冲突。
-
-### 代表对象
-
-- `China-market_esg-screener`
-- `China-market_sector-valuation-heat-map`
-- `US-market_us-dividend-aristocrat-calculator`
-- `analysis-market/SKILL.md`
-- `lixinger-data-query/api_new/api-docs/*`
-
-### 验收标准
-
-- 不再出现“猜测型 API”作为默认方案
-- 不再出现点号路径示例
-- 不再出现明显跨市场错误示例
-
----
-
-## Phase 2：修复参数契约层（P1）
-
-### 目标
-
-把“会报错的知识”变成“默认不会错的文档结构”。
-
-### 工作项
-
-1. 提炼统一参数真值表。
-2. 为每个高频 Skill 增加“必填参数 / 常见错误 / 正确示例 / 批量限制”章节。
-3. 把 `metricsList`、`.mcw`、`source`、`type`、`stockCode(s)` 差异固化为 Skill 内局部规则。
-4. 为需要历史数据的 Skill 明确单代码限制与循环策略。
-
-### 交付物
-
-- 参数真值表
-- 统一错误模式说明
-- 高优 Skill 的查询说明升级版
-
-### 验收标准
-
-- 同类 Skill 不再重复踩相同参数坑
-- 使用者无需先翻全局文档再回到 Skill 文档试错
-
----
-
-## Phase 3：重构筛选类 Skill（P1）
-
-### 目标
-
-把“全市场硬扫”改成“分阶段候选收缩”。
-
-### 统一执行模型
-
-每个筛选类 Skill 统一采用 4 步：
-
-1. 先定义候选池
-2. 再做快照筛选
-3. 再对候选集取历史数据
-4. 最后做排序与解释
-
-### 禁止模式
-
-- 默认全市场历史扫描
-- 一次性查询过多字段
-- 先历史、后缩池
-- 没有批量限制说明的多因子筛选
-
-### 优先 Skill
-
-1. `China-market_undervalued-stock-screener`
-2. `China-market_quant-factor-screener`
-3. `China-market_high-dividend-strategy`
-4. `China-market_small-cap-growth-identifier`
-5. `China-market_bse-selection-analyzer`
-6. `China-market_esg-screener`
-
-### 验收标准
-
-- 默认支持的股票池被显式限定
-- 支持 Top N / 候选池缩减策略
-- 每个筛选类 Skill 都写清成本与限制
-
----
-
-## Phase 4：重构 AkShare 依赖 Skill（P1）
-
-### 目标
-
-把“不可稳定获取的数据源”从主路径风险，改成可控的降级条件。
-
-### 统一三层模式
-
-每个 AkShare 依赖 Skill 必须明确：
-
-1. **标准模式**：Lixinger + AkShare
-2. **降级模式**：仅 Lixinger
-3. **说明模式**：只输出可确认部分与数据缺失提示
-
-### 优先 Skill
-
-1. `China-market_hsgt-holdings-monitor`
-2. `China-market_northbound-flow-analyzer`
-3. `China-market_dragon-tiger-list-analyzer`
-4. `China-market_ab-ah-premium-monitor`
-5. `China-market_concept-board-analyzer`
-6. `China-market_limit-up-pool-analyzer`
-
-### 验收标准
-
-- 所有 AkShare Skill 默认不再伪装为稳定全功能
-- 失去 AkShare 数据时，仍可产出部分有效分析
-- 地图状态从 `✅` 调整为真实状态
-
----
-
-## Phase 5：补齐高频主入口 Skill 的方法论与模板（P1/P2）
-
-### 目标
-
-在“能跑”的基础上，提升“结果可信度”和“输出可复用性”。
-
-### 优先 Skill
+#### A股主入口
 
 1. `China-market_financial-statement-analyzer`
 2. `China-market_single-stock-health-check`
 3. `China-market_market-overview-dashboard`
 4. `China-market_industry-board-analyzer`
 5. `China-market_portfolio-health-check`
-6. `China-market_valuation-regime-detector`
+6. `China-market_peer-comparison-analyzer`
+7. `China-market_weekly-market-brief-generator`
+
+#### 美股主入口
+
+8. `US-market_us-financial-statement-analyzer`
+9. `US-market_us-portfolio-health-check`
+10. `US-market_us-weekly-market-brief-generator`
+
+#### 港股主入口
+
+11. `HK-market_hk-market-overview`
+12. `HK-market_hk-financial-statement`
 
 ### 补齐项
+
+每个主入口 Skill 至少补齐以下内容：
 
 - 指标口径
 - 阈值来源
 - 样本期说明
+- 评分逻辑
 - 失效场景
-- 缺失数据处理
-- 风险输出段
-- 结论模板实体化
+- 缺失数据降级
+- 结论模板
+- 风险与监控段
+- 下一步建议段
+
+### 交付要求
+
+每个 Skill 必须形成以下闭环：
+
+- `SKILL.md`：说明任务与流程
+- `references/methodology.md` 或等价方法论文档：说明判断标准
+- `references/output-template.md`：说明输出结构
+- 三者之间口径一致
 
 ### 验收标准
 
-- 不再存在“只有指标名，没有计算规则”
-- 不再存在“输出模板只有 [TODO]”
-- 每个高频 Skill 都能输出结构化结论
+- 不再出现“只有流程，没有判断依据”
+- 不再出现“只能讲思路，无法稳定产出报告”
+- 主入口 Skill 至少能输出一份完整、结构化、可复用结果
 
 ---
 
-## Phase 6：补齐 Draft / TODO 长尾问题（P2）
+## Phase 2：补齐 Draft 方法论（P0）
 
 ### 目标
 
-清理长期残留的半成品内容，提升整体一致性。
+把当前仍为 Draft 的方法论文档全部补齐为可使用状态，或明确降级。
 
-### 工作项
+### 当前清单
 
-1. 全量统计 `[TODO]` 文件。
-2. 把 Draft 方法论文件补齐或降级标记。
-3. 把空模板补齐或改为明确的最小输出模板。
-4. 清理与当前 API 现状不一致的旧示例。
+1. `China-market_macro-liquidity-monitor/references/methodology.md`
+2. `China-market_event-study/references/methodology.md`
+3. `US-market_us-peer-comparison-analyzer/references/methodology.md`
+4. `US-market_us-tax-aware-rebalancing-planner/references/methodology.md`
+
+### 每份 Draft 方法论必须补齐的内容
+
+#### A. 数据口径
+
+- 数据源与字段映射
+- 更新频率
+- 默认时间窗口
+- 样本期与比较基准
+
+#### B. 核心指标
+
+- 指标列表
+- 计算公式
+- 分位/排名/标准化逻辑
+
+#### C. 信号与阈值
+
+- 触发条件
+- 解除条件
+- 无效化条件
+- 阈值来源说明
+
+#### D. 边界条件与降级
+
+- 数据缺失处理
+- 异常值处理
+- 接口不稳定时的替代判断
+- 哪些结论只能降级为“观察”
+
+#### E. 市场特殊说明
+
+- A股 / 港股 / 美股制度差异
+- 税制、交易制度、披露制度等背景差异
 
 ### 验收标准
 
-- 已标记为 `stable` 或 `partial` 的 Skill 不允许残留核心 `[TODO]`
-- 所有 Draft 文件都有明确归宿：补齐 / 降级 / 移除
+- Draft 文件中的核心 `[TODO]` 清零
+- 每份方法论文档都能独立支撑判断逻辑
+- 不再依赖“口头默认规则”完成分析
 
 ---
 
-## 8. 按重要性排序的首批整改对象
+## Phase 3：补齐 TODO 模板（P0）
 
-以下列表按“修复收益 × 风险 × 影响面”排序。
+### 目标
 
-| 排名 | 对象 | 优先级 | 主要问题 | 需要做的工作 |
+不再逐个补“空模板”，而是先建立模板家族，再批量收口。
+
+### 当前现状
+
+当前检出 53 份 `output-template.md` 含 `[TODO]`。如果逐个手工补，效率低且风格容易继续漂移。因此建议按模板类型归并。
+
+### 模板家族建议
+
+#### 模板家族 A：一页诊断 / 体检类
+
+适用代表：
+
+- `single-stock-health-check`
+- `portfolio-health-check`
+- `shareholder-risk-check`
+- `goodwill-risk-monitor`
+- `equity-pledge-risk-monitor`
+
+标准结构：
+
+1. 综合结论
+2. 核心评分或风险等级
+3. 关键指标表
+4. 红灯项 / 黄灯项
+5. 监控建议
+6. 需补充数据
+7. 免责声明
+
+#### 模板家族 B：市场概览 / 仪表板类
+
+适用代表：
+
+- `market-overview-dashboard`
+- `market-breadth-monitor`
+- `volatility-regime-monitor`
+- `fund-flow-monitor`
+- `valuation-regime-detector`
+
+标准结构：
+
+1. 市场结论摘要
+2. 核心市场指标面板
+3. 主要驱动项
+4. 风险与拐点观察
+5. 未来 1–4 周监控点
+6. 缺失数据说明
+7. 免责声明
+
+#### 模板家族 C：事件 / 公告 / 监控类
+
+适用代表：
+
+- `disclosure-notice-monitor`
+- `dragon-tiger-list-analyzer`
+- `ipo-newlist-monitor`
+- `dividend-corporate-action-tracker`
+- `event-study`
+
+标准结构：
+
+1. 事件摘要
+2. 关键事实表
+3. 事件影响分析
+4. 风险提示
+5. 后续验证项
+6. 数据缺失说明
+7. 免责声明
+
+#### 模板家族 D：组合 / 调仓 / 配置类
+
+适用代表：
+
+- `rebalancing-planner`
+- `portfolio-monitor-orchestrator`
+- `etf-allocator`
+- `risk-adjusted-return-optimizer`
+- `us-tax-aware-rebalancing-planner`
+
+标准结构：
+
+1. 当前状态诊断
+2. 组合暴露与约束
+3. 建议动作
+4. 预期改善点
+5. 风险与交易摩擦
+6. 执行优先级
+7. 免责声明
+
+#### 模板家族 E：研究 / 备忘录 / 周报类
+
+适用代表：
+
+- `equity-research-orchestrator`
+- `investment-memo-generator`
+- `weekly-market-brief-generator`
+- `us-investment-memo-generator`
+- `us-weekly-market-brief-generator`
+
+标准结构：
+
+1. 核心观点
+2. 支撑证据
+3. 正反论据
+4. 风险清单
+5. 需进一步验证的假设
+6. 附录或数据摘要
+7. 免责声明
+
+### 执行策略
+
+1. 先定义 5 套模板家族的标准结构。
+2. 再把 53 份 TODO 模板按家族归类。
+3. 最后按家族批量替换，而不是逐份临时编写。
+
+### 验收标准
+
+- TODO 模板的核心 `[TODO]` 清零
+- 同类 Skill 输出结构一致
+- 后续编排型 Skill 可以稳定消费这些结果
+
+---
+
+## Phase 4：参数 / API / 状态层整治（P1）
+
+### 目标
+
+在结果层和判断层补齐后，再系统处理接口层问题。
+
+### 工作项
+
+1. 参数规则下沉至各 Skill
+2. 未验证 API 清理
+3. 文档参数冲突修复
+4. `SKILLS_MAP.md` 状态重标
+
+### 原因
+
+这些问题仍重要，但当前不再作为最高优先级。因为在主入口 Skill 和模板未成型之前，先修接口并不能立刻改善最终交付质量。
+
+---
+
+## Phase 5：筛选类 / AkShare 风险类整治（P2）
+
+### 目标
+
+在主入口体系稳定后，处理高成本、高失败率的专项 Skill。
+
+### 工作项
+
+1. 筛选类 Skill 改为分阶段候选收缩
+2. AkShare Skill 增加三层降级模式
+3. 长尾专项 Skill 的输出模板逐步替换为标准模板家族
+
+---
+
+## 8. P0 立即执行清单（按当前优先级排序）
+
+| 排名 | 对象 | 类型 | 主要问题 | 当前动作 |
 |---|---|---|---|---|
-| 1 | `analysis-market/SKILL.md` | P0 | 总规则与真实 API 文档冲突 | 修参数总表、统一路径与参数名 |
-| 2 | `analysis-market/analysis-best-practices.md` | P0 | 规则正确但未沉到各 Skill | 提炼为参数契约基线 |
-| 3 | `analysis-market/SKILLS_MAP.md` | P0 | 状态失真、过度乐观 | 改为真实状态地图 |
-| 4 | `lixinger-data-query/api_new/api-docs/*` 对齐检查 | P0 | 真值文档与 Skill 文档断裂 | 建 API 核验清单 |
-| 5 | `China-market_esg-screener` | P0 | 核心 API 未验证 | 删除猜测 API，重建查询方案 |
-| 6 | `China-market_sector-valuation-heat-map` | P0 | 点号路径、猜测接口、代理过多 | 重写 data-queries |
-| 7 | `US-market_us-dividend-aristocrat-calculator` | P0 | 跨市场模板污染 | 清理 A 股示例与 cn 路径 |
-| 8 | `China-market_undervalued-stock-screener` | P1 | 扫描型执行成本高 | 改为候选池收缩模式 |
-| 9 | `China-market_quant-factor-screener` | P1 | 多因子历史查询重 | 限定股票池与阶段化计算 |
-| 10 | `China-market_high-dividend-strategy` | P1 | 需要兼顾股息与估值数据限制 | 明确快照筛选与历史补充策略 |
-| 11 | `China-market_small-cap-growth-identifier` | P1 | 选股范围和指标成本不清 | 明确池子、字段、排序逻辑 |
-| 12 | `China-market_bse-selection-analyzer` | P1 | 北交所数据覆盖与限制风险 | 缩小范围、写清可用性 |
-| 13 | `China-market_hsgt-holdings-monitor` | P1 | AkShare 重依赖 | 三层模式改造 |
-| 14 | `China-market_northbound-flow-analyzer` | P1 | 高依赖资金流细颗粒数据 | 设计降级路径 |
-| 15 | `China-market_dragon-tiger-list-analyzer` | P1 | 事件流依赖外部源 | 降级为公告+价格行为分析 |
-| 16 | `China-market_industry-board-analyzer` | P1 | 历史查询单代码限制 | 重写分批策略与说明 |
-| 17 | `China-market_market-overview-dashboard` | P1 | 聚合数据多、参数复杂 | 收敛成稳定指标集合 |
-| 18 | `China-market_financial-statement-analyzer` | P1 | 高频入口但深度不足 | 补口径、阈值、模板 |
-| 19 | `China-market_single-stock-health-check` | P1 | 高频入口但降级未清晰 | 补失败模式与置信度 |
-| 20 | `China-market_macro-liquidity-monitor` | P2 | 方法论仍为 Draft | 补齐方法论或降级状态 |
+| 1 | `China-market_single-stock-health-check` | 主入口 Skill | 诊断型入口，需完整评分逻辑与输出卡片 | 补方法论、补一页诊断模板 |
+| 2 | `China-market_financial-statement-analyzer` | 主入口 Skill | 财务分析深，但需统一结论结构与阈值解释 | 补方法论口径与完整报告模板 |
+| 3 | `China-market_market-overview-dashboard` | 主入口 Skill | 概览型入口，需稳定面板与结论结构 | 补市场面板模板与结论层 |
+| 4 | `China-market_industry-board-analyzer` | 主入口 Skill | 板块分析高频使用，需统一对比与风险段 | 补方法论与板块模板 |
+| 5 | `China-market_portfolio-health-check` | 主入口 Skill | 组合诊断需评分、风险、建议标准化 | 补诊断框架与组合模板 |
+| 6 | `China-market_peer-comparison-analyzer` | 主入口 Skill | 对比分析需明确口径、打分、结论框架 | 补同业对比方法论与模板 |
+| 7 | `China-market_weekly-market-brief-generator` | 主入口 Skill | 周报类是高频消费结果，模板必须成熟 | 补周报模板与观察清单 |
+| 8 | `US-market_us-financial-statement-analyzer` | 主入口 Skill | 美股主入口需同步成熟，避免中美两套标准脱节 | 补美股财报方法论与模板 |
+| 9 | `US-market_us-portfolio-health-check` | 主入口 Skill | 组合体检类需和 A 股保持结构一致 | 补组合模板与差异化口径 |
+| 10 | `US-market_us-weekly-market-brief-generator` | 主入口 Skill | 周报模板需标准化 | 补结论、面板、风险结构 |
+| 11 | `HK-market_hk-market-overview` | 主入口 Skill | 港股入口型 Skill 需先有稳定输出骨架 | 补市场概览模板 |
+| 12 | `HK-market_hk-financial-statement` | 主入口 Skill | 港股财报分析需建立本地口径说明 | 补财报方法论与模板 |
+| 13 | `China-market_macro-liquidity-monitor/references/methodology.md` | Draft 方法论 | 核心方法论仍为 Draft | 清空 TODO，补流动性框架 |
+| 14 | `China-market_event-study/references/methodology.md` | Draft 方法论 | 事件研究缺口径与阈值 | 清空 TODO，补事件研究框架 |
+| 15 | `US-market_us-peer-comparison-analyzer/references/methodology.md` | Draft 方法论 | 同业对比缺指标标准 | 清空 TODO，补比较框架 |
+| 16 | `US-market_us-tax-aware-rebalancing-planner/references/methodology.md` | Draft 方法论 | 调仓方法论缺税务逻辑细化 | 清空 TODO，补税务调仓框架 |
+| 17 | 一页诊断 / 体检类模板家族 | 模板家族 | 多个风险/体检 Skill 仍是空模板 | 先出统一模板骨架 |
+| 18 | 市场概览 / 仪表板类模板家族 | 模板家族 | 市场类输出缺统一结构 | 先出统一模板骨架 |
+| 19 | 事件 / 公告 / 监控类模板家族 | 模板家族 | 事件类结论结构不稳定 | 先出统一模板骨架 |
+| 20 | 组合 / 调仓 / 配置类模板家族 | 模板家族 | 组合类模板可复用性不足 | 先出统一模板骨架 |
+| 21 | 研究 / 备忘录 / 周报类模板家族 | 模板家族 | 研究型结果风格容易漂移 | 先出统一模板骨架 |
 
 ---
 
-## 9. 单个 Skill 的标准整改模板
+## 9. 单个 Skill 的标准补齐模板
 
-后续每次整理一个 Skill，统一按以下模板推进。
+后续每次补一个 Skill，统一按以下模板推进。
 
-### Step 1：确认真实目标
+### Step 1：明确 Skill 角色
 
-- 该 Skill 到底要回答什么问题
-- 输出给谁用
-- 是否必须依赖外部源
+- 它是不是主入口 Skill
+- 它的结果给谁看
+- 它是一页诊断、仪表板、监控报告还是研究报告
 
-### Step 2：核对 API 真值
+### Step 2：补方法论
 
-- 涉及哪些 API
-- 每个 API 是否在 `api_new/api-docs` 中存在
-- 参数名、必填项、字段名是否真实有效
+至少补齐：
 
-### Step 3：重建执行路径
-
-- 默认候选池
-- 默认时间窗口
-- 快照查询与历史查询的先后顺序
-- 哪些步骤允许循环
-- 哪些步骤必须限制 Top N
-
-### Step 4：定义失败模式
-
-- 数据缺失如何处理
-- API 报错如何降级
-- AkShare 不可用时输出什么
-- 哪些结论应降级为“观察”而非“判断”
-
-### Step 5：补齐方法论
-
-- 指标计算公式
+- 数据口径
+- 核心指标
+- 计算公式
 - 阈值来源
 - 边界条件
-- 无效化条件
+- 降级策略
 
-### Step 6：补齐输出模板
+### Step 3：补输出模板
 
-至少包含：
+至少补齐：
 
 - 结论摘要
 - 关键数据表
 - 分析解释
-- 风险与监控指标
+- 风险清单
 - 缺失数据说明
 - 下一步建议
 
-### Step 7：状态回写
+### Step 4：校对 `SKILL.md`
 
-把该 Skill 的状态更新回：
+确保：
 
-- `SKILLS_MAP.md`
-- Skill 本身的元信息
-- 状态总表
+- `SKILL.md` 中引用的方法论文件存在
+- `SKILL.md` 中引用的输出模板存在
+- 工作流程与方法论、模板之间没有冲突
+
+### Step 5：标记完成状态
+
+完成后应能明确判断：
+
+- 方法论是否完成
+- 模板是否完成
+- 是否可进入下一轮参数/API 整治
 
 ---
 
-## 10. 建议的执行顺序
+## 10. 建议的实际执行顺序
 
-### 第一批：先做基础止损
+### 第一批：先补 5 个 A股主入口
 
-1. API 真值核对
-2. 参数冲突修复
-3. 跨市场污染清理
-4. 状态分级落地
+1. `single-stock-health-check`
+2. `financial-statement-analyzer`
+3. `market-overview-dashboard`
+4. `industry-board-analyzer`
+5. `portfolio-health-check`
 
-### 第二批：再做高价值高风险 Skill
+### 第二批：清空 4 个 Draft 方法论
 
-5. ESG 筛选
-6. 行业估值热力图
-7. 低估筛选
-8. 量化因子筛选
-9. 沪深港通持仓监控
-10. 北向资金分析
+6. `macro-liquidity-monitor`
+7. `event-study`
+8. `us-peer-comparison-analyzer`
+9. `us-tax-aware-rebalancing-planner`
 
-### 第三批：补高频主入口
+### 第三批：建立 5 套模板家族
 
-11. 财报分析
-12. 个股健康检查
-13. 市场概览
-14. 行业板块分析
-15. 组合健康检查
+10. 一页诊断 / 体检
+11. 市场概览 / 仪表板
+12. 事件 / 公告 / 监控
+13. 组合 / 调仓 / 配置
+14. 研究 / 备忘录 / 周报
 
-### 第四批：清理长尾 Draft
+### 第四批：回补其余主入口
 
-16. 宏观流动性
-17. 涨停池模板
-18. 各市场剩余 TODO 文件
-19. 长尾 Skill 状态修正
-20. 地图与状态文档统一
+15. `peer-comparison-analyzer`
+16. `weekly-market-brief-generator`
+17. `us-financial-statement-analyzer`
+18. `us-portfolio-health-check`
+19. `hk-market-overview`
+20. `hk-financial-statement`
+
+### 第五批：再进入参数/API/状态整治
+
+21. 参数规则下沉
+22. API 真值核对
+23. 状态地图重标
+24. 筛选类与 AkShare 风险类治理
 
 ---
 
 ## 11. 里程碑与验收口径
 
-### 里程碑 M1：状态真实化
+### 里程碑 M1：主入口结果层成型
 
 完成标志：
 
-- 所有 Skill 均有真实状态
-- `SKILLS_MAP.md` 不再等同于“全部完成”
+- A股前 5 个主入口 Skill 完成方法论与输出模板补齐
+- 可以稳定产出完整结构化结果
 
-### 里程碑 M2：基础可执行性修复
-
-完成标志：
-
-- 高风险错误 API 清零
-- 总体参数冲突清零
-- 跨市场污染核心样本清零
-
-### 里程碑 M3：高价值 Skill 可稳定交付
+### 里程碑 M2：Draft 方法论清零
 
 完成标志：
 
-- 前 10 个高优 Skill 均具备稳定或部分稳定执行能力
-- 每个 Skill 都有明确降级方案
+- 当前 4 份 Draft 方法论中的核心 `[TODO]` 清零
+- 每份方法论文档都具备独立判断能力
 
-### 里程碑 M4：文档体系闭环
+### 里程碑 M3：模板家族成型
 
 完成标志：
 
-- 高优 Skill 的 `SKILL.md`、`methodology.md`、`data-queries.md`、`output-template.md` 互相一致
-- 核心 `[TODO]` 被补齐或明确降级
+- 5 套模板家族标准结构完成
+- 53 份 TODO 模板可按家族批量替换
+
+### 里程碑 M4：主入口 Skill 体系闭环
+
+完成标志：
+
+- 主入口 Skill 的 `SKILL.md`、`methodology.md`、`output-template.md` 三层一致
+- 后续参数/API 整治有统一结果层作为承接
 
 ---
 
 ## 12. 风险与控制措施
 
-### 风险 1：继续扩张新 Skill，导致整治中断
+### 风险 1：逐个补模板，导致风格继续发散
 
-**控制措施**：本轮先冻结新增 Skill，优先完成质量基线。
+**控制措施**：先做模板家族，再批量回填。
 
-### 风险 2：AkShare 相关功能恢复不确定
+### 风险 2：先修接口，结果层仍然空心
 
-**控制措施**：所有相关 Skill 必须有无 AkShare 的可运行降级路径。
+**控制措施**：严格按本轮优先级执行，先补方法论与模板，再处理接口问题。
 
-### 风险 3：API 文档本身也存在滞后
+### 风险 3：高频主入口与长尾 Skill 混在一起做，投入被摊薄
 
-**控制措施**：以 `api_new/api-docs` 为初始真值，但保留“实测优先”的校验机制。
+**控制措施**：先锁定主入口 Skill，不在 P0 阶段处理长尾专项 Skill。
 
-### 风险 4：筛选类 Skill 修复成本过高
+### 风险 4：方法论补齐后，模板仍无法承接复杂结论
 
-**控制措施**：先缩小股票池与输出目标，不追求一步到位覆盖全市场。
+**控制措施**：方法论补齐与模板补齐配套推进，不单做一侧。
 
 ---
 
 ## 13. 最终建议
 
-当前最重要的方向，不是“还缺哪些 Skill”，而是：
+当前最应该优先修的，不是“哪个接口先修”，而是：
 
-> 让现有 Skill 从“看起来很多”变成“真正可用”。
+> 先把最常被看到的 Skill，补成真正能交付的 Skill。
 
-建议后续按本文档逐项推进，先做质量止损，再做深度优化，最后才考虑扩张新能力。
+因此本轮建议执行顺序明确为：
 
-如果需要继续执行，推荐按以下顺序落地：
+1. 先补主入口 Skill 的方法论与输出
+2. 再清空 Draft 方法论
+3. 再清空 TODO 模板
+4. 之后再做参数/API/状态层整治
 
-1. 先整理 `SKILLS_MAP.md` 的真实状态分级方案。
-2. 再逐个修 P0 对象。
-3. 然后集中处理筛选类和 AkShare 类高风险 Skill。
-4. 最后补齐方法论和输出模板。
+这个顺序更符合当前业务目标：
+
+- 先提升整体观感
+- 先提升实际交付质量
+- 先补“结果层”和“判断层”
+- 再回头修“查询层”和“状态层”
 
 ---
 
@@ -716,10 +769,12 @@
 - `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/analysis-market/SKILLS_MAP.md`
 - `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/analysis-market/SKILL.md`
 - `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/analysis-market/analysis-best-practices.md`
-- `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/China-market_esg-screener/references/data-queries.md`
-- `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/China-market_sector-valuation-heat-map/references/data-queries.md`
-- `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/China-market_hsgt-holdings-monitor/references/data-queries.md`
+- `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/China-market_financial-statement-analyzer/SKILL.md`
+- `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/China-market_single-stock-health-check/SKILL.md`
+- `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/China-market_portfolio-health-check/SKILL.md`
+- `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/China-market_market-overview-dashboard/references/output-template.md`
+- `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/China-market_industry-board-analyzer/references/output-template.md`
 - `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/China-market_macro-liquidity-monitor/references/methodology.md`
-- `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/China-market_limit-up-pool-analyzer/references/output-template.md`
-- `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/US-market_us-dividend-aristocrat-calculator/references/data-queries.md`
-- `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/lixinger-data-query/api_new/api-docs/cn_index_constituents.md`
+- `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/China-market_event-study/references/methodology.md`
+- `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/US-market_us-peer-comparison-analyzer/references/methodology.md`
+- `/Users/fengzhi/Downloads/git/lixinger-openapi/.claude/skills/US-market_us-tax-aware-rebalancing-planner/references/methodology.md`

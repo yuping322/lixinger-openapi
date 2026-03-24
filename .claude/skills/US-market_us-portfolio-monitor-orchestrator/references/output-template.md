@@ -1,41 +1,71 @@
-# Output Template (Draft)
+# Output Template: US Portfolio Monitor Orchestrator
 
-> Goal: readable for humans, reusable for follow-on workflows.
+> Goal: consolidate exposures, concentration, liquidity, drawdown risk, and action items into a single portfolio monitoring report.
 
-## 1) Executive Summary (3–5 bullets)
+## US Portfolio Monitoring Report
 
-- **Risk snapshot**: Portfolio volatility [X]% (vs benchmark [Y]%); VaR(95%) = [Z]% of portfolio value; max drawdown [W]%
-- **Concentration alert**: Top 5 positions = [X]% of portfolio; HHI = [Y]; [high/moderate/low] idiosyncratic risk
-- **Exposure drift**: [Sector/factor] weights have drifted [+/- X]% from target; [within tolerance / rebalancing recommended]
-- **Liquidity status**: [X]% of portfolio in illiquid positions (>= 5 days to liquidate); [acceptable / concerning]
-- **Stress test result**: Portfolio would lose [X]% in [scenario name]; [better/worse] than benchmark by [Y]%
+### 1) Executive Summary (3–5 bullets)
 
-## 2) Key Data (Table)
+- Overall portfolio condition is `[healthy / stretched / defensive / high risk]`.
+- The biggest exposure concentration is in `[sector / factor / top holdings / macro driver]`.
+- The main risk issue is `[concentration / drawdown risk / style drift / liquidity / correlation spike]`.
+- Relative to the benchmark or mandate, the portfolio is `[aligned / moderately drifted / materially drifted]`.
+- Next, monitor `[top-5 weight, factor exposure, liquidity, drawdown, stress-test sensitivity]`.
+
+### 2) Portfolio Snapshot
 
 | Metric | Value | Definition/Source | Notes |
 |---|---:|---|---|
-| — | — | — | — |
+| Portfolio value | — | Latest holdings | — |
+| Number of holdings | — | Holdings count | — |
+| Top 5 weight | — | Concentration | Core risk |
+| Sector concentration | — | Sector weights | Exposure map |
+| Factor tilt | — | Growth/value/quality/etc. | Style risk |
+| Volatility / max drawdown | — | Historical portfolio risk | Risk profile |
+| Cash weight | — | Cash / equivalents | Buffer |
+| Tracking error / active risk | — | Relative to benchmark | If applicable |
 
-## 3) Interpretation
+### 3) Interpretation
 
-- What happened:
-- Primary drivers:
-- Peer/history/benchmark comparison:
+#### 3.1 Exposure profile
 
-## 4) Risks and Monitoring
+- Where the portfolio is most exposed by sector, style, or macro sensitivity.
+- Whether active tilts are intentional or due to drift.
+- Which exposures matter most in the current regime.
 
-| Risk | Trigger | Monitor | Mitigation |
+#### 3.2 Risk condition
+
+- Whether diversification is working or correlations are rising.
+- How much low-liquidity or event-risk exposure exists.
+- Which holdings contribute the most to risk and drawdown.
+
+#### 3.3 Recommended actions
+
+- Which holdings or exposures need immediate attention.
+- Whether rebalancing, hedging, or deeper research is most appropriate.
+- What threshold would trigger a formal portfolio adjustment.
+
+### 4) Risks and Monitoring
+
+| Risk | Trigger | Monitor | Mitigation / what changes the view |
 |---|---|---|---|
-| — | — | — | — |
+| Concentration risk | Top names keep growing as winners | Top-5 weight, HHI | Trim and rebalance |
+| Style drift | Growth/value tilt moves too far | Factor exposures | Reset toward target |
+| Liquidity mismatch | Lower-liquidity positions grow | ADV %, spread | Reduce trade size / exposure |
+| Stress sensitivity | Portfolio underperforms in stress tests | Scenario losses, beta | Add hedges or lower risk |
 
-## 5) Next Steps
+### 5) Next Steps
 
-- **Immediate actions**: [Rebalance positions exceeding limits / Reduce concentration in top holdings / Add hedges if VaR elevated]
-- **Risk mitigation**: If [specific risk metric] exceeds threshold, consider [specific action, e.g., "trim high-beta names" or "add put protection"]
-- **Monitoring frequency**: [Daily risk dashboard / Weekly comprehensive review / Monthly deep-dive with stress tests]
-- **Rebalancing plan**: Execute rebalancing over [timeframe] to bring [sector/factor] exposures back to target
-- **Scenario planning**: Update stress scenarios [quarterly / after major market events]; add custom scenarios for [specific risks]
+- Build a recurring dashboard cadence: daily / weekly / monthly.
+- Link the most important positions to earnings, liquidity, and valuation monitors.
+- Define explicit thresholds for rebalancing and risk escalation.
 
-## 6) Disclaimer
+### 6) Data Gaps / Confidence
 
-> **Disclaimer**: This analysis is for informational and educational purposes only and does not constitute investment advice. Data may be incomplete or delayed. Past performance is not indicative of future results.
+- Missing data: real-time holdings drift, intraday risk exposures, derivative overlays.
+- Proxy used: current holdings, historical returns, liquidity metrics, and stress-test assumptions.
+- Confidence level: Medium.
+
+### 7) Disclaimer
+
+> **Disclaimer**: This analysis is for informational and educational purposes only and does not constitute investment advice. Portfolio monitoring is only as accurate as the holdings and assumptions supplied to it.
