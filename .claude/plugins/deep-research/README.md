@@ -55,14 +55,21 @@ python .claude/plugins/deep-research/skills/deep-research-qa/scripts/deep_resear
 
 不传 `--out` 时默认写入 `<case>/integrated/qa_report.json`，同时打印到 stdout。
 
-QA 检查项（v0.2）：
+**FQE-only 流程（不做 CPE）**：`fqe_mvp.py` 不会创建 `competitive_positioning/` 目录，QA 默认对此报 Info（不是 Warning），整体结果为 Pass。无需加 `--skip-cpe`。
+
+如果你手工创建了 `competitive_positioning/` 目录但只放了部分文件，QA 会报 Warning（不完整 CPE）。空目录同样只报 Info。
+
+QA 检查项（v0.3）：
 
 - 必需文件是否齐全（5 项）
 - normalized earnings 桥接对账（adjustments.json ↔ verdict.json）
-- scores 字段完整性（含新增 `accrual_quality`）+ 值域 [0,1]
+- scores 字段完整性（含 `accrual_quality`）+ 值域 [0,1]
 - verdict.grade 与 overall 分数一致性
 - verdict.confidence 值域
+- verdict 契约字段完整性（`score_metadata`、`grade_thresholds`）
 - 红旗 evidence_refs 引用完整性
+- CPE 文件完整性与结构合法性（如存在）
+- FQE × CPE 主体一致性与交叉一致性（如两者都存在）
 - 历史期间数量（< 5 年给 Warning）
 
 ## 变更记录

@@ -10,13 +10,33 @@
       "description": "2025FY OCF/NI=0.73，低于 0.80",
       "rule_id": "fq_cash_003",
       "evidence_refs": [
-        "operating_cash_flow:2025FY",
-        "net_income:2025FY"
+        "evi_metric_600519_2026-03-24_operating_cash_flow_2025FY",
+        "evi_metric_600519_2026-03-24_net_income_2025FY"
       ],
       "possible_explanations": [
         "营运资本占用上升",
         "收入确认与回款错配",
         "一次性利润或应计偏高"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "flag_ocf_trend_2025FY",
+      "severity": "high",
+      "category": "cash_quality",
+      "title": "OCF/NI 连续 2 期低于 85%（持续恶化）",
+      "description": "连续 2 期（2024FY, 2025FY）OCF/NI 均 < 0.85",
+      "rule_id": "fq_cash_003t",
+      "evidence_refs": [
+        "evi_metric_600519_2026-03-24_operating_cash_flow_2024FY",
+        "evi_metric_600519_2026-03-24_operating_cash_flow_2025FY",
+        "evi_metric_600519_2026-03-24_net_income_2024FY",
+        "evi_metric_600519_2026-03-24_net_income_2025FY"
+      ],
+      "possible_explanations": [
+        "盈利质量系统性下滑",
+        "应计利润持续累积",
+        "营运资本管理恶化"
       ],
       "status": "open"
     },
@@ -28,9 +48,9 @@
       "description": "2025FY FCF/NI=0.53，低于 0.60（FCF=OCF-Capex）",
       "rule_id": "fq_cash_005",
       "evidence_refs": [
-        "operating_cash_flow:2025FY",
-        "capex:2025FY",
-        "net_income:2025FY"
+        "evi_metric_600519_2026-03-24_operating_cash_flow_2025FY",
+        "evi_metric_600519_2026-03-24_capex_2025FY",
+        "evi_metric_600519_2026-03-24_net_income_2025FY"
       ],
       "possible_explanations": [
         "高资本开支阶段",
@@ -44,17 +64,37 @@
       "severity": "medium",
       "category": "revenue_quality",
       "title": "应收增速显著快于收入增速",
-      "description": "2025FY AR YoY=39.7%，Revenue YoY=4.8%",
+      "description": "2025FY AR YoY=39.7%，Revenue YoY=4.8%，差值=34.9%",
       "rule_id": "fq_rev_001",
       "evidence_refs": [
-        "accounts_receivable:2025FY",
-        "revenue:2025FY"
+        "evi_metric_600519_2026-03-24_accounts_receivable_2025FY",
+        "evi_metric_600519_2026-03-24_revenue_2025FY"
       ],
       "possible_explanations": [
         "渠道压货",
         "账期拉长",
         "回款风险上升",
         "确认节奏前置"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "flag_ar_rev_trend_2025FY",
+      "severity": "medium",
+      "category": "revenue_quality",
+      "title": "应收/收入比率连续 2 期上升（持续恶化）",
+      "description": "连续 2 期（2024FY, 2025FY）应收占收入比逐期扩大",
+      "rule_id": "fq_rev_001t",
+      "evidence_refs": [
+        "evi_metric_600519_2026-03-24_accounts_receivable_2024FY",
+        "evi_metric_600519_2026-03-24_accounts_receivable_2025FY",
+        "evi_metric_600519_2026-03-24_revenue_2024FY",
+        "evi_metric_600519_2026-03-24_revenue_2025FY"
+      ],
+      "possible_explanations": [
+        "回款周期系统性拉长",
+        "收入质量下降",
+        "客户信用风险累积"
       ],
       "status": "open"
     }

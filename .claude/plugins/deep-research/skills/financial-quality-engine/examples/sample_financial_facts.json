@@ -16,7 +16,8 @@
       "goodwill": 0,
       "total_debt": 0,
       "short_term_debt": 0,
-      "equity": 190000
+      "equity": 190000,
+      "total_assets": 330000
     },
     {
       "period": "2022FY",
@@ -30,7 +31,8 @@
       "goodwill": 0,
       "total_debt": 0,
       "short_term_debt": 0,
-      "equity": 220000
+      "equity": 220000,
+      "total_assets": 380000
     },
     {
       "period": "2023FY",
@@ -44,7 +46,8 @@
       "goodwill": 0,
       "total_debt": 0,
       "short_term_debt": 0,
-      "equity": 255000
+      "equity": 255000,
+      "total_assets": 430000
     },
     {
       "period": "2024FY",
@@ -58,7 +61,8 @@
       "goodwill": 0,
       "total_debt": 0,
       "short_term_debt": 0,
-      "equity": 275000
+      "equity": 275000,
+      "total_assets": 470000
     },
     {
       "period": "2025FY",
@@ -72,7 +76,8 @@
       "goodwill": 0,
       "total_debt": 0,
       "short_term_debt": 0,
-      "equity": 290000
+      "equity": 290000,
+      "total_assets": 500000
     }
   ],
   "governance": {
