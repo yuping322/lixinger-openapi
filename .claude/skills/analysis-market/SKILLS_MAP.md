@@ -183,7 +183,7 @@
 
 ## 🔧 基础工具 (1个)
 
-- ✅ `lixinger-data-query` - 理杏仁数据查询工具（核心）
+- ✅ `lixinger-api-docs` - 理杏仁数据查询工具（核心）
 
 ---
 

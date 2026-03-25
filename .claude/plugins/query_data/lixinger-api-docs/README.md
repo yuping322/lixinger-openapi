@@ -83,7 +83,7 @@ curl -X POST https://open.lixinger.com/api/cn/company \
 
 ### 查询贵州茅台的基本面数据
 ```bash
-python3 skills/lixinger-data-query/scripts/query_tool.py \
+python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --suffix "cn/company" \
   --params '{"stockCodes": ["600519"]}' \
   --columns "stockCode,name,pe_ttm,pb"
@@ -91,7 +91,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ### 查询沪深300指数成分股
 ```bash
-python3 skills/lixinger-data-query/scripts/query_tool.py \
+python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --suffix "cn/index/constituents" \
   --params '{"stockCodes": ["000300"], "date": "2024-01-01"}' \
   --flatten "constituents"

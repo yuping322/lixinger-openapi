@@ -191,7 +191,7 @@ total_score = pe_score * 0.3 + pb_score * 0.3 + perf_score * 0.3 + dyr_score * 0
 
 ## 查找更多 API
 
-详细的 API 查找和使用方法，请参考：`../../lixinger-data-query/SKILL.md`
+详细的 API 查找和使用方法，请参考：`../../../plugins/query_data/lixinger-api-docs/SKILL.md`
 
 ---
 

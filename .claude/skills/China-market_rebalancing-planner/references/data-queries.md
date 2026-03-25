@@ -85,7 +85,7 @@ python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
 
 ## 查找更多 API
 
-详细的 API 查找和使用方法，请参考：`../../lixinger-data-query/SKILL.md`
+详细的 API 查找和使用方法，请参考：`../../../plugins/query_data/lixinger-api-docs/SKILL.md`
 
 AkShare 备选方案（当理杏仁 API 不可用时）：
 - `stock_zh_a_hist` - A股历史行情数据

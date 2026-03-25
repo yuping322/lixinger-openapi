@@ -18,7 +18,7 @@
 
 ## 查询方法
 
-### 使用理杏仁数据查询技能（lixinger-data-query）
+### 使用理杏仁数据查询技能（lixinger-api-docs）
 
 #### 1. 查询个股历史价格数据
 ```bash

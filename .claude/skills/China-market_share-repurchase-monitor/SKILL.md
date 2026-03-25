@@ -19,7 +19,7 @@ description: 跟踪并解读A股股份回购（目的、进度、均价、区间
 
 - 用户提供（第三方数据平台/公告/终端）导出数据（推荐）
 - 或使用理杏仁数据查询工具：参见 `references/data-queries.md` 获取回购数据
-- 更完整的 API 文档与字段说明：见 `../lixinger-data-query/api_new/api-docs/`
+- 更完整的 API 文档与字段说明：见 `../../plugins/query_data/lixinger-api-docs/api-docs/`
 - 若用户只要框架：输出“回购信号分层 + 风控规则”
 
 ### 第三步：分析框架

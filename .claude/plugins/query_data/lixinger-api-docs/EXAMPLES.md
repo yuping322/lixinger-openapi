@@ -6,21 +6,21 @@
 
 ### 1. 查询银行股列表
 ```bash
-python3 skills/lixinger-data-query/scripts/query_tool.py \
+python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --suffix "cn.company" \
   --params '{"fsTableType": "bank"}'
 ```
 
 ### 2. 查询指数基本面数据
 ```bash
-python3 skills/lixinger-data-query/scripts/query_tool.py \
+python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --suffix "cn.index.fundamental" \
   --params '{"date": "2024-12-10", "stockCodes": ["000016"], "metricsList": ["pe_ttm.mcw", "mc"]}'
 ```
 
 ### 3. 只返回指定字段
 ```bash
-python3 skills/lixinger-data-query/scripts/query_tool.py \
+python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --suffix "cn.company" \
   --params '{"fsTableType": "bank"}' \
   --columns "stockCode,name,ipoDate" \
@@ -29,7 +29,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ### 4. 使用行过滤（PE 在 10-20 之间）
 ```bash
-python3 skills/lixinger-data-query/scripts/query_tool.py \
+python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --suffix "cn.company.fundamental.non_financial" \
   --params '{"date": "2024-12-10"}' \
   --row-filter '{"pe_ttm": {">": 10, "<": 20}}' \
@@ -38,7 +38,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 ### 5. 嵌套数组展开（获取指数成分股中以 600 开头的股票）
 ```bash
-python3 skills/lixinger-data-query/scripts/query_tool.py \
+python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --suffix "cn.index.constituents" \
   --params '{"date": "2024-12-10", "stockCodes": ["000016"]}' \
   --flatten "constituents" \
@@ -52,7 +52,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 **步骤 1：获取行业股票代码**
 ```bash
-python3 skills/lixinger-data-query/scripts/query_tool.py \
+python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --suffix "cn.company" \
   --params '{"fsTableType": "bank"}' \
   --columns "stockCode" \
@@ -61,7 +61,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 **步骤 2：获取这些股票的基本面数据**
 ```bash
-python3 skills/lixinger-data-query/scripts/query_tool.py \
+python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --suffix "cn.company.fundamental.non_financial" \
   --params '{"date": "2024-12-10"}' \
   --use-list "bank_stocks" \
@@ -81,7 +81,7 @@ print(f"平均 PB: {df['pb'].mean():.2f}")
 
 **获取 PE < 15 且 PB < 2 的股票**
 ```bash
-python3 skills/lixinger-data-query/scripts/query_tool.py \
+python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --suffix "cn.company.fundamental.non_financial" \
   --params '{"date": "2024-12-10"}' \
   --row-filter '{"pe_ttm": {"<": 15}, "pb": {"<": 2}}' \
@@ -93,7 +93,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 **步骤 1：获取上证 50 成分股**
 ```bash
-python3 skills/lixinger-data-query/scripts/query_tool.py \
+python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --suffix "cn.index.constituents" \
   --params '{"date": "2024-12-10", "stockCodes": ["000016"]}' \
   --flatten "constituents" \
@@ -103,7 +103,7 @@ python3 skills/lixinger-data-query/scripts/query_tool.py \
 
 **步骤 2：按交易所分类统计**
 ```bash
-python3 skills/lixinger-data-query/scripts/query_tool.py \
+python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --suffix "cn.index.constituents" \
   --params '{"date": "2024-12-10", "stockCodes": ["000016"]}' \
   --flatten "constituents" \
@@ -122,7 +122,7 @@ print(df['market'].value_counts())
 
 **获取多个指数的估值数据**
 ```bash
-python3 skills/lixinger-data-query/scripts/query_tool.py \
+python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --suffix "cn.index.fundamental" \
   --params '{"date": "2024-12-10", "stockCodes": ["000016", "000300", "000905"], "metricsList": ["pe_ttm.mcw", "pb"]}' \
   --format csv > indices_valuation.csv

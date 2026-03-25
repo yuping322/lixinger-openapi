@@ -514,12 +514,12 @@ python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
 
 ## 查找更多 API
 
-详细的 API 查找和使用方法，请参考：`../../lixinger-data-query/SKILL.md`
+详细的 API 查找和使用方法，请参考：`../../../plugins/query_data/lixinger-api-docs/SKILL.md`
 
 ## 相关文档
 
-- **API 文档**: `../../lixinger-data-query/SKILL.md`
-- **使用指南**: `../../lixinger-data-query/LLM_USAGE_GUIDE.md`
+- **API 文档**: `../../../plugins/query_data/lixinger-api-docs/SKILL.md`
+- **使用指南**: `../../../plugins/query_data/lixinger-api-docs/LLM_USAGE_GUIDE.md`
 - **Skill 说明**: `../SKILL.md`
 
 ---

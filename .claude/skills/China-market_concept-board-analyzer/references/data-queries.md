@@ -145,5 +145,5 @@ python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
 ## 查找更多 API
 
 详细的 API 查找和使用方法，请参考：
-- AKShare接口: `../../lixinger-data-query/api_new/akshare_data/`
-- 理杏仁API: `../../lixinger-data-query/api_new/api-docs/`
+- AKShare接口: `../../../plugins/query_data/lixinger-api-docs/akshare_data/`
+- 理杏仁API: `../../../plugins/query_data/lixinger-api-docs/api-docs/`

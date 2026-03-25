@@ -184,7 +184,7 @@ python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
 5. **指数代码格式**：A股指数代码为6位数字，如 "000300"
 6. **字段过滤**：建议使用 `--columns` 参数只返回需要的字段
 7. **数据限制**：使用 `--limit` 参数限制返回行数
-8. **API 文档**：详细的 API 文档位于 `../../lixinger-data-query/api_new/api-docs/cn_index_fundamental.md`
+8. **API 文档**：详细的 API 文档位于 `../../../plugins/query_data/lixinger-api-docs/api-docs/cn_index_fundamental.md`
 
 ## 常用指数代码速查
 
@@ -318,9 +318,9 @@ python3 .claude/plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
 
 ## 相关文档
 
-- **API 列表**：`../../lixinger-data-query/SKILL.md`
-- **使用指南**：`../../lixinger-data-query/LLM_USAGE_GUIDE.md`
-- **查询示例**：`../../lixinger-data-query/EXAMPLES.md`
-- **指数基本面 API 文档**：`../../lixinger-data-query/api_new/api-docs/cn_index_fundamental.md`
-- **指数成分股 API 文档**：`../../lixinger-data-query/api_new/api-docs/cn_index_constituent.md`
-- **指数K线 API 文档**：`../../lixinger-data-query/api_new/api-docs/cn_index_k-line.md`
+- **API 列表**：`../../../plugins/query_data/lixinger-api-docs/SKILL.md`
+- **使用指南**：`../../../plugins/query_data/lixinger-api-docs/LLM_USAGE_GUIDE.md`
+- **查询示例**：`../../../plugins/query_data/lixinger-api-docs/EXAMPLES.md`
+- **指数基本面 API 文档**：`../../../plugins/query_data/lixinger-api-docs/api-docs/cn_index_fundamental.md`
+- **指数成分股 API 文档**：`../../../plugins/query_data/lixinger-api-docs/api-docs/cn_index_constituent.md`
+- **指数K线 API 文档**：`../../../plugins/query_data/lixinger-api-docs/api-docs/cn_index_k-line.md`

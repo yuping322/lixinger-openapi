@@ -1,6 +1,6 @@
 # 大模型使用指南
 
-本文档专门为大模型（LLM）设计，帮助你高效使用 lixinger-data-query skill。
+本文档专门为大模型（LLM）设计，帮助你高效使用 lixinger-api-docs plugin。
 
 ## 🎯 独立运行（重要）
 

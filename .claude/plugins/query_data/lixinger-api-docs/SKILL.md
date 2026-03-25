@@ -194,13 +194,13 @@ grep -r "龙虎榜" api_new/akshare_data/
 **基础示例**：
 ```bash
 # 查询银行股（推荐：使用 --columns 只返回需要的字段）
-python3 skills/lixinger-data-query/scripts/query_tool.py \
+python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --suffix "cn/company" \
   --params '{"fsTableType": "bank"}' \
   --columns "stockCode,name"
 
 # 过滤以 600 开头的股票（推荐：使用 --flatten 和 --row-filter）
-python3 skills/lixinger-data-query/scripts/query_tool.py \
+python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --suffix "cn/index/constituents" \
   --params '{"date": "2024-12-10", "stockCodes": ["000016"]}' \
   --flatten "constituents" \
@@ -585,7 +585,7 @@ grep -r "期货" api_new/akshare_data/
 ```
 
 **AkShare 接口文档位置**：
-- 所有接口文档：`skills/lixinger-data-query/api_new/akshare_data/*.md`
+- 所有接口文档：`plugins/query_data/lixinger-api-docs/akshare_data/*.md`
 - 每个文档包含：接口名称、参数说明、返回字段、调用示例
 - 示例：`bond_cb_jsl.md`、`stock_zh_a_hist.md`、`fund_etf_spot_em.md`
 
@@ -609,12 +609,12 @@ grep -r "期货" api_new/akshare_data/
 
 ## 新数据源接入规范
 
-本章节定义未来引入新数据源时的标准接入流程。所有数据源统一收口在 `.claude/skills/lixinger-data-query/`。
+本章节定义未来引入新数据源时的标准接入流程。所有数据源统一收口在 `.claude/plugins/query_data/lixinger-api-docs/`。
 
 ### 目录约定
 
 ```
-.claude/skills/lixinger-data-query/
+.claude/plugins/query_data/lixinger-api-docs/
 ├── api_new/
 │   ├── api-docs/              # 理杏仁 API 文档（每个 API 一个 .md 文件）
 │   ├── akshare_data/          # AkShare 接口文档（每个接口一个 .md 文件）

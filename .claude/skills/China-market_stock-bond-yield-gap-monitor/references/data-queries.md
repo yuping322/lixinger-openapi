@@ -1,7 +1,7 @@
 # 数据查询指南 (股债性价比)
 
 ## 1. 指数估值查询 (PE-TTM)
-使用 `lixinger-data-query` 获取指数的滚动市盈率数据：
+使用 `lixinger-api-docs` 获取指数的滚动市盈率数据：
 - **推荐指数**：沪深 300 (000300.SH)、中证 500 (000905.SH)、全 A 指数 (000985.CSI)
 - **API**：`cn/index/fundamental` 
 - **必需参数**：

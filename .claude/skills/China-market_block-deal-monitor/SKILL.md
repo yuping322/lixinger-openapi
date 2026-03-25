@@ -21,7 +21,7 @@ description: 跟踪并解读A股大宗交易（折溢价、买卖方、金额、
 数据来源取决于可得性：
 - 用户提供（第三方数据平台/交易所/终端）导出数据（推荐）
 - 或使用理杏仁数据查询工具：参见 `references/data-queries.md` 获取大宗交易数据
-- 更完整的 API 文档与字段说明：见 `../lixinger-data-query/api_new/api-docs/`（如 `cn_company_block-deal.md`）
+- 更完整的 API 文档与字段说明：见 `../../plugins/query_data/lixinger-api-docs/api-docs/`（如 `cn_company_block-deal.md`）
 - 若仅需框架与规则：可不依赖具体数据，输出“阈值与验证步骤”
 
 ### 第三步：分析框架

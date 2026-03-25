@@ -115,11 +115,11 @@ python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
 
 ## 查找更多 API
 
-详细的 API 查找和使用方法，请参考：`../../lixinger-data-query/SKILL.md`
+详细的 API 查找和使用方法，请参考：`../../../plugins/query_data/lixinger-api-docs/SKILL.md`
 
 常用查询关锯字搜索：
 ```bash
-# 在 lixinger-data-query 目录下执行
+# 在 lixinger-api-docs 目录下执行
 grep -r "基本面" api_new/api-docs/
 grep -r "财务" api_new/api-docs/
 grep -r "融资融券" api_new/api-docs/
