@@ -272,4 +272,4 @@ downstream_fundamental = query_api("cn/company/fs/non_financial",
 
 ## 查找更多 API
 
-详细的 API 查找和使用方法，请参考：`.claude/skills/lixinger-data-query/SKILL.md`
+详细的 API 查找和使用方法，请参考：`.claude/plugins/query_data/lixinger-api-docs/SKILL.md`

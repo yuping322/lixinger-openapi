@@ -269,4 +269,4 @@ python3 .claude/plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
 
 - 技能文档: `.claude/skills/China-market_block-deal-monitor/`
 - 查询工具: `.claude/plugins/query_data/lixinger-api-docs/scripts/query_tool.py`
-- API 文档: `.claude/skills/lixinger-data-query/api_new/api-docs/cn_company_block-deal.md`
+- API 文档: `.claude/plugins/query_data/lixinger-api-docs/api-docs/cn_company_block-deal.md`

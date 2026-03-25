@@ -279,5 +279,5 @@ print(stock_hsgt_board_rank_em_df)
 
 - 技能文档: `.claude/skills/China-market_hsgt-holdings-monitor/`
 - 查询工具: `.claude/plugins/query_data/lixinger-api-docs/scripts/query_tool.py`
-- AkShare文档: `.claude/skills/lixinger-data-query/api_new/akshare_data/`
+- AkShare文档: `.claude/plugins/query_data/lixinger-api-docs/akshare_data/`
 

@@ -66,7 +66,7 @@ python3 <script_or_command> <args>
 ```yaml
 provider_key: akshare
 display_name: AkShare
-docs_location: .claude/skills/lixinger-data-query/api_new/akshare_data/
+docs_location: .claude/plugins/query_data/lixinger-api-docs/akshare_data/
 auth_source: none
 one_command_example: python3 -c "import akshare as ak; print(ak.stock_zh_a_spot_em().head())"
 coverage:

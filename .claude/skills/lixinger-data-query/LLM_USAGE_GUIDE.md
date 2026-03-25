@@ -12,7 +12,7 @@
 **直接运行示例**：
 ```bash
 # 不需要激活虚拟环境，直接运行
-python3 skills/lixinger-data-query/scripts/query_tool.py \
+python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --suffix "cn/company" \
   --params '{"fsTableType": "bank"}' \
   --columns "stockCode,name"
@@ -87,7 +87,7 @@ python3 query_tool.py \
 ### 步骤 3：构造命令
 
 ```bash
-python3 skills/lixinger-data-query/scripts/query_tool.py \
+python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --suffix "cn/company" \
   --params '{"fsTableType": "bank"}' \
   --columns "stockCode,name"

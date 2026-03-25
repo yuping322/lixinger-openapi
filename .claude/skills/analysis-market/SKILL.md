@@ -152,23 +152,23 @@ ls ../China-market/ | grep -i "关键词"
 
 #### 第二优先级：数据 API
 
-使用 `skills/lixinger-data-query/` 的 162 个 API。
+使用 `plugins/query_data/lixinger-api-docs/` 的 162 个 API。
 
 **使用场景**：找不到合适的 skill，或需要简单数据查询。
 
 **使用前必须查找 API**：
 ```bash
 # 1. 使用中文关键词搜索索引（推荐，最快）
-grep -i "分红" skills/lixinger-data-query/api_new/API_KEYWORD_INDEX.md
-grep -i "市盈率\|PE" skills/lixinger-data-query/api_new/API_KEYWORD_INDEX.md
-grep -i "ROE\|净资产收益率" skills/lixinger-data-query/api_new/API_KEYWORD_INDEX.md
+grep -i "分红" plugins/query_data/lixinger-api-docs/API_KEYWORD_INDEX.md
+grep -i "市盈率\|PE" plugins/query_data/lixinger-api-docs/API_KEYWORD_INDEX.md
+grep -i "ROE\|净资产收益率" plugins/query_data/lixinger-api-docs/API_KEYWORD_INDEX.md
 
 # 2. 或直接搜索 API 文档正文
-grep -r "分红" skills/lixinger-data-query/api_new/api-docs/
-grep -r "股息" skills/lixinger-data-query/api_new/api-docs/
+grep -r "分红" plugins/query_data/lixinger-api-docs/api-docs/
+grep -r "股息" plugins/query_data/lixinger-api-docs/api-docs/
 
 # 3. 查看 API 文档（确保参数正确）
-cat skills/lixinger-data-query/api_new/api-docs/[api_name].md
+cat plugins/query_data/lixinger-api-docs/api-docs/[api_name].md
 
 # 4. 执行查询
 python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
@@ -179,17 +179,17 @@ python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
 
 #### 第三优先级：AkShare 接口
 
-使用 `skills/lixinger-data-query/api_new/akshare_data/` 的 1000+ 接口。
+使用 `plugins/query_data/lixinger-api-docs/akshare_data/` 的 1000+ 接口。
 
 **使用场景**：前两者无法满足需求，或需要补充数据源。
 
 **使用前必须 grep 查看接口文档**：
 ```bash
 # 查找相关接口
-grep -r "关键词" skills/lixinger-data-query/api_new/akshare_data/
+grep -r "关键词" plugins/query_data/lixinger-api-docs/akshare_data/
 
 # 查看接口文档（确保用法正确）
-cat skills/lixinger-data-query/api_new/akshare_data/[interface_name].md
+cat plugins/query_data/lixinger-api-docs/akshare_data/[interface_name].md
 
 # 使用 Python 调用
 python3 -c "import akshare as ak; print(ak.interface_name())"
@@ -262,7 +262,7 @@ cat ../China-market/high-dividend-strategy/references/data-queries.md
 
 ```bash
 # 1. 查看 API 文档（确保参数正确）
-cat skills/lixinger-data-query/api_new/api-docs/cn_company_dividend.md
+cat plugins/query_data/lixinger-api-docs/api-docs/cn_company_dividend.md
 
 # 2. 下载数据到项目的 data/ 目录（使用最近日期）
 python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
@@ -280,10 +280,10 @@ python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
 
 ```bash
 # 1. 搜索 API
-grep -r "关键词" skills/lixinger-data-query/api_new/api-docs/
+grep -r "关键词" plugins/query_data/lixinger-api-docs/api-docs/
 
 # 2. 查看 API 文档（必须）
-cat skills/lixinger-data-query/api_new/api-docs/[api_name].md
+cat plugins/query_data/lixinger-api-docs/api-docs/[api_name].md
 
 # 3. 总结思路后再执行查询
 python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
@@ -295,10 +295,10 @@ python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
 
 ```bash
 # 1. 搜索接口
-grep -r "关键词" skills/lixinger-data-query/api_new/akshare_data/
+grep -r "关键词" plugins/query_data/lixinger-api-docs/akshare_data/
 
 # 2. 查看接口文档（必须）
-cat skills/lixinger-data-query/api_new/akshare_data/[interface_name].md
+cat plugins/query_data/lixinger-api-docs/akshare_data/[interface_name].md
 
 # 3. 使用 Python 调用
 python3 -c "import akshare as ak; print(ak.interface_name())"
@@ -324,7 +324,7 @@ ls ../China-market/ | grep -i "dividend"
 cat ../China-market/high-dividend-strategy/SKILL.md
 
 # 4. 查看 API 文档（必须）
-cat skills/lixinger-data-query/api_new/api-docs/cn_company_dividend.md
+cat plugins/query_data/lixinger-api-docs/api-docs/cn_company_dividend.md
 
 # 5. 获取数据（使用最近日期）
 for code in 601398 601288 600900; do
@@ -510,7 +510,7 @@ python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
 --suffix "cn.company.dividend"  # ❌
 
 # 2. grep 查看 API 文档确认路径
-grep -r "dividend" skills/lixinger-data-query/api_new/api-docs/
+grep -r "dividend" plugins/query_data/lixinger-api-docs/api-docs/
 ```
 
 #### 错误 2：`"metricsList" is required`
@@ -532,7 +532,7 @@ grep -r "dividend" skills/lixinger-data-query/api_new/api-docs/
 
 **解决**：grep 查看 API 文档确认参数名
 ```bash
-cat skills/lixinger-data-query/api_new/api-docs/cn_company.md
+cat plugins/query_data/lixinger-api-docs/api-docs/cn_company.md
 ```
 
 ---
@@ -604,6 +604,6 @@ ls ../China-market/ | grep -i "flow"
 
 ## 📚 相关文档
 
-- **数据查询工具**：`skills/lixinger-data-query/SKILL.md`
-- **API 文档目录**：`skills/lixinger-data-query/api_new/api-docs/`
-- **AkShare 接口**：`skills/lixinger-data-query/api_new/akshare_data/`
+- **数据查询工具**：`plugins/query_data/lixinger-api-docs/SKILL.md`
+- **API 文档目录**：`plugins/query_data/lixinger-api-docs/api-docs/`
+- **AkShare 接口**：`plugins/query_data/lixinger-api-docs/akshare_data/`

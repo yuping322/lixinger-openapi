@@ -238,4 +238,4 @@ outflow_days = len(df_flow[df_flow['主力净流入-净额'] < 0].tail(N))
 
 ## 查找更多 API
 
-详细的 API 查找和使用方法，请参考：`skills/lixinger-data-query/SKILL.md`
+详细的 API 查找和使用方法，请参考：`plugins/query_data/lixinger-api-docs/SKILL.md`

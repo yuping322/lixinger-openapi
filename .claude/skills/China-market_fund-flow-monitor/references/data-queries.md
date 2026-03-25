@@ -222,6 +222,6 @@ done
 
 ## 参考文档
 
-- 理杏仁API文档: `skills/lixinger-data-query/api_new/api-docs/`
+- 理杏仁API文档: `plugins/query_data/lixinger-api-docs/api-docs/`
 - 查询工具: `plugins/query_data/lixinger-api-docs/scripts/query_tool.py`
 - 方法论文档: `references/methodology.md`
