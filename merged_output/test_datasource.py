@@ -185,18 +185,6 @@ def test_financialdatasets(symbol: str) -> Tuple[str, Any]:
     return ("financialdatasets", data)
 
 
-def test_qveris() -> Tuple[str, Any]:
-    """Test QVeris API."""
-    api_key = _require_env("QVeris_API_KEY")
-    # QVeris API endpoint for searching tools
-    url = "https://qveris.ai/api/v1/search"
-    headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
-    data = {"query": "weather forecast API", "limit": 10}
-    response = _http_post_json(url, data, headers=headers)
-    if not isinstance(response, dict):
-        raise TestError("QVeris response is not a JSON object")
-    return ("qveris", response)
-
 
 def test_serpapi() -> Tuple[str, Any]:
     """Test SerpAPI."""
@@ -290,7 +278,6 @@ def main() -> int:
             "brave_search",
             "eodhd",
             "financialdatasets",
-            "qveris",
             "serpapi",
             "tavily",
         ],
