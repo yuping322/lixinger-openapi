@@ -126,7 +126,6 @@ research_cases/
 
 # Temporary directories
 .kirobak/
-scripts/
 
 # Debug and test files
 debug_*.py
