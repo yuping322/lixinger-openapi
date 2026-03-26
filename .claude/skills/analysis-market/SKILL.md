@@ -141,13 +141,14 @@ echo "## 追加分析：分红历史" >> ${PROJECT}/README.md
 
 #### 第一优先级：市场分析 Skills
 
-使用 `../China-market/`、`../HK-market/`、`../US-market/` 中的分析 skills。
+使用 `.claude/skills/` 下的市场分析 skills；股票策略筛选优先查看 `.claude/plugins/stock-screener/skills/`。
 
 **优势**：提供完整方法论、数据获取、分析逻辑、输出模板，开箱即用。
 
 **查找方法**：
 ```bash
-ls ../China-market/ | grep -i "关键词"
+ls .claude/plugins/stock-screener/skills | grep -i "关键词"
+ls .claude/skills | grep -i "关键词"
 ```
 
 #### 第二优先级：数据 API
@@ -239,7 +240,8 @@ PROJECT="analysis_20260225_143052_主题"  # 已存在
 #### 步骤 1：grep 查找合适的 Skill
 
 ```bash
-ls ../China-market/ | grep -i "关键词"
+ls .claude/plugins/stock-screener/skills | grep -i "关键词"
+ls .claude/skills | grep -i "关键词"
 ```
 
 #### 步骤 2：查看 Skill 文档并总结思路
@@ -318,10 +320,10 @@ PROJECT="analysis_$(date +%Y%m%d_%H%M%S)_high_dividend"
 mkdir -p ${PROJECT}/{data,scripts,output}
 
 # 2. grep 查找 Skill
-ls ../China-market/ | grep -i "dividend"
+ls .claude/plugins/stock-screener/skills | grep -i "dividend"
 
 # 3. 查看 Skill 文档
-cat ../China-market/high-dividend-strategy/SKILL.md
+cat .claude/plugins/stock-screener/skills/high-dividend-strategy/SKILL.md
 
 # 4. 查看 API 文档（必须）
 cat plugins/query_data/lixinger-api-docs/api-docs/cn_company_dividend.md
@@ -595,9 +597,9 @@ cat plugins/query_data/lixinger-api-docs/api-docs/cn_company.md
 
 ```bash
 # 按功能查找
-ls ../China-market/ | grep -i "dividend"
-ls ../China-market/ | grep -i "risk"
-ls ../China-market/ | grep -i "flow"
+ls .claude/plugins/stock-screener/skills | grep -i "dividend"
+ls .claude/skills | grep -i "risk"
+ls .claude/skills | grep -i "flow"
 ```
 
 ---

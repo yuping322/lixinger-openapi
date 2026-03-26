@@ -76,7 +76,7 @@
       "filename": "bse-selection-analyzer",
       "type": "skill",
       "metadata": {
-        "sourcePath": "skills/China-market_bse-selection-analyzer",
+        "sourcePath": "plugins/stock-screener/skills/bse-selection-analyzer",
         "filename": "bse-selection-analyzer",
         "name": "bse-selection-analyzer",
         "description": "扫描与分析北交所（BSE）标的，按流动性、成长性、行业景气与“专精特新”特征输出候选清单，并给出流动性与波动风险提示。当用户询问北交所精选、北交所选股、专精特新筛选、或需要北交所板块研究时使用。",
@@ -188,7 +188,7 @@
       "filename": "esg-screener",
       "type": "skill",
       "metadata": {
-        "sourcePath": "skills/China-market_esg-screener",
+        "sourcePath": "plugins/stock-screener/skills/esg-screener",
         "filename": "esg-screener",
         "name": "esg-screener",
         "description": "从ESG（环境、社会、治理）视角筛选和分析A股上市公司，评估可持续发展实践、争议事件和负责任投资标准。当用户询问ESG投资、可持续投资、社会责任投资、绿色投资、碳足迹分析、公司治理评估、争议事件筛查、排除清单，或对公司或组合进行ESG评分时使用此技能。",
@@ -300,7 +300,7 @@
       "filename": "high-dividend-strategy",
       "type": "skill",
       "metadata": {
-        "sourcePath": "skills/China-market_high-dividend-strategy",
+        "sourcePath": "plugins/stock-screener/skills/high-dividend-strategy",
         "filename": "high-dividend-strategy",
         "name": "high-dividend-strategy",
         "description": "分析A股高股息策略，评估红利股的收益可持续性与长期回报。当用户询问高股息股票、红利策略、A股分红分析、现金分红覆盖率、中证红利指数成分股、股息率排名或长期收入型投资时使用此技能。",
@@ -608,7 +608,7 @@
       "filename": "quant-factor-screener",
       "type": "skill",
       "metadata": {
-        "sourcePath": "skills/China-market_quant-factor-screener",
+        "sourcePath": "plugins/stock-screener/skills/quant-factor-screener",
         "filename": "quant-factor-screener",
         "name": "quant-factor-screener",
         "description": "使用正式因子模型进行系统化多因子A股筛选，识别具有有利因子暴露的个股。当用户询问因子投资、多因子筛选、价值/动量/质量因子分析、因子打分、因子择时、Smart Beta策略、量化选股或基于学术因子的系统化选股时使用此技能。",
@@ -734,7 +734,7 @@
       "filename": "small-cap-growth-identifier",
       "type": "skill",
       "metadata": {
-        "sourcePath": "skills/China-market_small-cap-growth-identifier",
+        "sourcePath": "plugins/stock-screener/skills/small-cap-growth-identifier",
         "filename": "small-cap-growth-identifier",
         "name": "small-cap-growth-identifier",
         "description": "识别A股市场中被忽视的小市值高成长公司。当用户询问小盘成长股、低市值高增长公司、被忽略的小盘股、专精特新企业、或要求筛选市值小但增长快的A股时使用此技能。",
@@ -790,7 +790,7 @@
       "filename": "undervalued-stock-screener",
       "type": "skill",
       "metadata": {
-        "sourcePath": "skills/China-market_undervalued-stock-screener",
+        "sourcePath": "plugins/stock-screener/skills/undervalued-stock-screener",
         "filename": "undervalued-stock-screener",
         "name": "undervalued-stock-screener",
         "description": "扫描A股市场，筛选基本面强劲但市值被低估的上市公司。当用户询问低估值股票、价值投资筛选、A股便宜股票、低PE或低PB公司、基本面强但被低估的公司、或要求运行估值筛选器时使用此技能。",

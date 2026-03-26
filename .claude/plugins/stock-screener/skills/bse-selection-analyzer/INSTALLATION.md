@@ -1,4 +1,4 @@
-# high-dividend-strategy 安装指南
+# bse-selection-analyzer 安装指南
 
 ## 前置要求
 
@@ -100,4 +100,4 @@ stockCode,cnName
 ## 技术支持
 
 - 理杏仁 API 文档：https://www.lixinger.com/api
-- 项目文档：../../../docs/
+- 项目文档：../../../../../docs/

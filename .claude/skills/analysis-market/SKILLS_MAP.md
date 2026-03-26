@@ -63,7 +63,9 @@
 - ✅ `share-repurchase-monitor` - 股份回购监控
 - ✅ `ipo-newlist-monitor` - IPO新股监控
 
-### 6️⃣ 估值选股 (6个)
+### 6️⃣ 股票策略筛选（持续扩展）
+> 统一入口：`.claude/plugins/stock-screener/`
+
 - ✅ `undervalued-stock-screener` - 低估股票筛选器
 - ✅ `high-dividend-strategy` - 高股息策略
 - ✅ `quant-factor-screener` - 量化因子筛选器
@@ -198,7 +200,7 @@
 | 资金流向 | 5 | 3 | 0 | 8 |
 | 市场分析 | 6 | 4 | 6 | 16 |
 | 事件驱动 | 7 | 0 | 4 | 11 |
-| 估值选股 | 6 | 0 | 5 | 11 |
+| 股票策略筛选 | 6+ | 0 | 5 | 11+ |
 | 组合管理 | 5 | 0 | 6 | 11 |
 | 行业板块 | 5 | 1 | 1 | 7 |
 | 特殊工具 | 5 | 0 | 5 | 10 |
