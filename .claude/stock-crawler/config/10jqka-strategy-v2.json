@@ -1,0 +1,51 @@
+{
+  "name": "10jqka-strategy",
+  "site": "10jqka",
+  "description": "同花顺策略列表与详情抓取",
+  "seedUrls": [
+    "https://search.10jqka.com.cn/unifiedwap/strategy-list-page"
+  ],
+  "urlRules": {
+    "include": [
+      ".*search.10jqka.com.cn/unifiedwap/strategy-list-page.*",
+      ".*search.10jqka.com.cn/unifiedwap/strategy-details.*"
+    ],
+    "exclude": [
+      ".*login.*",
+      ".*logout.*",
+      ".*api.*",
+      ".*static.*"
+    ]
+  },
+  "targets": {
+    "strategy-list": {
+      "parser": "generic-parser",
+      "urlPattern": ".*strategy-list-page.*",
+      "description": "策略列表页"
+    },
+    "strategy-detail": {
+      "parser": "article-parser",
+      "urlPattern": ".*strategy-details.*",
+      "description": "策略详情页"
+    }
+  },
+  "login": {
+    "required": false
+  },
+  "crawler": {
+    "headless": true,
+    "timeout": 60000,
+    "waitBetweenRequests": 2000,
+    "maxRetries": 3,
+    "maxDepth": 3,
+    "waitFor": {
+      "selector": ".strategy-item, .strategy-card, [class*='strategy']",
+      "timeout": 10000
+    },
+    "scroll": {
+      "enabled": true,
+      "times": 3,
+      "delay": 1000
+    }
+  }
+}
