@@ -14,27 +14,49 @@
 - 保持 `lixinger-screener` 只负责候选池与基础筛选，不承载具体策略分析编排
 - 统一策略输出标准，让不同策略都能产出“发现”而不只是“结果”
 
+## 当前改造原则
+
+- **优先改现有策略，不先新建一批新策略**
+- 第一阶段优先复用 4 个母策略：`high-dividend-strategy`、`undervalued-stock-screener`、`quant-factor-screener`、`esg-screener`
+- `small-cap-growth-identifier` 与 `bse-selection-analyzer` 暂不扩张，避免无证据扩散
+- `business-cycle-turnaround` 只作为条件性新增候选，只有现有四个母策略无法清晰承接时才创建
+
 ## 当前已接入策略
 
 | Strategy | 核心定位 | 重点机会 |
 |---|---|---|
-| `undervalued-stock-screener` | 便宜但在变好 | 深度价值、修复型价值、价值陷阱识别 |
-| `high-dividend-strategy` | 高股东回报而非只看高股息 | 稳定收息、分红成长、红利再评级 |
+| `undervalued-stock-screener` | 低估但在变好，优先吸收龙头错杀与修复型价值 | 深度价值、修复型价值、龙头错杀、价值陷阱识别 |
+| `high-dividend-strategy` | 高股东回报与现金牛底仓，不只看高股息 | 稳定收息、分红成长、现金牛复利、央国企分红重估 |
 | `small-cap-growth-identifier` | 被忽视的小而强、小而早 | 业绩释放前夜、预期差成长、伪成长排除 |
-| `quant-factor-screener` | 因子共振与因子冲突识别 | 高共振候选、风格受益、低估待启动 |
+| `quant-factor-screener` | 价值、质量、成长的共振解释层 | 高共振候选、风格受益、低估待启动、因子冲突识别 |
 | `bse-selection-analyzer` | 流动性折价中的北交所机会 | 流动性错杀、专精特新龙头、再评级线索 |
-| `esg-screener` | 治理与风险代理筛选 | 治理改善、监管风险回避、资本配置优化 |
+| `esg-screener` | 治理、股东结构与监管风险验证层 | 治理改善、国企治理重估、监管风险回避、资本配置验证 |
 
 ## Commands
 
 | Command | 用途 |
 |---|---|
-| `/undervalued-stock-screener [股票池/条件]` | 寻找低估但基本面或预期开始改善的标的 |
-| `/high-dividend-strategy [股票池/条件]` | 寻找分红可持续、总回报更优的红利标的 |
+| `/undervalued-stock-screener [股票池/条件]` | 寻找低估但基本面开始改善、或被情绪错杀的龙头标的 |
+| `/high-dividend-strategy [股票池/条件]` | 寻找股东回报增强、现金流稳健、总回报更优的红利底仓 |
 | `/small-cap-growth-identifier [股票池/条件]` | 寻找仍被低估认知的小盘成长股 |
-| `/quant-factor-screener [股票池/条件]` | 寻找因子共振、并识别因子失效与风格冲突 |
+| `/quant-factor-screener [股票池/条件]` | 解释价值、质量、成长共振，并识别风格冲突与高分陷阱 |
 | `/bse-selection-analyzer [股票池/条件]` | 寻找兼顾成长与可交易性的北交所标的 |
-| `/esg-screener [股票池/条件]` | 从治理、合规、争议与资本配置角度做筛选 |
+| `/esg-screener [股票池/条件]` | 从治理、股东结构、监管与资本配置角度做验证型筛选 |
+
+## 新增方向承接映射
+
+| 新方向 | 优先承接方式 | 当前判断 |
+|---|---|---|
+| `shareholder-yield-enhancer` | 并入 `high-dividend-strategy` | 高优先，直接吸收 |
+| `cash-cow-compounder` | 并入 `high-dividend-strategy`，由 `quant-factor-screener` 做解释增强 | 高优先，直接吸收 |
+| `leader-oversold-recovery` | 并入 `undervalued-stock-screener`，由 `quant-factor-screener` 补充因子解释 | 高优先，直接吸收 |
+| `soe-rerating` | 并入 `high-dividend-strategy` 与 `esg-screener` | 中高优先，先吸收不单建 |
+| `business-cycle-turnaround` | 先由 `undervalued-stock-screener` 与 `quant-factor-screener` 承接 | 中高优先，暂不创建 |
+| `supply-demand-improvement` | 暂列进攻型卫星方向，先不独立 | 中高优先，暂不创建 |
+| `order-driven-growth` | 暂列进攻型卫星方向，先不独立 | 中优先，暂不创建 |
+| `capex-cycle-screener` | 暂列进攻型卫星方向，先不独立 | 中优先，暂不创建 |
+| `distress-turnaround-screener` | 保留在设计池，不独立实现 | 低优先 |
+| `post-regulatory-rerating` | 保留在设计池，不独立实现 | 低优先 |
 
 ## 统一执行链路
 
@@ -47,14 +69,14 @@
    引入该策略最有辨识度的筛选与判断逻辑，避免所有策略都只是在改权重。
 
 3. **异常发现层**  
-   每次执行都要指出不寻常的信号，例如估值与盈利修复背离、股息率与现金流背离、成长与订单兑现背离等。
+   每次执行都要指出不寻常的信号，例如估值与盈利修复背离、股息率与现金流背离、成长与订单兑现背离、治理改善与市场定价背离等。
 
 4. **机会归类层**  
-   最终不只给一个排序，而是把结果分为确定性机会、预期差机会、困境反转机会、错误定价机会、观察名单或风险预警。
+   最终不只给一个排序，而是把结果分为确定性机会、预期差机会、错误定价机会、观察名单或风险预警。
 
 ## 统一输出要求
 
-每个策略执行完成后，结果至少包含以下 3 段：
+每个策略执行完成后，结果至少包含以下 4 段：
 
 1. **本次异常发现**  
    写出最值得关注的异常信号，不要只复述筛选条件。
@@ -64,6 +86,9 @@
 
 3. **未来跟踪信号**  
    为候选标的列出后续验证点，如利润率、现金流、分红率、订单兑现、监管事件、负债率等。
+
+4. **失效条件 / 风险提示**  
+   明确什么情况下原判断不再成立，避免把策略写成只会给正向结论的筛子。
 
 ## 数据分层
 
@@ -102,24 +127,28 @@
 
 ## 未来可扩展策略池
 
-以下方向适合后续继续扩展，但本轮仅做路线预留，不实现：
+后续新增策略统一先写入 [`STRATEGY_DESIGN_CHECKLIST.md`](STRATEGY_DESIGN_CHECKLIST.md)，再进入实现。
 
-- 景气反转策略
-- 困境反转策略
-- 股东回报增强策略
-- 现金牛复利策略
-- 订单驱动成长策略
-- 行业龙头补跌错杀策略
-- 国企改革重估策略
-- 资本开支周期策略
-- 供需格局改善策略
-- 监管出清后重估策略
+| 策略方向 | 建议 slug | 当前承接方式 | 当前判断 |
+|---|---|---|---|
+| 景气反转策略 | `business-cycle-turnaround` | 先由 `undervalued-stock-screener` + `quant-factor-screener` 承接 | 中高优先，必要时再新建 |
+| 困境反转策略 | `distress-turnaround-screener` | 暂不承接到独立策略 | 低优先，不建议单独实现 |
+| 股东回报增强策略 | `shareholder-yield-enhancer` | 并入 `high-dividend-strategy` | 高优先，直接吸收 |
+| 现金牛复利策略 | `cash-cow-compounder` | 并入 `high-dividend-strategy`，由 `quant-factor-screener` 解释增强 | 高优先，直接吸收 |
+| 订单驱动成长策略 | `order-driven-growth` | 先作为进攻型卫星方向保留 | 中优先，暂不独立 |
+| 行业龙头补跌错杀策略 | `leader-oversold-recovery` | 并入 `undervalued-stock-screener` | 高优先，直接吸收 |
+| 国企改革重估策略 | `soe-rerating` | 并入 `high-dividend-strategy` + `esg-screener` | 中高优先，先吸收不单建 |
+| 资本开支周期策略 | `capex-cycle-screener` | 先作为进攻型卫星方向保留 | 中优先，暂不独立 |
+| 供需格局改善策略 | `supply-demand-improvement` | 先作为进攻型卫星方向保留 | 中高优先，暂不独立 |
+| 监管出清后重估策略 | `post-regulatory-rerating` | 暂不承接到独立策略 | 低优先，不建议单独实现 |
 
 ## 扩展规则
 
 后续新增策略时：
-1. 在 `skills/` 下新增策略目录
-2. 在 `commands/` 下新增同名命令文档
-3. 在本 README 中补充策略定位、机会类型与输出要求
-4. 如需被全局 skill 索引发现，同步更新 `.claude/plugins.json`
-5. 保持 `lixinger-screener` 作为通用候选池底座，不把新增策略逻辑塞回底座
+1. 先在 `STRATEGY_DESIGN_CHECKLIST.md` 中补齐策略假设、关键验证信号、失效条件与建议 slug
+2. 先判断能否并入 `high-dividend-strategy`、`undervalued-stock-screener`、`quant-factor-screener`、`esg-screener` 这 4 个母策略
+3. 只有在现有母策略无法清晰承接时，才在 `skills/` 下新增策略目录
+4. 再在 `commands/` 下新增同名命令文档
+5. 在本 README 中补充策略定位、机会类型与输出要求
+6. 如需被全局 skill 索引发现，同步更新 `.claude/plugins.json`
+7. 保持 `lixinger-screener` 作为通用候选池底座，不把新增策略逻辑塞回底座

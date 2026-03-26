@@ -66,7 +66,7 @@ node request/fetch-lixinger-screener.js \
 1. 先用 `lixinger-screener` 生成红利候选池
 2. 再用 `cn/company/dividend` 补充分红历史
 3. 必要时再补充估值、资产负债与财报数据
-4. 按 `SKILL.md` 输出稳定收息、分红成长、重估与陷阱分类
+4. 按 `SKILL.md` 输出稳定收息、分红成长、现金牛复利、重估与陷阱分类
 
 ## 常见问题
 

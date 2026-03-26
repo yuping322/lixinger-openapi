@@ -75,7 +75,7 @@ node request/fetch-lixinger-screener.js \
 推荐的最小闭环是：
 1. 用 `low-valuation-high-dividend.json` 建第一轮候选池
 2. 用 `query_tool.py` 对少量入围股补查估值与财报数据
-3. 按 `SKILL.md` 和 `references/` 中的方法输出结论
+3. 按 `SKILL.md` 和 `references/` 中的方法输出深度价值、修复型价值、龙头错杀、红利型价值与陷阱结论
 
 ## 常见问题
 
