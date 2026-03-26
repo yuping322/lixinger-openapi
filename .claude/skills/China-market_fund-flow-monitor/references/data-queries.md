@@ -4,7 +4,7 @@
 
 ---
 
-## 理杏仁 API 接口
+## 核心数据接口列表
 
 ### 1. 个股资金流向指标（核心）
 
@@ -67,6 +67,14 @@ python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
 - 成交流量：`ta`, `to_r`, `tv`
 - 价格：`cp`, `cpc`
 
+**常用指数代码**:
+- `000300`: 沪深300
+- `000016`: 上证50
+- `000905`: 中证500
+- `000852`: 中证1000
+- `399001`: 深证成指
+- `399006`: 创业板指
+
 ---
 
 ### 3. 指数融资融券汇总
@@ -106,16 +114,47 @@ python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --limit 10
 ```
 
-**常用行业代码**:
+**常用行业代码（申万一级）**:
 - `490000`: 非银金融
 - `480000`: 银行
 - `340000`: 食品饮料
-- `630000`: 电气设备
+- `630000`: 电气设备（新能源）
 - `270000`: 电子
+- `640000`: 计算机
+- `230000`: 钢铁
+- `330000`: 房地产
+- `350000`: 家用电器
+- `420000`: 医药生物
+- `450000`: 公用事业
+- `710000`: 传媒
+- `280000`: 汽车
+- `240000`: 有色金属
+- `220000`: 基础化工
 
 ---
 
-### 5. K线数据（价格验证）
+### 5. 行业成分股列表
+
+**API**: `cn/industry/constituents/sw_2021`
+
+**用途**: 获取行业板块的成分股，用于板块内资金流向分析
+
+**查询示例**:
+```bash
+python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
+  --suffix "cn/industry/constituents/sw_2021" \
+  --params '{"stockCode": "490000", "date": "2026-03-21"}' \
+  --columns "stockCode,stockName,weight" \
+  --limit 50
+```
+
+**用途**: 
+- 获取板块龙头个股
+- 分析板块内资金集中程度
+
+---
+
+### 6. K线数据（价格验证）
 
 **API**: `cn/index/candlestick` 或 `cn/company/candlestick`
 
@@ -138,6 +177,63 @@ python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --limit 10
 ```
 
+**返回字段**:
+- `date`: 日期
+- `open`: 开盘价
+- `close`: 收盘价
+- `high`: 最高价
+- `low`: 最低价
+- `change`: 涨跌幅
+- `volume`: 成交量
+- `amount`: 成交额
+- `to_r`: 换手率（个股）
+
+---
+
+### 7. 市场宽度数据
+
+**API**: `cn/market/breadth`
+
+**用途**: 获取市场宽度数据，辅助判断资金分布
+
+**查询示例**:
+```bash
+python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
+  --suffix "cn/market/breadth" \
+  --params '{"date": "2026-03-21"}' \
+  --columns "date,upCount,downCount,limitUpCount,limitDownCount" \
+  --limit 10
+```
+
+**返回字段**:
+- `upCount`: 上涨家数
+- `downCount`: 下跌家数
+- `limitUpCount`: 涨停家数
+- `limitDownCount`: 跌停家数
+- `advancesToDeclinesRatio`: 涨跌比
+
+---
+
+### 8. 大盘资金流向（交易所汇总）
+
+**API**: `cn/market/overview`
+
+**用途**: 获取上交所/深交所的整体市场数据
+
+**查询示例**:
+```bash
+python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
+  --suffix "cn/market/overview" \
+  --params '{"exchange": "sh", "startDate": "2026-03-17", "endDate": "2026-03-23"}' \
+  --columns "date,totalAmount,totalVolume,turnover" \
+  --limit 10
+```
+
+**返回字段**:
+- `totalAmount`: 总成交额
+- `totalVolume`: 总成交量
+- `turnover`: 换手率
+
 ---
 
 ## 核心指标计算
@@ -150,6 +246,8 @@ python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
 | N日累计融资净买入 | Σ(fnpa) over N days | 趋势性资金流向 |
 | 融资强度 | fnpa / ta × 100% | 融资资金参与度 |
 | 融资余额占比 | fb / 流通市值 × 100% | 杠杆水平 |
+| 北向资金强度 | mm_nba / ta × 100% | 外资参与度 |
+| 成交活跃度 | ta / 流通市值 × 100% | 换手情况 |
 
 ### 背离检测
 
@@ -157,6 +255,7 @@ python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
 |------|------|------|
 | 资金-价格背离 | sign(fnpa) != sign(spc) | 融资资金与价格不同向 |
 | 持续背离天数 | 连续背离的交易日数 | 背离持续性 |
+| 北向-指数背离 | sign(mm_nba) != sign(cpc) | 外资与大盘不同向 |
 
 ### 阈值参考
 
@@ -165,15 +264,16 @@ python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
 | 融资净流入 | > 0 | 杠杆资金流入 |
 | 融资强度 | > 3% | 融资参与度较高 |
 | 融资余额占比 | > 10% | 杠杆水平较高，注意强平风险 |
+| 北向净流入 | > 50亿 | 外资大幅流入（沪深合计） |
+| 成交额变化 | > 20% | 成交显著放量 |
 
 ---
 
 ## 批量查询脚本
 
+### 批量查询多只股票的资金流向
 ```bash
 #!/bin/bash
-# 批量查询多只股票的资金流向
-
 stocks=("300750" "600519" "000858" "601398" "600036")
 start_date="2026-03-17"
 end_date="2026-03-23"
@@ -189,6 +289,23 @@ for stock in "${stocks[@]}"; do
 done
 ```
 
+### 批量查询多个行业的融资融券
+```bash
+#!/bin/bash
+industries=("490000" "480000" "340000" "630000" "270000")
+date="2026-03-21"
+
+for industry in "${industries[@]}"; do
+  echo "=== 查询行业 ${industry} ==="
+  python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
+    --suffix "cn/industry/margin-trading-and-securities-lending/sw_2021" \
+    --params "{\"stockCode\": \"${industry}\", \"startDate\": \"${date}\"}" \
+    --columns "date,financingBalance,securitiesBalance,financingBalanceToMarketCap" \
+    --limit 5
+  echo ""
+done
+```
+
 ---
 
 ## 数据限制与替代
@@ -200,6 +317,7 @@ done
 | 主力资金流向 | 超大单/大单/中单/小单净流入 | 使用融资净买入+北向资金 |
 | 板块资金流向排名 | 行业/概念板块资金排名 | 使用行业融资融券数据 |
 | 实时资金流向 | 盘中实时资金动向 | 使用日频数据，T日晚间更新 |
+| 概念板块数据 | 同花顺/东方财富概念板块 | 使用申万行业替代 |
 
 ### 替代指标映射
 
@@ -217,6 +335,31 @@ done
 - **融资融券数据**: T+1日更新（通常在T日晚间20:00后）
 - **北向资金数据**: T日盘后更新
 - **K线数据**: 实时更新
+- **市场宽度数据**: T日盘后更新
+
+---
+
+## 完整分析所需数据清单
+
+执行完整的资金流向分析，需要获取以下数据：
+
+### 1. 大盘层面
+- [ ] 沪深300资金流向（`cn/index/fundamental`）
+- [ ] 市场宽度数据（`cn/market/breadth`）
+- [ ] 交易所成交概况（`cn/market/overview`）
+
+### 2. 行业层面
+- [ ] 申万行业融资融券数据（`cn/industry/margin-trading-and-securities-lending/sw_2021`）
+- [ ] 行业成分股列表（`cn/industry/constituents/sw_2021`）
+
+### 3. 个股层面
+- [ ] 龙头个股资金流向（`cn/company/fundamental/non_financial`）
+- [ ] 个股K线数据（`cn/company/candlestick`）
+
+### 4. 时间窗口建议
+- 短期：1日、5日
+- 中期：10日、20日
+- 趋势：60日
 
 ---
 
@@ -225,3 +368,4 @@ done
 - 理杏仁API文档: `plugins/query_data/lixinger-api-docs/api-docs/`
 - 查询工具: `plugins/query_data/lixinger-api-docs/scripts/query_tool.py`
 - 方法论文档: `references/methodology.md`
+- 输出模板: `references/output-template.md`

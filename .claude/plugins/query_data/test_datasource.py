@@ -164,7 +164,7 @@ def test_brave_search() -> Tuple[str, Any]:
 
 def test_eodhd() -> Tuple[str, Any]:
     """Test EODHD API."""
-    api_key = _require_env("eodhd_api_key")
+    api_key = _require_env("EODHD_API_KEY")
     # Test with AAPL real-time quote
     symbol = "AAPL"
     url = f"https://eodhd.com/api/real-time/{symbol}?api_token={api_key}&fmt=json"
@@ -176,7 +176,7 @@ def test_eodhd() -> Tuple[str, Any]:
 
 def test_financialdatasets(symbol: str) -> Tuple[str, Any]:
     """Test Financial Datasets API."""
-    api_key = _require_env("financialdatasets_api_key")
+    api_key = _require_env("FINANCIALDATASETS_API_KEY")
     url = f"https://api.financialdatasets.ai/prices/snapshot?ticker={symbol}"
     headers = {"X-API-KEY": api_key}
     data = _http_get_json(url, headers=headers)
@@ -187,7 +187,7 @@ def test_financialdatasets(symbol: str) -> Tuple[str, Any]:
 
 def test_serpapi() -> Tuple[str, Any]:
     """Test SerpAPI."""
-    api_key = _require_env("serp_api_key")
+    api_key = _require_env("SERP_API_KEY")
     params = urllib.parse.urlencode(
         {"engine": "google", "q": "Apple stock price", "api_key": api_key}
     )

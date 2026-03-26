@@ -1,0 +1,45 @@
+{
+  "name": "xueqiu-crawler",
+  "site": "xueqiu",
+  "seedUrls": ["https://xueqiu.com"],
+  "urlRules": {
+    "include": [".*xueqiu\\.com/.*"],
+    "exclude": [".*login.*", ".*register.*", ".*auth.*"]
+  },
+  "login": {
+    "required": false
+  },
+  "targets": {
+    "article": {
+      "parser": "article-parser",
+      "urlPattern": ".*xueqiu\\.com/\\d+/\\d+.*",
+      "description": "雪球文章页面，包含作者发布的投研文章"
+    },
+    "search_results": {
+      "parser": "search-result-parser",
+      "urlPattern": ".*xueqiu\\.com/k.*",
+      "description": "站内搜索结果页，支持文章、股票、用户搜索"
+    },
+    "stock_discussion": {
+      "parser": "list-parser",
+      "urlPattern": ".*xueqiu\\.com/S/.*",
+      "description": "个股讨论页面，包含股票相关的热门讨论帖"
+    },
+    "portfolio": {
+      "parser": "generic-parser",
+      "urlPattern": ".*xueqiu\\.com/P/.*",
+      "description": "投资组合页面，包含组合持仓与收益信息"
+    }
+  },
+  "crawler": {
+    "headless": true,
+    "timeout": 30000,
+    "waitBetweenRequests": 1500,
+    "maxRetries": 3,
+    "batchSize": 50
+  },
+  "output": {
+    "directory": "./output/xueqiu",
+    "format": "markdown"
+  }
+}

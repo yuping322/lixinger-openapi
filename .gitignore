@@ -22,7 +22,7 @@ wheels/
 .installed.cfg
 *.egg
 MANIFEST
-
+url_results/
 *node_modules*
 
 # PyInstaller

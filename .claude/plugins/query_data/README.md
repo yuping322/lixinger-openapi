@@ -95,7 +95,7 @@ python3 test_datasource.py --source lixinger
 **使用方式：**
 ```bash
 # 使用 query_tool.py 查询（推荐）
-python3 ../plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
+python3 .claude/plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --suffix "cn/company" \
   --params '{"stockCodes": ["600519"]}' \
   --columns "stockCode,name,pe_ttm,pb"
@@ -205,5 +205,6 @@ curl https://finnhub.io/api/v1/quote?symbol=AAPL&token=YOUR_KEY
 
 ## 更多信息
 
-- 理杏仁完整文档：`../plugins/query_data/lixinger-api-docs/SKILL.md`
-- 理杏仁示例：`../plugins/query_data/lixinger-api-docs/EXAMPLES.md`
+- 理杏仁完整文档：`.claude/plugins/query_data/lixinger-api-docs/README.md`
+- 理杏仁 API 文档：`.claude/plugins/query_data/lixinger-api-docs/docs/`
+- 网页补充抓取说明：`.claude/plugins/stock-crawler/README.md`

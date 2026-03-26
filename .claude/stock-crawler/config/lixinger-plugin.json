@@ -1,0 +1,49 @@
+{
+  "name": "lixinger-crawler",
+  "site": "lixinger",
+  "seedUrls": ["https://www.lixinger.com"],
+  "urlRules": {
+    "include": [".*lixinger\\.com/.*"],
+    "exclude": [".*login.*", ".*logout.*", ".*register.*"]
+  },
+  "login": {
+    "required": true,
+    "loginUrl": "https://www.lixinger.com/login"
+  },
+  "targets": {
+    "announcement_list": {
+      "parser": "list-parser",
+      "urlPattern": ".*/announcement.*",
+      "description": "公告列表页面"
+    },
+    "company_profile": {
+      "parser": "article-parser",
+      "urlPattern": ".*/company/[a-zA-Z0-9]+.*",
+      "description": "公司概况页面"
+    },
+    "financial_data": {
+      "parser": "table-only-parser",
+      "urlPattern": ".*/detail/.*|.*screening.*",
+      "description": "财务数据页面"
+    },
+    "search_results": {
+      "parser": "search-result-parser",
+      "urlPattern": ".*search.*|.*query.*",
+      "description": "搜索结果页面"
+    }
+  },
+  "crawler": {
+    "headless": true,
+    "timeout": 30000,
+    "waitBetweenRequests": 1500,
+    "maxRetries": 3,
+    "batchSize": 50,
+    "waitForSelector": "body",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  },
+  "output": {
+    "directory": "./output/lixinger",
+    "format": "markdown",
+    "includeMetadata": true
+  }
+}

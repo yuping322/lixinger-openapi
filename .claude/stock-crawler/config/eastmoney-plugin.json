@@ -1,0 +1,72 @@
+{
+  "name": "eastmoney-crawler",
+  "site": "eastmoney",
+  "description": "东方财富网数据抓取配置 - 覆盖财经新闻、个股数据、市场概况等投研数据",
+  "seedUrls": [
+    "https://finance.eastmoney.com",
+    "https://quote.eastmoney.com"
+  ],
+  "urlRules": {
+    "include": [
+      ".*eastmoney\.com/.*",
+      ".*emweb\.securities\.eastmoney\.com/.*"
+    ],
+    "exclude": [
+      ".*login.*",
+      ".*register.*",
+      ".*passport.*",
+      ".*account.*",
+      ".*sso\..*",
+      ".*auth.*"
+    ]
+  },
+  "login": {
+    "required": false,
+    "note": "东方财富基础数据无需登录即可访问"
+  },
+  "targets": {
+    "news_list": {
+      "parser": "list-parser",
+      "urlPattern": ".*finance\.eastmoney\.com.*",
+      "description": "财经新闻列表页面",
+      "exampleUrl": "https://finance.eastmoney.com/"
+    },
+    "news_article": {
+      "parser": "article-parser",
+      "urlPattern": ".*/a/\d{8,}\d+\.html",
+      "description": "财经新闻正文页面",
+      "exampleUrl": "https://finance.eastmoney.com/a/202603251234567.html"
+    },
+    "stock_data": {
+      "parser": "table-only-parser",
+      "urlPattern": ".*emweb\.securities\.eastmoney\.com/PC_HSF10/.*",
+      "description": "个股数据页面(F10)",
+      "exampleUrl": "https://emweb.securities.eastmoney.com/PC_HSF10/CompanySurvey/Index?type=web&code=SH600000"
+    },
+    "market_overview": {
+      "parser": "generic-parser",
+      "urlPattern": ".*quote\.eastmoney\.com/.*",
+      "description": "市场概况与行情页面",
+      "exampleUrl": "https://quote.eastmoney.com/"
+    },
+    "search_results": {
+      "parser": "search-result-parser",
+      "urlPattern": ".*search.*eastmoney\.com.*",
+      "description": "站内搜索结果页面",
+      "exampleUrl": "https://search.eastmoney.com/"
+    }
+  },
+  "crawler": {
+    "headless": true,
+    "timeout": 30000,
+    "waitBetweenRequests": 1000,
+    "maxRetries": 3,
+    "batchSize": 100,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  },
+  "output": {
+    "directory": "./output/eastmoney",
+    "format": "markdown",
+    "includeMetadata": true
+  }
+}

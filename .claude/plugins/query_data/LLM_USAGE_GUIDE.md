@@ -6,13 +6,17 @@
 
 `query_tool.py` 是完全独立的工具：
 - ✅ **无需虚拟环境**：直接运行，不需要 `source .venv/bin/activate`
-- ✅ **无需安装依赖**：所有代码已内置在 `scripts/` 目录
-- ✅ **开箱即用**：只需 Python 3.x 和 `token.cfg` 文件
+- ✅ **开箱即用**：只需 Python 3.x、所需依赖和 `token.cfg` 文件
+
+**依赖安装**：
+```bash
+pip install pandas requests duckdb
+```
 
 **直接运行示例**：
 ```bash
 # 不需要激活虚拟环境，直接运行
-python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
+python3 .claude/plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --suffix "cn/company" \
   --params '{"fsTableType": "bank"}' \
   --columns "stockCode,name"
@@ -80,14 +84,14 @@ python3 query_tool.py \
 
 ### 步骤 2：查看 API 文档
 
-打开 `api_new/api-docs/cn_company.md`，查看：
+打开 `lixinger-api-docs/docs/cn_company.md`，查看：
 - 参数表格：了解 `fsTableType` 的用法
 - API 试用示例：了解参数格式
 
 ### 步骤 3：构造命令
 
 ```bash
-python3 plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
+python3 .claude/plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
   --suffix "cn/company" \
   --params '{"fsTableType": "bank"}' \
   --columns "stockCode,name"
@@ -298,7 +302,7 @@ stockCode,name
 1. 始终使用 `--columns` 只返回需要的字段
 2. 主动使用 `--row-filter` 过滤数据
 3. 处理嵌套数据时使用 `--flatten`
-4. 参考 `api_new/api-docs/` 中的 API 文档
+4. 参考 `lixinger-api-docs/docs/` 中的 API 文档
 5. 默认 CSV 格式最节省 token
 
 **目标**：

@@ -1,0 +1,8 @@
+{
+  "name": "stock-crawler",
+  "version": "0.1.0",
+  "description": "Website-first research crawling plugin for non-API, high-timeliness, and unstructured investment data",
+  "author": {
+    "name": "lixinger-openapi"
+  }
+}

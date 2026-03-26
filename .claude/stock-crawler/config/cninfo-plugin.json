@@ -1,0 +1,215 @@
+{
+  "name": "cninfo-plugin",
+  "description": "巨潮资讯网投研数据抓取插件 - 用于获取上市公司公告、信息披露等内容",
+  "seedUrls": [
+    "https://www.cninfo.com.cn/new/commonUrl/pageOfSearch?url=disclosure/list/search"
+  ],
+  "urlRules": {
+    "include": [
+      ".*cninfo\\.com\\.cn.*",
+      ".*disclosure/list/search.*",
+      ".*disclosure/detail.*",
+      ".*new/commonUrl/pageOfSearch.*",
+      ".*new/information/topSearch/query.*",
+      ".*new/hisAnnouncement/query.*"
+    ],
+    "exclude": [
+      ".*login.*",
+      ".*logout.*",
+      ".*register.*",
+      ".*password.*",
+      ".*/css/.*",
+      ".*/js/.*",
+      ".*/images/.*",
+      ".*\\.pdf$",
+      ".*\\.doc$",
+      ".*\\.docx$",
+      ".*\\.xls$",
+      ".*\\.xlsx$"
+    ]
+  },
+  "login": {
+    "required": false,
+    "username": "",
+    "password": "",
+    "loginUrl": ""
+  },
+  "crawler": {
+    "headless": true,
+    "timeout": 30000,
+    "waitBetweenRequests": 1000,
+    "maxRetries": 3,
+    "fetchMethod": "playwright",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "headers": {
+      "Accept": "application/json, text/javascript, */*; q=0.01",
+      "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
+      "X-Requested-With": "XMLHttpRequest"
+    }
+  },
+  "output": {
+    "directory": "./output/cninfo",
+    "format": "markdown",
+    "storage": {
+      "type": "file",
+      "lancedb": {
+        "uri": "lancedb",
+        "table": "cninfo_announcements"
+      }
+    }
+  },
+  "targets": {
+    "announcement_list": {
+      "description": "公告列表页",
+      "urlPattern": ".*disclosure/list/search.*",
+      "apiEndpoint": "https://www.cninfo.com.cn/new/hisAnnouncement/query",
+      "method": "POST",
+      "dataType": "json",
+      "pagination": {
+        "enabled": true,
+        "pageParam": "pageNum",
+        "pageSizeParam": "pageSize",
+        "defaultPageSize": 30,
+        "totalField": "totalRecord"
+      },
+      "selectors": {
+        "listContainer": ".search-table tbody tr",
+        "title": "td:nth-child(2) a",
+        "code": "td:nth-child(1)",
+        "company": "td:nth-child(3)",
+        "announcementType": "td:nth-child(4)",
+        "publishDate": "td:nth-child(5)",
+        "detailLink": "td:nth-child(2) a"
+      },
+      "fields": [
+        "code",
+        "name",
+        "announcementTitle",
+        "announcementTypeName",
+        "announcementTime",
+        "announcementId"
+      ]
+    },
+    "announcement_article": {
+      "description": "公告正文详情页",
+      "urlPattern": ".*disclosure/detail.*",
+      "dataType": "html",
+      "selectors": {
+        "title": ".detail-title",
+        "content": ".detail-body",
+        "publishDate": ".detail-date",
+        "company": ".detail-stock",
+        "stockCode": ".detail-code",
+        "announcementType": ".detail-type",
+        "attachmentLinks": ".attachment a"
+      },
+      "contentExtract": {
+        "mainContent": ".detail-body",
+        "removeSelectors": [
+          ".advertisement",
+          ".sidebar",
+          ".related-news"
+        ]
+      }
+    },
+    "company_disclosure": {
+      "description": "公司信息披露页",
+      "urlPattern": ".*company.*",
+      "apiEndpoint": "https://www.cninfo.com.cn/new/hisAnnouncement/query",
+      "method": "POST",
+      "dataType": "json",
+      "pagination": {
+        "enabled": true,
+        "pageParam": "pageNum",
+        "pageSizeParam": "pageSize",
+        "defaultPageSize": 30,
+        "totalField": "totalRecord"
+      },
+      "selectors": {
+        "listContainer": ".search-table tbody tr",
+        "title": "td:nth-child(2) a",
+        "code": "td:nth-child(1)",
+        "company": "td:nth-child(3)",
+        "announcementType": "td:nth-child(4)",
+        "publishDate": "td:nth-child(5)",
+        "detailLink": "td:nth-child(2) a"
+      },
+      "fields": [
+        "code",
+        "name",
+        "announcementTitle",
+        "announcementTypeName",
+        "announcementTime",
+        "announcementId"
+      ]
+    },
+    "search_results": {
+      "description": "搜索结果页",
+      "urlPattern": ".*new/commonUrl/pageOfSearch.*",
+      "apiEndpoint": "https://www.cninfo.com.cn/new/information/topSearch/query",
+      "method": "POST",
+      "dataType": "json",
+      "pagination": {
+        "enabled": true,
+        "pageParam": "pageNum",
+        "pageSizeParam": "pageSize",
+        "defaultPageSize": 10
+      },
+      "searchParams": {
+        "keyWord": "",
+        "searchTypes": "1,11,12,13,14",
+        "maxSecNum": 10,
+        "maxListNum": 5
+      },
+      "selectors": {
+        "stockResults": ".search-stock-item",
+        "announcementResults": ".search-announcement-item",
+        "fundResults": ".search-fund-item",
+        "bondResults": ".search-bond-item"
+      }
+    }
+  },
+  "linkDiscovery": {
+    "prioritizedPatterns": [
+      {
+        "description": "公告详情页链接",
+        "selector": "a[href*=\"disclosure/detail\"]",
+        "pathIncludes": [
+          "/disclosure/detail"
+        ]
+      },
+      {
+        "description": "分页链接",
+        "selector": ".pagination a",
+        "pathIncludes": [
+          "pageNum="
+        ]
+      }
+    ]
+  },
+  "parser": {
+    "urlPatternOverrides": [
+      {
+        "pattern": ".*disclosure/list/search.*",
+        "parser": "AnnouncementListParser"
+      },
+      {
+        "pattern": ".*disclosure/detail.*",
+        "parser": "AnnouncementArticleParser"
+      },
+      {
+        "pattern": ".*new/commonUrl/pageOfSearch.*",
+        "parser": "SearchResultsParser"
+      }
+    ]
+  },
+  "rateLimit": {
+    "enabled": true,
+    "requestsPerSecond": 2,
+    "burst": 5
+  },
+  "proxy": {
+    "enabled": false,
+    "url": ""
+  }
+}
