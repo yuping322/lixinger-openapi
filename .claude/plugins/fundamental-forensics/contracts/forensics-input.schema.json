@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FundamentalForensicsInput",
+  "type": "object",
+  "required": ["symbol", "market", "signals"],
+  "properties": {
+    "as_of_date": {"type": "string", "format": "date"},
+    "symbol": {"type": "string"},
+    "market": {"type": "string", "enum": ["CN", "HK", "US"]},
+    "signals": {
+      "type": "object",
+      "required": [
+        "receivables_to_revenue_pct",
+        "ocf_to_net_income",
+        "inventory_growth_yoy_pct",
+        "goodwill_to_equity_pct",
+        "equity_pledge_ratio_pct",
+        "insider_net_sell_intensity",
+        "hype_fundamental_gap",
+        "st_delist_risk_score"
+      ],
+      "properties": {
+        "receivables_to_revenue_pct": {"type": "number"},
+        "ocf_to_net_income": {"type": "number"},
+        "inventory_growth_yoy_pct": {"type": "number"},
+        "goodwill_to_equity_pct": {"type": "number"},
+        "equity_pledge_ratio_pct": {"type": "number"},
+        "insider_net_sell_intensity": {"type": "number"},
+        "hype_fundamental_gap": {"type": "number"},
+        "st_delist_risk_score": {"type": "number"}
+      },
+      "additionalProperties": true
+    },
+    "trend": {
+      "type": "object",
+      "properties": {
+        "delta_30d": {"type": "number"},
+        "delta_90d": {"type": "number"},
+        "fragility_trend": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "mitigants": {
+      "type": "object",
+      "properties": {
+        "credit": {"type": "number"}
+      },
+      "additionalProperties": true
+    },
+    "data_quality": {
+      "type": "object",
+      "properties": {
+        "missing_ratio": {"type": "number"},
+        "uncertainty_penalty": {"type": "number"}
+      },
+      "additionalProperties": true
+    },
+    "invalidators": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "additionalProperties": true
+}

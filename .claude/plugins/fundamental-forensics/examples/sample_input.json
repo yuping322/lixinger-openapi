@@ -1,0 +1,32 @@
+{
+  "as_of_date": "2026-03-26",
+  "symbol": "600XXX.SH",
+  "market": "CN",
+  "signals": {
+    "receivables_to_revenue_pct": 34.2,
+    "ocf_to_net_income": 0.62,
+    "inventory_growth_yoy_pct": 28.5,
+    "goodwill_to_equity_pct": 31.0,
+    "equity_pledge_ratio_pct": 22.0,
+    "insider_net_sell_intensity": 0.48,
+    "hype_fundamental_gap": 67.0,
+    "st_delist_risk_score": 38.0
+  },
+  "trend": {
+    "delta_30d": 12,
+    "delta_90d": 19,
+    "fragility_trend": "deteriorating"
+  },
+  "mitigants": {
+    "credit": 4.0,
+    "notes": ["账上现金充裕", "短债压力可控"]
+  },
+  "data_quality": {
+    "missing_ratio": 0.06,
+    "uncertainty_penalty": 3
+  },
+  "invalidators": [
+    "未来两个季度 OCF/NI 回升至 1.0 以上",
+    "应收账龄结构明显改善"
+  ]
+}
