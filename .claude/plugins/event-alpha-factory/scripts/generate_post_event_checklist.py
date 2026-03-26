@@ -3,7 +3,7 @@
 
 Usage:
   python3 generate_post_event_checklist.py \
-    --playbook plugins/event-alpha-factory/events/post_event_playbook.json \
+    --playbook .claude/plugins/event-alpha-factory/events/post_event_playbook.json \
     --event-type earnings_beat
 """
 
