@@ -29,8 +29,6 @@ node request/fetch-lixinger-screener.js --query "PE-TTM(扣非)统计值10年分
 node request/fetch-lixinger-screener.js --input-file unified-input.example.json --output csv
 ```
 
-所有理杏仁相关入口现在都只保留在这个目录下，不再保留 `stock-crawler/scripts` 里的兼容包装。
-
 浏览器版登录优先级：
 
 - 已保存的 `storageState`
