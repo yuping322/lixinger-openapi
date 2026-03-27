@@ -11,6 +11,7 @@
 - `industry-chain-mapper`：产业链映射与景气跟踪
 - `concept-board-analyzer`：概念板块分析
 - `policy-sensitivity-brief`：政策敏感度简报
+- `limit-up-down-linkage-detector`：涨跌停联动识别（主线/退潮/新概念）
 - `industry-report-analyzer`：行业研报分析
 
 ## 目录结构
@@ -26,18 +27,15 @@
 - `/industry-chain-mapper [产业链主题]`
 - `/concept-board-analyzer [概念主题]`
 - `/policy-sensitivity-brief [政策主题]`
+- `/limit-up-down-linkage-detector [窗口/范围]`
 - `/industry-report-analyzer [行业/研报主题]`
 - `/industry-concept-research [研究主题]`（综合编排入口）
 
 ## 统一执行流程
 
-1. 先用行业/概念横截面识别“哪里最强、哪里分化”；
-2. 再用轮动框架判断“为什么强、能否持续”；
-3. 用产业链映射验证“利润与景气是否可传导”；
-4. 用政策敏感度判断“催化与扰动方向”；
-5. 最终输出可执行监控清单与失效条件。
-
-## 行业细节化扩展调研
-
-- 候选新增 skills 与优先级见：`ROADMAP_INDUSTRY_DETAIL_SKILLS.md`
-
+1. 先用涨跌停联动识别“哪里在扩散、哪里在退潮”；
+2. 再用行业/概念横截面识别“哪里最强、哪里分化”；
+3. 用轮动框架判断“为什么强、能否持续”；
+4. 用产业链映射验证“利润与景气是否可传导”；
+5. 用政策敏感度判断“催化与扰动方向”；
+6. 最终输出可执行监控清单与失效条件。
