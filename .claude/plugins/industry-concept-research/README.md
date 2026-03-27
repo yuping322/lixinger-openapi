@@ -26,6 +26,7 @@
 - `/industry-chain-mapper [产业链主题]`
 - `/concept-board-analyzer [概念主题]`
 - `/policy-sensitivity-brief [政策主题]`
+- `/industry-report-analyzer [行业/研报主题]`
 - `/industry-concept-research [研究主题]`（综合编排入口）
 - `/industry-report-analyzer [行业/公司/时间窗]`
 

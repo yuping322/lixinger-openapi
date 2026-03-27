@@ -1,0 +1,86 @@
+{
+  "rule_id": "PLEDGE_003",
+  "version": "0.1.0",
+  "status": "active",
+  "rule_type": "event_only",
+  "risk_dimensions": [
+    "equity-pledge-risk-monitor"
+  ],
+  "scope": {
+    "market": "CN-A",
+    "universe": "high_leverage",
+    "position_stage": "post_position"
+  },
+  "inputs_required": [
+    {
+      "name": "pledge_warning_announcement",
+      "type": "boolean",
+      "source": "announcement",
+      "required": true
+    },
+    {
+      "name": "price_return_5d",
+      "type": "number",
+      "source": "market",
+      "required": true
+    }
+  ],
+  "logic": {
+    "expression": "pledge_warning_announcement == true || price_return_5d < -0.12",
+    "thresholds": {
+      "price_return_5d": -0.12
+    },
+    "lookback_window": "5d",
+    "trigger_mode": "event",
+    "explain_template": "出现质押风险提示或短期急跌，触发强制复核质押平仓链条。"
+  },
+  "severity": {
+    "mapping": [
+      {
+        "condition": "pledge_warning_announcement == true && price_return_5d < -0.12",
+        "level": "critical"
+      }
+    ],
+    "default_level": "high"
+  },
+  "confidence": {
+    "method": "heuristic",
+    "base_score": 0.75
+  },
+  "event_triggers": [
+    {
+      "source": "announcement",
+      "event_type": "pledge_margin_call_notice",
+      "action": "open_watch"
+    },
+    {
+      "source": "market_anomaly",
+      "event_type": "limit_down",
+      "action": "escalate"
+    }
+  ],
+  "invalidation_conditions": [
+    "pledge_warning_announcement == false && price_return_5d > -0.03"
+  ],
+  "output_contract": {
+    "must_include_fields": [
+      "alert_id",
+      "security_id",
+      "as_of_date",
+      "risk_type",
+      "severity",
+      "thesis",
+      "evidence_refs",
+      "trigger_logic",
+      "confidence",
+      "expected_window",
+      "invalidation_conditions",
+      "monitor_next"
+    ]
+  },
+  "ownership": {
+    "owner": "risk-team",
+    "reviewer": "trading-risk",
+    "created_at": "2026-03-26"
+  }
+}
