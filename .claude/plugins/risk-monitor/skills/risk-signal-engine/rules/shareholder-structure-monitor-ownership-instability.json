@@ -1,0 +1,82 @@
+{
+  "rule_id": "SHH_STRUCT_002",
+  "version": "0.1.0",
+  "status": "active",
+  "rule_type": "single_dimension",
+  "risk_dimensions": [
+    "shareholder-structure-monitor"
+  ],
+  "scope": {
+    "market": "CN-A",
+    "universe": "all_watchlist",
+    "position_stage": "post_selection_pre_position"
+  },
+  "inputs_required": [
+    {
+      "name": "top10_holder_turnover_4q",
+      "type": "number",
+      "source": "filing_update",
+      "required": true
+    },
+    {
+      "name": "institutional_holder_ratio_change_4q",
+      "type": "number",
+      "source": "filing_update",
+      "required": true
+    }
+  ],
+  "logic": {
+    "expression": "top10_holder_turnover_4q > 0.35 && institutional_holder_ratio_change_4q < -0.08",
+    "thresholds": {
+      "top10_holder_turnover_4q": 0.35,
+      "institutional_holder_ratio_change_4q": -0.08
+    },
+    "lookback_window": "4q",
+    "trigger_mode": "batch",
+    "explain_template": "核心股东更替频繁且机构撤退，股权结构稳定性下降。"
+  },
+  "severity": {
+    "mapping": [
+      {
+        "condition": "top10_holder_turnover_4q > 0.5",
+        "level": "high"
+      }
+    ],
+    "default_level": "medium"
+  },
+  "confidence": {
+    "method": "heuristic",
+    "base_score": 0.7
+  },
+  "event_triggers": [
+    {
+      "source": "filing_update",
+      "event_type": "shareholder_list_update",
+      "action": "recompute"
+    }
+  ],
+  "invalidation_conditions": [
+    "top10_holder_turnover_4q < 0.2"
+  ],
+  "output_contract": {
+    "must_include_fields": [
+      "alert_id",
+      "security_id",
+      "as_of_date",
+      "risk_type",
+      "severity",
+      "thesis",
+      "evidence_refs",
+      "trigger_logic",
+      "confidence",
+      "expected_window",
+      "invalidation_conditions",
+      "monitor_next"
+    ]
+  },
+  "ownership": {
+    "owner": "risk-team",
+    "reviewer": "governance-risk",
+    "created_at": "2026-03-26"
+  }
+}

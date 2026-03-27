@@ -1,0 +1,88 @@
+{
+  "rule_id": "GOODWILL_003",
+  "version": "0.1.0",
+  "status": "active",
+  "rule_type": "event_only",
+  "risk_dimensions": [
+    "goodwill-risk-monitor"
+  ],
+  "scope": {
+    "market": "CN-A",
+    "universe": "all_watchlist",
+    "position_stage": "post_position"
+  },
+  "inputs_required": [
+    {
+      "name": "auditor_changed",
+      "type": "boolean",
+      "source": "announcement",
+      "required": true
+    },
+    {
+      "name": "impairment_test_disclosure_delay",
+      "type": "boolean",
+      "source": "announcement",
+      "required": true
+    }
+  ],
+  "logic": {
+    "expression": "auditor_changed == true && impairment_test_disclosure_delay == true",
+    "thresholds": {
+      "auditor_changed": "true",
+      "impairment_test_disclosure_delay": "true"
+    },
+    "lookback_window": "12m",
+    "trigger_mode": "event",
+    "explain_template": "审计机构变更叠加减值测试披露异常，需防范一次性商誉减值冲击。"
+  },
+  "severity": {
+    "mapping": [
+      {
+        "condition": "auditor_changed == true && impairment_test_disclosure_delay == true",
+        "level": "high"
+      }
+    ],
+    "default_level": "medium"
+  },
+  "confidence": {
+    "method": "heuristic",
+    "base_score": 0.68
+  },
+  "event_triggers": [
+    {
+      "source": "announcement",
+      "event_type": "auditor_change",
+      "action": "recompute"
+    },
+    {
+      "source": "announcement",
+      "event_type": "annual_report_delay",
+      "action": "escalate"
+    }
+  ],
+  "invalidation_conditions": [
+    "auditor_changed == false",
+    "impairment_test_disclosure_delay == false"
+  ],
+  "output_contract": {
+    "must_include_fields": [
+      "alert_id",
+      "security_id",
+      "as_of_date",
+      "risk_type",
+      "severity",
+      "thesis",
+      "evidence_refs",
+      "trigger_logic",
+      "confidence",
+      "expected_window",
+      "invalidation_conditions",
+      "monitor_next"
+    ]
+  },
+  "ownership": {
+    "owner": "risk-team",
+    "reviewer": "fundamental-risk",
+    "created_at": "2026-03-26"
+  }
+}

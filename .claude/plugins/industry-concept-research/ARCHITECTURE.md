@@ -43,6 +43,7 @@
   - `industry-chain-mapper`
   - `concept-board-analyzer`
   - `policy-sensitivity-brief`
+  - `industry-report-analyzer`
 
 - **L2：数据层（Data Adapters）**
   - 理杏仁接口、公开行情/政策公告数据、用户自定义股票池
@@ -84,6 +85,7 @@
 | industry-chain-mapper | 产业链节点与代理指标 | 传导路径与景气图谱 | 验证“业绩兑现链路” |
 | concept-board-analyzer | 概念指数、热度、成交 | 主题拥挤度与轮动节奏 | 捕捉“情绪与催化” |
 | policy-sensitivity-brief | 政策事件与行业暴露 | 敏感度矩阵与情景推演 | 识别“政策弹性/风险” |
+| industry-report-analyzer | 券商/机构行业研报 | 核心观点拆解与假设清单 | 校准“预期与现实偏差” |
 
 ## 6. 新解决方案（整合后）
 
@@ -101,6 +103,7 @@
 - 轮动方向（超配/标配/低配）
 - 产业链兑现路径（价格、库存、订单、产能）
 - 政策敏感度与情景触发条件
+- 行业研报关键假设与反证点
 - 下周/下月监控清单
 
 ## 6.2 双引擎策略
