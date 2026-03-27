@@ -34,9 +34,10 @@ description: 识别A股中便宜但在变好的公司，重点区分深度价值
 优先使用 `lixinger-screener` 建池，参考 [references/data-queries.md](references/data-queries.md)。
 
 推荐顺序：
-1. `low-valuation-high-dividend.json` 作为第一轮候选池
-2. 结果过多时切到 `low-val-dividend-dip.json`
-3. 需要增强现金流约束时切到 `low-val-dividend-dip-cashflow.json`，并补上 `PCF-TTM >= 0`
+1. `quality-value.json` 作为默认第一轮候选池（已内置全局 hard guards）
+2. 结果过多时切到 `low-val-dividend-dip.json`（收窄到近期回撤明显的样本）
+3. 需要同时保留股息率约束时，可用 `low-valuation-high-dividend.json` 作为对照模板
+4. `low-val-dividend-dip-cashflow.json` 用于最严格的现金流 + 回撤双约束场景
 
 不要在建池阶段直接下结论；建池只解决“有哪些公司值得进入下一轮”。
 

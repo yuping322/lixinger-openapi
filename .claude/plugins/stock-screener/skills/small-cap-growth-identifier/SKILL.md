@@ -5,7 +5,7 @@ description: 识别A股中被忽视的小而强、小而新、小而早的成长
 
 # 小盘成长策略
 
-围绕“成长是否真实、为什么还没被充分定价、接下来如何验证”执行。
+围绕"成长是否真实、为什么还没被充分定价、接下来如何验证"执行。
 
 ## 何时使用
 
@@ -26,9 +26,19 @@ description: 识别A股中被忽视的小而强、小而新、小而早的成长
 
 ### 2. 先建候选池
 
-优先使用 `lixinger-screener` 做“小市值 + 增长 + 基础质量”初筛，详见 [references/data-queries.md](references/data-queries.md)。
+默认使用 `small-cap-quality-growth.json` 作为第一轮候选池，详见 [references/data-queries.md](references/data-queries.md)。
 
-建池只解决“哪些公司值得继续研究”，不要在这一步直接下成长结论。
+该模板已内置全局 hard guards（PE > 0、扣非净利润 > 0、经营现金流 > 0、上市满 3 年）以及基础可交易性约束（流通市值 >= 15 亿）。
+
+建池只解决"哪些公司值得继续研究"，不要在这一步直接下成长结论。
+
+**建池后必须执行量化可交易性门槛**（见 [references/small-cap-screening-criteria.md](references/small-cap-screening-criteria.md) 第 1.1 节）：
+- 近 20 个交易日日均成交额 < 0.5 亿元：直接淘汰
+- 近 20 个交易日平均换手率 < 1%：直接淘汰
+- 近 1 日成交额 > 近 20 日均 3 倍但此前长期偏弱：视为"单日放量幻觉"，不能按流动性达标处理
+- 近 20 日出现连续涨停或累计 3 次及以上极端拥挤放量：降为观察名单
+
+只有同时通过 hard guards 与可交易性门槛，才允许进入后续成长判断层。
 
 ### 3. 判断成长是否真实
 
