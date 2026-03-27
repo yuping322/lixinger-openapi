@@ -1,0 +1,19 @@
+{
+  "name": "unlock-shock-overshoot-detector",
+  "version": "1.0.0",
+  "metadata": {
+    "description": "评估A股限售解禁后的短期冲击是否被高估，并估算价格修复时间。整合限售解禁、大宗交易、股东减持与资金流四类信号，输出错杀机会分级与交易风控。",
+    "created": "2026-03-26",
+    "language": "zh-CN"
+  },
+  "plugins": [
+    {
+      "name": "unlock-shock-overshoot-detector-plugin",
+      "description": "评估A股限售解禁后的短期冲击是否被高估，并估算价格修复时间。整合限售解禁、大宗交易、股东减持与资金流四类信号，输出错杀机会分级与交易风控。",
+      "source": "./",
+      "skills": [
+        "./SKILL.md"
+      ]
+    }
+  ]
+}
