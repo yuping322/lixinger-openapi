@@ -1,0 +1,81 @@
+{
+  "rule_id": "ST_002",
+  "version": "0.1.0",
+  "status": "active",
+  "rule_type": "single_dimension",
+  "risk_dimensions": [
+    "st-delist-risk-scanner"
+  ],
+  "scope": {
+    "market": "CN-A",
+    "universe": "all_watchlist",
+    "position_stage": "post_selection_pre_position"
+  },
+  "inputs_required": [
+    {
+      "name": "net_profit_negative_years",
+      "type": "number",
+      "source": "lixinger",
+      "required": true
+    },
+    {
+      "name": "net_assets_negative",
+      "type": "boolean",
+      "source": "lixinger",
+      "required": true
+    }
+  ],
+  "logic": {
+    "expression": "net_profit_negative_years >= 2 || net_assets_negative == true",
+    "thresholds": {
+      "net_profit_negative_years": 2
+    },
+    "lookback_window": "3y",
+    "trigger_mode": "batch",
+    "explain_template": "连续亏损或净资产转负，触及ST/退市前置风险区间。"
+  },
+  "severity": {
+    "mapping": [
+      {
+        "condition": "net_profit_negative_years >= 3 && net_assets_negative == true",
+        "level": "critical"
+      }
+    ],
+    "default_level": "high"
+  },
+  "confidence": {
+    "method": "heuristic",
+    "base_score": 0.85
+  },
+  "event_triggers": [
+    {
+      "source": "filing_update",
+      "event_type": "annual_report",
+      "action": "recompute"
+    }
+  ],
+  "invalidation_conditions": [
+    "net_profit_negative_years == 0 && net_assets_negative == false"
+  ],
+  "output_contract": {
+    "must_include_fields": [
+      "alert_id",
+      "security_id",
+      "as_of_date",
+      "risk_type",
+      "severity",
+      "thesis",
+      "evidence_refs",
+      "trigger_logic",
+      "confidence",
+      "expected_window",
+      "invalidation_conditions",
+      "monitor_next"
+    ]
+  },
+  "ownership": {
+    "owner": "risk-team",
+    "reviewer": "listing-risk",
+    "created_at": "2026-03-26"
+  }
+}
