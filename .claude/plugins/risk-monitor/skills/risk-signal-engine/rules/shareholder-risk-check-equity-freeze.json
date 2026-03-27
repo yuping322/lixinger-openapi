@@ -1,0 +1,88 @@
+{
+  "rule_id": "SHH_RISK_003",
+  "version": "0.1.0",
+  "status": "active",
+  "rule_type": "event_only",
+  "risk_dimensions": [
+    "shareholder-risk-check"
+  ],
+  "scope": {
+    "market": "CN-A",
+    "universe": "all_watchlist",
+    "position_stage": "post_position"
+  },
+  "inputs_required": [
+    {
+      "name": "controlling_holder_equity_frozen_ratio",
+      "type": "number",
+      "source": "announcement",
+      "required": true
+    },
+    {
+      "name": "legal_dispute_count_12m",
+      "type": "number",
+      "source": "news",
+      "required": true
+    }
+  ],
+  "logic": {
+    "expression": "controlling_holder_equity_frozen_ratio > 0.1 || legal_dispute_count_12m >= 3",
+    "thresholds": {
+      "controlling_holder_equity_frozen_ratio": 0.1,
+      "legal_dispute_count_12m": 3
+    },
+    "lookback_window": "12m",
+    "trigger_mode": "event",
+    "explain_template": "控股股东股份冻结或诉讼频发，治理与资金链风险上升。"
+  },
+  "severity": {
+    "mapping": [
+      {
+        "condition": "controlling_holder_equity_frozen_ratio > 0.2",
+        "level": "critical"
+      }
+    ],
+    "default_level": "high"
+  },
+  "confidence": {
+    "method": "heuristic",
+    "base_score": 0.82
+  },
+  "event_triggers": [
+    {
+      "source": "announcement",
+      "event_type": "equity_freeze_notice",
+      "action": "escalate"
+    },
+    {
+      "source": "news",
+      "event_type": "major_legal_dispute",
+      "action": "recompute"
+    }
+  ],
+  "invalidation_conditions": [
+    "controlling_holder_equity_frozen_ratio == 0",
+    "legal_dispute_count_12m <= 1"
+  ],
+  "output_contract": {
+    "must_include_fields": [
+      "alert_id",
+      "security_id",
+      "as_of_date",
+      "risk_type",
+      "severity",
+      "thesis",
+      "evidence_refs",
+      "trigger_logic",
+      "confidence",
+      "expected_window",
+      "invalidation_conditions",
+      "monitor_next"
+    ]
+  },
+  "ownership": {
+    "owner": "risk-team",
+    "reviewer": "governance-risk",
+    "created_at": "2026-03-26"
+  }
+}

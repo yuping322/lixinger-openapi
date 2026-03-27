@@ -1,0 +1,99 @@
+{
+  "rule_id": "PLEDGE_002",
+  "version": "0.1.0",
+  "status": "active",
+  "rule_type": "single_dimension",
+  "risk_dimensions": [
+    "equity-pledge-risk-monitor"
+  ],
+  "scope": {
+    "market": "CN-A",
+    "universe": "all_watchlist",
+    "position_stage": "post_selection_pre_position"
+  },
+  "inputs_required": [
+    {
+      "name": "pledge_ratio_controlling_shareholder",
+      "type": "number",
+      "source": "filing_update",
+      "required": true
+    },
+    {
+      "name": "top1_holder_share_pct",
+      "type": "number",
+      "source": "filing_update",
+      "required": true
+    },
+    {
+      "name": "avg_daily_turnover_20d",
+      "type": "number",
+      "source": "market",
+      "required": true
+    }
+  ],
+  "logic": {
+    "expression": "pledge_ratio_controlling_shareholder > 0.45 && top1_holder_share_pct > 0.3 && avg_daily_turnover_20d < 0.02",
+    "thresholds": {
+      "pledge_ratio_controlling_shareholder": 0.45,
+      "top1_holder_share_pct": 0.3,
+      "avg_daily_turnover_20d": 0.02
+    },
+    "lookback_window": "20d",
+    "trigger_mode": "hybrid",
+    "explain_template": "控股股东高质押叠加高持股集中和低流动性，存在质押平仓冲击风险。"
+  },
+  "severity": {
+    "mapping": [
+      {
+        "condition": "pledge_ratio_controlling_shareholder > 0.6",
+        "level": "critical"
+      },
+      {
+        "condition": "pledge_ratio_controlling_shareholder > 0.5",
+        "level": "high"
+      }
+    ],
+    "default_level": "medium"
+  },
+  "confidence": {
+    "method": "heuristic",
+    "base_score": 0.78
+  },
+  "event_triggers": [
+    {
+      "source": "filing_update",
+      "event_type": "equity_pledge_update",
+      "action": "recompute"
+    },
+    {
+      "source": "market_anomaly",
+      "event_type": "price_gap_down",
+      "action": "escalate"
+    }
+  ],
+  "invalidation_conditions": [
+    "pledge_ratio_controlling_shareholder < 0.3",
+    "avg_daily_turnover_20d >= 0.03"
+  ],
+  "output_contract": {
+    "must_include_fields": [
+      "alert_id",
+      "security_id",
+      "as_of_date",
+      "risk_type",
+      "severity",
+      "thesis",
+      "evidence_refs",
+      "trigger_logic",
+      "confidence",
+      "expected_window",
+      "invalidation_conditions",
+      "monitor_next"
+    ]
+  },
+  "ownership": {
+    "owner": "risk-team",
+    "reviewer": "trading-risk",
+    "created_at": "2026-03-26"
+  }
+}
