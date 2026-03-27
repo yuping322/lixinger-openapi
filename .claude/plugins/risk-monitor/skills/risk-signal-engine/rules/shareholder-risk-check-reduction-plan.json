@@ -1,0 +1,82 @@
+{
+  "rule_id": "SHH_RISK_002",
+  "version": "0.1.0",
+  "status": "active",
+  "rule_type": "event_only",
+  "risk_dimensions": [
+    "shareholder-risk-check"
+  ],
+  "scope": {
+    "market": "CN-A",
+    "universe": "all_watchlist",
+    "position_stage": "post_position"
+  },
+  "inputs_required": [
+    {
+      "name": "major_holder_reduction_plan_ratio",
+      "type": "number",
+      "source": "announcement",
+      "required": true
+    },
+    {
+      "name": "free_float_ratio",
+      "type": "number",
+      "source": "market",
+      "required": true
+    }
+  ],
+  "logic": {
+    "expression": "major_holder_reduction_plan_ratio > 0.03 && free_float_ratio < 0.35",
+    "thresholds": {
+      "major_holder_reduction_plan_ratio": 0.03,
+      "free_float_ratio": 0.35
+    },
+    "lookback_window": "6m",
+    "trigger_mode": "event",
+    "explain_template": "大股东减持计划占比偏高且流通盘偏小，抛压放大。"
+  },
+  "severity": {
+    "mapping": [
+      {
+        "condition": "major_holder_reduction_plan_ratio > 0.06",
+        "level": "high"
+      }
+    ],
+    "default_level": "medium"
+  },
+  "confidence": {
+    "method": "heuristic",
+    "base_score": 0.73
+  },
+  "event_triggers": [
+    {
+      "source": "announcement",
+      "event_type": "shareholder_reduction_plan",
+      "action": "escalate"
+    }
+  ],
+  "invalidation_conditions": [
+    "major_holder_reduction_plan_ratio < 0.01"
+  ],
+  "output_contract": {
+    "must_include_fields": [
+      "alert_id",
+      "security_id",
+      "as_of_date",
+      "risk_type",
+      "severity",
+      "thesis",
+      "evidence_refs",
+      "trigger_logic",
+      "confidence",
+      "expected_window",
+      "invalidation_conditions",
+      "monitor_next"
+    ]
+  },
+  "ownership": {
+    "owner": "risk-team",
+    "reviewer": "event-risk",
+    "created_at": "2026-03-26"
+  }
+}

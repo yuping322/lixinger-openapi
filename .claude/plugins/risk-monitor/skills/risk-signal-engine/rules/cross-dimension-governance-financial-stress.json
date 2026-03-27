@@ -1,0 +1,92 @@
+{
+  "rule_id": "CROSS_003",
+  "version": "0.1.0",
+  "status": "active",
+  "rule_type": "cross_dimension",
+  "risk_dimensions": [
+    "shareholder-structure-monitor",
+    "goodwill-risk-monitor",
+    "st-delist-risk-scanner"
+  ],
+  "scope": {
+    "market": "CN-A",
+    "universe": "all_watchlist",
+    "position_stage": "post_selection_pre_position"
+  },
+  "inputs_required": [
+    {
+      "name": "top10_holder_turnover_4q",
+      "type": "number",
+      "source": "filing_update",
+      "required": true
+    },
+    {
+      "name": "goodwill_to_equity",
+      "type": "number",
+      "source": "lixinger",
+      "required": true
+    },
+    {
+      "name": "net_profit_negative_years",
+      "type": "number",
+      "source": "lixinger",
+      "required": true
+    }
+  ],
+  "logic": {
+    "expression": "top10_holder_turnover_4q > 0.3 && goodwill_to_equity > 0.3 && net_profit_negative_years >= 2",
+    "thresholds": {
+      "top10_holder_turnover_4q": 0.3,
+      "goodwill_to_equity": 0.3,
+      "net_profit_negative_years": 2
+    },
+    "lookback_window": "4q",
+    "trigger_mode": "batch",
+    "explain_template": "股权结构动荡、商誉压力与盈利恶化同时出现，基本面脆弱性高。"
+  },
+  "severity": {
+    "mapping": [
+      {
+        "condition": "net_profit_negative_years >= 3 && goodwill_to_equity > 0.45",
+        "level": "critical"
+      }
+    ],
+    "default_level": "high"
+  },
+  "confidence": {
+    "method": "heuristic",
+    "base_score": 0.79
+  },
+  "event_triggers": [
+    {
+      "source": "filing_update",
+      "event_type": "annual_report",
+      "action": "recompute"
+    }
+  ],
+  "invalidation_conditions": [
+    "top10_holder_turnover_4q < 0.15",
+    "net_profit_negative_years <= 1"
+  ],
+  "output_contract": {
+    "must_include_fields": [
+      "alert_id",
+      "security_id",
+      "as_of_date",
+      "risk_type",
+      "severity",
+      "thesis",
+      "evidence_refs",
+      "trigger_logic",
+      "confidence",
+      "expected_window",
+      "invalidation_conditions",
+      "monitor_next"
+    ]
+  },
+  "ownership": {
+    "owner": "risk-team",
+    "reviewer": "fundamental-risk",
+    "created_at": "2026-03-26"
+  }
+}
