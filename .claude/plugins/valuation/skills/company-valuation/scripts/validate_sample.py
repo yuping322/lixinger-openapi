@@ -146,13 +146,13 @@ def run_valuation(inputs: Dict[str, Any]) -> Dict[str, Any]:
     # Normalize inputs
     normalized = normalize_inputs(financials, balance_sheet, shares, adjustments, issues)
 
-    # DCF
-    dcf_result = calc_dcf(financials, balance_sheet, assumptions, issues)
+    # DCF — use normalized financials and balance_sheet to match valuation_summary.json baseline
+    dcf_result = calc_dcf(normalized["financials"], normalized["balance_sheet"], assumptions, issues)
 
     # Scenarios
     scenarios_result = {}
     if scenarios_cfg:
-        scenarios_result = calc_scenarios(assumptions, financials, balance_sheet, scenarios_cfg, issues)
+        scenarios_result = calc_scenarios(assumptions, normalized["financials"], normalized["balance_sheet"], scenarios_cfg, issues)
 
     # Additional QC (populates implied_terminal_ev_ebitda on dcf_result)
     run_additional_qc(dcf_result, raw_comps, scenarios_result, normalized, shares, issues)

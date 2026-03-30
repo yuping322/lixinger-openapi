@@ -662,15 +662,44 @@ def calc_dcf(
     }
 
 
+# Explicit mapping: multiple key → (metric field, is_ev_based)
+# Mirrors build_comps.py MULTIPLE_DEFINITIONS for consistency.
+_MULTIPLE_TO_METRIC: Dict[str, tuple] = {
+    "ev_ebitda":  ("ebitda",    True),
+    "ev_ebit":    ("ebit",      True),
+    "ev_revenue": ("revenue",   True),
+    "ev_sales":   ("revenue",   True),
+    "ev_arr":     ("arr",       True),
+    "pe":         ("net_income", False),
+    "p_e":        ("net_income", False),
+    "pb":         ("book_value", False),
+    "p_b":        ("book_value", False),
+    "ps":         ("revenue",   False),
+    "p_s":        ("revenue",   False),
+}
+
+
 def multiple_metric_name(multiple_key: str) -> str:
+    """Return the metric field name for a given multiple key."""
     key = multiple_key.lower().replace("/", "_")
+    entry = _MULTIPLE_TO_METRIC.get(key)
+    if entry:
+        return entry[0]
+    # Fallback heuristic for unknown multiples
     if key.startswith("ev_"):
-        return key.replace("ev_", "", 1)
-    if key in {"pe", "p_e", "p_e"}:
-        return "net_income"
+        return key[3:]
     if key.startswith("p_"):
-        return key.replace("p_", "", 1)
+        return key[2:]
     return key
+
+
+def _multiple_is_ev_based(multiple_key: str) -> bool:
+    """Return True if the multiple is EV-based (requires EV→equity bridge)."""
+    key = multiple_key.lower().replace("/", "_")
+    entry = _MULTIPLE_TO_METRIC.get(key)
+    if entry:
+        return entry[1]
+    return key.startswith("ev_")
 
 
 def calc_comps(
@@ -709,7 +738,7 @@ def calc_comps(
             continue
 
         def to_equity(value: float) -> float:
-            if multiple_key.lower().startswith("ev_"):
+            if _multiple_is_ev_based(multiple_key):
                 return ev_to_equity(value, balance_sheet)
             return value
 

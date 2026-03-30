@@ -36,8 +36,8 @@ from auto_valuation import (
     safe_ratio,
 )
 
-# vc_model lives in a sibling plugin directory
-_VC_SCRIPTS_DIR = _SCRIPTS_DIR.parent.parent.parent.parent / "vc-startup-model" / "scripts"
+# vc_model lives in a sibling skill directory
+_VC_SCRIPTS_DIR = _SCRIPTS_DIR.parent.parent.parent / "vc-startup-model" / "scripts"
 sys.path.insert(0, str(_VC_SCRIPTS_DIR))
 from vc_model import calc_vc_method, calc_first_chicago
 
