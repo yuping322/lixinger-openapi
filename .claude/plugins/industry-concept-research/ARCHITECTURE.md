@@ -80,7 +80,7 @@ P0 新增 3 项（已落地）：
 - 证据链：`skill_outputs[]`
 - 缺口声明：`data_gaps`
 - 质量状态：`qc_status/errors/warnings`
-- 监控清单：`monitoring_checklist`
+- 监控清单：`monitoring_checklist`（`checklist_id/research_subject/... + indicators[]` 嵌套结构）
 
 ## 5. Fail-safe 机制
 
