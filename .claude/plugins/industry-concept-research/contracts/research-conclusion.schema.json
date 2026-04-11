@@ -229,7 +229,7 @@
     },
     "data_gaps": {
       "type": "array",
-      "description": "数据缺口声明列表，引用 data-gap-report.schema.json",
+      "description": "数据缺口声明列表，引用 data-gap-report.schema.json。聚合规则：overall_confidence_impact = min(1, Σ(data_gaps[].confidence_impact))。",
       "items": {
         "type": "object",
         "required": [

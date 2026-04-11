@@ -93,6 +93,18 @@ Orchestrator 强制输出三档决策：
 - `data_gaps` 缺口声明（不可静默降级）
 - `qc_status / errors / warnings` 自检结果
 
+置信度折损统一使用 `confidence_impact` 正数编码，并按以下规则聚合：
+
+- `overall_confidence_impact = min(1, sum(data_gaps[].confidence_impact))`
+- `final_confidence = clamp(raw_confidence × (1 - overall_confidence_impact), 0, 1)`
+
+示例：
+
+- **单个 gap**：`raw_confidence=0.80`，`data_gaps=[{confidence_impact:0.20}]`  
+  则 `overall_confidence_impact=0.20`，`final_confidence=0.80×(1-0.20)=0.64`。
+- **多个 gap**：`raw_confidence=0.75`，`data_gaps=[0.15,0.30,0.70]`（累计 1.15）  
+  则 `overall_confidence_impact=min(1,1.15)=1`，`final_confidence=0.75×(1-1)=0`（累计超过 1 时按 1 截断）。
+
 ## 异常处理与 Fail-safe
 
 - 模块缺数：允许降级，但必须在 `data_gaps` 显式披露
