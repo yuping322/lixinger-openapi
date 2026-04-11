@@ -62,10 +62,22 @@
 ## Contracts（统一输出 Schema）
 
 - `research-conclusion.schema.json`：统一研究结论结构（结论、证据链、置信度、风险、失效条件）
-- `monitoring-checklist.schema.json`：统一监控清单结构（指标、阈值、触发动作）
+- `monitoring-checklist.schema.json`：统一监控清单结构（checklist 元信息 + indicators[] 嵌套指标条目）
 - `data-gap-report.schema.json`：统一缺数与降级声明（缺口来源、降级方法、置信度影响）
 - `inter-plugin-interface.schema.json`：跨插件复用接口声明（输出可消费项、独立调用约定）
 - `qc-rules.schema.json`：输出 QA 自检规则（三档决策、完整性、矛盾检测）
+
+
+## 契约版本变更说明（monitoring_checklist）
+
+- **生效版本**：`industry-concept-research` `v2.1.0`（2026-04-10）。
+- **唯一权威结构**：`monitoring_checklist` 采用 `checklist + indicators[]` 嵌套结构；不再接受历史扁平条目（如 `indicator/current_value/alert_threshold/review_date` 直接挂在数组元素上）。
+- **兼容窗口**：旧格式仅在 `v2.0.x` 视为兼容输入，`2026-06-30` 后废弃；`2026-07-01` 起按新契约严格校验。
+- **迁移方法**：
+  1. 将旧条目按研究主题聚合为 checklist 对象，补齐 `checklist_id/research_subject/as_of_date/review_date`；
+  2. 原 flat 字段迁移到 `indicators[]`：`indicator -> indicator_name`，其余字段映射为 `current_value/alert_threshold`；
+  3. 新增必填：`category` 与 `alert_direction`（可按指标语义补全）；
+  4. 建议直接复用 `contracts/monitoring-checklist.schema.json`，避免局部定义漂移。
 
 ## 输出与质量门禁
 
