@@ -173,7 +173,26 @@ skill_confidence: COMPLETED=1.0, DEGRADED=0.6, FAILED=0（影响权重）, SKIPP
   "risks": [...],
   "invalidation_conditions": [...],
   "skill_outputs": [...],
-  "monitoring_checklist": [...],
+  "monitoring_checklist": [
+    {
+      "checklist_id": "电子-20260410",
+      "research_subject": "电子",
+      "as_of_date": "YYYY-MM-DD",
+      "review_date": "YYYY-MM-DD",
+      "review_frequency": "WEEKLY",
+      "indicators": [
+        {
+          "indicator_name": "PE-TTM 10年分位数",
+          "category": "VALUATION",
+          "current_value": "58%",
+          "alert_threshold": ">60%",
+          "alert_direction": "ABOVE",
+          "observable_trigger": "估值分位连续3日高于60%",
+          "action_on_trigger": "DOWNGRADE_CONCLUSION"
+        }
+      ]
+    }
+  ],
   "data_gaps": [...],
   "qc_status": { "passed": true|false, "errors": [...], "warnings": [...] }
 }
