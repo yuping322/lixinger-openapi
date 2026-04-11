@@ -129,14 +129,14 @@
     },
     "data_gaps": {
       "type": "array",
-      "description": "数据缺口声明列表，引用 data-gap-report.schema.json",
+      "description": "数据缺口声明列表，引用 data-gap-report.schema.json。聚合规则：overall_confidence_impact = min(1, Σ(data_gaps[].confidence_impact))。",
       "items": {
         "type": "object",
         "required": ["missing_field", "fallback_method", "confidence_impact"],
         "properties": {
           "missing_field": { "type": "string", "description": "缺失字段或数据源" },
           "fallback_method": { "type": "string", "description": "降级替代方法" },
-          "confidence_impact": { "type": "number", "minimum": 0, "maximum": 1, "description": "对置信度的负向影响（0=无影响，0.3=置信度下调30%）" }
+          "confidence_impact": { "type": "number", "minimum": 0, "maximum": 1, "description": "对置信度的负向影响（0=无影响，0.3=置信度下调30%）。禁止负数编码。" }
         },
         "additionalProperties": false
       },
