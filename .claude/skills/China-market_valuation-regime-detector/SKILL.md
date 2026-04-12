@@ -1,6 +1,14 @@
 ---
 name: valuation-regime-detector
+deprecated: true
 description: 用历史/同业分位数识别估值中枢与极端状态，并结合宏观/利率信号解释估值变化。当用户询问某市场/行业/个股是否贵或便宜、或需要估值分位数分析时使用。
+
+**已废弃：请使用统一技能 valuation-regime-detector，传入 market=china 参数。**
+
+迁移说明：
+- 旧调用方式：使用本技能
+- 新调用方式：使用 `.claude/skills/valuation-regime-detector/SKILL.md`，传入 `{market: "china"}`
+- 输出格式保持一致，向后兼容
 ---
 
 # 估值中枢与分位数识别器

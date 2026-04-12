@@ -40,7 +40,7 @@
     },
     "lookback_window": "5d",
     "trigger_mode": "hybrid",
-    "explain_template": "融资拥挤交易并出现高波动回撤，可能进入连锁去杠杆。"
+    "explain_template": "\u878d\u8d44\u62e5\u6324\u4ea4\u6613\u5e76\u51fa\u73b0\u9ad8\u6ce2\u52a8\u56de\u64a4\uff0c\u53ef\u80fd\u8fdb\u5165\u8fde\u9501\u53bb\u6760\u6746\u3002"
   },
   "severity": {
     "mapping": [
@@ -85,6 +85,7 @@
   "ownership": {
     "owner": "risk-team",
     "reviewer": "trading-risk",
-    "created_at": "2026-03-26"
+    "created_at": "2026-03-26",
+    "last_validated_at": "2026-04-12"
   }
 }

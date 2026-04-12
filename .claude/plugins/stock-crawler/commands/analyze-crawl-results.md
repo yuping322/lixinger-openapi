@@ -1,7 +1,9 @@
 ---
-description: 分析 stock-crawler 已产出的 Markdown 抓取结果
-description-en: Analyze stock-crawler markdown outputs from page directories
-argument-hint: "[output_dir or site_name]"
+description: "分析 stock-crawler 已产出的 Markdown 抓取结果"
+argument-hint: "--output_dir=<path> 或 --site=<site-name>"
+target-skill: "stock-crawler-analyzer"
+output-format: "json"
+risk-level: "low"
 ---
 
 分析 `stock-crawler` 已抓取并生成的 Markdown 文件，支持从 page 目录批量读取和分析。
@@ -34,13 +36,13 @@ argument-hint: "[output_dir or site_name]"
 
 ```
 # 按站点名称分析
-/analyze-crawl-results lixinger-crawler
+/analyze-crawl-results --site=lixinger-crawler
 
 # 按完整路径分析  
-/analyze-crawl-results .claude/stock-crawler/output/lixinger-crawler/pages-20260325-201203
+/analyze-crawl-results --output_dir=.claude/stock-crawler/output/lixinger-crawler/pages-20260325-201203
 
 # 分析最新的一次抓取
-/analyze-crawl-results .claude/stock-crawler/output/lixinger-crawler
+/analyze-crawl-results --output_dir=.claude/stock-crawler/output/lixinger-crawler
 ```
 
 ## 分析维度

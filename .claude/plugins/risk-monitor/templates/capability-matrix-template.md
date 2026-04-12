@@ -36,19 +36,21 @@
 
 | id | risk_dimension | capability_unit | legacy_skill_path | legacy_input_contract | legacy_metrics_or_rules | legacy_output_shape | engine_module | engine_input_contract | engine_metrics_or_rules | engine_output_shape | event_trigger_support | gap_status | gap_detail | owner | priority | target_milestone | validation_case | notes |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| CAP-001 | equity-pledge-risk-monitor | 控股股东高质押 + 平仓线预警 | .claude/skills/China-market_equity-pledge-risk-monitor | ticker, as_of_date | 控股股东质押比例/平仓线距离 | 风险等级+监控清单 | risk-signal-engine/rules/pledge_rules | ticker, as_of_date, price_feed | PLEDGE-001/PLEDGE-002 | alert + evidence + invalidation | yes | partial | 缺少质权人类型分层阈值 | @owner | P0 | Sprint-1 | case_600xxx_2026Q1 | |
+| CAP-001 | equity-pledge-risk-monitor | 控股股东高质押 + 平仓线预警 | .claude/plugins/risk-monitor/skills/legacy/equity-pledge-risk-monitor | ticker, as_of_date | 控股股东质押比例/平仓线距离 | 风险等级+监控清单 | .claude/plugins/risk-monitor/skills/risk-signal-engine/rules/pledge_rules.json | ticker, as_of_date, price_feed | PLEDGE-001/PLEDGE-002 | alert + evidence + invalidation | yes | partial | 缺少质权人类型分层阈值 | @owner | P0 | Sprint-1 | case_600xxx_2026Q1 | |
 
 ---
 
 ## 4. 事件触发覆盖检查（持仓后）
 
-> 本段用于明确“持仓后事件相关”是否覆盖。
+> 本段用于明确"持仓后事件相关"是否覆盖。事件源定义见 `templates/event-source-dictionary.json`。
 
 | trigger_id | trigger_source | trigger_event_type | mapped_risk_dimension | expected_recompute_scope | expected_alert_action | implemented (yes/no) | validation_status | notes |
 |---|---|---|---|---|---|---|---|---|
-| EVT-001 | 公告 | 解禁计划更新 | ipo-lockup-risk-monitor | lockup + liquidity + shareholder | new/escalate | no | pending | |
-| EVT-002 | 新闻 | 控股股东质押补充/违约 | equity-pledge-risk-monitor | pledge + shareholder | escalate | no | pending | |
-| EVT-003 | 交易异动 | 连续跌停 | limit-up-limit-down-risk-checker | limit + margin + liquidity | new/escalate | no | pending | |
+| EVT-001 | announcement | unlock_schedule_change | ipo-lockup-risk-monitor | lockup + liquidity + shareholder | new/escalate | no | pending | |
+| EVT-002 | news | controller_pledge_risk_news | equity-pledge-risk-monitor | pledge + shareholder | escalate | no | pending | |
+| EVT-003 | market_anomaly | limit_down_chain | limit-up-limit-down-risk-checker | limit + margin + liquidity | new/escalate | no | pending | |
+| EVT-004 | filing_update | top_shareholder_change | shareholder-structure-monitor | shareholder + governance | recompute | no | pending | Schema扩展 |
+| EVT-005 | filing_update | equity_pledge_update | equity-pledge-risk-monitor | pledge + liquidity | recompute | no | pending | Schema扩展 |
 
 ---
 

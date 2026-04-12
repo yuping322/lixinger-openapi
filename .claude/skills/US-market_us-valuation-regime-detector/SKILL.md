@@ -1,6 +1,14 @@
 ---
 name: us-valuation-regime-detector
+deprecated: true
 description: Detect valuation regimes using percentiles vs history/peers and link them to macro/rates signals. Use when the user asks whether a market/sector/name is expensive/cheap relative to history or wants valuation percentile analysis.
+
+**Deprecated: Please use unified skill valuation-regime-detector with market=us parameter.**
+
+Migration Note:
+- Old approach: Use this skill directly
+- New approach: Use `.claude/skills/valuation-regime-detector/SKILL.md` with `{market: "us"}`
+- Output format remains consistent, backward compatible
 ---
 
 # Valuation Regime Detector

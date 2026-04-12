@@ -122,9 +122,8 @@ function normalizeParameters(params) {
   }
 
   return params.map(p => {
-    // 处理不同格式的参数
-    if (typeof p === 'string') {
-      return { name: p, type: '', required: false, description: '' };
+    if (!p || typeof p === 'string') {
+      return { name: typeof p === 'string' ? p : '', type: '', required: false, description: '' };
     }
 
     return {
@@ -214,11 +213,11 @@ function normalizeResponseStatuses(statuses) {
 
   return statuses.map(s => {
     if (typeof s === 'string') {
-      return { code: s, description: '' };
+      return { code: String(s), description: '' };
     }
 
     return {
-      code: s.code || s.statusCode || s.status || '',
+      code: String(s.code || s.statusCode || s.status || ''),
       description: s.description || s.desc || s.message || ''
     };
   }).filter(s => s.code);

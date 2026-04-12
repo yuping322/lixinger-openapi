@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "config": {
+      "type": "string",
+      "description": "配置文件名称（不含 .json 后缀）",
+      "examples": ["eastmoney-plugin", "lixinger", "cninfo-plugin"]
+    },
+    "site": {
+      "type": "string",
+      "description": "站点名称，用于自动查找配置",
+      "examples": ["eastmoney", "lixinger"]
+    },
+    "seed_url": {
+      "type": "string",
+      "description": "种子 URL，用于交互式生成配置",
+      "format": "uri"
+    },
+    "output_dir": {
+      "type": "string",
+      "description": "输出目录路径",
+      "default": "./output/<config-name>"
+    }
+  },
+  "required": [],
+  "oneOf": [
+    {"required": ["config"]},
+    {"required": ["site"]},
+    {"required": ["seed_url"]}
+  ],
+  "additionalProperties": false
+}

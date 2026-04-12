@@ -7,14 +7,14 @@ Website-first research crawling plugin for non-API, high-timeliness, and unstruc
 ### 方式1: 使用已有配置直接抓取
 
 ```bash
-cd /Users/fengzhi/Downloads/git/lixinger-openapi/.claude/stock-crawler
+cd ${CRAWLER_HOME:-.claude/stock-crawler}
 node src/index.js config/eastmoney-plugin.json
 ```
 
 ### 方式2: 交互式生成配置
 
 ```bash
-cd /Users/fengzhi/Downloads/git/lixinger-openapi/.claude/stock-crawler
+cd ${CRAWLER_HOME:-.claude/stock-crawler}
 node src/template-pipeline-cli.js https://example.com ./output/example
 # 然后基于生成的 pattern 创建 config/<site>.json
 ```

@@ -1,6 +1,9 @@
 ---
-description: 查看 stock-crawler 离线抓取任务的进度
-argument-hint: "[output_path]"
+description: "查看 stock-crawler 离线抓取任务的进度"
+argument-hint: "--output_path=<path> 或 --site=<site-name>"
+target-skill: "无（直接读取日志文件）"
+output-format: "markdown"
+risk-level: "low"
 ---
 
 检查 `stock-crawler` 抓取任务的进度。
@@ -31,7 +34,7 @@ output/<config-name>/*.md
 
 **检查特定配置的进度:**
 ```bash
-cd /Users/fengzhi/Downloads/git/lixinger-openapi/.claude/stock-crawler
+cd ${CRAWLER_HOME:-.claude/stock-crawler}
 tail -f output/eastmoney-crawler/logs/crawler-*.log
 ```
 

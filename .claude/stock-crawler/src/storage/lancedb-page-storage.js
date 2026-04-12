@@ -36,19 +36,24 @@ class LanceDbPageStorage {
   async persistMarkdown({ filepath, url, title, filename }) {
     const content = fs.readFileSync(filepath, 'utf-8');
 
-    await this.table.add([
-      {
-        url,
-        title: title || 'Untitled',
-        filename,
-        content,
-        contentLength: content.length,
-        crawledAt: new Date().toISOString()
-      }
-    ]);
+    try {
+      await this.table.add([
+        {
+          url,
+          title: title || 'Untitled',
+          filename,
+          content,
+          contentLength: content.length,
+          crawledAt: new Date().toISOString()
+        }
+      ]);
 
-    fs.unlinkSync(filepath);
-    return `lancedb://${this.tableName}/${filename}`;
+      fs.unlinkSync(filepath);
+      return `lancedb://${this.tableName}/${filename}`;
+    } catch (error) {
+      this.logger.error('Failed to persist to LanceDB, keeping local file', error);
+      return filepath;
+    }
   }
 }
 

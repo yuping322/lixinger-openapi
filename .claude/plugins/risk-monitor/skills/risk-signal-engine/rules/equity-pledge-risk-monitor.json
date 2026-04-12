@@ -3,23 +3,88 @@
   "version": "0.1.0",
   "status": "active",
   "rule_type": "single_dimension",
-  "risk_dimensions": ["equity-pledge-risk-monitor"],
-  "scope": {"market": "CN-A", "universe": "all_watchlist", "position_stage": "post_position"},
+  "risk_dimensions": [
+    "equity-pledge-risk-monitor"
+  ],
+  "scope": {
+    "market": "CN-A",
+    "universe": "all_watchlist",
+    "position_stage": "post_position"
+  },
   "inputs_required": [
-    {"name": "pledge_ratio_controller", "type": "number", "source": "lixinger", "required": true},
-    {"name": "distance_to_margin_call", "type": "number", "source": "market+announcement", "required": true}
+    {
+      "name": "pledge_ratio_controller",
+      "type": "number",
+      "source": "lixinger",
+      "required": true
+    },
+    {
+      "name": "distance_to_margin_call",
+      "type": "number",
+      "source": "market+announcement",
+      "required": true
+    }
   ],
   "logic": {
     "expression": "pledge_ratio_controller >= 0.75 && distance_to_margin_call <= 0.2",
-    "thresholds": {"pledge_ratio_controller": 0.75, "distance_to_margin_call": 0.2},
+    "thresholds": {
+      "pledge_ratio_controller": 0.75,
+      "distance_to_margin_call": 0.2
+    },
     "lookback_window": "20d",
     "trigger_mode": "hybrid",
-    "explain_template": "控股股东高质押且接近平仓线，存在被动减持与控制权扰动风险。"
+    "explain_template": "\u63a7\u80a1\u80a1\u4e1c\u9ad8\u8d28\u62bc\u4e14\u63a5\u8fd1\u5e73\u4ed3\u7ebf\uff0c\u5b58\u5728\u88ab\u52a8\u51cf\u6301\u4e0e\u63a7\u5236\u6743\u6270\u52a8\u98ce\u9669\u3002"
   },
-  "severity": {"mapping": [{"condition": "distance_to_margin_call <= 0.1", "level": "critical"}, {"condition": "true", "level": "high"}], "default_level": "high"},
-  "confidence": {"method": "heuristic", "base_score": 0.72},
-  "event_triggers": [{"source": "announcement", "event_type": "pledge_update", "action": "recompute", "debounce": "4h"}],
-  "invalidation_conditions": ["controller_pledge_ratio < 0.5", "distance_to_margin_call > 0.4 for 10d"],
-  "output_contract": {"must_include_fields": ["alert_id", "security_id", "as_of_date", "risk_type", "severity", "thesis", "evidence_refs", "trigger_logic", "confidence", "expected_window", "invalidation_conditions", "monitor_next"], "narrative_policy": "必须给出机制性问题定义"},
-  "ownership": {"owner": "risk-team", "reviewer": "quant-risk", "created_at": "2026-03-26"}
+  "severity": {
+    "mapping": [
+      {
+        "condition": "distance_to_margin_call <= 0.1",
+        "level": "critical"
+      },
+      {
+        "condition": "true",
+        "level": "high"
+      }
+    ],
+    "default_level": "high"
+  },
+  "confidence": {
+    "method": "heuristic",
+    "base_score": 0.72
+  },
+  "event_triggers": [
+    {
+      "source": "announcement",
+      "event_type": "pledge_update",
+      "action": "recompute",
+      "debounce": "4h"
+    }
+  ],
+  "invalidation_conditions": [
+    "controller_pledge_ratio < 0.5",
+    "distance_to_margin_call > 0.4 for 10d"
+  ],
+  "output_contract": {
+    "must_include_fields": [
+      "alert_id",
+      "security_id",
+      "as_of_date",
+      "risk_type",
+      "severity",
+      "thesis",
+      "evidence_refs",
+      "trigger_logic",
+      "confidence",
+      "expected_window",
+      "invalidation_conditions",
+      "monitor_next"
+    ],
+    "narrative_policy": "\u5fc5\u987b\u7ed9\u51fa\u673a\u5236\u6027\u95ee\u9898\u5b9a\u4e49"
+  },
+  "ownership": {
+    "owner": "risk-team",
+    "reviewer": "quant-risk",
+    "created_at": "2026-03-26",
+    "last_validated_at": "2026-04-12"
+  }
 }

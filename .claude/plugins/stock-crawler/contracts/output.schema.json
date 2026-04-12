@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "description": "任务唯一标识",
+      "pattern": "^crawl_.*_[0-9]{8}_[0-9]{6}$"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "running", "completed", "failed", "cancelled"],
+      "description": "任务状态"
+    },
+    "config": {
+      "type": "string",
+      "description": "使用的配置文件路径"
+    },
+    "artifacts_dir": {
+      "type": "string",
+      "description": "输出目录路径"
+    },
+    "markdown_files": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "生成的 Markdown 文件列表"
+    },
+    "pages_count": {
+      "type": "integer",
+      "description": "已抓取的页面数量"
+    },
+    "links_count": {
+      "type": "integer",
+      "description": "发现的链接数量"
+    },
+    "error_message": {
+      "type": "string",
+      "description": "错误信息（仅在 failed 状态时）"
+    },
+    "message": {
+      "type": "string",
+      "description": "状态描述信息"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "任务提交时间"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "任务完成时间"
+    }
+  },
+  "required": ["task_id", "status"],
+  "additionalProperties": false
+}

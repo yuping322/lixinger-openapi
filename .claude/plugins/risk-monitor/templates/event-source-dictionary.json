@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lixinger-openapi/.claude/plugins/risk-monitor/templates/event-source-dictionary.json",
+  "title": "Event Source Dictionary",
+  "description": "事件源标准字典：定义规范事件源枚举、别名映射与可用范围。",
+  "version": "0.1.0",
+  "canonical_sources": [
+    {
+      "canonical_source": "announcement",
+      "aliases": ["公告", "公告信息", "company_announcement", "disclosure"],
+      "command_availability": true,
+      "schema_availability": true,
+      "typical_event_types": [
+        "unlock_schedule_change",
+        "shareholder_reduction_plan",
+        "equity_pledge_update",
+        "annual_report",
+        "auditor_change",
+        "impairment_hint"
+      ],
+      "description": "公司公告类事件，包括定期报告、临时公告、减持计划、解禁安排等"
+    },
+    {
+      "canonical_source": "news",
+      "aliases": ["新闻", "新闻资讯", "媒体报道", "media_news", "press_release"],
+      "command_availability": true,
+      "schema_availability": true,
+      "typical_event_types": [
+        "controller_pledge_risk_news",
+        "regulatory_action_news",
+        "sector_risk_news",
+        "management_change_news"
+      ],
+      "description": "新闻媒体类事件，包括市场报道、监管新闻、行业风险消息等"
+    },
+    {
+      "canonical_source": "market_anomaly",
+      "aliases": ["交易异动", "异动", "市场异动", "trading_anomaly", "price_anomaly", "异常波动"],
+      "command_availability": true,
+      "schema_availability": true,
+      "typical_event_types": [
+        "intraday_flash_crash",
+        "limit_down_chain",
+        "liquidation_chain",
+        "margin_balance_spike",
+        "price_gap_down",
+        "volume_spike"
+      ],
+      "description": "市场交易异动事件，包括闪崩、跌停链、流动性冲击、融资余额异常等"
+    },
+    {
+      "canonical_source": "filing_update",
+      "aliases": ["文件更新", "备案更新", "股东变更登记", "filing", "登记变更"],
+      "command_availability": false,
+      "schema_availability": true,
+      "typical_event_types": [
+        "top_shareholder_change",
+        "equity_pledge_update",
+        "annual_report",
+        "impairment_hint",
+        "related_party_change"
+      ],
+      "description": "监管备案更新事件，需通过规则引擎内部触发，不暴露在命令层"
+    },
+    {
+      "canonical_source": "manual",
+      "aliases": ["手动触发", "人工触发", "手工", "user_trigger"],
+      "command_availability": false,
+      "schema_availability": true,
+      "typical_event_types": [
+        "portfolio_rebalance",
+        "position_review",
+        "risk_override"
+      ],
+      "description": "手动触发事件，用于组合覆层规则或人工干预场景"
+    }
+  ],
+  "layer_scope": {
+    "command_layer": {
+      "description": "命令层 event_sources 参数可用值",
+      "allowed_sources": ["announcement", "news", "market_anomaly"],
+      "usage": "/risk-monitor-event-update 命令的 event_sources 参数"
+    },
+    "schema_layer": {
+      "description": "rules-schema.json event_triggers.source 全集",
+      "allowed_sources": ["announcement", "news", "market_anomaly", "filing_update", "manual"],
+      "usage": "规则定义文件 event_triggers[].source 字段"
+    }
+  },
+  "validation_rules": [
+    "event_triggers.source 必须为 canonical_sources 中某项的 canonical_source 值",
+    "命令层 event_sources 参数仅可使用 command_availability=true 的源",
+    "输入别名时自动映射到 canonical_source"
+  ]
+}

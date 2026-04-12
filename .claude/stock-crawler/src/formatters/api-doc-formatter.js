@@ -96,9 +96,8 @@ function normalizeParameters(params) {
   }
 
   return params.map(p => {
-    // 处理不同格式的参数
-    if (typeof p === 'string') {
-      return { name: p, type: '', required: false, description: '' };
+    if (!p || typeof p === 'string') {
+      return { name: typeof p === 'string' ? p : '', type: '', required: false, description: '' };
     }
 
     return {
@@ -284,7 +283,7 @@ export function formatApiDoc(rawData) {
   // 处理 responses 字段（如果有）
   if (rawData.responses && Array.isArray(rawData.responses)) {
     result.responses = rawData.responses.map(r => ({
-      statusCode: r.code || r.statusCode || r.status || '',
+      statusCode: String(r.code || r.statusCode || r.status || ''),
       description: r.description || ''
     }));
   }

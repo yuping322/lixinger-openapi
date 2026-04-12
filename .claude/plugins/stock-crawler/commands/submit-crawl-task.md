@@ -1,6 +1,9 @@
 ---
-description: 提交一个 stock-crawler 离线抓取任务
-argument-hint: "[site] [target] [url-or-keyword]"
+description: "提交一个 stock-crawler 离线抓取任务"
+argument-hint: "--config=<config-name> 或 --site=<site-name>"
+target-skill: "无（直接调用外部脚本）"
+output-format: "json"
+risk-level: "low"
 ---
 
 使用重构后的 `stock-crawler` 提交离线抓取任务。
@@ -12,7 +15,7 @@ argument-hint: "[site] [target] [url-or-keyword]"
 如果这是新站点或需要生成新的配置：
 
 ```bash
-cd /Users/fengzhi/Downloads/git/lixinger-openapi/.claude/stock-crawler
+cd ${CRAWLER_HOME:-.claude/stock-crawler}
 node src/index.js <config-file>
 ```
 
@@ -26,7 +29,7 @@ node src/index.js <config-file>
 如果配置文件已存在：
 
 ```bash
-cd /Users/fengzhi/Downloads/git/lixinger-openapi/.claude/stock-crawler
+cd ${CRAWLER_HOME:-.claude/stock-crawler}
 node src/index.js config/eastmoney-plugin.json
 ```
 
@@ -34,7 +37,7 @@ node src/index.js config/eastmoney-plugin.json
 
 运行以下命令查看所有可用配置:
 ```bash
-ls -la /Users/fengzhi/Downloads/git/lixinger-openapi/.claude/stock-crawler/config/
+ls -la ${CRAWLER_HOME:-.claude/stock-crawler}/config/
 ```
 
 常用配置:
@@ -48,7 +51,7 @@ ls -la /Users/fengzhi/Downloads/git/lixinger-openapi/.claude/stock-crawler/confi
 如需交互式生成新的站点配置文件：
 
 ```bash
-cd /Users/fengzhi/Downloads/git/lixinger-openapi/.claude/stock-crawler
+cd ${CRAWLER_HOME:-.claude/stock-crawler}
 node src/template-pipeline-cli.js <site-url> [output-dir]
 ```
 
@@ -74,7 +77,7 @@ cp config/example.json config/my-site.json
 
 **场景1: 抓取单篇新闻**
 ```bash
-cd /Users/fengzhi/Downloads/git/lixinger-openapi/.claude/stock-crawler
+cd ${CRAWLER_HOME:-.claude/stock-crawler}
 # 修改 eastmoney-plugin.json 的 seedUrls 为目标 URL
 node src/index.js config/eastmoney-plugin.json
 ```

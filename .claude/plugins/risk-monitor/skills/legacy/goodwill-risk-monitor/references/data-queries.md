@@ -225,8 +225,8 @@ python3 .claude/plugins/query_data/lixinger-api-docs/scripts/query_tool.py \
 
 ### 相关文件
 
-- 技能文档: `.claude/skills/China-market_goodwill-risk-monitor/`
-- 方法论文档: `.claude/skills/China-market_goodwill-risk-monitor/references/methodology.md`
-- 输出模板: `.claude/skills/China-market_goodwill-risk-monitor/references/output-template.md`
+- 技能文档: `.claude/plugins/risk-monitor/skills/legacy/goodwill-risk-monitor/`
+- 方法论文档: `.claude/plugins/risk-monitor/skills/legacy/goodwill-risk-monitor/references/methodology.md`
+- 输出模板: `.claude/plugins/risk-monitor/skills/legacy/goodwill-risk-monitor/references/output-template.md`
 - 查询工具: `.claude/plugins/query_data/lixinger-api-docs/scripts/query_tool.py`
 

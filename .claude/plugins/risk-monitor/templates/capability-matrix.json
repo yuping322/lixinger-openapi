@@ -1,0 +1,1103 @@
+{
+  "metadata": {
+    "created_at": "2026-04-12",
+    "version": "1.0.0",
+    "status": "baseline",
+    "purpose": "track legacy migration to risk-signal-engine"
+  },
+  "dimensions": [
+    {
+      "id": "CAP-001",
+      "risk_dimension": "equity-pledge-risk-monitor",
+      "legacy": {
+        "skill_path": ".claude/plugins/risk-monitor/skills/legacy/equity-pledge-risk-monitor",
+        "input_contract": [
+          "ticker",
+          "startDate"
+        ],
+        "api_list": [
+          "cn/company/pledge"
+        ],
+        "metrics_or_rules": [
+          {
+            "name": "pledge_ratio_controller",
+            "threshold": 0.8,
+            "description": "控股股东质押比例阈值"
+          },
+          {
+            "name": "accumulated_pledge_ratio",
+            "threshold": 0.5,
+            "description": "累计质押比例阈值"
+          },
+          {
+            "name": "distance_to_margin_call",
+            "threshold": [0.1, 0.2],
+            "description": "距平仓线距离阈值(高风险/中风险)"
+          },
+          {
+            "name": "pledge_change_rate_60d",
+            "threshold": 0.3,
+            "description": "60日质押变化率阈值"
+          },
+          {
+            "name": "controller_stability",
+            "description": "控制权稳定性"
+          }
+        ],
+        "output_shape": {
+          "type": "report",
+          "sections": [
+            "风险等级",
+            "监控清单",
+            "关键数据表",
+            "风险清单",
+            "下一步建议"
+          ],
+          "risk_levels": ["低", "中", "高", "极高"]
+        },
+        "field_completeness": 1.0
+      },
+      "engine": {
+        "module": "equity-pledge-risk-monitor.json",
+        "rule_id": "PLEDGE_001",
+        "rule_count": 3,
+        "rules": [
+          "equity-pledge-risk-monitor.json",
+          "equity-pledge-risk-monitor-concentration.json",
+          "equity-pledge-risk-monitor-margin-call.json"
+        ],
+        "input_contract": [
+          "pledge_ratio_controller",
+          "distance_to_margin_call"
+        ],
+        "metrics_or_rules": [
+          {
+            "expression": "pledge_ratio_controller >= 0.75 && distance_to_margin_call <= 0.2",
+            "thresholds": {
+              "pledge_ratio_controller": 0.75,
+              "distance_to_margin_call": 0.2
+            }
+          }
+        ],
+        "output_shape": {
+          "must_include_fields": [
+            "alert_id",
+            "security_id",
+            "as_of_date",
+            "risk_type",
+            "severity",
+            "thesis",
+            "evidence_refs",
+            "trigger_logic",
+            "confidence",
+            "expected_window",
+            "invalidation_conditions",
+            "monitor_next"
+          ]
+        },
+        "coverage_status": "partial"
+      },
+      "gap": {
+        "status": "partial",
+        "details": [
+          "缺少质权人类型分层阈值(券商/银行/信托不同平仓线)",
+          "缺少完整质押链追踪(多笔质押组合)",
+          "缺少纾困基金介入判断"
+        ],
+        "priority": "P0",
+        "milestone": "Sprint-1"
+      },
+      "event_trigger": {
+        "supported": true,
+        "triggers": [
+          {
+            "source": "announcement",
+            "event_type": "pledge_update",
+            "action": "recompute",
+            "debounce": "4h"
+          }
+        ]
+      }
+    },
+    {
+      "id": "CAP-002",
+      "risk_dimension": "shareholder-risk-check",
+      "legacy": {
+        "skill_path": ".claude/plugins/risk-monitor/skills/legacy/shareholder-risk-check",
+        "input_contract": [
+          "stockCode",
+          "date"
+        ],
+        "api_list": [
+          "cn/company/major-shareholders-shares-change",
+          "cn/company/shareholders-num",
+          "cn/company/majority-shareholders",
+          "cn/company/pledge",
+          "cn/company/senior-executive-shares-change",
+          "cn/company/nolimit-shareholders"
+        ],
+        "metrics_or_rules": [
+          {
+            "name": "reduction_ratio",
+            "threshold": 0.02,
+            "description": "减持比例阈值"
+          },
+          {
+            "name": "reduction_pressure_days",
+            "threshold": 20,
+            "description": "减持压力天数阈值"
+          },
+          {
+            "name": "pledge_ratio",
+            "threshold": 0.8,
+            "description": "质押比例阈值"
+          },
+          {
+            "name": "distance_to_margin_call",
+            "threshold": 0.15,
+            "description": "平仓线距离阈值"
+          },
+          {
+            "name": "controller_stability",
+            "threshold": 0.3,
+            "description": "控制权稳定性阈值"
+          },
+          {
+            "name": "institution_hold_change_pct",
+            "threshold": 0.05,
+            "description": "机构持股变化阈值"
+          }
+        ],
+        "output_shape": {
+          "type": "report",
+          "sections": [
+            "股东结构与治理风险检查报告",
+            "关键数据表",
+            "风险清单"
+          ]
+        },
+        "field_completeness": 1.0
+      },
+      "engine": {
+        "module": "shareholder-risk-check.json",
+        "rule_id": "SHH_RISK_001",
+        "rule_count": 3,
+        "rules": [
+          "shareholder-risk-check.json",
+          "shareholder-risk-check-equity-freeze.json",
+          "shareholder-risk-check-reduction-plan.json"
+        ],
+        "input_contract": [
+          "planned_reduction_ratio",
+          "reduction_pressure_days"
+        ],
+        "metrics_or_rules": [
+          {
+            "expression": "planned_reduction_ratio >= 0.01 && reduction_pressure_days >= 15",
+            "thresholds": {
+              "planned_reduction_ratio": 0.01,
+              "reduction_pressure_days": 15
+            }
+          }
+        ],
+        "coverage_status": "partial"
+      },
+      "gap": {
+        "status": "partial",
+        "details": [
+          "缺少股权冻结风险监控",
+          "缺少司法拍卖追踪",
+          "缺少一致行动人关系判断",
+          "缺少高管增减持信号"
+        ],
+        "priority": "P0",
+        "milestone": "Sprint-1"
+      },
+      "event_trigger": {
+        "supported": true,
+        "triggers": [
+          {
+            "source": "announcement",
+            "event_type": "shareholder_reduction_plan",
+            "action": "recompute"
+          }
+        ]
+      }
+    },
+    {
+      "id": "CAP-003",
+      "risk_dimension": "shareholder-structure-monitor",
+      "legacy": {
+        "skill_path": ".claude/plugins/risk-monitor/skills/legacy/shareholder-structure-monitor",
+        "input_contract": [
+          "stockCode",
+          "date"
+        ],
+        "api_list": [
+          "cn/company/major-shareholders-shares-change",
+          "cn/company/shareholders-num",
+          "cn/company/majority-shareholders",
+          "cn/company/nolimit-shareholders",
+          "cn/company/fund-shareholders",
+          "cn/company/pledge",
+          "cn/company/senior-executive-shares-change"
+        ],
+        "metrics_or_rules": [
+          {
+            "name": "shareholders_delta_pct",
+            "threshold": [-0.1, 0.1],
+            "description": "股东户数变化率阈值"
+          },
+          {
+            "name": "consecutive_decline_periods",
+            "threshold": [3, 6],
+            "description": "连续下降期数阈值"
+          },
+          {
+            "name": "capita_shares_change",
+            "description": "人均持股变化"
+          },
+          {
+            "name": "top10_holders_pct",
+            "description": "前十大股东持股合计"
+          },
+          {
+            "name": "institution_hold_pct",
+            "description": "机构持股比例变化"
+          }
+        ],
+        "output_shape": {
+          "type": "report",
+          "sections": [
+            "股东结构变化监控报告",
+            "筹码集中度判断",
+            "风险清单"
+          ]
+        },
+        "field_completeness": 1.0
+      },
+      "engine": {
+        "module": "shareholder-structure-monitor.json",
+        "rule_id": "SHH_STRUCT_001",
+        "rule_count": 3,
+        "rules": [
+          "shareholder-structure-monitor.json",
+          "shareholder-structure-monitor-ownership-instability.json",
+          "shareholder-structure-monitor-related-party-rise.json"
+        ],
+        "input_contract": [
+          "controller_stability_gap"
+        ],
+        "metrics_or_rules": [
+          {
+            "expression": "controller_stability_gap <= 0.05",
+            "thresholds": {
+              "controller_stability_gap": 0.05
+            }
+          }
+        ],
+        "coverage_status": "partial"
+      },
+      "gap": {
+        "status": "partial",
+        "details": [
+          "缺少股东户数连续变化追踪",
+          "缺少筹码集中度代理计算",
+          "缺少机构持仓变化监控",
+          "缺少人均持股趋势判断"
+        ],
+        "priority": "P1",
+        "milestone": "Sprint-2"
+      },
+      "event_trigger": {
+        "supported": true,
+        "triggers": [
+          {
+            "source": "filing_update",
+            "event_type": "top_shareholder_change",
+            "action": "recompute"
+          }
+        ]
+      }
+    },
+    {
+      "id": "CAP-004",
+      "risk_dimension": "goodwill-risk-monitor",
+      "legacy": {
+        "skill_path": ".claude/plugins/risk-monitor/skills/legacy/goodwill-risk-monitor",
+        "input_contract": [
+          "stockCodes",
+          "startDate",
+          "endDate"
+        ],
+        "api_list": [
+          "cn/company/fs/non_financial",
+          "cn/company/fundamental/non_financial",
+          "cn/company/announcement",
+          "cn/company/major-shareholders-shares-change"
+        ],
+        "metrics_or_rules": [
+          {
+            "name": "goodwill_to_equity",
+            "threshold": 0.5,
+            "description": "商誉占净资产比例阈值"
+          },
+          {
+            "name": "goodwill_to_market_cap",
+            "threshold": 0.3,
+            "description": "商誉占市值比例阈值"
+          },
+          {
+            "name": "performance_completion_rate",
+            "threshold": 0.8,
+            "description": "业绩承诺完成率阈值"
+          },
+          {
+            "name": "acquisition_premium_rate",
+            "threshold": 3.0,
+            "description": "并购溢价率阈值"
+          },
+          {
+            "name": "historical_impairment_count",
+            "threshold": 2,
+            "description": "历史减值次数阈值"
+          }
+        ],
+        "output_shape": {
+          "type": "report",
+          "sections": [
+            "商誉风险监控报告",
+            "风险等级",
+            "关键数据表",
+            "减值压力分析"
+          ],
+          "risk_levels": ["低", "中", "高", "极高"]
+        },
+        "field_completeness": 1.0
+      },
+      "engine": {
+        "module": "goodwill-risk-monitor.json",
+        "rule_id": "GOODWILL_001",
+        "rule_count": 3,
+        "rules": [
+          "goodwill-risk-monitor.json",
+          "goodwill-risk-monitor-auditor-change.json",
+          "goodwill-risk-monitor-impairment-probability.json"
+        ],
+        "input_contract": [
+          "goodwill_to_equity",
+          "profit_growth_yoy"
+        ],
+        "metrics_or_rules": [
+          {
+            "expression": "goodwill_to_equity >= 0.35 && profit_growth_yoy <= 0",
+            "thresholds": {
+              "goodwill_to_equity": 0.35,
+              "profit_growth_yoy": 0
+            }
+          }
+        ],
+        "coverage_status": "partial"
+      },
+      "gap": {
+        "status": "partial",
+        "details": [
+          "缺少并购标的分项追踪",
+          "缺少业绩承诺完成率监控",
+          "缺少历史减值记录聚合",
+          "缺少并购溢价率判断"
+        ],
+        "priority": "P1",
+        "milestone": "Sprint-2"
+      },
+      "event_trigger": {
+        "supported": true,
+        "triggers": [
+          {
+            "source": "filing_update",
+            "event_type": "impairment_hint",
+            "action": "recompute"
+          }
+        ]
+      }
+    },
+    {
+      "id": "CAP-005",
+      "risk_dimension": "st-delist-risk-scanner",
+      "legacy": {
+        "skill_path": ".claude/plugins/risk-monitor/skills/legacy/st-delist-risk-scanner",
+        "input_contract": [
+          "stockCode",
+          "startDate",
+          "endDate"
+        ],
+        "api_list": [
+          "cn/company/candlestick",
+          "cn/company"
+        ],
+        "metrics_or_rules": [
+          {
+            "name": "consecutive_loss_years",
+            "threshold": [2, 3],
+            "description": "连续亏损年数(ST/退市)"
+          },
+          {
+            "name": "net_asset_negative",
+            "description": "净资产为负"
+          },
+          {
+            "name": "revenue_threshold",
+            "threshold": 1.0,
+            "unit": "亿元",
+            "description": "营业收入阈值"
+          },
+          {
+            "name": "audit_opinion_non_standard",
+            "description": "审计意见非标"
+          },
+          {
+            "name": "price_threshold",
+            "threshold": 1.0,
+            "unit": "元",
+            "description": "股价阈值(面值退市)"
+          },
+          {
+            "name": "violation_count",
+            "description": "违规次数"
+          }
+        ],
+        "output_shape": {
+          "type": "report",
+          "sections": [
+            "ST/退市风险扫描报告",
+            "风险等级",
+            "触发原因",
+            "时间进度",
+            "交易约束说明"
+          ]
+        },
+        "field_completeness": 1.0
+      },
+      "engine": {
+        "module": "st-delist-risk-scanner.json",
+        "rule_id": "ST_001",
+        "rule_count": 3,
+        "rules": [
+          "st-delist-risk-scanner.json",
+          "st-delist-risk-scanner-compliance-trigger.json",
+          "st-delist-risk-scanner-financial-trigger.json"
+        ],
+        "input_contract": [
+          "st_flag"
+        ],
+        "metrics_or_rules": [
+          {
+            "expression": "st_flag == true",
+            "thresholds": {
+              "st_flag": true
+            }
+          }
+        ],
+        "coverage_status": "match"
+      },
+      "gap": {
+        "status": "match",
+        "details": [
+          "核心ST标志识别一致",
+          "engine 已覆盖关键触发条件"
+        ],
+        "priority": "P0",
+        "milestone": "Sprint-1"
+      },
+      "event_trigger": {
+        "supported": true,
+        "triggers": [
+          {
+            "source": "announcement",
+            "event_type": "st_or_delist_notice",
+            "action": "escalate"
+          }
+        ]
+      }
+    },
+    {
+      "id": "CAP-006",
+      "risk_dimension": "ipo-lockup-risk-monitor",
+      "legacy": {
+        "skill_path": ".claude/plugins/risk-monitor/skills/legacy/ipo-lockup-risk-monitor",
+        "input_contract": [
+          "stockCode",
+          "startDate",
+          "endDate"
+        ],
+        "api_list": [
+          "cn/company/candlestick",
+          "cn/company"
+        ],
+        "metrics_or_rules": [
+          {
+            "name": "unlock_ratio_to_float",
+            "threshold": 0.3,
+            "description": "解禁占流通股比阈值"
+          },
+          {
+            "name": "unlock_return_rate",
+            "threshold": 1.0,
+            "description": "解禁收益率阈值"
+          },
+          {
+            "name": "unlock_pressure_days",
+            "threshold": 30,
+            "description": "解禁压力天数阈值"
+          },
+          {
+            "name": "unlock_type",
+            "values": ["首发", "定增", "激励"],
+            "description": "解禁类型分层"
+          },
+          {
+            "name": "dense_unlock_count",
+            "threshold": 3,
+            "window": "3个月",
+            "description": "密集解禁判断"
+          }
+        ],
+        "output_shape": {
+          "type": "report",
+          "sections": [
+            "解禁与减持风险监控报告",
+            "供给压力判断",
+            "股东动机分析",
+            "承接能力评估"
+          ]
+        },
+        "field_completeness": 1.0
+      },
+      "engine": {
+        "module": "ipo-lockup-risk-monitor.json",
+        "rule_id": "LOCKUP_001",
+        "rule_count": 3,
+        "rules": [
+          "ipo-lockup-risk-monitor.json",
+          "ipo-lockup-risk-monitor-near-term-unlock.json",
+          "ipo-lockup-risk-monitor-vc-exit-pressure.json"
+        ],
+        "input_contract": [
+          "unlock_value_to_adv20",
+          "days_to_unlock"
+        ],
+        "metrics_or_rules": [
+          {
+            "expression": "days_to_unlock <= 30 && unlock_value_to_adv20 >= 5",
+            "thresholds": {
+              "days_to_unlock": 30,
+              "unlock_value_to_adv20": 5
+            }
+          }
+        ],
+        "coverage_status": "partial"
+      },
+      "gap": {
+        "status": "partial",
+        "details": [
+          "缺少解禁类型分层(首发/定增/激励)",
+          "缺少解禁收益率计算",
+          "缺少实际减持追踪",
+          "缺少密集解禁判断"
+        ],
+        "priority": "P0",
+        "milestone": "Sprint-1"
+      },
+      "event_trigger": {
+        "supported": true,
+        "triggers": [
+          {
+            "source": "announcement",
+            "event_type": "unlock_schedule_change",
+            "action": "recompute"
+          }
+        ]
+      }
+    },
+    {
+      "id": "CAP-007",
+      "risk_dimension": "margin-risk-monitor",
+      "legacy": {
+        "skill_path": ".claude/plugins/risk-monitor/skills/legacy/margin-risk-monitor",
+        "input_contract": [
+          "stockCode"
+        ],
+        "api_list": [
+          "cn/company/margin-trading-and-securities-lending"
+        ],
+        "metrics_or_rules": [
+          {
+            "name": "financing_balance_trend",
+            "description": "融资余额变化趋势(连续上升/下降)"
+          },
+          {
+            "name": "financing_buy_to_turnover",
+            "description": "融资买入额占成交额"
+          },
+          {
+            "name": "financing_balance_to_float_mcap",
+            "description": "融资余额占流通市值"
+          },
+          {
+            "name": "sec_lend_balance_change",
+            "description": "融券余量变化"
+          },
+          {
+            "name": "crowding_signal",
+            "description": "杠杆拥挤判断"
+          },
+          {
+            "name": "top_divergence",
+            "description": "顶背离信号(融资新高+价格不新高)"
+          }
+        ],
+        "output_shape": {
+          "type": "report",
+          "sections": [
+            "两融杠杆风险监控报告",
+            "杠杆拥挤程度",
+            "踩踏风险",
+            "融券含义解释"
+          ]
+        },
+        "field_completeness": 1.0
+      },
+      "engine": {
+        "module": "margin-risk-monitor.json",
+        "rule_id": "MARGIN_001",
+        "rule_count": 3,
+        "rules": [
+          "margin-risk-monitor.json",
+          "margin-risk-monitor-crowded-long.json",
+          "margin-risk-monitor-financing-broker-divergence.json"
+        ],
+        "input_contract": [
+          "financing_balance_change_20d",
+          "price_return_20d"
+        ],
+        "metrics_or_rules": [
+          {
+            "expression": "financing_balance_change_20d > 0.2 && price_return_20d < -0.05",
+            "thresholds": {
+              "financing_balance_change_20d": 0.2,
+              "price_return_20d": -0.05
+            }
+          }
+        ],
+        "coverage_status": "partial"
+      },
+      "gap": {
+        "status": "partial",
+        "details": [
+          "缺少融券维度监控",
+          "缺少杠杆拥挤度分位数判断",
+          "缺少顶背离信号识别",
+          "缺少融资买入额/成交额占比"
+        ],
+        "priority": "P1",
+        "milestone": "Sprint-2"
+      },
+      "event_trigger": {
+        "supported": true,
+        "triggers": [
+          {
+            "source": "market_anomaly",
+            "event_type": "margin_balance_spike",
+            "action": "recompute"
+          }
+        ]
+      }
+    },
+    {
+      "id": "CAP-008",
+      "risk_dimension": "limit-up-limit-down-risk-checker",
+      "legacy": {
+        "skill_path": ".claude/plugins/risk-monitor/skills/legacy/limit-up-limit-down-risk-checker",
+        "input_contract": [
+          "stockCode",
+          "startDate",
+          "endDate"
+        ],
+        "api_list": [
+          "cn/company/candlestick",
+          "cn/company"
+        ],
+        "metrics_or_rules": [
+          {
+            "name": "limit_status",
+            "values": ["涨停", "跌停", "正常"],
+            "description": "涨跌停状态"
+          },
+          {
+            "name": "seal_strength",
+            "threshold": [1, 3],
+            "description": "封单强度阈值(弱封/强封)"
+          },
+          {
+            "name": "limit_time",
+            "threshold": ["10:00", "14:00"],
+            "description": "涨停时间阈值(早盘/尾盘)"
+          },
+          {
+            "name": "consecutive_limit_days",
+            "threshold": 5,
+            "description": "连续涨跌停天数阈值"
+          },
+          {
+            "name": "open_probability",
+            "description": "开板概率"
+          }
+        ],
+        "output_shape": {
+          "type": "report",
+          "sections": [
+            "涨跌停与可交易性风险检查报告",
+            "制度约束分析",
+            "行动边界建议"
+          ]
+        },
+        "field_completeness": 1.0
+      },
+      "engine": {
+        "module": "limit-up-limit-down-risk-checker.json",
+        "rule_id": "LIMIT_001",
+        "rule_count": 3,
+        "rules": [
+          "limit-up-limit-down-risk-checker.json",
+          "limit-up-limit-down-risk-checker-board-failure.json",
+          "limit-up-limit-down-risk-checker-liquidation-chain.json"
+        ],
+        "input_contract": [
+          "down_limit_streak",
+          "turnover_ratio"
+        ],
+        "metrics_or_rules": [
+          {
+            "expression": "down_limit_streak >= 2 && turnover_ratio < 0.02",
+            "thresholds": {
+              "down_limit_streak": 2,
+              "turnover_ratio": 0.02
+            }
+          }
+        ],
+        "coverage_status": "match"
+      },
+      "gap": {
+        "status": "match",
+        "details": [
+          "连续跌停识别一致",
+          "engine 已覆盖流动性锁死核心风险"
+        ],
+        "priority": "P0",
+        "milestone": "Sprint-1"
+      },
+      "event_trigger": {
+        "supported": true,
+        "triggers": [
+          {
+            "source": "market_anomaly",
+            "event_type": "limit_down_streak",
+            "action": "escalate"
+          }
+        ]
+      }
+    },
+    {
+      "id": "CAP-009",
+      "risk_dimension": "liquidity-impact-estimator",
+      "legacy": {
+        "skill_path": ".claude/plugins/risk-monitor/skills/legacy/liquidity-impact-estimator",
+        "input_contract": [
+          "areaCode",
+          "startDate",
+          "endDate"
+        ],
+        "api_list": [
+          "macro/money-supply"
+        ],
+        "metrics_or_rules": [
+          {
+            "name": "size_to_adv",
+            "description": "交易规模/日均成交额"
+          },
+          {
+            "name": "turnover_ratio",
+            "threshold": 0.01,
+            "description": "换手率阈值(低流动性)"
+          },
+          {
+            "name": "volatility",
+            "description": "波动率"
+          },
+          {
+            "name": "bid_ask_spread",
+            "description": "买卖价差"
+          },
+          {
+            "name": "impact_proxy",
+            "formula": "Volatility × sqrt(SizeToADV)",
+            "description": "冲击成本代理"
+          },
+          {
+            "name": "execution_method",
+            "values": ["TWAP", "VWAP", "分批"],
+            "description": "执行方式建议"
+          }
+        ],
+        "output_shape": {
+          "type": "report",
+          "sections": [
+            "流动性与冲击成本评估报告",
+            "成交能力分析",
+            "执行建议",
+            "成本情景表"
+          ]
+        },
+        "field_completeness": 1.0
+      },
+      "engine": {
+        "module": "liquidity-impact-estimator.json",
+        "rule_id": "LIQ_001",
+        "rule_count": 3,
+        "rules": [
+          "liquidity-impact-estimator.json",
+          "liquidity-impact-estimator-auction-gap.json",
+          "liquidity-impact-estimator-depth-slippage.json"
+        ],
+        "input_contract": [
+          "order_value",
+          "adv20",
+          "volatility_20d"
+        ],
+        "metrics_or_rules": [
+          {
+            "expression": "(order_value / adv20) >= 0.2",
+            "thresholds": {
+              "size_to_adv": 0.2
+            }
+          }
+        ],
+        "coverage_status": "partial"
+      },
+      "gap": {
+        "status": "partial",
+        "details": [
+          "缺少盘口深度数据接入",
+          "缺少冲击成本精确估算",
+          "缺少执行方式优化建议",
+          "缺少组合层面相关性分析"
+        ],
+        "priority": "P1",
+        "milestone": "Sprint-2"
+      },
+      "event_trigger": {
+        "supported": true,
+        "triggers": [
+          {
+            "source": "market_anomaly",
+            "event_type": "liquidity_drop",
+            "action": "recompute"
+          }
+        ]
+      }
+    }
+  ],
+  "legacy_coverage": {
+    "total_dimensions": 9,
+    "complete_dimensions": 9,
+    "completeness_rate": 1.0,
+    "by_dimension": {
+      "equity-pledge-risk-monitor": 1.0,
+      "shareholder-risk-check": 1.0,
+      "shareholder-structure-monitor": 1.0,
+      "goodwill-risk-monitor": 1.0,
+      "st-delist-risk-scanner": 1.0,
+      "ipo-lockup-risk-monitor": 1.0,
+      "margin-risk-monitor": 1.0,
+      "limit-up-limit-down-risk-checker": 1.0,
+      "liquidity-impact-estimator": 1.0
+    }
+  },
+  "engine_coverage": {
+    "total_rules": 31,
+    "base_rules": 9,
+    "extended_rules": 22,
+    "coverage_by_status": {
+      "match": 2,
+      "partial": 7,
+      "missing": 0,
+      "enhanced": 0
+    },
+    "coverage_rate": 1.0,
+    "match_rate": 0.222,
+    "partial_rate": 0.778
+  },
+  "gaps": {
+    "p0_missing_count": 0,
+    "p1_missing_count": 0,
+    "p0_partial_count": 3,
+    "p1_partial_count": 4,
+    "total_gaps": [
+      {
+        "dimension": "equity-pledge-risk-monitor",
+        "priority": "P0",
+        "status": "partial",
+        "gap_items": [
+          "质权人类型分层阈值",
+          "完整质押链追踪",
+          "纾困基金介入判断"
+        ]
+      },
+      {
+        "dimension": "shareholder-risk-check",
+        "priority": "P0",
+        "status": "partial",
+        "gap_items": [
+          "股权冻结风险监控",
+          "司法拍卖追踪",
+          "一致行动人关系判断",
+          "高管增减持信号"
+        ]
+      },
+      {
+        "dimension": "ipo-lockup-risk-monitor",
+        "priority": "P0",
+        "status": "partial",
+        "gap_items": [
+          "解禁类型分层",
+          "解禁收益率计算",
+          "实际减持追踪",
+          "密集解禁判断"
+        ]
+      },
+      {
+        "dimension": "shareholder-structure-monitor",
+        "priority": "P1",
+        "status": "partial",
+        "gap_items": [
+          "股东户数连续变化追踪",
+          "筹码集中度代理计算",
+          "机构持仓变化监控",
+          "人均持股趋势判断"
+        ]
+      },
+      {
+        "dimension": "goodwill-risk-monitor",
+        "priority": "P1",
+        "status": "partial",
+        "gap_items": [
+          "并购标的分项追踪",
+          "业绩承诺完成率监控",
+          "历史减值记录聚合",
+          "并购溢价率判断"
+        ]
+      },
+      {
+        "dimension": "margin-risk-monitor",
+        "priority": "P1",
+        "status": "partial",
+        "gap_items": [
+          "融券维度监控",
+          "杠杆拥挤度分位数判断",
+          "顶背离信号识别",
+          "融资买入额/成交额占比"
+        ]
+      },
+      {
+        "dimension": "liquidity-impact-estimator",
+        "priority": "P1",
+        "status": "partial",
+        "gap_items": [
+          "盘口深度数据接入",
+          "冲击成本精确估算",
+          "执行方式优化建议",
+          "组合层面相关性分析"
+        ]
+      }
+    ]
+  },
+  "event_triggers": {
+    "total_triggers": 9,
+    "implemented_triggers": 9,
+    "implementation_rate": 1.0,
+    "trigger_list": [
+      {
+        "id": "EVT-001",
+        "source": "announcement",
+        "event_type": "unlock_schedule_change",
+        "dimension": "ipo-lockup-risk-monitor",
+        "implemented": true
+      },
+      {
+        "id": "EVT-002",
+        "source": "announcement",
+        "event_type": "pledge_update",
+        "dimension": "equity-pledge-risk-monitor",
+        "implemented": true
+      },
+      {
+        "id": "EVT-003",
+        "source": "announcement",
+        "event_type": "shareholder_reduction_plan",
+        "dimension": "shareholder-risk-check",
+        "implemented": true
+      },
+      {
+        "id": "EVT-004",
+        "source": "announcement",
+        "event_type": "st_or_delist_notice",
+        "dimension": "st-delist-risk-scanner",
+        "implemented": true
+      },
+      {
+        "id": "EVT-005",
+        "source": "filing_update",
+        "event_type": "top_shareholder_change",
+        "dimension": "shareholder-structure-monitor",
+        "implemented": true
+      },
+      {
+        "id": "EVT-006",
+        "source": "filing_update",
+        "event_type": "impairment_hint",
+        "dimension": "goodwill-risk-monitor",
+        "implemented": true
+      },
+      {
+        "id": "EVT-007",
+        "source": "market_anomaly",
+        "event_type": "limit_down_streak",
+        "dimension": "limit-up-limit-down-risk-checker",
+        "implemented": true
+      },
+      {
+        "id": "EVT-008",
+        "source": "market_anomaly",
+        "event_type": "margin_balance_spike",
+        "dimension": "margin-risk-monitor",
+        "implemented": true
+      },
+      {
+        "id": "EVT-009",
+        "source": "market_anomaly",
+        "event_type": "liquidity_drop",
+        "dimension": "liquidity-impact-estimator",
+        "implemented": true
+      }
+    ]
+  },
+  "summary": {
+    "legacy_completeness_rate": "100%",
+    "engine_coverage_rate": "100%",
+    "engine_match_rate": "22.2%",
+    "engine_partial_rate": "77.8%",
+    "p0_gap_count": 0,
+    "p1_gap_count": 0,
+    "validation_status": "baseline_created"
+  }
+}

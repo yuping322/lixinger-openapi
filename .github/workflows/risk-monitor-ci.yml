@@ -1,0 +1,43 @@
+name: Risk Monitor CI
+
+on:
+  push:
+    paths:
+      - '.claude/plugins/risk-monitor/**'
+    branches:
+      - main
+      - master
+  pull_request:
+    paths:
+      - '.claude/plugins/risk-monitor/**'
+    branches:
+      - main
+      - master
+
+jobs:
+  validate-rules:
+    name: Validate Risk Rules Schema
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install jsonschema
+        run: pip install jsonschema
+      
+      - name: Run rules validation
+        run: |
+          cd .claude/plugins/risk-monitor
+          ./scripts/validate-rules.sh
+      
+      - name: Validation report
+        if: always()
+        run: |
+          echo "## Risk Rules Validation Report" >> $GITHUB_STEP_SUMMARY
+          echo "Schema validation completed for all rule files." >> $GITHUB_STEP_SUMMARY

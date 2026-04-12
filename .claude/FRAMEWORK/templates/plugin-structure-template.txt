@@ -1,0 +1,214 @@
+plugins/<plugin>/
+├── README.md                    # 插件说明（必填）
+│   - 插件名称和版本
+│   - 功能概述
+│   - 使用方法
+│   - 依赖关系
+│   - 变更日志
+│
+├── plugin.yaml                  # 插件元信息（必填）
+│   - name: 插件名称
+│   - version: 版本号
+│   - owner: 负责人
+│   - pack: 所属 Pack
+│   - business_domain: 业务域
+│   - dependencies: 依赖列表
+│   - default_command: 默认命令
+│   - status: 状态（active/beta/deprecated）
+│   - created_at: 创建日期
+│   - updated_at: 更新日期
+│
+├── commands/                    # 命令目录（至少一个）
+│   ├── <command1>.md           # 命令文件（必须有 frontmatter）
+│   │   - frontmatter（必填）
+│   │     - description: 命令描述
+│   │     - argument-hint: 参数说明
+│   │     - target-skill: 目标 skill
+│   │     - output-format: 输出格式
+│   │     - risk-level: 风险等级
+│   │   - 参数解析
+│   │   - 调用 Skill
+│   │   - 输出模板
+│   │   - 错误处理
+│   │
+│   ├── <command2>.md
+│   └── ...
+│
+├── skills/                      # Skill 目录（至少一个）
+│   ├── <skill1>/               # Skill 目录
+│   │   ├── SKILL.md            # Skill 定义（必填）
+│   │   │   - 能力定义
+│   │   │   - 输入字段（Input Schema）
+│   │   │   - 输出字段（Output Schema）
+│   │   │   - 失败模式（Failure Modes）
+│   │   │   - 置信度来源（Confidence Source）
+│   │   │   - 最小示例（Minimal Example）
+│   │   │   - QA 规则（QA Rules）
+│   │   │
+│   │   ├── references/         # 参考资料（可选）
+│   │   │   ├── docs.md         # 文档参考
+│   │   │   ├── api-spec.yaml   # API 规范
+│   │   │   └── data-dict.md    # 数据字典
+│   │   │
+│   │   ├── scripts/            # 执行脚本（可选）
+│   │   │   ├── main.py         # 主脚本
+│   │   │   ├── utils.py        # 工具函数
+│   │   │   └── config.yaml     # 配置文件
+│   │   │
+│   │   └── examples/           # 示例文件（可选）
+│   │       ├── example1.json   # 示例输入/输出
+│   │       ├── example2.json
+│   │       └── README.md       # 示例说明
+│   │
+│   ├── <skill2>/
+│   └── ...
+│
+├── contracts/                   # 契约目录（必填）
+│   ├── input.schema.json       # 输入契约
+│   │   - JSON Schema 定义
+│   │   - 字段类型
+│   │   - 字段约束
+│   │   - 示例值
+│   │
+│   ├── output.schema.json      # 输出契约
+│   │   - JSON Schema 定义
+│   │   - 字段类型
+│   │   - 字段约束
+│   │   - 示例值
+│   │
+│   └── qa-rules.schema.json    # QA 规则契约
+│       - QA 规则定义
+│       - 校验逻辑
+│       - 失败动作
+│       - 错误提示
+│
+├── templates/                  # 模板目录（可选）
+│   ├── output-template.md      # 输出模板
+│   │   - 输出格式定义
+│   │   - 字段映射
+│   │   - 样式规范
+│   │
+│   ├── report-template.md      # 报告模板
+│   └── email-template.md       # 邮件模板
+│
+├── tests/                      # 测试目录（必填）
+│   ├── smoke/                  # 冒烟测试（必填）
+│   │   ├── <command1>_smoke.md # 每个 command 至少一个 smoke case
+│   │   │   - 测试场景
+│   │   │   - 输入参数
+│   │   │   - 预期输出
+│   │   │   - 预期置信度
+│   │   │   - 测试结果
+│   │   │
+│   │   ├── <command2>_smoke.md
+│   │   └── ...
+│   │
+│   ├── integration/            # 集成测试（可选）
+│   │   ├── test_scenario1.md   # 集成测试场景
+│   │   ├── test_scenario2.md
+│   │   └── ...
+│   │
+│   └── performance/            # 性能测试（可选）
+│       ├── load_test.md        # 负载测试
+│       └── stress_test.md      # 压力测试
+│
+└── docs/                       # 文档目录（可选）
+    ├── user-guide.md           # 用户指南
+    ├── api-reference.md        # API 参考
+    ├── architecture.md         # 架构说明
+    └── troubleshooting.md      # 故障排查
+
+# 目录结构说明
+
+## 必填目录和文件
+1. **README.md**：插件说明文档
+2. **plugin.yaml**：插件元信息配置
+3. **commands/**：至少包含一个命令文件
+4. **skills/**：至少包含一个 skill 目录
+5. **contracts/**：包含 input/output/qa-rules 三个契约文件
+6. **tests/smoke/**：至少包含一个冒烟测试文件
+
+## 可选目录和文件
+1. **skills/<skill>/references/**：参考资料
+2. **skills/<skill>/scripts/**：执行脚本
+3. **skills/<skill>/examples/**：示例文件
+4. **templates/**：输出模板
+5. **tests/integration/**：集成测试
+6. **tests/performance/**：性能测试
+7. **docs/**：详细文档
+
+## 文件命名规范
+- 目录名：小写字母，单词间用连字符 `-` 连接（如：`risk-monitor`）
+- 文件名：小写字母，单词间用下划线 `_` 连接（如：`input.schema.json`）
+- Skill 目录名：与 skill 名称一致（如：`valuation-detector`）
+- Command 文件名：与命令名称一致（如：`query-valuation.md`）
+
+## 契约文件规范
+所有契约文件必须使用 JSON Schema 格式，包含：
+- `$schema`：JSON Schema 版本
+- `title`：契约标题
+- `description`：契约描述
+- `type`：数据类型
+- `properties`：字段定义
+- `required`：必填字段列表
+- `examples`：示例数据
+
+## 测试文件规范
+每个测试文件必须包含：
+- **测试场景**：描述测试目的
+- **输入参数**：测试输入
+- **预期输出**：期望结果
+- **预期置信度**：期望的置信度范围
+- **测试结果**：实际结果（通过/失败）
+
+# Plugin 创建检查清单
+
+## 基础结构检查
+- [ ] README.md 文件存在且内容完整
+- [ ] plugin.yaml 文件存在且字段完整
+- [ ] commands/ 目录存在且包含至少一个命令文件
+- [ ] skills/ 目录存在且包含至少一个 skill 目录
+- [ ] contracts/ 目录存在且包含三个契约文件
+- [ ] tests/smoke/ 目录存在且包含至少一个测试文件
+
+## Command 检查
+- [ ] 每个 command 文件都有完整 frontmatter
+- [ ] frontmatter 包含所有必填字段（description, argument-hint, target-skill, output-format, risk-level）
+- [ ] 参数解析部分清晰完整
+- [ ] 调用 Skill 部分明确
+- [ ] 输出模板部分明确
+- [ ] 错误处理部分完整
+
+## Skill 检查
+- [ ] 每个 skill 目录都有 SKILL.md 文件
+- [ ] SKILL.md 包含能力定义
+- [ ] SKILL.md 包含输入字段表格
+- [ ] SKILL.md 包含输出字段表格
+- [ ] SKILL.md 包含失败模式表格
+- [ ] SKILL.md 包含置信度来源说明
+- [ ] SKILL.md 包含最小示例
+- [ ] SKILL.md 包含 QA 规则
+
+## 契约检查
+- [ ] input.schema.json 符合 JSON Schema 规范
+- [ ] output.schema.json 符合 JSON Schema 规范
+- [ ] qa-rules.schema.json 符合 JSON Schema 规范
+- [ ] 契约定义与 SKILL.md 中的定义一致
+
+## 测试检查
+- [ ] 每个 command 都有对应的 smoke test
+- [ ] smoke test 包含测试场景、输入、预期输出、预期置信度
+- [ ] smoke test 可以实际运行并验证结果
+
+## 质量红线检查
+- [ ] Command 不包含业务逻辑
+- [ ] Skill 不直接调用数据源（通过 Pack D）
+- [ ] 没有跨域调用
+- [ ] 没有硬编码绝对路径
+- [ ] 每个 skill 都是单一职责
+
+## 发布前检查
+- [ ] 所有 smoke test 通过
+- [ ] 文档完整（README + docs/）
+- [ ] plugin.yaml 状态正确
+- [ ] 版本号符合语义化版本规范
