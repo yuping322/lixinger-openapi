@@ -71,10 +71,17 @@ def _read_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def _safe_float(value: Any) -> Optional[float]:
+    try:
+        return float(value)
+    except (ValueError, TypeError):
+        return None
+
+
 def _read_evidence_ids(path: Path) -> Tuple[Set[str], List[Issue]]:
     ids: Set[str] = set()
     issues: List[Issue] = []
-    for line in path.read_text(encoding="utf-8").splitlines():
+    for line_no, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
         line = line.strip()
         if not line:
             continue
@@ -84,8 +91,8 @@ def _read_evidence_ids(path: Path) -> Tuple[Set[str], List[Issue]]:
             issues.append(
                 Issue(
                     severity="Warning",
-                    location=str(path),
-                    description=f"evidence.jsonl 行解析失败：{type(e).__name__}: {e}",
+                    location=f"{path}:{line_no}",
+                    description=f"evidence.jsonl 第 {line_no} 行解析失败：{type(e).__name__}: {e}",
                     impact="证据 ID 无法读取，可能影响证据链校验",
                     suggested_fix="检查该行 JSON 格式是否正确",
                 )
@@ -180,25 +187,25 @@ def _check_scores(verdict: Dict[str, Any], case_dir: Path) -> List[Issue]:
         )
 
     for k, v in scores.items():
-        try:
-            if not isinstance(v, (int, float)) or not (0.0 <= float(v) <= 1.0):
-                issues.append(
-                    Issue(
-                        severity="Warning",
-                        location=loc,
-                        description=f"scores.{k}={v} 超出 [0,1] 范围或类型错误",
-                        impact="评分异常，可能影响 grade 计算",
-                        suggested_fix="检查对应维度的计算逻辑",
-                    )
-                )
-        except (ValueError, TypeError) as e:
+        numeric_v = _safe_float(v)
+        if numeric_v is None:
             issues.append(
                 Issue(
                     severity="Warning",
                     location=loc,
-                    description=f"scores.{k}={v} 类型转换失败：{type(e).__name__}: {e}",
+                    description=f"scores.{k}={v} 类型转换失败",
                     impact="评分值无法解析为数值，可能影响 grade 计算",
                     suggested_fix="检查对应维度的计算逻辑，确保输出为数值类型",
+                )
+            )
+        elif not (0.0 <= numeric_v <= 1.0):
+            issues.append(
+                Issue(
+                    severity="Warning",
+                    location=loc,
+                    description=f"scores.{k}={v} 超出 [0,1] 范围或类型错误",
+                    impact="评分异常，可能影响 grade 计算",
+                    suggested_fix="检查对应维度的计算逻辑",
                 )
             )
 
@@ -238,25 +245,25 @@ def _check_scores(verdict: Dict[str, Any], case_dir: Path) -> List[Issue]:
 
     confidence = verdict_block.get("confidence")
     if confidence is not None:
-        try:
-            if not (0.0 <= float(confidence) <= 1.0):
-                issues.append(
-                    Issue(
-                        severity="Warning",
-                        location=loc,
-                        description=f"verdict.confidence={confidence} 超出 [0,1] 范围",
-                        impact="置信度字段异常",
-                        suggested_fix="检查 _build_verdict 中的 confidence 计算",
-                    )
-                )
-        except (ValueError, TypeError) as e:
+        numeric_confidence = _safe_float(confidence)
+        if numeric_confidence is None:
             issues.append(
                 Issue(
                     severity="Warning",
                     location=loc,
-                    description=f"verdict.confidence={confidence} 类型转换失败：{type(e).__name__}: {e}",
+                    description=f"verdict.confidence={confidence} 类型转换失败",
                     impact="置信度字段无法解析为数值",
                     suggested_fix="检查 _build_verdict 中的 confidence 计算，确保输出为数值类型",
+                )
+            )
+        elif not (0.0 <= numeric_confidence <= 1.0):
+            issues.append(
+                Issue(
+                    severity="Warning",
+                    location=loc,
+                    description=f"verdict.confidence={confidence} 超出 [0,1] 范围",
+                    impact="置信度字段异常",
+                    suggested_fix="检查 _build_verdict 中的 confidence 计算",
                 )
             )
     return issues
@@ -453,25 +460,25 @@ def _check_cpe_claims(claims_obj: Dict[str, Any], case_dir: Path) -> List[Issue]
                 )
             )
         else:
-            try:
-                if not (0.0 <= float(confidence) <= 1.0):
-                    issues.append(
-                        Issue(
-                            severity="Warning",
-                            location=loc,
-                            description=f"claim {cid}: confidence={confidence} 超出 [0,1] 范围",
-                            impact="置信度字段异常",
-                            suggested_fix="填写 [0,1] 范围内的 confidence",
-                        )
-                    )
-            except (ValueError, TypeError) as e:
+            numeric_confidence = _safe_float(confidence)
+            if numeric_confidence is None:
                 issues.append(
                     Issue(
                         severity="Warning",
                         location=loc,
-                        description=f"claim {cid}: confidence={confidence} 类型转换失败：{type(e).__name__}: {e}",
+                        description=f"claim {cid}: confidence={confidence} 类型转换失败",
                         impact="置信度字段无法解析为数值",
                         suggested_fix="填写 [0,1] 范围内的 confidence，确保为数值类型",
+                    )
+                )
+            elif not (0.0 <= numeric_confidence <= 1.0):
+                issues.append(
+                    Issue(
+                        severity="Warning",
+                        location=loc,
+                        description=f"claim {cid}: confidence={confidence} 超出 [0,1] 范围",
+                        impact="置信度字段异常",
+                        suggested_fix="填写 [0,1] 范围内的 confidence",
                     )
                 )
 
@@ -501,25 +508,25 @@ def _check_cpe_claims(claims_obj: Dict[str, Any], case_dir: Path) -> List[Issue]
                         )
                     )
                 else:
-                    try:
-                        if not (0.0 <= float(ev_conf) <= 1.0):
-                            issues.append(
-                                Issue(
-                                    severity="Info",
-                                    location=loc,
-                                    description=f"claim {cid} supporting_evidence[{i}]: confidence={ev_conf} 超出 [0,1] 范围",
-                                    impact="证据置信度字段异常",
-                                    suggested_fix="填写 [0,1] 范围内的 confidence",
-                                )
-                            )
-                    except (ValueError, TypeError) as e:
+                    numeric_ev_conf = _safe_float(ev_conf)
+                    if numeric_ev_conf is None:
                         issues.append(
                             Issue(
                                 severity="Info",
                                 location=loc,
-                                description=f"claim {cid} supporting_evidence[{i}]: confidence={ev_conf} 类型转换失败：{type(e).__name__}: {e}",
+                                description=f"claim {cid} supporting_evidence[{i}]: confidence={ev_conf} 类型转换失败",
                                 impact="证据置信度字段无法解析为数值",
                                 suggested_fix="填写 [0,1] 范围内的 confidence，确保为数值类型",
+                            )
+                        )
+                    elif not (0.0 <= numeric_ev_conf <= 1.0):
+                        issues.append(
+                            Issue(
+                                severity="Info",
+                                location=loc,
+                                description=f"claim {cid} supporting_evidence[{i}]: confidence={ev_conf} 超出 [0,1] 范围",
+                                impact="证据置信度字段异常",
+                                suggested_fix="填写 [0,1] 范围内的 confidence",
                             )
                         )
                 # 时间敏感事实的 as_of_date 检查
@@ -736,25 +743,25 @@ def _check_cpe_verdict(cpe_verdict_obj: Dict[str, Any], case_dir: Path) -> List[
             )
         )
     else:
-        try:
-            if not (0.0 <= float(confidence) <= 1.0):
-                issues.append(
-                    Issue(
-                        severity="Warning",
-                        location=loc,
-                        description=f"cpe verdict.confidence={confidence} 超出 [0,1] 范围",
-                        impact="置信度字段异常",
-                        suggested_fix="填写 [0,1] 范围内的 confidence",
-                    )
-                )
-        except (ValueError, TypeError) as e:
+        numeric_confidence = _safe_float(confidence)
+        if numeric_confidence is None:
             issues.append(
                 Issue(
                     severity="Warning",
                     location=loc,
-                    description=f"cpe verdict.confidence={confidence} 类型转换失败：{type(e).__name__}: {e}",
+                    description=f"cpe verdict.confidence={confidence} 类型转换失败",
                     impact="置信度字段无法解析为数值",
                     suggested_fix="填写 [0,1] 范围内的 confidence，确保为数值类型",
+                )
+            )
+        elif not (0.0 <= numeric_confidence <= 1.0):
+            issues.append(
+                Issue(
+                    severity="Warning",
+                    location=loc,
+                    description=f"cpe verdict.confidence={confidence} 超出 [0,1] 范围",
+                    impact="置信度字段异常",
+                    suggested_fix="填写 [0,1] 范围内的 confidence",
                 )
             )
 
@@ -1128,72 +1135,83 @@ def main() -> int:
     )
 
     all_issues: List[Issue] = []
-
-    # --- FQE checks ---
-    fq_file_issues, paths = _check_required_files(case_dir)
-    all_issues.extend(fq_file_issues)
-
     fq_verdict: Dict[str, Any] = {}
     financial_facts: Dict[str, Any] = {}
-    if not fq_file_issues:
-        financial_facts = _read_json(paths["normalized_financial_facts"])
-        evidence_ids, evidence_issues = _read_evidence_ids(paths["normalized_evidence"])
-        all_issues.extend(evidence_issues)
-        adjustments = _read_json(paths["fq_adjustments"])
-        red_flags_obj = _read_json(paths["fq_red_flags"])
-        fq_verdict = _read_json(paths["fq_verdict"])
-
-        all_issues.extend(_check_period_count(financial_facts, case_dir))
-        all_issues.extend(_check_bridge(adjustments, fq_verdict, case_dir))
-        all_issues.extend(_check_scores(fq_verdict, case_dir))
-        all_issues.extend(_check_verdict_contract(fq_verdict, case_dir))
-        all_issues.extend(_check_rules_version_consistency(fq_verdict, case_dir))
-        all_issues.extend(
-            _check_red_flag_evidence_refs(red_flags_obj, evidence_ids, case_dir)
-        )
-
-    # --- CPE checks ---
     cpe_verdict_obj: Dict[str, Any] = {}
-    if not args.skip_cpe:
-        cpe_file_issues, cpe_paths = _check_cpe_files(case_dir)
-        all_issues.extend(cpe_file_issues)
 
-        cpe_dir = case_dir / "competitive_positioning"
-        if (
-            cpe_dir.exists()
-            and cpe_paths.get("claims")
-            and cpe_paths["claims"].exists()
-        ):
-            claims_obj = _read_json(cpe_paths["claims"])
-            all_issues.extend(_check_cpe_claims(claims_obj, case_dir))
+    try:
+        # --- FQE checks ---
+        fq_file_issues, paths = _check_required_files(case_dir)
+        all_issues.extend(fq_file_issues)
 
-        if (
-            cpe_dir.exists()
-            and cpe_paths.get("peer_clusters")
-            and cpe_paths["peer_clusters"].exists()
-        ):
-            peer_clusters_obj = _read_json(cpe_paths["peer_clusters"])
-            all_issues.extend(_check_cpe_peer_clusters(peer_clusters_obj, case_dir))
+        if not fq_file_issues:
+            financial_facts = _read_json(paths["normalized_financial_facts"])
+            evidence_ids, evidence_issues = _read_evidence_ids(paths["normalized_evidence"])
+            all_issues.extend(evidence_issues)
+            adjustments = _read_json(paths["fq_adjustments"])
+            red_flags_obj = _read_json(paths["fq_red_flags"])
+            fq_verdict = _read_json(paths["fq_verdict"])
 
-        if (
-            cpe_dir.exists()
-            and cpe_paths.get("cpe_verdict")
-            and cpe_paths["cpe_verdict"].exists()
-        ):
-            cpe_verdict_obj = _read_json(cpe_paths["cpe_verdict"])
-            all_issues.extend(_check_cpe_verdict(cpe_verdict_obj, case_dir))
-            all_issues.extend(_check_cpe_verdict_version(cpe_verdict_obj, case_dir))
-
-        # FQE × CPE 交叉一致性（仅当两者都存在时）
-        if fq_verdict and cpe_verdict_obj:
-            subject_issues = _check_subject_consistency(
-                financial_facts, cpe_verdict_obj, case_dir
+            all_issues.extend(_check_period_count(financial_facts, case_dir))
+            all_issues.extend(_check_bridge(adjustments, fq_verdict, case_dir))
+            all_issues.extend(_check_scores(fq_verdict, case_dir))
+            all_issues.extend(_check_verdict_contract(fq_verdict, case_dir))
+            all_issues.extend(_check_rules_version_consistency(fq_verdict, case_dir))
+            all_issues.extend(
+                _check_red_flag_evidence_refs(red_flags_obj, evidence_ids, case_dir)
             )
-            all_issues.extend(subject_issues)
-            if not any(i.severity == "Critical" for i in subject_issues):
-                all_issues.extend(
-                    _check_cpe_fqe_consistency(fq_verdict, cpe_verdict_obj, case_dir)
+
+        # --- CPE checks ---
+        if not args.skip_cpe:
+            cpe_file_issues, cpe_paths = _check_cpe_files(case_dir)
+            all_issues.extend(cpe_file_issues)
+
+            cpe_dir = case_dir / "competitive_positioning"
+            if (
+                cpe_dir.exists()
+                and cpe_paths.get("claims")
+                and cpe_paths["claims"].exists()
+            ):
+                claims_obj = _read_json(cpe_paths["claims"])
+                all_issues.extend(_check_cpe_claims(claims_obj, case_dir))
+
+            if (
+                cpe_dir.exists()
+                and cpe_paths.get("peer_clusters")
+                and cpe_paths["peer_clusters"].exists()
+            ):
+                peer_clusters_obj = _read_json(cpe_paths["peer_clusters"])
+                all_issues.extend(_check_cpe_peer_clusters(peer_clusters_obj, case_dir))
+
+            if (
+                cpe_dir.exists()
+                and cpe_paths.get("cpe_verdict")
+                and cpe_paths["cpe_verdict"].exists()
+            ):
+                cpe_verdict_obj = _read_json(cpe_paths["cpe_verdict"])
+                all_issues.extend(_check_cpe_verdict(cpe_verdict_obj, case_dir))
+                all_issues.extend(_check_cpe_verdict_version(cpe_verdict_obj, case_dir))
+
+            # FQE × CPE 交叉一致性（仅当两者都存在时）
+            if fq_verdict and cpe_verdict_obj:
+                subject_issues = _check_subject_consistency(
+                    financial_facts, cpe_verdict_obj, case_dir
                 )
+                all_issues.extend(subject_issues)
+                if not any(i.severity == "Critical" for i in subject_issues):
+                    all_issues.extend(
+                        _check_cpe_fqe_consistency(fq_verdict, cpe_verdict_obj, case_dir)
+                    )
+    except Exception as e:
+        all_issues.append(
+            Issue(
+                severity="Critical",
+                location=str(case_dir),
+                description=f"QA 运行异常：{type(e).__name__}: {e}",
+                impact="部分检查未完成，结果可能不完整",
+                suggested_fix="检查输入文件和脚本日志，修复异常后重新运行 QA",
+            )
+        )
 
     # --- Verdict ---
     has_critical = any(i.severity == "Critical" for i in all_issues)
